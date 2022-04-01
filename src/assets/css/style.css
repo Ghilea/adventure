@@ -1,0 +1,171 @@
+body {
+    color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    margin: 3em 0 0 0;
+    letter-spacing: 0.1rem;
+}
+
+h1 img {
+    z-index: -1;
+    margin: 0 auto;
+}
+
+h1 p {
+    transform: translate(0, -3.7em);
+}
+
+#adventure .enemy, #adventure .main_text {
+    max-height: 10em;
+    height: 100%;
+    max-width: 40em;
+    width: 100%;
+    border: burlywood 5px solid;
+    padding: 2em;
+    background-color: rgba(0, 0, 0, 0.535);
+    position: relative;
+    line-height: 1.5rem;
+    letter-spacing: 0.3rem;
+    margin: 0 0 3em 0;
+}
+
+#adventure .enemy {
+    margin-top: 3em;
+}
+
+#adventure p .cr {
+    position: absolute;
+    height: 3em;
+    right: -3em;
+    bottom: -2.2em;
+    z-index: -1;
+}
+
+#adventure p .cl {
+    position: absolute;
+    height: 3em;
+    left: -3em;
+    bottom: -2.2em;
+    z-index: -1;
+}
+
+#adventure p .ctl {
+    position: absolute;
+    height: 3em;
+    left: -3em;
+    top: -2.2em;
+    z-index: -1;
+    transform: rotate(180deg);
+}
+
+#adventure p .ctr {
+    position: absolute;
+    height: 3em;
+    right: -3em;
+    top: -2.2em;
+    z-index: -1;
+    transform: rotate(180deg);
+}
+
+#adventure .skull {
+    height: 3em;
+    float: left;
+    margin-right: 2em;
+    margin-top: 1em;
+}
+
+#adventure .skull_p {
+    padding-right: 2em;
+}
+
+#adventure .skull_2 {
+    height: 3em;
+    float: right;
+    margin-left: 2em;
+    margin-top: -4em;
+}
+
+.container {
+    display: flex;
+    gap: 2em;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.displayButton {
+    display:block;
+}
+
+.map {
+    background-color: rgb(0,0,0,0.5);
+    height: 15em;
+    width: 15em;
+    border: #fff 1px solid;
+}
+
+.btn {
+    width: 100%;
+    max-width: 500px;
+    margin:0 auto;
+}
+
+button {
+    max-width: 10em;
+    width: 100%;
+    background-color: rgb(255, 0, 0, 0.6);
+    border: 0;
+    padding: 1em;
+    box-shadow: 7px 7px 15px rgb(0, 0, 0);
+    color: #fff;
+    letter-spacing: 0.1rem;
+}
+button:hover {
+    background-color: rgba(107, 1, 1, 0.6);
+    cursor: pointer;
+}
+
+.btn .container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 2em;
+    grid-template-areas:
+        ". Up ."
+        "Left Down Right"
+        ". Position .";
+}
+
+#position {
+    grid-area: Position;
+}
+
+.up {
+    grid-area: Up;
+}
+
+.left {
+    grid-area: Left;
+}
+
+.down {
+    grid-area: Down;
+}
+
+.right {
+    grid-area: Right;
+}

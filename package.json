@@ -1,0 +1,9 @@
+{
+    "name": "adventure",
+    "version": "0.0.1",
+    "description": "adventure",
+    "main": "src/app.js",
+    "devDependencies": {
+        "mysql": "2.18.1"
+    }
+}
