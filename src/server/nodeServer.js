@@ -39,7 +39,7 @@ function getAdventure(res, x, y) {
             const enemies = ((Math.random() * 1) < 0.5);
 
             res.end(JSON.stringify({
-                'adventure': {result, 'enemies': enemies}
+                'adventure': {result, enemies}
             }))
             
                     
