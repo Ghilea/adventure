@@ -169,3 +169,24 @@ button:hover {
 .right {
     grid-area: Right;
 }
+
+.hero {
+    background-color: blue;
+    width: 15em;
+    height: 20em;
+}
+
+.img {
+    max-width: 10em;
+    width: 100%;
+}
+    
+.img img {
+    width: 100%;
+}
+
+#adventure {
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}

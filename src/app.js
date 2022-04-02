@@ -21,6 +21,8 @@ http.createServer((req, res) => {
         getAdventure(res, url.parse(req.url, true).query.x, url.parse(req.url, true).query.y);
     } else if (new url.parse(req.url, true).pathname === "/allAdventures") {
         getAllAdventures(res);
+    } else if (new url.parse(req.url, true).pathname === "/getProtagonist") {
+        getProtagonist(res, url.parse(req.url, true).query.id);
     }else{
         res.end('inget');
     }
@@ -41,6 +43,26 @@ function getAdventure(res, x, y) {
             }))
             
                     
+        })
+
+    })
+}
+
+function getProtagonist(res, id) {
+
+    con.connect(function (err) {
+
+        con.query(`SELECT protagonist.id, name, experience, img, health, strength, intellect, dexterity FROM
+                protagonist JOIN stats ON stats.id = stats_id WHERE protagonist.id =${id}`,
+                function (err, result, fields) {
+
+            res.end(JSON.stringify({
+                'protagonist': {
+                    result
+                }
+            }))
+
+
         })
 
     })

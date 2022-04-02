@@ -6,8 +6,6 @@ let globalState = {
 }
 
 adventure(globalState.x, globalState.y);
-//multiple();
-//polisen();
 
 btn.forEach(element => {
     element.addEventListener('click', buttons)
@@ -35,26 +33,32 @@ function buttons(event){
     }
 }
 
-map();
-
-function map(){
-    let link = `http://localhost:1234/allAdventures`;
+function getProtagonist(){
+    let link = `http://localhost:1234/getProtagonist?id=1`;
+    let link2 = `http://localhost:1234/getEnemy?id=1`;
 
     fetch(link)
         .then(x => x.json())
         .then(function (data) {
-        
-            console.log(data);
-            data.adventure.result.forEach(element => {
-                console.log(element);
-            });
-        
+            
+            fetch(link2)
+                .then(y => y.json())
+                .then(function (data2) {
+                    document.querySelector('#adventure').innerHTML = `
+                    <div class="fight">
+                        <div class="hero">
+                            <div class="hp">${data.protagonist.result[0].name} [ ${data.protagonist.result[0].health} ]</div>
+                            <div class="img"><img src='assets/images/fantasycharacters/${data.protagonist.result[0].img}.png'></div>
+                            <p class="output">text här</p>
+                        </div>
+                    </div>`;
+                })
+
         })
+
 }
 
 function adventure(x, y){
-
-    console.log('början av funktionen: ' + x, y);
 
     let link = `http://localhost:1234/adventure?x=${x}&y=${y}`;
 
@@ -79,7 +83,20 @@ function adventure(x, y){
 
                 if (data.adventure.enemies) {
                     if (data.adventure.result[0].enemy) {
-                        document.querySelector('#adventure').innerHTML += `<div class="enemy"><img class="skull" src='assets/images/fantasy_gui_png/button_10_s03.png'><p class="skull_p">En fiende uppenbarade sig. Var redo för strid eller fly för ditt liv.</p><img class="skull_2" src='assets/images/fantasy_gui_png/button_10_s03.png'></div>`;
+                        document.querySelector('#adventure').innerHTML += `
+                        <div class="enemy">
+                            <img class="skull" src='assets/images/fantasy_gui_png/button_10_s03.png'>
+                            <p class="skull_p">En fiende uppenbarade sig. Var redo för strid eller fly för ditt liv.</p>
+                            <img class="skull_2" src='assets/images/fantasy_gui_png/button_10_s03.png'>
+                        </div>`;
+
+                        btn.forEach(element => {
+                            element.style.display = 'none';
+                        });
+
+                         setTimeout(() => {
+                            getProtagonist();
+                         }, 3000);
                     }
                 }
             }else{
