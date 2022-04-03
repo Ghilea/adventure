@@ -1,45 +1,54 @@
 const http = require('http');
 const mySQL = require("mysql");
 const url = require('url');
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+
+const app = express();
+
+app.use(express.json());
+
+app.use(cors());
 
 const con = mySQL.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'adventure'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_DATABASE
 })
 
-http.createServer((req, res) => {
-    
-    res.writeHead(200, {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
-    });
-    
-    //route
-    if (new url.parse(req.url, true).pathname === "/adventure") {
-        getAdventure(res, url.parse(req.url, true).query.x, url.parse(req.url, true).query.y);
-    } else if (new url.parse(req.url, true).pathname === "/allAdventures") {
-        getAllAdventures(res);
-    } else if (new url.parse(req.url, true).pathname === "/getProtagonist") {
-        getProtagonist(res, url.parse(req.url, true).query.id);
-    }else{
-        res.end('inget');
-    }
+app.get('/adventure', (req, res) => {
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
+    getAdventure(res, req.query.x, req.query.y);
+});
 
-}).listen(1234);
+app.get('/allAdventure', (req, res) => {
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
+    getAllAdventures(res);
+});
+
+app.get('/getProtagonist', (req, res) => {
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
+    getProtagonist(res, req.query.id);
+});
 
 
-function getAdventure(res, x, y) {
+app.listen(process.env.PORT, () =>
+    console.log(`Example app listening on port ${process.env.PORT}!`),
+);
 
-    con.connect(function(err) {
+const getAdventure = (res, x, y) => {
 
-        con.query(`SELECT * FROM areas WHERE Xpos=${x} AND Ypos =${y}`, function(err, result, fields){
+    con.connect((err) => {
+
+         con.query(`SELECT * FROM areas WHERE Xpos=${x} AND Ypos =${y}`, function(err, result, fields){
 
             const enemies = ((Math.random() * 1) < 0.5);
 
+            const content = (result.length > 0) ? true : false;
             res.end(JSON.stringify({
-                'adventure': {result, enemies}
+                'adventure': {result, enemies, content}
             }))
             
                     
@@ -48,16 +57,14 @@ function getAdventure(res, x, y) {
     })
 }
 
-function getProtagonist(res, id) {
+const getAllAdventures = (res) => {
 
     con.connect(function (err) {
 
-        con.query(`SELECT protagonist.id, name, experience, img, health, strength, intellect, dexterity FROM
-                protagonist JOIN stats ON stats.id = stats_id WHERE protagonist.id =${id}`,
-                function (err, result, fields) {
+        con.query(`SELECT * FROM areas`, function (err, result, fields) {
 
             res.end(JSON.stringify({
-                'protagonist': {
+                'adventure': {
                     result
                 }
             }))
@@ -68,14 +75,16 @@ function getProtagonist(res, id) {
     })
 }
 
-function getAllAdventures(res) {
+const getProtagonist = (res, id) => {
 
     con.connect(function (err) {
 
-        con.query(`SELECT * FROM areas`, function (err, result, fields) {
+        con.query(`SELECT protagonist.id, name, experience, img, health, strength, intellect, dexterity FROM
+                protagonist JOIN stats ON stats.id = stats_id WHERE protagonist.id =${id}`,
+                function (err, result, fields) {
 
             res.end(JSON.stringify({
-                'adventure': {
+                'protagonist': {
                     result
                 }
             }))

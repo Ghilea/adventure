@@ -22,31 +22,7 @@ function adventure(x, y){
         
                 
             }else{
-                globalState.x = 0;
-                globalState.y = 0;
-
-                document.querySelector('h1 p').innerHTML = 'Portal';
-
-                document.querySelector('#adventure').innerHTML = `<p class="main_text">
-                <img class="cr" src='assets/images/fantasy_gui_png/frame_02_03.png'>
-                <img class="cl" src='assets/images/fantasy_gui_png/frame_02_04.png'>
-                <img class="ctl" src='assets/images/fantasy_gui_png/frame_02_03.png'>
-                <img class="ctr" src='assets/images/fantasy_gui_png/frame_02_04.png'>
-                Från ingenstans blir du indragen i en magisk portal, som slungar iväg dig till en annan plats!
-                </p>`;
-
-                document.querySelector('body').style.backgroundImage = `url(assets/images/portal.jpg)`;
-
-                btn.forEach(element => {
-                    element.style.display = 'none';
-                });
-
-                setTimeout(() => {
-                    btn.forEach(element => {
-                        element.style.display = 'block';
-                    });
-                    adventure(globalState.x, globalState.y);
-                }, 3000);
+                
             }
 
             

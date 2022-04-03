@@ -16,6 +16,13 @@ h1 {
     letter-spacing: 0.1rem;
 }
 
+h1 span {
+    position: absolute;
+    top: 4.4em;
+    font-size: 1rem;
+    left: 47%;
+}
+
 h1 img {
     z-index: -1;
     margin: 0 auto;
@@ -121,7 +128,10 @@ h1 p {
 .btn {
     width: 100%;
     max-width: 500px;
-    margin:0 auto;
+    margin: 0 -250px;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
 }
 
 button {

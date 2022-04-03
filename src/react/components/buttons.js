@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import { makeAutoObservable } from "mobx"
-import { observer } from "mobx-react"
+import React, {useEffect, useState, useContext} from 'react';
+import {CoordContext} from './store';
 
 const Buttons = () => {
 
@@ -26,31 +25,29 @@ const Buttons = () => {
 
     let showButtons = [];
 
-    let buttons = (event) => {
+    const [coord, setCoord] = useContext(CoordContext);
+    
+    const btnClick = (event) => {
 
         switch (event.target.id) {
             case 'left':
-                setCoordination(x -= 1);
-                adventure(x, y);
+                setCoord(coord => ({...coord, x: coord.x -= 1}));
                 break;
             case 'up':
-                setCoordination(y += 1);
-                adventure(x, y);
+                setCoord(coord => ({...coord, y: coord.y += 1}));
                 break;
             case 'down':
-                setCoordination(y -= 1);
-                adventure(x, y);
+                setCoord(coord => ({...coord, y: coord.y -= 1}));
                 break;
             case 'right':
-                setCoordination(x += 1);
-                adventure(x, y);
+               setCoord(coord => ({...coord, x: coord.x += 1}));
                 break;
         }
 
     }
 
     btn.forEach(element => {
-        showButtons.push(<button onClick={(event) => buttons(event)} key={element.name+'_'+element.class} type="button" id={element.direction} className={element.class}>{element.name}</button>);
+        showButtons.push(<button onClick={(event) => btnClick(event)} key={element.name+'_'+element.class} type="button" id={element.direction} className={element.class}>{element.name}</button>);
     });
 
     return (
