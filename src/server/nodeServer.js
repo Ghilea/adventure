@@ -18,19 +18,24 @@ const con = mySQL.createConnection({
     database: process.env.DB_DATABASE
 })
 
-app.get('/adventure', (req, res) => {
+app.get('/getAdventure', (req, res) => {
     res.setHeader("Content-Type", "application/json; charset=utf-8");
     getAdventure(res, req.query.x, req.query.y);
 });
 
-app.get('/allAdventure', (req, res) => {
+app.get('/getEnemy', (req, res) => {
     res.setHeader("Content-Type", "application/json; charset=utf-8");
-    getAllAdventures(res);
+    getEnemy(res);
 });
 
 app.get('/getProtagonist', (req, res) => {
     res.setHeader("Content-Type", "application/json; charset=utf-8");
     getProtagonist(res, req.query.id);
+});
+
+app.get('/updateStats', (req, res) => {
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
+    updateStats(res);
 });
 
 
@@ -39,58 +44,53 @@ app.listen(process.env.PORT, () =>
 );
 
 const getAdventure = (res, x, y) => {
-
     con.connect((err) => {
-
-         con.query(`SELECT * FROM areas WHERE Xpos=${x} AND Ypos =${y}`, function(err, result, fields){
-
+         con.query(`SELECT * FROM areas WHERE Xpos=${x} AND Ypos =${y}`, (err, result, fields) => {
             const enemies = ((Math.random() * 1) < 0.5);
-
+    
             const content = (result.length > 0) ? true : false;
-            res.end(JSON.stringify({
-                'adventure': {result, enemies, content}
-            }))
-            
-                    
+            res.status(200).json({
+                'adventure': result, enemies, content
+            })         
         })
-
     })
 }
 
-const getAllAdventures = (res) => {
-
-    con.connect(function (err) {
-
-        con.query(`SELECT * FROM areas`, function (err, result, fields) {
-
-            res.end(JSON.stringify({
-                'adventure': {
-                    result
-                }
-            }))
-
-
+const getEnemy = (res) => {
+    con.connect((err) => {
+        con.query(`SELECT name, type, experience, img, health, strength, intellect, dexterity FROM enemies JOIN stats ON stats.id = stats_id ORDER BY RAND() LIMIT 1`, (err, result, fields) => {
+            res.status(200).json({
+                'enemy':result
+            })
         })
 
     })
 }
 
 const getProtagonist = (res, id) => {
-
     con.connect(function (err) {
-
-        con.query(`SELECT protagonist.id, name, experience, img, health, strength, intellect, dexterity FROM
-                protagonist JOIN stats ON stats.id = stats_id WHERE protagonist.id =${id}`,
-                function (err, result, fields) {
-
-            res.end(JSON.stringify({
-                'protagonist': {
-                    result
-                }
-            }))
-
-
+        con.query(`SELECT protagonist.id, name, experience, img, health, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id WHERE protagonist.id =${id}`, (err, result, fields) => {
+            res.status(200).json({
+                'protagonist':result
+            })
         })
 
+    })
+}
+
+const updateStats = (res) => {
+    con.connect(function (err) {
+        //con.query(`UPDATE stats SET ${data.attribute} = ${data.value} WHERE id = ${data.id}`)
+        res.status(201);
+    })
+}
+
+const updateExperience = (res, id, data) => {
+    con.connect(function (err) {
+        con.query(`UPDATE protagonist SET experience = ${data.exp} WHERE id = ${id}`, (err, result, fields) => {
+            res.status(200).json({
+                'experience': result
+            })
+        })
     })
 }

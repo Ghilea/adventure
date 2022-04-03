@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Portal = () => {
+const Walking = () => {
 
     document.querySelector('body').style.backgroundImage = `url(assets/images/vandrar.jpg)`;
 
@@ -16,4 +16,4 @@ const Portal = () => {
 
 }
 
-export default Portal;
+export default Walking;

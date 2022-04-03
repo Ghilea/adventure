@@ -1,12 +1,12 @@
 import React, {useEffect, useState, useContext} from 'react';
-import getData from '../crud/get';
+import Read from '../crud/read';
 import {CoordContext} from './store';
 import Enemy from './enemy';
-import Portal from  './portal';
+import Walking from  './walking';
 
 const Content = () => {
 
-    let state = {
+    const state = {
         title: null, 
         attribute: null, 
         describe: null, 
@@ -23,25 +23,27 @@ const Content = () => {
 
     useEffect(()=>{
         
-        let url = `http://localhost:1234/adventure?x=${coord.x}&y=${coord.y}`;
+        let url = `http://localhost:1234/getAdventure?x=${coord.x}&y=${coord.y}`;
 
         let mounted = true;
 
-        getData(url)
+        Read(url)
             .then(items => {
 
-                if (mounted && items.adventure.result.length > 0) {
+                console.log(items);
+
+                if (mounted && items.adventure.length > 0) {
                     setContent(content => ({
                         ...content,
-                        title: items.adventure.result[0].title
+                        title: items.adventure[0].title
                     }));
                     setContent(content => ({
                         ...content,
-                        attribute: items.adventure.result[0].attribute
+                        attribute: items.adventure[0].attribute
                     }));
                     setContent(content => ({
                         ...content,
-                        describe: items.adventure.result[0].describe
+                        describe: items.adventure[0].describe
                     }));
                     setContent(content => ({
                         ...content,
@@ -49,7 +51,7 @@ const Content = () => {
                     }));
                     setContent(content => ({
                         ...content,
-                        enemyAllowed: items.adventure.result[0].enemy
+                        enemyAllowed: items.adventure[0].enemy
                     }));
                     setContent(content => ({
                         ...content,
@@ -69,27 +71,8 @@ const Content = () => {
     if (content.content) {
 
         document.querySelector('body').style.backgroundImage = `url(assets/images/${((/\s+/g).test(content.title)) ? content.title.replace(/\s+/g, '_') + '.jpg' : content.title + '.jpg'}`;
-
-        document.querySelectorAll('button').forEach(element => {
-            element.style.display = 'block';
-        });
-
-         /*setTimeout(() => {
-             document.querySelectorAll('button').forEach(element => {
-                 element.style.display = 'block';
-             });
-             setCoord(coord => ({
-                 ...coord,
-                 x: coord.x = 0
-             }));
-             setCoord(coord => ({
-                 ...coord,
-                 y: coord.y = 0
-             }));
-         }, 3000);*/
-    }
-
     
+    }
 
     return (
 
@@ -98,7 +81,6 @@ const Content = () => {
             <h1>
                 <img src='assets/images/fantasy_gui_png/text_bg_04.png' alt='banner' />
                 <p>{(content.content) ? content.title : 'Vandrar'}</p>
-                <span>x: {coord.x} y: {coord.y}</span>
             </h1>
         
             <div id="adventure">
@@ -113,11 +95,11 @@ const Content = () => {
                         Du står vid {content.describe}, som är {content.attribute}.
                     </p>
                     :
-                    <Portal />
+                    <Walking />
                 }
                 
                 {
-                    (content.enemyFound && content.enemyAllowed) ? < Enemy />: <> </>
+                    (content.enemyFound && content.enemyAllowed) ? <Enemy />: <> </>
                 }
 
             </div>
