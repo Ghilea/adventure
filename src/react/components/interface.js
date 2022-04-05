@@ -1,11 +1,13 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {CoordContext} from './store';
+import {StoreContext} from './store';
 import Read from '../crud/read';
 import Update from '../crud/update';
 
 const Interface = () => {
 
-    const state = {
+    const [store, setStore] = useContext(StoreContext);
+
+    const [set, setState] = useState({
         heroName: null,
         experience: 0,
         img: null,
@@ -14,13 +16,12 @@ const Interface = () => {
         intellect: 0,
         dexterity: 0,
         dps: 0
-    };
-
-    const [set, setState] = useState({
-        ...state
     });
 
-    const [coord, setCoord] = useContext(CoordContext);
+    const [coord, setCoord] = useState({
+        x: 0,
+        y: 0
+    })
     
     useEffect(() => {
 
@@ -34,69 +35,114 @@ const Interface = () => {
                 if (mounted && items.protagonist.length > 0) {
                     setState(set => ({
                         ...set,
-                        heroName: items.protagonist[0].name
+                        heroName: items.protagonist[0].name,
+                        experience: items.protagonist[0].experience,
+                        img: `assets/images/fantasycharacters/${items.protagonist[0].img}.png`,
+                        health: items.protagonist[0].health,
+                        strength: items.protagonist[0].strength,
+                        intellect: items.protagonist[0].intellect,
+                        dexterity: items.protagonist[0].dexterity,
+                        dps: (items.protagonist[0].strength + items.protagonist[0].intellect + items.protagonist[0].dexterity) / 2
                     }));
-                    setState(set => ({
-                        ...set,
-                        experience: items.protagonist[0].experience
-                    }));
-                    setState(set => ({
-                        ...set,
-                        img: `assets/images/fantasycharacters/${items.protagonist[0].img}.png`
-                    }));
-                    setState(set => ({
-                        ...set,
-                        health: items.protagonist[0].health
-                    }));
-                    setState(set => ({
-                        ...set,
-                        strength: items.protagonist[0].strength
-                    }));
-                    setState(set => ({
-                        ...set,
-                        intellect: items.protagonist[0].intellect
-                    }));
-                    setState(set => ({
-                        ...set,
-                        dexterity: items.protagonist[0].dexterity
-                    }));
+
+                    setStore(store => ({
+                        ...store, 
+                        playerHp: items.protagonist[0].health,
+                        playerDps: (items.protagonist[0].strength + items.protagonist[0].intellect + items.protagonist[0].dexterity) / 2,
+                        playerExp: items.protagonist[0].experience
+                    }))
 
                 } 
             })
         return () => mounted = false;
-    }, useContext(CoordContext))
+    }, [])
 
-    const gainBtn = (attribute, value) => {
+    useEffect(() => {
+        if(set.heroName != null){
+            gain();
+        }
         
+    }, [set]);
+
+    useEffect(() => {
+        if (set.heroName != null) {
+            setState(set => ({
+                ...set,
+                experience: store.playerExp,
+                health: store.playerHp
+            }))
+        }
+        setCoord(coord => ({
+            ...coord,
+            x: store.x,
+            y: store.y
+        }))
+    }, useContext(StoreContext));
+
+    const gain = () => {
         const data = {
             id: 1,
-            attribute: attribute,
-            value: value
+            attribute: {
+                str: set.strength,
+                int: set.intellect,
+                dex: set.dexterity
+            },
+            exp: set.experience,
+            hp: set.health
         }
 
         const url = `http://localhost:1234/updateStats`;
 
         let mounted = true;
 
-        Update(url, data)
-            
+        Update(url, data);
+
         return () => mounted = false;
-   
     }
 
-    
 
     const btnClick = (event) => {
 
         switch (event.target.id) {
             case 'strMin':
-                gainBtn('strength', set.strength -= 1);
+                setState(set => ({
+                    ...set,
+                    strength: set.strength -= 1
+                }))
+                break;
+            case 'strMax':
+            setState(set => ({
+                ...set,
+                strength: set.strength += 1
+            }))
+                break;
+            case 'intMin':
+            setState(set => ({
+                ...set,
+                intellect: set.intellect -= 1
+            }))
+                break;
+            case 'intMax':
+            setState(set => ({
+                ...set,
+                intellect: set.intellect += 1
+            }))
+                break;
+            case 'dexMin':
+            setState(set => ({
+                ...set,
+                dexterity: set.dexterity -= 1
+            }))
+                break;
+            case 'dexMax':
+            setState(set => ({
+                ...set,
+                dexterity: set.dexterity += 1
+            }))
                 break;
         }
 
     }
-
-    const getDps = ((set.strength + set.dexterity + set.intellect) / 2)    
 
     return (
         
@@ -121,14 +167,14 @@ const Interface = () => {
                     </div>
 
                     <div className='btnSection'>
-                        <button onClick={(event) => btnClick(event)} id='dexMax' className='gainBtn'>+</button>
+                        <button onClick={(event) => btnClick(event)} id='dexMin' className='gainBtn'>-</button>
                         <p className='dex'>Dex: {set.dexterity}</p>
                         <button onClick={(event) => btnClick(event)} id='dexMax' className='gainBtn'>+</button>
                     </div>
                 </div>
                     
                 <div className='experience'>Exp: {set.experience}</div>
-                <div className='dps'>Dps: {getDps}</div>
+                <div className='dps'>Dps: {set.dps}</div>
                 <div className='coords'>Position X: {coord.x} Position Y: {coord.y}</div>
             </div>
         </>        

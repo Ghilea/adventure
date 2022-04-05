@@ -3,12 +3,15 @@ const mySQL = require("mysql");
 const url = require('url');
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const app = express();
 
-app.use(express.json());
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(cors());
 
 const con = mySQL.createConnection({
@@ -33,9 +36,8 @@ app.get('/getProtagonist', (req, res) => {
     getProtagonist(res, req.query.id);
 });
 
-app.get('/updateStats', (req, res) => {
-    res.setHeader("Content-Type", "application/json; charset=utf-8");
-    updateStats(res);
+app.put('/updateStats', (req, res) => {
+    updateStats(req, res);
 });
 
 
@@ -78,19 +80,9 @@ const getProtagonist = (res, id) => {
     })
 }
 
-const updateStats = (res) => {
+const updateStats = (req, res) => {
     con.connect(function (err) {
-        //con.query(`UPDATE stats SET ${data.attribute} = ${data.value} WHERE id = ${data.id}`)
-        res.status(201);
-    })
-}
-
-const updateExperience = (res, id, data) => {
-    con.connect(function (err) {
-        con.query(`UPDATE protagonist SET experience = ${data.exp} WHERE id = ${id}`, (err, result, fields) => {
-            res.status(200).json({
-                'experience': result
-            })
-        })
+        con.query(`UPDATE stats SET strength = ${req.body.data.attribute.str}, intellect = ${req.body.data.attribute.int}, dexterity = ${req.body.data.attribute.dex}, health = ${req.body.data.hp}, experience = ${req.body.data.exp} WHERE id = ${req.body.data.id}`)
+        res.send('uppdaterade stats')
     })
 }

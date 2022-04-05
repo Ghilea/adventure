@@ -3,21 +3,27 @@ import React, {
     createContext
 } from 'react';
 
-const CoordContext = createContext();
+const StoreContext = createContext();
 
-const CoordProvider = (props) => {
+const StoreProvider = (props) => {
     
-    const [coord, setCoord] = useState({
+
+    const [store, setStore] = useState({
         x: 0,
-        y: 0
+        y: 0,
+        enemyHp: 0,
+        enemyDps: 0,
+        playerHp: 0,
+        playerDps: 0,
+        playerExp: 0
     });
 
     return (
-        <CoordContext.Provider value={[coord, setCoord]}>
+        <StoreContext.Provider value={[store, setStore]}>
             {props.children}
-        </CoordContext.Provider>
+        </StoreContext.Provider>
     )
 
 }
 
-export {CoordContext, CoordProvider};
+export {StoreContext, StoreProvider};

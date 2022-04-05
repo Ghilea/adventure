@@ -1,17 +1,17 @@
 import React from 'react';
 import Interface from './interface';
 import Content from './content';
-import {CoordProvider} from './store'
+import {StoreProvider} from './store'
 import Buttons from './buttons';
 
 const App = () => {
 
     return (
-        <CoordProvider>
-            <Content />
+        <StoreProvider>
             <Interface />
+            <Content />
             <Buttons />
-        </CoordProvider>
+        </StoreProvider>
     )
 }
 

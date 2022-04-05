@@ -1,11 +1,17 @@
 body {
     color: white;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    background-color: #fff;
     overflow: hidden;
     height: 100vh;
     position: relative;
+    margin:0;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 100%;
 }
 
 h1 {
@@ -25,13 +31,25 @@ h1 {
     }
 }
 
+.bgWrapper{
+    position: fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
 #adventure {
 
     display:flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 
-    .enemy, .main_text {
+    .main_text {
         max-height: 10em;
         height: 100%;
         max-width: 40em;
@@ -45,9 +63,97 @@ h1 {
         margin: 0 0 3em 0;
     }
 
-    .enemy {
+    .enemyContainer{
+        display:flex;
+        
+        .textBox {
+            display: flex;
+            flex-direction: column;
+            width: 17em;
+            margin-top: 3em;
+            padding: 0.5em 0.5em;
+            background-color: rgba(0, 0, 0, 0.535);
+            position: relative;
+            letter-spacing: 0.3rem;
+            border-left: 0.2em solid #fff;
+            border-top: 0.2em solid #fff;
+            border-bottom: 0.2em solid #fff;
+            border-radius: 0.3em;
+
+            p {
+                font-size: 0.8rem;
+            }
+        }
+
+        .enemy {
         margin-top: 3em;
+        padding: 2em 3em;
+        background-color: rgba(0, 0, 0, 0.535);
+        position: relative;
+        letter-spacing: 0.3rem;
+        border: 0.2em solid #fff;
+        border-radius: 0.3em;
+
+            .enemyHp {
+                text-align: center;
+            }
+
+            .enemyBtn {
+                display: flex;
+                justify-content: center;
+
+                button {
+                    max-width: 10em;
+                    width: 100%;
+                    background-color: rgba(255, 0, 0, 0.6);
+                    border: 0.2em solid #fff;
+                    padding: 1em;
+                    box-shadow: 0 0 1em rgba(0, 0, 0, 0.523);
+                    color: #fff;
+                    letter-spacing: 0.1rem;
+
+                    &:hover {
+                        background-color: rgba(107, 1, 1, 0.6);
+                        cursor: pointer;
+                    } 
+                }
+            }
+
+            .enemyAvatar {
+                max-width: 10em;
+                width: 100%;
+                margin: 2em 4em 4em 4em;
+                background-color: #000;
+                overflow: hidden;
+                border: 0.1em solid #fff;
+                box-shadow: 0 0 10px #000;
+                border: 0.1em solid #fff;
+
+                img {
+                    width: 100%;
+                }
+            }
+        }
+
+        .skull {
+            height: 3em;
+            position: absolute;
+            left: 2em;
+            top: 2em;
+        }
+
+        .skull_p {
+            text-align: center;
+        }
+
+        .skull_2 {
+            height: 3em;
+            position: absolute;
+            right: 2em;
+            top: 2em;
+        }
     }
+    
 
     p {
         .cr {
@@ -85,24 +191,13 @@ h1 {
         }
     }
 
-    .skull {
-        height: 3em;
-        float: left;
-        margin-right: 2em;
-        margin-top: 1em;
-    }
-
-    .skull_p {
-        padding-right: 2em;
-    }
-
-    .skull_2 {
-        height: 3em;
-        float: right;
-        margin-left: 2em;
-        margin-top: -4em;
-    }
     
+    
+}
+
+.content {
+    grid-row: 1;
+    grid-column: 2 / span 3;
 }
 
 .container {
@@ -120,10 +215,10 @@ h1 {
 .btn {
     width: 100%;
     max-width: 500px;
-    margin: 0 -250px;
-    position: fixed;
-    bottom: 0;
-    left: 50%;
+    grid-row: 3;
+    grid-column: 3;
+    display: flex;
+    align-items: flex-end;
 
     .container {
         display: grid;
@@ -138,10 +233,11 @@ h1 {
         button {
             max-width: 10em;
             width: 100%;
-            background-color: rgb(255, 0, 0, 0.6);
-            border: 0;
+            background-color: rgba(255, 0, 0, 0.6);
+            border: 0.2em solid #fff;
+            border-radius: 50%;
             padding: 1em;
-            box-shadow: 7px 7px 15px rgb(0, 0, 0);
+            box-shadow: 0 0 1em rgba(0, 0, 0, 0.523);
             color: #fff;
             letter-spacing: 0.1rem;
 
@@ -192,3 +288,8 @@ h1 {
         width: 100%;
     }
 }
+
+.hide{
+    display:none;
+}
+

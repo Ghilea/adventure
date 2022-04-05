@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {CoordContext} from './store';
+import {StoreContext} from './store';
 
 const Buttons = () => {
 
@@ -25,22 +25,36 @@ const Buttons = () => {
 
     let showButtons = [];
 
-    const [coord, setCoord] = useContext(CoordContext);
+    const [store, setStore] = useContext(StoreContext);
     
     const btnClick = (event) => {
 
+      
+
         switch (event.target.id) {
             case 'left':
-                setCoord(coord => ({...coord, x: coord.x -= 1}));
+                setStore(store => ({
+                    ...store,
+                    x: store.x -= 1
+                }));
                 break;
             case 'up':
-                setCoord(coord => ({...coord, y: coord.y += 1}));
+                setStore(store => ({
+                    ...store,
+                    y: store.y += 1
+                }));
                 break;
             case 'down':
-                setCoord(coord => ({...coord, y: coord.y -= 1}));
+                setStore(store => ({
+                    ...store,
+                    y: store.y -= 1
+                }));
                 break;
             case 'right':
-               setCoord(coord => ({...coord, x: coord.x += 1}));
+               setStore(store => ({
+                   ...store,
+                   x: store.x += 1
+               }));
                 break;
         }
 
