@@ -29,34 +29,29 @@ const Buttons = () => {
     
     const btnClick = (event) => {
 
+        let newX = store.x,
+            newY = store.y;
       
-
         switch (event.target.id) {
             case 'left':
-                setStore(store => ({
-                    ...store,
-                    x: store.x -= 1
-                }));
+                newX -= 1;
                 break;
             case 'up':
-                setStore(store => ({
-                    ...store,
-                    y: store.y += 1
-                }));
+                newY += 1;
                 break;
             case 'down':
-                setStore(store => ({
-                    ...store,
-                    y: store.y -= 1
-                }));
+                newY -= 1;
                 break;
             case 'right':
-               setStore(store => ({
-                   ...store,
-                   x: store.x += 1
-               }));
+               newX += 1;
                 break;
         }
+
+         setStore(store => ({
+             ...store,
+             x: newX,
+             y: newY
+         }));
 
     }
 

@@ -1,6 +1,4 @@
-const http = require('http');
 const mySQL = require("mysql");
-const url = require('url');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -36,8 +34,17 @@ app.get('/getProtagonist', (req, res) => {
     getProtagonist(res, req.query.id);
 });
 
+app.get('/getAllProtagonist', (req, res) => {
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
+    getAllProtagonist(res);
+});
+
 app.put('/updateStats', (req, res) => {
     updateStats(req, res);
+});
+
+app.post('/createProtagonist', (req, res) => {
+    createProtagonist(req, res);
 });
 
 
@@ -71,12 +78,34 @@ const getEnemy = (res) => {
 
 const getProtagonist = (res, id) => {
     con.connect(function (err) {
-        con.query(`SELECT protagonist.id, name, experience, img, health, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id WHERE protagonist.id =${id}`, (err, result, fields) => {
+        con.query(`SELECT name, experience, img, health, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id WHERE protagonist.id =${id}`, (err, result, fields) => {
             res.status(200).json({
                 'protagonist':result
             })
         })
 
+    })
+}
+
+const getAllProtagonist = (res) => {
+    con.connect(function (err) {
+        con.query(`SELECT name, experience, img, health, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id`, (err, result, fields) => {
+            res.status(200).json({
+                'protagonist': result
+            })
+        })
+
+    })
+}
+
+const createProtagonist = (req, res) => {
+    con.connect(function (err) {
+        con.query(`INSERT INTO stats SET health = ${req.body.data.hp}, strength = ${req.body.data.str}, dexterity = ${req.body.data.dex}, intellect = ${req.body.data.int}`, (err, result, fields) => {
+
+            con.query(`INSERT INTO protagonist SET name = '${req.body.data.name}', img = '${req.body.data.img}', stats_id = ${result.insertId}`)
+        })
+        
+        res.send('skapade en protagonist')
     })
 }
 

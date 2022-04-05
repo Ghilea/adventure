@@ -79,11 +79,12 @@ const getEnemy = () => {
             enemyHp: store.enemyHp -= store.playerDps
         }))
 
-        if(store.enemyHp > 0){
+        if(store.enemyHp < 0){
             setStore(store => ({
                 ...store,
                 playerExp: store.playerExp += set.experience
             }))
+        }else{
             enemyAttack();
         }
         
@@ -103,7 +104,7 @@ const getEnemy = () => {
     }
 
     return (
-        <div className='enemyContainer'>
+        <div className={`enemyContainer ${(store.enemyHp < 0) ? 'hide' : ''}`}>
             <div className='textBox'></div>
             <div className='enemy'>
                 <img className='skull' src='assets/images/fantasy_gui_png/button_10_s03.png' />

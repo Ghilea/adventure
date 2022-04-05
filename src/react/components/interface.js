@@ -69,7 +69,8 @@ const Interface = () => {
             setState(set => ({
                 ...set,
                 experience: store.playerExp,
-                health: store.playerHp
+                health: store.playerHp,
+                dps: store.playerDps
             }))
         }
         setCoord(coord => ({
@@ -103,45 +104,42 @@ const Interface = () => {
 
     const btnClick = (event) => {
 
+        let str = set.strength,
+            int = set.intellect,
+            dex = set.dexterity;
+
         switch (event.target.id) {
             case 'strMin':
-                setState(set => ({
-                    ...set,
-                    strength: set.strength -= 1
-                }))
+                str -= 1;
                 break;
             case 'strMax':
-            setState(set => ({
-                ...set,
-                strength: set.strength += 1
-            }))
+                str += 1;
                 break;
             case 'intMin':
-            setState(set => ({
-                ...set,
-                intellect: set.intellect -= 1
-            }))
+                int -= 1;
                 break;
             case 'intMax':
-            setState(set => ({
-                ...set,
-                intellect: set.intellect += 1
-            }))
+                int += 1;
                 break;
             case 'dexMin':
-            setState(set => ({
-                ...set,
-                dexterity: set.dexterity -= 1
-            }))
+                dex -= 1;
                 break;
             case 'dexMax':
-            setState(set => ({
-                ...set,
-                dexterity: set.dexterity += 1
-            }))
+                dex += 1;
                 break;
         }
 
+        setState(set => ({
+            ...set,
+            strength: str,
+            intellect: int,
+            dexterity: dex
+        }))
+
+        setStore(store => ({
+            ...store,
+            playerDps: (str + int + dex) / 2,
+        }))
     }
 
     return (

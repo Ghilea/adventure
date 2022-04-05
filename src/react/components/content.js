@@ -9,7 +9,6 @@ const Content = () => {
 
     const [content, setContent] = useState({
         title: null,
-        attribute: null,
         describe: null,
         enemyAllowed: null,
         enemyFound: null,
@@ -43,13 +42,10 @@ const Content = () => {
         Read(url)
             .then(items => {
 
-                console.log(items);
-
                 if (mounted && items.adventure.length > 0) {
                     setContent(content => ({
                         ...content,
                         title: items.adventure[0].title,
-                        attribute: items.adventure[0].attribute,
                         describe: items.adventure[0].describe,
                         enemyFound: items.enemies,
                         enemyAllowed: items.adventure[0].enemy,
@@ -67,45 +63,37 @@ const Content = () => {
     }, [coord])
 
     let bgStyle = {
-        backgroundImage: `url(assets/images/${((/\s+/g).test(content.title)) ? content.title.replace(/\s+/g, '_') + '.jpg' : content.title + '.jpg'}`
-    }
-
-    const container = document.querySelector('.main_text');
-
-    if (content.enemyFound && content.enemyAllowed) {
-        container.classList.add('hide');
-    } else {
-        if (container != null && container.classList.contains('hide')) {
-            container.classList.remove('hide');
-        }
+        backgroundImage: (content.content) ? 
+            `url(assets/images/bg/${((/\s+/g).test(content.title)) ? 
+                content.title.replace(/\s+/g, '_') + '.jpg' 
+                : content.title + '.jpg'}` 
+            : ''
     }
         
     return (
         <>
         
         <div style={bgStyle} className='bgWrapper'></div>
-        
+
         <div className='content container'>
             
             <h1>
                 {
-                    (content.content) ? content.title : 'Vandrar'
+                    (content.content) ? content.title : 'unknown'
                 }
             </h1>
         
             <div id="adventure">
 
                 {
-                    <p className='main_text'>
+                    <p className = {
+                        `main_text ${(content.enemyFound && content.enemyAllowed) ? 'hide' : ''}`
+                    } >
                         <img className='cr' src='assets/images/fantasy_gui_png/frame_02_03.png' />
                         <img className='cl' src='assets/images/fantasy_gui_png/frame_02_04.png' />
                         <img className='ctl' src='assets/images/fantasy_gui_png/frame_02_03.png' />
                         <img className='ctr' src='assets/images/fantasy_gui_png/frame_02_04.png' />
-                        Du står vid {
-                            content.describe
-                        }, som är {
-                            content.attribute
-                        }.
+                        {content.describe}
                     </p>
                 }
                 
