@@ -25,7 +25,7 @@ const Interface = () => {
     
     useEffect(() => {
 
-        let url = `http://localhost:1234/getProtagonist?id=1`;
+        let url = `http://localhost:1234/getProtagonist?id=${store.playerId}`;
 
         let mounted = true;
 
@@ -82,7 +82,7 @@ const Interface = () => {
 
     const gain = () => {
         const data = {
-            id: 1,
+            id: store.playerId,
             attribute: {
                 str: set.strength,
                 int: set.intellect,

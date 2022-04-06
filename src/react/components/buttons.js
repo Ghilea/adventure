@@ -52,7 +52,6 @@ const Buttons = () => {
              x: newX,
              y: newY
          }));
-
     }
 
     btn.forEach(element => {

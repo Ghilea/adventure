@@ -2,10 +2,15 @@ import React, {useEffect, useState, useContext} from 'react';
 import Read from '../crud/read';
 import {StoreContext} from './store';
 import Enemy from './enemy';
+import useSound from 'use-sound';
 
 const Content = () => {
 
     const [store, setStore] = useContext(StoreContext);
+
+    const [play, {
+        stop
+    }] = useSound('assets/effects/enemies.mp3');
 
     const [content, setContent] = useState({
         title: null,
@@ -69,7 +74,11 @@ const Content = () => {
                 : content.title + '.jpg'}` 
             : ''
     }
-        
+    
+    if (content.content && content.enemyFound && content.enemyAllowed) {
+        play
+    }
+
     return (
         <>
         
@@ -99,6 +108,7 @@ const Content = () => {
                 
                 {
                     (content.content && content.enemyFound && content.enemyAllowed) ? 
+                    
                     <Enemy /> : <> </>
                 }
 

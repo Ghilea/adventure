@@ -1,21 +1,14 @@
 import React, {useContext} from 'react';
-import Interface from './interface';
-import Content from './content';
 import {StoreContext, StoreProvider} from './store'
-import Buttons from './buttons';
-import Protagonist from './protagonist';
+import Login from './login';
 
 const App = () => {
 
     return (
 
         <StoreProvider>
-        <Protagonist />
-        <Interface />
-        <Content />
-        <Buttons />
+            <Login />
         </StoreProvider>
-    
     )
 }
 

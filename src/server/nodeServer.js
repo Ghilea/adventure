@@ -89,7 +89,7 @@ const getProtagonist = (res, id) => {
 
 const getAllProtagonist = (res) => {
     con.connect(function (err) {
-        con.query(`SELECT name, experience, img, health, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id`, (err, result, fields) => {
+        con.query(`SELECT protagonist.id, name, experience, img, health, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id`, (err, result, fields) => {
             res.status(200).json({
                 'protagonist': result
             })
@@ -99,8 +99,10 @@ const getAllProtagonist = (res) => {
 }
 
 const createProtagonist = (req, res) => {
+    console.log(req.body.data);
+
     con.connect(function (err) {
-        con.query(`INSERT INTO stats SET health = ${req.body.data.hp}, strength = ${req.body.data.str}, dexterity = ${req.body.data.dex}, intellect = ${req.body.data.int}`, (err, result, fields) => {
+        con.query(`INSERT INTO stats SET health = 50, strength = ${req.body.data.str}, dexterity = ${req.body.data.dex}, intellect = ${req.body.data.int}`, (err, result, fields) => {
 
             con.query(`INSERT INTO protagonist SET name = '${req.body.data.name}', img = '${req.body.data.img}', stats_id = ${result.insertId}`)
         })
@@ -111,7 +113,7 @@ const createProtagonist = (req, res) => {
 
 const updateStats = (req, res) => {
     con.connect(function (err) {
-        con.query(`UPDATE stats SET strength = ${req.body.data.attribute.str}, intellect = ${req.body.data.attribute.int}, dexterity = ${req.body.data.attribute.dex}, health = ${req.body.data.hp}, experience = ${req.body.data.exp} WHERE id = ${req.body.data.id}`)
+        con.query(`UPDATE stats INNER JOIN protagonist ON stats_id = stats.id SET strength = ${req.body.data.attribute.str}, intellect = ${req.body.data.attribute.int}, dexterity = ${req.body.data.attribute.dex}, health = ${req.body.data.hp}, experience = ${req.body.data.exp} WHERE protagonist.id = ${req.body.data.id}`)
         res.send('uppdaterade stats')
     })
 }

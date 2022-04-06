@@ -4,29 +4,17 @@ import React, {
     useContext
 } from 'react';
 import Read from '../crud/read';
-import Create from '../crud/create';
+import { StoreContext } from './store';
+import CreateWindow from './createProtagonist';
+import useSound from 'use-sound';
 
 const Protagonist = () => {
-//const url = `http://localhost:1234/createProtagonist`;
-    const [set, setState] = useState({
-        heroName: null,
-        img: null,
-        experience: 0,
-        health: 0,
-        strength: 0,
-        intellect: 0,
-        dexterity: 0,
-        dps: 0
-    })
 
-    /*
-    name: 'test',
-        img: 'FantasyCharacters_h_warrior_male',
-        hp: 150,
-        str: 2,
-        int: 3,
-        dex: 1
-    */
+    const [protagonist, setProtagonist] = useState([]);
+
+    const [store, setStore] = useContext(StoreContext);
+   
+    let characterWindow = [];
 
     useEffect(() => {
         let url = `http://localhost:1234/getAllProtagonist`;
@@ -37,27 +25,78 @@ const Protagonist = () => {
             .then(items => {
 
                 if (mounted && items.protagonist.length > 0) {
-                    setState(set => ({
-                        ...set,
-                        heroName: items.protagonist[0].name,
-                        experience: items.protagonist[0].experience,
-                        img: `assets/images/fantasycharacters/${items.protagonist[0].img}.png`,
-                        health: items.protagonist[0].health,
-                        strength: items.protagonist[0].strength,
-                        intellect: items.protagonist[0].intellect,
-                        dexterity: items.protagonist[0].dexterity,
-                        dps: (items.protagonist[0].strength + items.protagonist[0].intellect + items.protagonist[0].dexterity) / 2
-                    }));
-
+                    setProtagonist(items.protagonist)
                 }
             })
         return () => mounted = false;
-    }, [])
+    }, useContext(StoreContext))
+    
+    const handleLogin = (id) => {
+        setStore((store) => ({
+            ...store,
+            login: true,
+            playerId: id
+        }))
+    }
+
+    const createClick = () => {
+        setStore((store) => ({
+            ...store,
+            showCreate: true
+        }))
+    }
+
+    const [play, {
+        stop
+    }] = useSound('assets/effects/btnHover.mp3');
+
+    if(protagonist.length > 0){
+
+            protagonist.map(item => {
+
+            characterWindow.push(
+            <div onClick = {() =>
+                handleLogin(item.id)
+            }
+            onMouseEnter = {
+                play
+            }
+            onMouseLeave = {
+                stop
+            }
+            key = {
+                item.name
+            }
+            className = 'character' >
+                <img src={`assets/images/fantasycharacters/${item.img}.png`} />
+                <h2>
+                    {item.name}
+                </h2>
+                <p>Hp: {item.health} Str: {item.strength} Int: {item.intellect} Dex: {item.dexterity}</p>
+            </div>
+            )
+
+        });
+    }
 
     return (
         <div className='protagonistContainer'>
-            <div className='list'></div>
-            <h1></h1>
+            
+            <div className='box'>
+                <h1>Välkommen</h1>
+                <div className='list'>
+                    {
+                        (store.showCreate) ? < CreateWindow />: characterWindow
+                    }
+                </div>
+            </div>
+
+            {
+                (store.showCreate) ? '' : < button onClick = {
+                    createClick
+                } > Skapa hjälte </button> }
+            
+            <img className='celticImg' src='assets/images/celtic.svg' />
         </div>
     )
 }

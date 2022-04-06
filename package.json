@@ -8,6 +8,9 @@
         "address": "./src/",
         "output": "./public"
     },
+    "dependencies": {
+        "use-sound": "4.0.1"
+    },
     "devDependencies": {
         "mysql": "2.18.1",
         "express": "4.17.3",

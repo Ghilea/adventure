@@ -1,9 +1,213 @@
 .protagonistContainer {
-    background-color:black;
+    background-color: #382e2e;
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     z-index: 1;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    .celticImg {
+        width: 30em;
+        position: absolute;
+        right: -5em;
+        bottom: -5em;
+        z-index: -1;
+    }
+
+    .box {
+        display:flex;
+        gap:2em;
+        flex-direction: column;
+        align-items: center;
+
+        h1 {
+            width: auto;
+            text-align: center;
+            margin: 0 0 0 0;
+        }
+
+        .list {
+            background-color: #535d62;
+            min-width: 25em;
+            width: 100%;
+            height: 30em;
+            border: 0.3em solid #bdc8ce;
+            border-radius: 0.5em;
+            box-shadow: 0 0 1em #000000;
+            overflow-y: scroll;
+            overflow-x: hidden;
+
+            .createWindow {
+                width: 100%;
+                height: 30em;
+                color: #000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                position: relative;
+                overflow: hidden;
+
+                label {
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    color: #fff;
+                    margin: 0 0 0.5em -8.5em;
+                }
+
+                .goBack_characterWindow {
+                    position: absolute;
+                    width: 3em;
+                    height: 3em;
+                    border-radius: 50%;
+                    left: 0;
+                    top: 0;
+                    display:flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    &::before{
+                        content: '<';
+                        font-weight: 600;
+                        font-size: 1.2rem;
+                    }
+                }
+
+                input {
+                    width: 15em;
+                    padding: 0.5em;
+                }
+
+                .avatars {
+                    display:flex;
+                    gap: 1em;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    margin: 2em;
+
+                    .button {
+                        position: relative;
+                        width: 6em;
+                        height: 6em;
+                        overflow: hidden;
+                        background-color: #545e63;
+                        border: 0.2em solid #bdc8cf;
+
+                        &:hover {
+                            cursor: pointer;
+                            background-color:#bdc8cf; 
+                            border: 0.2em solid #545e63;
+                        }
+
+                    }
+
+                    img {
+                        position: absolute;
+                        left: -3.5em;
+                        top: -0.5em;
+                        width: 13em;
+                    }
+                }
+
+                .stats{
+                    display: flex;
+                    gap: 1em;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: center;
+                    width: 25em;
+                    
+                    .str, .int, .dex {
+                        background-color: #fff;
+                        color: #000;
+                        padding: 0 0.5em;
+                    }
+
+                    .btnSection {
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .gainBtn {
+                        width: 2em;
+                        height: 2em;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        &:hover {
+                            cursor: pointer;
+                            background-color: rgba(154, 154, 154, 0.486);
+                        }
+                    }
+
+                }
+            }
+
+            .character{
+                background-color: #acbac3;
+                height: 6em;
+                color: #000;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                border: 0.3em solid #bcc7ce;
+                border-radius: 0.3em;
+                position: relative;
+                overflow: hidden;
+                margin: 0.3em;
+
+                &:hover {
+                    cursor: pointer;
+                    border: 0.3em solid #acbac3;
+                    background-color: #bcc7ce;
+                }
+
+                h2 {
+                    margin-left: 0.5em;
+                }
+
+                p {
+                    margin-left: 0.5em;
+                }
+
+                img {
+                    width: 25em;
+                    position: absolute;
+                    right: -6em;
+                    top: -1.8em;
+                }
+            }
+        }
+    }
+
+    button {
+        max-width: 10em;
+        width: 100%;
+        background-color: rgb(83 93 98);
+        border: 0.2em solid #abb9c2;
+        padding: 1em;
+        color: #fff;
+        letter-spacing: 0.1rem;
+        margin: 1em;
+
+        &:hover {
+            background-color: rgb(172 186 195);
+            border: 0.2em solid rgb(189 200 207);
+            color:#000;
+            cursor: pointer;
+        } 
+    }
+    
+}
+
+.chooseAvatar {
+    box-shadow: 0 0 2em #000;
 }
