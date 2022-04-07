@@ -67,7 +67,7 @@ const getAdventure = (res, x, y) => {
 
 const getEnemy = (res) => {
     con.connect((err) => {
-        con.query(`SELECT name, type, experience, img, health, strength, intellect, dexterity FROM enemies JOIN stats ON stats.id = stats_id ORDER BY RAND() LIMIT 1`, (err, result, fields) => {
+        con.query(`SELECT name, type, experience, level, img, health, strength, intellect, dexterity FROM enemies JOIN stats ON stats.id = stats_id ORDER BY RAND() LIMIT 1`, (err, result, fields) => {
             res.status(200).json({
                 'enemy':result
             })
@@ -78,18 +78,32 @@ const getEnemy = (res) => {
 
 const getProtagonist = (res, id) => {
     con.connect(function (err) {
-        con.query(`SELECT name, experience, img, health, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id WHERE protagonist.id =${id}`, (err, result, fields) => {
+        con.query(`SELECT name, experience, level, img, health, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id WHERE protagonist.id =${id}`, (err, result, fields) => {
             res.status(200).json({
-                'protagonist':result
+                'protagonist': result
             })
         })
+    })
+}
 
+const gainLevel = (res, result) => {
+
+    const exp = JSON.stringify(result[0].experience)
+
+    const level = 2;
+    
+    const formulaLevel = (50*level ** 3 / 3 - 100 *level ** 2 + 850 * level / 3 - 200);
+    
+    console.log(formulaLevel);
+
+    res.status(200).json({
+        'protagonist': result
     })
 }
 
 const getAllProtagonist = (res) => {
     con.connect(function (err) {
-        con.query(`SELECT protagonist.id, name, experience, img, health, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id`, (err, result, fields) => {
+        con.query(`SELECT protagonist.id, name, experience, img, level, health, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id`, (err, result, fields) => {
             res.status(200).json({
                 'protagonist': result
             })

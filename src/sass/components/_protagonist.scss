@@ -1,5 +1,9 @@
 .protagonistContainer {
     background-color: #382e2e;
+    background-image: url('../assets/images/bg/village.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     position: fixed;
     left: 0;
     top: 0;
@@ -11,43 +15,57 @@
     flex-direction: column;
     justify-content: center;
 
+    @keyframes fadeIn {
+        0% {
+            opacity:0;
+        }
+        100% {
+            opacity:1;
+        }
+    }
+
+    .fadeIn {
+        animation: fadeIn 3s ease-in forwards;
+    }
+
     .celticImg {
-        width: 30em;
-        position: absolute;
-        right: -5em;
-        bottom: -5em;
+        width: 15em;
+        position: fixed;
         z-index: -1;
+        transform: translate(0, -21em);
+    }
+
+    h1 {
+        position: fixed;
+        transform: translate(0, -4.6em);
+        margin: 0;
+        text-shadow: 0 0 0.1em rgb(0 0 0);
+        font-size: 4.3rem;
     }
 
     .box {
-        display:flex;
-        gap:2em;
+        display: flex;
+        gap: 2em;
         flex-direction: column;
         align-items: center;
+        position: fixed;
+        transform: translate(0, 3em);
 
-        h1 {
-            width: auto;
-            text-align: center;
-            margin: 0 0 0 0;
-        }
 
         .list {
-            background-color: #535d62;
+            background-color: #382e2e;
             min-width: 25em;
             width: 100%;
-            height: 30em;
-            border: 0.3em solid #bdc8ce;
+            height: 33em;
+            border: 0.3em solid #ffffff;
             border-radius: 0.5em;
-            box-shadow: 0 0 1em #000000;
+            box-shadow: 0 0 1em 0.5em #00000063;
             overflow-y: scroll;
             overflow-x: hidden;
+            margin: 3em 0 0 0;
 
             .createWindow {
-                width: 100%;
-                height: 30em;
-                color: #000;
                 display: flex;
-                justify-content: center;
                 align-items: center;
                 flex-direction: column;
                 position: relative;
@@ -57,7 +75,7 @@
                     font-size: 1.2rem;
                     font-weight: 600;
                     color: #fff;
-                    margin: 0 0 0.5em -8.5em;
+                    margin: 1em 0 0.5em -8.5em;
                 }
 
                 .goBack_characterWindow {
@@ -117,17 +135,18 @@
 
                 .stats{
                     display: flex;
-                    gap: 1em;
-                    flex-direction: row;
-                    flex-wrap: wrap;
+                    flex-direction: column;
+                    width: 15em;
                     align-items: center;
-                    justify-content: center;
-                    width: 25em;
                     
+                    .showPoints {
+                        color: #fff;
+                        position: absolute;
+                    }
+
                     .str, .int, .dex {
-                        background-color: #fff;
-                        color: #000;
-                        padding: 0 0.5em;
+                        color: #fff;
+                        padding: 0.2em 0.5em;
                     }
 
                     .btnSection {
@@ -152,17 +171,21 @@
             }
 
             .character{
-                background-color: #acbac3;
+                background-color: #382e2e;
                 height: 6em;
-                color: #000;
+                color: #fff;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                border: 0.3em solid #bcc7ce;
+                border: 0.3em solid #ffffff;
                 border-radius: 0.3em;
                 position: relative;
                 overflow: hidden;
                 margin: 0.3em;
+
+                .levelTitle {
+                    font-size: 0.85rem;
+                }
 
                 &:hover {
                     cursor: pointer;
@@ -191,19 +214,37 @@
     button {
         max-width: 10em;
         width: 100%;
-        background-color: rgb(83 93 98);
-        border: 0.2em solid #abb9c2;
+        background-color: rgb(56 46 46);
+        border: 0.3em solid #ffffff;
+        border-radius: 0.5em;
         padding: 1em;
         color: #fff;
         letter-spacing: 0.1rem;
         margin: 1em;
-
+    
         &:hover {
-            background-color: rgb(172 186 195);
-            border: 0.2em solid rgb(189 200 207);
-            color:#000;
+            background-color: rgb(46, 43, 43);
             cursor: pointer;
         } 
+    }
+
+    .createHero{
+        max-width: 10em;
+        width: 100%;
+        background-color: rgb(56, 46, 46);
+        border: 0.3em solid #ffffff;
+        border-radius: 0.5em;
+        padding: 1em;
+        color: #fff;
+        letter-spacing: 0.1rem;
+        position: fixed;
+        transform: translate(0, 28em);
+    
+        &:hover {
+            background-color: rgb(46, 43, 43);
+            cursor: pointer;
+        } 
+    
     }
     
 }

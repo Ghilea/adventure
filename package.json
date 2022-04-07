@@ -9,7 +9,8 @@
         "output": "./public"
     },
     "dependencies": {
-        "use-sound": "4.0.1"
+        "use-sound": "4.0.1",
+        "howler": "2.2.3"
     },
     "devDependencies": {
         "mysql": "2.18.1",

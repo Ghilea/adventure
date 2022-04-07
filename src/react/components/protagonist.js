@@ -11,7 +11,6 @@ import useSound from 'use-sound';
 const Protagonist = () => {
 
     const [protagonist, setProtagonist] = useState([]);
-
     const [store, setStore] = useContext(StoreContext);
    
     let characterWindow = [];
@@ -70,7 +69,7 @@ const Protagonist = () => {
             className = 'character' >
                 <img src={`assets/images/fantasycharacters/${item.img}.png`} />
                 <h2>
-                    {item.name}
+                    {item.name} (<span className='levelTitle'>level {item.level}</span>)
                 </h2>
                 <p>Hp: {item.health} Str: {item.strength} Int: {item.intellect} Dex: {item.dexterity}</p>
             </div>
@@ -81,10 +80,10 @@ const Protagonist = () => {
 
     return (
         <div className='protagonistContainer'>
-            
+            <h1 className='fadeIn'>Äventyret</h1>
             <div className='box'>
-                <h1>Välkommen</h1>
-                <div className='list'>
+                
+                <div className='list fadeIn'>
                     {
                         (store.showCreate) ? < CreateWindow />: characterWindow
                     }
@@ -92,11 +91,11 @@ const Protagonist = () => {
             </div>
 
             {
-                (store.showCreate) ? '' : < button onClick = {
+                (store.showCreate) ? '' : < button className='fadeIn createHero' type='button' onClick = {
                     createClick
                 } > Skapa hjälte </button> }
             
-            <img className='celticImg' src='assets/images/celtic.svg' />
+            <img className='celticImg fadeIn' src='assets/images/celtic.svg' alt='logo'/>
         </div>
     )
 }
