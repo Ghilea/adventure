@@ -1,32 +1,45 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {StoreContext} from './store';
+import Read from '../crud/read';
 
 const Buttons = () => {
 
-    let btn = [
-        {
-            name: 'Väst',
-            direction: 'left',
-            class: 'displayButton'
-        }, {
-            name: 'Nord',
-            direction: 'up',
-            class: 'displayButton'
-        }, {
-            name: 'Syd',
-            direction: 'down',
-            class: 'displayButton'
-        }, {
-            name: 'Öst',
-            direction: 'right',
-            class: 'displayButton'
-        },
-    ];
-
-    let showButtons = [];
-
     const [store, setStore] = useContext(StoreContext);
-    
+
+    const [disabled, setDisabled] = useState([{
+        left: false,
+        front: false,
+        right: false
+    }]);
+
+    useEffect(() => {
+
+        let url = `http://localhost:1234/getAdventure?x=${store.x}&y=${store.y}`;
+
+        let mounted = true;
+
+        Read(url)
+            .then(items => {
+
+                if (mounted && items.adventure.length > 0) {
+                    
+                    let parsed = JSON.parse(items.adventure[0].content);
+                    
+                    setDisabled(disabled => ({
+                        ...disabled,
+                        left: parsed.doors.left,
+                        front: parsed.doors.front,
+                        right: parsed.doors.right
+                    }));
+                    
+                    
+                } 
+                
+            })
+
+        return () => mounted = false;
+    }, [store])
+
     const btnClick = (event) => {
 
         let newX = store.x,
@@ -54,15 +67,21 @@ const Buttons = () => {
          }));
     }
 
-    btn.forEach(element => {
-        showButtons.push(<button onClick={(event) => btnClick(event)} key={element.name+'_'+element.class} type="button" id={element.direction} className={element.class}>{element.name}</button>);
-    });
+    console.log(store);
+    console.log(disabled);
 
     return (
       
         <section className='btn'>
             <div className='container'>
-                {showButtons}
+                <button onClick={btnClick} type="button" id='left' className='displayButton' disabled={disabled.left}>Väst</button>
+
+                <button onClick={btnClick} type="button" id='up' className='displayButton' disabled={disabled.front}>Nord</button>
+
+                <button onClick={btnClick} type="button" id='down' className='displayButton'>Syd</button>
+
+                <button onClick={btnClick} type="button" id='right' className='displayButton' disabled={disabled.right}>Öst</button>
+                
                 <div id="position"></div>
             </div>
         </section>

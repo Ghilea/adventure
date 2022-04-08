@@ -8,10 +8,9 @@ body {
 }
 
 main {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    display: flex;
     height: 100%;
+    position: relative;
 }
 
 h1 {
@@ -213,12 +212,11 @@ h1 {
 }
 
 .btn {
-    width: 100%;
-    max-width: 500px;
-    grid-row: 3;
-    grid-column: 3;
-    display: flex;
-    align-items: flex-end;
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    bottom: 1em;
+    transform: translateX(-50%);
 
     .container {
         display: grid;
@@ -233,18 +231,18 @@ h1 {
         button {
             max-width: 10em;
             width: 100%;
-            background-color: rgba(255, 0, 0, 0.6);
-            border: 0.2em solid #fff;
-            border-radius: 50%;
+            background-color: rgb(56, 46, 46);
+            border: 0.3em solid #ffffff;
+            border-radius: 0.5em;
             padding: 1em;
-            box-shadow: 0 0 1em rgba(0, 0, 0, 0.523);
             color: #fff;
             letter-spacing: 0.1rem;
-
+            box-shadow: 0 0 1em 0.5em #0000005e;
+        
             &:hover {
-                background-color: rgba(107, 1, 1, 0.6);
+                background-color: rgb(46, 43, 43);
                 cursor: pointer;
-            }
+            } 
 
             .displayButton {
                 display:block;

@@ -73,21 +73,7 @@ const Protagonist = () => {
                 dex += 1;
                 break;
         }
-        
-        /*if (int >= 0) {
-            setDisabled((disabled) => ({
-                ...disabled,
-                intMin: true
-            }));
-        } 
-        
-        if (dex >= 0) {
-            setDisabled((disabled) => ({
-                ...disabled,
-                strMin: true
-            }));
-        }*/
-
+    
         setAttribute(attribute => ({
             ...attribute,
             points: p,

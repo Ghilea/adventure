@@ -17,7 +17,8 @@ const Content = () => {
         describe: null,
         enemyAllowed: null,
         enemyFound: null,
-        content: false
+        content: null,
+        isContent: false
     });
 
     const [coord, setCoord] = useState({
@@ -54,37 +55,27 @@ const Content = () => {
                         describe: items.adventure[0].describe,
                         enemyFound: items.enemies,
                         enemyAllowed: items.adventure[0].enemy,
-                        content: items.content
+                        content: JSON.parse(items.adventure[0].content),
+                        isContent: items.content
                     }));
                 }else{
                     setContent(content => ({
                         ...content,
-                        content: false
+                        isContent: false
                     }));
                 }
             })
 
             return () => mounted = false;
-    }, [coord])
+    }, [])
 
-    let bgStyle = {
-        backgroundImage: (content.content) ? 
-            `url(assets/images/bg/${((/\s+/g).test(content.title)) ? 
-                content.title.replace(/\s+/g, '_') + '.jpg' 
-                : content.title + '.jpg'}` 
-            : ''
-    }
-    
-    if (content.content && content.enemyFound && content.enemyAllowed) {
+    if (content.isContent && content.enemyFound && content.enemyAllowed) {
         play
     }
 
-    return (
-        <>
-        
-        <div style={bgStyle} className='bgWrapper'></div>
-        <div className='container_3d'></div>
-        <div className='content container'>
+    /**
+     <div style={bgStyle} className='bgWrapper'></div>
+     <div className='content container'>
             
             <h1>
                 {
@@ -117,6 +108,66 @@ const Content = () => {
             
     
         </div>
+     */
+
+    return (
+        <>
+        
+        <div className='container_3d'>
+            <div className='scen'>
+                <div className='floor firstFloor'></div>
+                <div className='floor roof'></div>
+                <div className='position wallOutside outside_B back'></div>
+                
+                <div className='position wallOutside outside_B left'></div>
+
+                {
+                    (content.isContent && content.content.doors.left) ? 
+                    <div className='position wallOutside outside_B leftPanel'></div> : ''
+                }
+
+                {
+                    (content.isContent && content.content.doors.front) ? 
+                    <div className='position wallOutside outside_B leftBPanel'></div> : ''
+                }
+                
+                <div className='position wallOutside outside_B right'></div>
+
+                {
+                    (content.isContent && content.content.doors.right) ? 
+                    <div className='position wallOutside outside_B rightPanel'></div> : ''
+                }
+                
+                {
+                    (content.isContent && content.content.doors.front) ? 
+                    <div className='position wallOutside outside_B rightBPanel'></div> : ''
+                }
+                
+                <div className = {
+                        `position wallOutside outside_L 
+                        ${
+                            (content.isContent && content.content.doors.left) ? 'doorSide' : ''
+                        }
+                        `}>
+                </div>
+                <div className = {
+                        `position wallOutside outside_R 
+                        ${
+                            (content.isContent && content.content.doors.right) ? 'doorSide' : ''
+                        }
+                        `}>  
+                </div>
+                <div className = {
+                        `position wallOutside outside_B 
+                        ${
+                            (content.isContent && content.content.doors.front) ? 'door' : ''
+                        }
+                        `}>
+                </div>
+                
+            </div>
+        </div>
+
         </>
     )
 }

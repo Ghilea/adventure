@@ -149,7 +149,7 @@ const Interface = () => {
                 <div className='img'> 
                     <img src={set.img} /> 
                 </div>
-                <div className='heroName'>Namn: {set.heroName}</div>
+                <div className='heroName'>{set.heroName}</div>
                 <div className='health'>HP: {set.health}</div>
                 <div className='stats'>
                     <div className='btnSection'>
@@ -173,7 +173,7 @@ const Interface = () => {
                     
                 <div className='experience'>Exp: {set.experience}</div>
                 <div className='dps'>Dps: {set.dps}</div>
-                <div className='coords'>Position X: {coord.x} Position Y: {coord.y}</div>
+                <div className='coords'>X: {coord.x} Y: {coord.y}</div>
             </div>
         </>        
         

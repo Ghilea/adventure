@@ -1,39 +1,66 @@
 .interface {
-    background-color: #382e2e;
-    min-width: 15em;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 2em;
-    flex-direction: column;
-    align-content: center;
-    padding: 1em 0;
-    box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.544);
-    border: 0.3em solid #fff;
-    grid-row: 1 / span 3;
-    grid-column: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
 
     .img {
         max-width: 10em;
         width: 100%;
         height: 10em;
-        margin-top: 2em;
         background-color: #000;
         border-radius: 50%;
         overflow: hidden;
-        border: 0.3em solid #fff;
-        box-shadow: 0 0 10px #000;
+        border: 0.1em solid #fff;
+        box-shadow: 0 0 1em 0.5em #00000080;
+        position: absolute;
+        left: 1em;
+        top: 1em;
 
         img {
             width: 100%;
         }
     }
 
+    .heroName {
+        position: absolute;
+        left: 1em;
+        top: 12em;
+    }
+
+    .coords {
+        position: absolute;
+        bottom: 1em;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .experience {
+        position: absolute;
+        top: 15em;
+        left: 1em;
+    }
+
+    .dps {
+        position: absolute;
+        top: 16.5em;
+        left: 1em;
+    }
+
+    .health {
+        position: absolute;
+        top: 13.5em;
+        left: 1em;
+    }
+
     .stats{
         display: flex;
         gap: 1em;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
         
         .str, .int, .dex {
             background-color: #fff;
