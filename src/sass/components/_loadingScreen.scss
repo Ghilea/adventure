@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Rubik+Wet+Paint&display=swap');
+
+
 .loadingScreen {
     background-color: #382e2e;
-    background-image: url('../assets/images/bg/village.jpg');
+    background-image: url('/public/assets/bg/village.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -29,7 +32,9 @@
         margin: 0 0 0 0;
         letter-spacing: 0.1rem;
         font-size: 4.4rem;
-        text-shadow: 0 0 0.1em #000;
+        font-weight: 400;
+        text-shadow: 0 0 0.4em #df2525;
+        font-family: 'Rubik Wet Paint', cursive;
     }
 
     p{

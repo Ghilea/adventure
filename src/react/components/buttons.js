@@ -59,9 +59,7 @@ const Buttons = () => {
                 ${(!store.doors.left) ? 'hide' : '' } `}>Vänster</button>
 
                 <button onClick={btnClick} type="button" id='up' className={`displayButton 
-                ${(!store.doors.front) ? 'hide' : '' } `} >
-                    <img src='assets/images/svg/arrow.svg' />Framåt
-                </button>
+                ${(!store.doors.front) ? 'hide' : '' } `} >Framåt</button>
 
                 <button onClick={btnClick} type="button" id='down' className={`displayButton 
                 ${(!store.doors.back) ? 'hide' : '' } `}>Bakåt</button>
