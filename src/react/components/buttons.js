@@ -59,15 +59,16 @@ const Buttons = () => {
                 ${(!store.doors.left) ? 'hide' : '' } `}>Vänster</button>
 
                 <button onClick={btnClick} type="button" id='up' className={`displayButton 
-                ${(!store.doors.front) ? 'hide' : '' } `} >Nord</button>
+                ${(!store.doors.front) ? 'hide' : '' } `} >
+                    <img src='assets/images/svg/arrow.svg' />Framåt
+                </button>
 
                 <button onClick={btnClick} type="button" id='down' className={`displayButton 
-                ${(!store.doors.back) ? 'hide' : '' } `}>Syd</button>
+                ${(!store.doors.back) ? 'hide' : '' } `}>Bakåt</button>
 
                 <button onClick={btnClick} type="button" id='right' className={`displayButton 
-                ${(!store.doors.right) ? 'hide' : '' } `}>Öst</button>
-                
-                <div id="position"></div>
+                ${(!store.doors.right) ? 'hide' : '' } `}>Höger</button>
+
             </div>
         </section>
         

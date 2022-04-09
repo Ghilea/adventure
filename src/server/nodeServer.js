@@ -24,6 +24,11 @@ app.get('/getAdventure', (req, res) => {
     getAdventure(res, req.query.x, req.query.y);
 });
 
+app.get('/getQuest', (req, res) => {
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
+    getQuest(res, req.query.x, req.query.y);
+});
+
 app.get('/getEnemy', (req, res) => {
     res.setHeader("Content-Type", "application/json; charset=utf-8");
     getEnemy(res);
@@ -54,13 +59,23 @@ app.listen(process.env.PORT, () =>
 
 const getAdventure = (res, x, y) => {
     con.connect((err) => {
-         con.query(`SELECT * FROM areas WHERE Xpos=${x} AND Ypos =${y}`, (err, result, fields) => {
+        con.query(`SELECT * FROM areas WHERE Xpos=${x} AND Ypos =${y}`, (err, result, fields) => {
             const enemies = ((Math.random() * 1) < 0.5);
     
             const content = (result.length > 0) ? true : false;
             res.status(200).json({
                 'adventure': result, enemies, content
-            })         
+            })      
+        })
+    })
+}
+
+const getQuest = (res, x, y) => {
+    con.connect((err) => {
+        con.query(`SELECT * FROM quest WHERE Xpos=${x} AND Ypos =${y}`, (err, result, fields) => {
+            res.status(200).json({
+                'quest': result
+            })
         })
     })
 }

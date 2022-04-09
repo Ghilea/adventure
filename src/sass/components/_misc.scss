@@ -30,72 +30,12 @@ h1 {
     }
 }
 
-#adventure {
-
-    display:flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-
-    .main_text {
-        max-height: 10em;
-        height: 100%;
-        max-width: 40em;
-        width: 100%;
-        border: burlywood 5px solid;
-        padding: 2em;
-        background-color: rgba(0, 0, 0, 0.535);
-        position: relative;
-        line-height: 1.5rem;
-        letter-spacing: 0.3rem;
-        margin: 0 0 3em 0;
-    }
-
-    p {
-        .cr {
-            position: absolute;
-            height: 3em;
-            right: -3em;
-            bottom: -2.2em;
-            z-index: -1;
-        }
-
-        .cl {
-            position: absolute;
-            height: 3em;
-            left: -3em;
-            bottom: -2.2em;
-            z-index: -1;
-        }
-
-        .ctl {
-            position: absolute;
-            height: 3em;
-            left: -3em;
-            top: -2.2em;
-            z-index: -1;
-            transform: rotate(180deg);
-        }
-
-        .ctr {
-            position: absolute;
-            height: 3em;
-            right: -3em;
-            top: -2.2em;
-            z-index: -1;
-            transform: rotate(180deg);
-        }
-    }
-
-    
-    
-}
-
-.content {
+/*.content {
     grid-row: 1;
     grid-column: 2 / span 3;
-}
+}*/
 
-.container {
+/*.container {
     display: flex;
     gap: 2em;
     align-items: center;
@@ -105,74 +45,13 @@ h1 {
     align-items: center;
     flex-wrap: wrap;
     margin: 0 auto;
-}
+}*/
 
-.btn {
-    z-index: 1;
-    position: absolute;
-    left: 50%;
-    bottom: 1em;
-    transform: translateX(-50%);
-
-    .container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        gap: 2em;
-        grid-template-areas:
-            ". Up ."
-            "Left Down Right"
-            ". Position .";
-
-        button {
-            max-width: 10em;
-            width: 100%;
-            background-color: rgb(56, 46, 46);
-            border: 0.3em solid #ffffff;
-            border-radius: 0.5em;
-            padding: 1em;
-            color: #fff;
-            letter-spacing: 0.1rem;
-            box-shadow: 0 0 1em 0.5em #0000005e;
-        
-            &:hover {
-                background-color: rgb(46, 43, 43);
-                cursor: pointer;
-            } 
-
-            .displayButton {
-                display:block;
-            }
-        }
-    }
-    
-}
-
-#position {
-    grid-area: Position;
-}
-
-#up {
-    grid-area: Up;
-}
-
-#left {
-    grid-area: Left;
-}
-
-#down {
-    grid-area: Down;
-}
-
-#right {
-    grid-area: Right;
-}
-
-.hero {
+/*.hero {
     background-color: blue;
     width: 15em;
     height: 20em;
-}
+}*/
 
 .img {
     max-width: 10em;
@@ -191,38 +70,14 @@ h1 {
    cursor: no-drop !important;
 }
 
-.rotate {
+.fadeOut {
+    animation: fadeOut 8s ease-in-out forwards;
 
-    animation: rotateIt 35s linear infinite;
-
-    @keyframes rotateIt {
-        from {
-            transform: rotate(0) translate(0, -4em);
-        }
-        to {
-            transform: rotate(360deg) translate(0, -4em);
+    @keyframes fadeOut {
+        to{
+            opacity: 0;
         }
     }
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888; 
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
 }
 
 .music {
@@ -243,46 +98,5 @@ h1 {
 
     img {
         width:100%;
-    }
-}
-
-.loadingScreen {
-    background-color: #382e2e;
-    background-image: url('../assets/images/bg/village.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    display:flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-
-    .celticImg {
-        width: 26em;
-        position: fixed;
-        z-index: -1;
-        transform: translate(0, -4em);
-    }
-
-    h1 {
-        width: 100%;
-        text-align: center;
-        position: relative;
-        margin: 0 0 0 0;
-        letter-spacing: 0.1rem;
-        font-size: 4.4rem;
-        text-shadow: 0 0 0.1em #000;
-    }
-
-    p{
-        font-size: 1.4rem;
-        text-shadow: 0 0 0.1em #000;
-        font-weight: 600;
     }
 }

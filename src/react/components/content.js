@@ -8,13 +8,17 @@ const Content = () => {
     const [store, setStore] = useContext(StoreContext);
 
     const [content, setContent] = useState({
-        title: null,
-        describe: null,
         enemyAllowed: null,
         enemyFound: null,
         content: null,
         isContent: false
     });
+
+    const [quest, setQuest] = useState({
+        title: null,
+        describe: null
+    });
+
 
     const [coord, setCoord] = useState({
         x: 0,
@@ -37,6 +41,7 @@ const Content = () => {
     useEffect(()=>{
         
         let url = `http://localhost:1234/getAdventure?x=${coord.x}&y=${coord.y}`;
+        let url_quest = `http://localhost:1234/getQuest?x=${coord.x}&y=${coord.y}`;
 
         let mounted = true;
 
@@ -46,8 +51,6 @@ const Content = () => {
                 if (mounted && items.adventure.length > 0) {
                     setContent(content => ({
                         ...content,
-                        title: items.adventure[0].title,
-                        describe: items.adventure[0].describe,
                         enemyFound: items.enemies,
                         enemyAllowed: items.adventure[0].enemy,
                         content: JSON.parse(items.adventure[0].content),
@@ -70,41 +73,24 @@ const Content = () => {
                 }
             })
 
+        Read(url_quest)
+            .then(items => {
+
+                if (mounted && items.quest.length > 0) {
+                    setQuest(quest => ({
+                        ...quest,
+                        title: items.quest[0].title,
+                        describe: items.quest[0].describe
+                    }));
+                    setStore(store => ({
+                        ...store,
+                        showQuest: true
+                    }))
+                } 
+            })
+
             return () => mounted = false;
     }, [coord])
-
-    /**
-     
-     <div className='content container'>
-            
-            <h1>
-                {
-                    (content.content) ? content.title : 'unknown'
-                }
-            </h1>
-        
-            <div id="adventure">
-
-                {
-                    <p className = {
-                        `main_text ${(content.enemyFound && content.enemyAllowed) ? 'hide' : ''}`
-                    } >
-                        <img className='cr' src='assets/images/fantasy_gui_png/frame_02_03.png' />
-                        <img className='cl' src='assets/images/fantasy_gui_png/frame_02_04.png' />
-                        <img className='ctl' src='assets/images/fantasy_gui_png/frame_02_03.png' />
-                        <img className='ctr' src='assets/images/fantasy_gui_png/frame_02_04.png' />
-                        {content.describe}
-                    </p>
-                }
-                
-                
-
-            </div>
-
-            
-    
-        </div>
-     */
 
     if(content.isContent){
         console.log(store);
@@ -112,6 +98,23 @@ const Content = () => {
 
     return (
         <>
+
+        <div className={`questContainer ${(store.showQuest) ? 'fadeOut' : ''}`}>
+            <h1>
+            {
+                (content.content) ? quest.title: 'unknown'
+            }
+            </h1>
+
+            {
+                <div className = 'main_text'>
+                    {
+                        quest.describe
+                    }
+                </div>
+            }
+        </div>
+        
         {
             (content.content && content.enemyFound && content.enemyAllowed) ? 
                     

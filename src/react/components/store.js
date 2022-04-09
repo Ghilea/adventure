@@ -18,8 +18,10 @@ const StoreProvider = (props) => {
         playerHp: 0,
         playerDps: 0,
         playerExp: 0,
+        playerLevel: 1,
         playerAttack: false,
         showCreate: false,
+        showQuest: false,
         login: false,
         doors: {
             left: false,

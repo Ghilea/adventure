@@ -11,6 +11,7 @@ const Interface = () => {
         heroName: null,
         experience: 0,
         img: null,
+        level: 1,
         health: 0,
         strength: 0,
         intellect: 0,
@@ -38,6 +39,7 @@ const Interface = () => {
                         heroName: items.protagonist[0].name,
                         experience: items.protagonist[0].experience,
                         img: `assets/images/characters/${items.protagonist[0].img}.png`,
+                        level: items.protagonist[0].level,
                         health: items.protagonist[0].health,
                         strength: items.protagonist[0].strength,
                         intellect: items.protagonist[0].intellect,
@@ -47,6 +49,7 @@ const Interface = () => {
 
                     setStore(store => ({
                         ...store, 
+                        playerLevel: items.protagonist[0].level,
                         playerHp: items.protagonist[0].health,
                         playerDps: (items.protagonist[0].strength + items.protagonist[0].intellect + items.protagonist[0].dexterity) / 2,
                         playerExp: items.protagonist[0].experience
@@ -68,6 +71,7 @@ const Interface = () => {
         if (set.heroName != null) {
             setState(set => ({
                 ...set,
+                level: store.playerLevel,
                 experience: store.playerExp,
                 health: store.playerHp,
                 dps: store.playerDps
@@ -149,7 +153,7 @@ const Interface = () => {
                 <div className='img'> 
                     <img src={set.img} /> 
                 </div>
-                <div className='heroName'>{set.heroName}</div>
+                <div className='heroName'>{set.heroName} (lvl {set.level})</div>
                 <div className='health'>HP: {set.health}</div>
                 <div className='stats'>
                     <div className='btnSection'>
