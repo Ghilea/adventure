@@ -191,7 +191,7 @@ const Protagonist = () => {
                     `button ${(character.img === 'FantasyCharacters_h_warrior_female') ?
                     'chooseAvatar' : ''} `
                 } >
-                    <img id='FantasyCharacters_h_warrior_female' src='assets/images/fantasycharacters/FantasyCharacters_h_warrior_female.png'/>
+                    <img id='FantasyCharacters_h_warrior_female' src='assets/images/characters/FantasyCharacters_h_warrior_female.png'/>
                 </div>
 
                 <div onClick = {
@@ -201,7 +201,7 @@ const Protagonist = () => {
                     `button ${(character.img === 'FantasyCharacters_h_warrior_male') ?
                     'chooseAvatar' : ''} `
                 } >
-                    <img id='FantasyCharacters_h_warrior_male' src='assets/images/fantasycharacters/FantasyCharacters_h_warrior_male.png'/>
+                    <img id='FantasyCharacters_h_warrior_male' src='assets/images/characters/FantasyCharacters_h_warrior_male.png'/>
                 </div>
 
             </div>

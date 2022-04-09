@@ -13,12 +13,20 @@ const StoreProvider = (props) => {
         y: 0,
         enemyHp: 0,
         enemyDps: 0,
+        enemyAttack: false,
         playerId: 0,
         playerHp: 0,
         playerDps: 0,
         playerExp: 0,
+        playerAttack: false,
         showCreate: false,
-        login: false
+        login: false,
+        doors: {
+            left: false,
+            front: true,
+            right: false,
+            back: false
+        }
     });
 
     return (

@@ -37,7 +37,7 @@ const Interface = () => {
                         ...set,
                         heroName: items.protagonist[0].name,
                         experience: items.protagonist[0].experience,
-                        img: `assets/images/fantasycharacters/${items.protagonist[0].img}.png`,
+                        img: `assets/images/characters/${items.protagonist[0].img}.png`,
                         health: items.protagonist[0].health,
                         strength: items.protagonist[0].strength,
                         intellect: items.protagonist[0].intellect,
@@ -174,6 +174,10 @@ const Interface = () => {
                 <div className='experience'>Exp: {set.experience}</div>
                 <div className='dps'>Dps: {set.dps}</div>
                 <div className='coords'>X: {coord.x} Y: {coord.y}</div>
+
+                <div className={`playerWeapon ${(store.playerAttack) ? 'swing' : ''}`}>
+                    <img src='assets/images/gui/sword.png'/>
+                </div>
             </div>
         </>        
         

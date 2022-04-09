@@ -20,7 +20,8 @@ const getEnemy = () => {
         strength: 0,
         intellect: 0,
         dexterity: 0,
-        dps: 0
+        dps: 0,
+        canAttack: true
     });
 
     useEffect(() => {
@@ -39,7 +40,7 @@ const getEnemy = () => {
                         ...set,
                         heroName: items.enemy[0].name,
                         experience: items.enemy[0].experience,
-                        img: `assets/images/fantasycharacters/${items.enemy[0].img}.png`,
+                        img: `assets/images/characters/${items.enemy[0].img}.png`,
                         health: items.enemy[0].health,
                         strength: items.enemy[0].strength,
                         intellect: items.enemy[0].intellect,
@@ -68,26 +69,49 @@ const getEnemy = () => {
     }, useContext(StoreContext));
 
     const attack = () => {
-        const text = document.querySelector('.textBox');
-
-        const p = document.createElement('p');
-
-        text.appendChild(p).append(`Du attackerade för ${store.playerDps} skada.`);
+        setState(set => ({
+            ...set,
+            canAttack: false
+        }))
 
         setStore(store => ({
             ...store,
-            enemyHp: store.enemyHp -= store.playerDps
+            playerAttack: true
         }))
 
-        if(store.enemyHp < 0){
+        const text = document.querySelector('.textBox');
+
+        setTimeout(() => {
+            const p = document.createElement('p');
+
+            text.appendChild(p).append(`Du attackerade för ${store.playerDps} skada.`);
+
+            setStore(store => ({
+                ...store,
+                playerAttack: false,
+                enemyHp: store.enemyHp -= store.playerDps
+            }))
+        }, 1000);
+    }
+
+    useEffect(()=>{
+        if (store.enemyHp <= 0) {
             setStore(store => ({
                 ...store,
                 playerExp: store.playerExp += set.experience
             }))
-        }else{
-            enemyAttack();
+        } else {
+            setTimeout(() => {
+                enemyAttack();
+            }, 2000);
         }
-        
+    }, [store.enemyHp])
+
+    const run = () => {
+        setStore(store => ({
+            ...store,
+            enemyHp: 0
+        }))
     }
 
     const enemyAttack = () => {
@@ -101,23 +125,35 @@ const getEnemy = () => {
             ...store,
             playerHp: store.playerHp -= set.dps
         }))
+
+        setState(set => ({
+            ...set,
+            canAttack: true
+        }))
     }
 
     return (
-        <div className={`enemyContainer ${(store.enemyHp < 0) ? 'hide' : ''}`}>
+        <div className={`enemyContainer ${(store.enemyHp <= 0) ? 'hide' : ''}`}>
+
             <div className='textBox'></div>
-            <div className='enemy'>
-                <img className='skull' src='assets/images/fantasy_gui_png/button_10_s03.png' />
-                <p className='skull_p'>{set.heroName}</p>
-                <p className='enemyHp'>HP: {set.health}</p>
+           
                 <img className='enemyAvatar' src={set.img} />
-                <img className='skull_2' src='assets/images/fantasy_gui_png/button_10_s03.png' />
-                <div className='enemyBtn'>
+             
+                <p className='enemyName'>{set.heroName}</p>
+                <p className='enemyHp'>HP: {set.health}</p>
+                
+
+                <div className = {
+                    `enemyBtn ${(set.canAttack) ? '' : 'hide'}`
+                }>
                     <button onClick = {
-                        (event) => attack(event)
-                    } > Attack </button>
+                        attack
+                    } > Anfall </button>
+                    <button onClick = {
+                        run
+                    } > Fly </button>
                 </div>
-            </div>
+      
         </div>
         
     )

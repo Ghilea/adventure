@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import Interface from './interface';
 import Content from './content';
 import {StoreContext, StoreProvider} from './store'
@@ -24,7 +24,7 @@ const Login = () => {
          if(!start){
            setStart(true);
          }
-         console.log(playing);
+
          if (playing) {
              stop();
              setPlaying(false);
@@ -34,12 +34,15 @@ const Login = () => {
          }
      }
 
-    if (store.login) {
-        sound.fade(volume, 0, 1000);
-        setTimeout(() => {
-            stop();
-        }, 1000);
-    }
+    useEffect(()=>{
+        if (store.login) {
+            sound.fade(volume, 0, 1000);
+            setTimeout(() => {
+                stop();
+                setPlaying(false);
+            }, 1000);
+        }
+    },[store.login])
 
     return (
 
@@ -52,7 +55,7 @@ const Login = () => {
         } >
             <h1>Äventyret</h1>
             <p>Klicka för att starta...</p>
-            <img className='celticImg' src='assets/images/celtic.svg' alt='logo'/>
+            <img className='celticImg' src='assets/images/svg/celtic.svg' alt='logo'/>
         </div>
         {
             (start) ? 
@@ -75,7 +78,7 @@ const Login = () => {
     
         <button type='button' className = 'music'
             onClick = {audioPlay} >
-            <img src='assets/images/music_note.svg' />
+            <img src = 'assets/images/gui/button_10_s06.png' />
         </button>
         </>
         

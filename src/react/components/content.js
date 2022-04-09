@@ -2,15 +2,10 @@ import React, {useEffect, useState, useContext} from 'react';
 import Read from '../crud/read';
 import {StoreContext} from './store';
 import Enemy from './enemy';
-import useSound from 'use-sound';
 
 const Content = () => {
 
     const [store, setStore] = useContext(StoreContext);
-
-    const [play, {
-        stop
-    }] = useSound('assets/effects/enemies.mp3');
 
     const [content, setContent] = useState({
         title: null,
@@ -58,6 +53,15 @@ const Content = () => {
                         content: JSON.parse(items.adventure[0].content),
                         isContent: items.content
                     }));
+                    setStore(store => ({
+                        ...store,
+                        doors: {
+                            left: JSON.parse(items.adventure[0].content).doors.left,
+                            right: JSON.parse(items.adventure[0].content).doors.right,
+                            front: JSON.parse(items.adventure[0].content).doors.front,
+                            back: JSON.parse(items.adventure[0].content).doors.back
+                        }
+                    }))
                 }else{
                     setContent(content => ({
                         ...content,
@@ -67,14 +71,10 @@ const Content = () => {
             })
 
             return () => mounted = false;
-    }, [])
-
-    if (content.isContent && content.enemyFound && content.enemyAllowed) {
-        play
-    }
+    }, [coord])
 
     /**
-     <div style={bgStyle} className='bgWrapper'></div>
+     
      <div className='content container'>
             
             <h1>
@@ -97,11 +97,7 @@ const Content = () => {
                     </p>
                 }
                 
-                {
-                    (content.content && content.enemyFound && content.enemyAllowed) ? 
-                    
-                    <Enemy /> : <> </>
-                }
+                
 
             </div>
 
@@ -110,9 +106,18 @@ const Content = () => {
         </div>
      */
 
+    if(content.isContent){
+        console.log(store);
+    }
+
     return (
         <>
-        
+        {
+            (content.content && content.enemyFound && content.enemyAllowed) ? 
+                    
+            <Enemy /> : <> </>
+        }
+
         <div className='container_3d'>
             <div className='scen'>
                 <div className='floor firstFloor'></div>

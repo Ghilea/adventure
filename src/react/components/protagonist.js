@@ -67,7 +67,7 @@ const Protagonist = () => {
                 item.name
             }
             className = 'character' >
-                <img src={`assets/images/fantasycharacters/${item.img}.png`} />
+                <img src={`assets/images/characters/${item.img}.png`} />
                 <h2>
                     {item.name} (<span className='levelTitle'>level {item.level}</span>)
                 </h2>
@@ -95,7 +95,7 @@ const Protagonist = () => {
                     createClick
                 } > Skapa hjälte </button> }
             
-            <img className='celticImg fadeIn' src='assets/images/celtic.svg' alt='logo'/>
+            <img className='celticImg fadeIn' src='assets/images/svg/celtic.svg' alt='logo'/>
         </div>
     )
 }

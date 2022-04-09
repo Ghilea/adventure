@@ -1,0 +1,97 @@
+.enemyContainer{
+        display:flex;
+        z-index: 1;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100vw;
+        height: 100vh;
+        
+       
+
+        .textBox {
+            display: flex;
+            flex-direction: column;
+            width: 17em;
+            height: 20em;
+            padding: 0.5em 0.5em;
+            background-color: rgba(0, 0, 0, 0.535);
+            letter-spacing: 0.3rem;
+            border: 0.1em solid #fff;
+            border-radius: 0.3em;
+            overflow-y: auto;
+            position: absolute;
+            left: 25%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-shadow: 0 0 0.1em #000;
+
+            p {
+                font-size: 0.8rem;
+            }
+        }
+
+
+            .enemyAvatar {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -15%);
+                width: 100%;
+                max-width: 33em;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            .enemyName {
+                position: absolute;
+                left: 50%;
+                top: 37%;
+                transform: translate(-50%, -50%);
+                font-size: 2.4rem;
+                text-shadow: 0 0 0.1em #000;
+            }
+
+            .enemyHp {
+                position: absolute;
+                left: 50%;
+                top: 42%;
+                transform: translate(-50%, -50%);
+                font-size: 1.4rem;
+                text-shadow: 0 0 0.1em #000;
+            }
+
+            .enemyBtn {
+                display: flex;
+                justify-content: center;
+                position: absolute;
+                left: 50%;
+                bottom: 8%;
+                gap: 1em;
+                transform: translate(-50%, -50%);
+                font-size: 1.4rem;
+                text-shadow: 0 0 0.1em #000;
+
+                button {
+                    max-width: 10em;
+                    width: 100%;
+                    background-color: rgb(56, 46, 46);
+                    border: 0.3em solid #ffffff;
+                    border-radius: 0.5em;
+                    padding: 1em;
+                    color: #fff;
+                    letter-spacing: 0.1rem;
+                    box-shadow: 0 0 1em 0.5em #0000005e;
+                
+                    &:hover {
+                        background-color: rgb(46, 43, 43);
+                        cursor: pointer;
+                    } 
+
+                }
+            }
+
+    }
