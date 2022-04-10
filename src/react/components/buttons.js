@@ -11,8 +11,8 @@ const Buttons = () => {
 
     const btnClick = (event) => {
 
-        let newX = store.x,
-            newY = store.y;
+        let newX = store.coords.x,
+            newY = store.coords.y;
       
         if (event.target.id !== 'down') {
             setOld(old => ({
@@ -30,7 +30,6 @@ const Buttons = () => {
                 newY += 1;
                 break;
             case 'down':
-                console.log(old);
                 if(old.x !== newX && old.x < newX){
                     newX -= 1;
                 }else if(old.x !== newX && old.x > newX){
@@ -46,14 +45,16 @@ const Buttons = () => {
         
          setStore(store => ({
              ...store,
-             x: newX,
-             y: newY
+             coords: {
+                x: newX,
+                y: newY
+             }
          }));
     }
 
     return (
       
-        <section className={`btn ${(store.enemyHp > 0) ? 'hide' : ''}`}>
+        <section className={`btn ${(store.enemy.enemyHp > 0) ? 'hide' : ''}`}>
             <div className='container'>
                 <button onClick={btnClick} type="button" id='left' className={`displayButton 
                 ${(!store.doors.left) ? 'hide' : '' } `}>Vänster</button>

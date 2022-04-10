@@ -22,8 +22,6 @@ const Protagonist = () => {
 
         Read(url)
             .then(items => {
-
-                console.log(items);
                 if (mounted && items.protagonist.length > 0) {
                     setProtagonist(items.protagonist)
                 }
@@ -42,7 +40,9 @@ const Protagonist = () => {
     const createClick = () => {
         setStore((store) => ({
             ...store,
-            showCreate: true
+            menu: {
+                showCreate: true
+            }
         }))
     }
 
@@ -86,13 +86,13 @@ const Protagonist = () => {
                 
                 <div className='list fadeIn'>
                     {
-                        (store.showCreate) ? < CreateWindow />: characterWindow
+                        (store.menu.showCreate) ? < CreateWindow />: characterWindow
                     }
                 </div>
             </div>
 
             {
-                (store.showCreate) ? '' : < button className='fadeIn createHero' type='button' onClick = {
+                (store.menu.showCreate) ? '' : < button className='fadeIn createHero' type='button' onClick = {
                     createClick
                 } > Skapa hjälte </button> }
             

@@ -101,26 +101,9 @@ const getProtagonist = (res, id) => {
     })
 }
 
-const gainLevel = (res, result) => {
-
-    const exp = JSON.stringify(result[0].experience)
-
-    const level = 2;
-    
-    const formulaLevel = (50*level ** 3 / 3 - 100 *level ** 2 + 850 * level / 3 - 200);
-    
-    console.log(formulaLevel);
-
-    res.status(200).json({
-        'protagonist': result
-    })
-}
-
 const getAllProtagonist = (res) => {
     con.connect(function (err) {
-        console.log(err)
         con.query(`SELECT protagonist.id, name, experience, img, level, health, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id`, (err, result, fields) => {
-            console.log(err);
             res.status(200).json({
                 'protagonist': result
             })
@@ -144,7 +127,7 @@ const createProtagonist = (req, res) => {
 
 const updateStats = (req, res) => {
     con.connect(function (err) {
-        con.query(`UPDATE stats INNER JOIN protagonist ON stats_id = stats.id SET strength = ${req.body.data.attribute.str}, intellect = ${req.body.data.attribute.int}, dexterity = ${req.body.data.attribute.dex}, health = ${req.body.data.hp}, experience = ${req.body.data.exp} WHERE protagonist.id = ${req.body.data.id}`)
+        con.query(`UPDATE stats INNER JOIN protagonist ON stats_id = stats.id SET strength = ${req.body.data.attribute.str}, intellect = ${req.body.data.attribute.int}, dexterity = ${req.body.data.attribute.dex}, health = ${req.body.data.hp}, experience = ${req.body.data.exp}, level = ${req.body.data.level} WHERE protagonist.id = ${req.body.data.id}`)
         res.send('uppdaterade stats')
     })
 }

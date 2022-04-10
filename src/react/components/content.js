@@ -26,12 +26,12 @@ const Content = () => {
     })
 
     useEffect(() => {
-        if(store.x !== coord.x || store.y !== coord.y){
+        if(store.coords.x !== coord.x || store.coords.y !== coord.y){
 
             setCoord(coord => ({
                 ...coord,
-                x: store.x,
-                y: store.y
+                x: store.coords.x,
+                y: store.coords.y
             }))
 
         }
@@ -92,14 +92,10 @@ const Content = () => {
             return () => mounted = false;
     }, [coord])
 
-    if(content.isContent){
-        console.log(store);
-    }
-
     return (
         <>
 
-        <div className={`questContainer ${(store.showQuest) ? 'fadeOut' : ''}`}>
+        <div className={`questContainer ${(store.quest.showQuest) ? 'fadeOut' : ''}`}>
             <h1>
             {
                 (content.content) ? quest.title: 'unknown'

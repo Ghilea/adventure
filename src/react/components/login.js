@@ -35,14 +35,14 @@ const Login = () => {
      }
 
     useEffect(()=>{
-        if (store.login) {
+        if (store.menu.login) {
             sound.fade(volume, 0, 1000);
             setTimeout(() => {
                 stop();
                 setPlaying(false);
             }, 1000);
         }
-    },[store.login])
+    },[store.menu.login])
 
     return (
 
@@ -60,7 +60,7 @@ const Login = () => {
         {
             (start) ? 
             
-            (!store.login) ?
+            (!store.menu.login) ?
                 <>
                 <Protagonist />
                 </>

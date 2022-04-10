@@ -16,7 +16,8 @@ const Interface = () => {
         strength: 0,
         intellect: 0,
         dexterity: 0,
-        dps: 0
+        dps: 0,
+        points
     });
 
     const [coord, setCoord] = useState({
@@ -26,7 +27,7 @@ const Interface = () => {
     
     useEffect(() => {
 
-        let url = `http://localhost:1234/getProtagonist?id=${store.playerId}`;
+        let url = `http://localhost:1234/getProtagonist?id=${store.player.playerId}`;
 
         let mounted = true;
 
@@ -61,38 +62,43 @@ const Interface = () => {
     }, [])
 
     useEffect(() => {
-        if(set.heroName != null){
+
+        let mounted = true;
+
+        if(mounted && set.heroName != null){
             gain();
         }
         
+        return () => mounted = false;
     }, [set]);
 
     useEffect(() => {
         if (set.heroName != null) {
             setState(set => ({
                 ...set,
-                level: store.playerLevel,
-                experience: store.playerExp,
-                health: store.playerHp,
-                dps: store.playerDps
+                level: store.player.playerLevel,
+                experience: store.player.playerExp,
+                health: store.player.playerHp,
+                dps: store.player.playerDps
             }))
         }
         setCoord(coord => ({
             ...coord,
-            x: store.x,
-            y: store.y
+            x: store.coords.x,
+            y: store.coords.y
         }))
     }, useContext(StoreContext));
 
     const gain = () => {
         const data = {
-            id: store.playerId,
+            id: store.player.playerId,
             attribute: {
                 str: set.strength,
                 int: set.intellect,
                 dex: set.dexterity
             },
             exp: set.experience,
+            level: set.level,
             hp: set.health
         }
 
@@ -103,6 +109,34 @@ const Interface = () => {
         Update(url, data);
 
         return () => mounted = false;
+    }
+
+    useEffect(() => {
+
+        let mounted = true;
+
+        if (mounted) {
+            updateLevel();
+        }
+
+        return () => mounted = false;
+    }, [set.experience]);
+
+    const updateLevel = () => {    
+        let lvl = set.level;
+        let nextLevel = lvl + 1;
+        let formulaLevel = (50 * nextLevel ** 3 / 3 - 100 * nextLevel ** 2 + 850 * nextLevel / 3 - 200);
+
+        while (set.experience >= formulaLevel) {
+            lvl++
+            nextLevel++
+            formulaLevel = (50 * nextLevel ** 3 / 3 - 100 * nextLevel ** 2 + 850 * nextLevel / 3 - 200);
+        }
+
+        setStore((store)=>({
+            ...store,
+            playerLevel: lvl
+        }))
     }
 
 
@@ -179,7 +213,7 @@ const Interface = () => {
                 <div className='dps'>Dps: {set.dps}</div>
                 <div className='coords'>X: {coord.x} Y: {coord.y}</div>
 
-                <div className={`playerWeapon ${(store.playerAttack) ? 'swing' : ''}`}>
+                <div className={`playerWeapon ${(store.player.playerAttack) ? 'swing' : ''}`}>
                     <img src='assets/images/gui/sword.png'/>
                 </div>
             </div>

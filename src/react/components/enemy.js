@@ -63,7 +63,7 @@ const getEnemy = () => {
         if (set.heroName != null) {
             setState(set => ({
                 ...set,
-                health: store.enemyHp
+                health: store.enemy.enemyHp
             }))
         }
     }, useContext(StoreContext));
@@ -84,33 +84,41 @@ const getEnemy = () => {
         setTimeout(() => {
             const p = document.createElement('p');
 
-            text.appendChild(p).append(`Du attackerade för ${store.playerDps} skada.`);
+            text.appendChild(p).append(`Du attackerade för ${store.player.playerDps} skada.`);
 
             setStore(store => ({
                 ...store,
-                playerAttack: false,
-                enemyHp: store.enemyHp -= store.playerDps
+                player: {
+                    playerAttack: false
+                },
+                enemy: {
+                    enemyHp: store.enemy.enemyHp -= store.player.playerDps
+                }
             }))
         }, 1000);
     }
 
     useEffect(()=>{
-        if (store.enemyHp <= 0) {
+        if (store.enemy.enemyHp <= 0) {
             setStore(store => ({
                 ...store,
-                playerExp: store.playerExp += set.experience
+                player: {
+                    playerExp: store.player.playerExp += set.experience
+                }
             }))
         } else {
             setTimeout(() => {
                 enemyAttack();
             }, 2000);
         }
-    }, [store.enemyHp])
+    }, [store.enemy.enemyHp])
 
     const run = () => {
         setStore(store => ({
             ...store,
-            enemyHp: 0
+            enemy: {
+                enemyHp: 0
+            }
         }))
     }
 
@@ -123,7 +131,9 @@ const getEnemy = () => {
 
         setStore(store => ({
             ...store,
-            playerHp: store.playerHp -= set.dps
+            player: {
+                playerHp: store.player.playerHp -= set.dps
+            }
         }))
 
         setState(set => ({
@@ -133,7 +143,7 @@ const getEnemy = () => {
     }
 
     return (
-        <div className={`enemyContainer ${(store.enemyHp <= 0) ? 'hide' : ''}`}>
+        <div className={`enemyContainer ${(store.enemy.enemyHp <= 0) ? 'hide' : ''}`}>
 
             <div className='textBox'></div>
            
