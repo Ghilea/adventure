@@ -118,7 +118,9 @@ const gainLevel = (res, result) => {
 
 const getAllProtagonist = (res) => {
     con.connect(function (err) {
+        console.log(err)
         con.query(`SELECT protagonist.id, name, experience, img, level, health, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id`, (err, result, fields) => {
+            console.log(err);
             res.status(200).json({
                 'protagonist': result
             })

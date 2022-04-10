@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Fruktur&family=MedievalSharp&family=Rubik+Wet+Paint&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
 
 
 .loadingScreen {
     background-color: #382e2e;
-    background-image: url('/public/assets/bg/village.jpg');
+    background-image: url('../../public/assets/bg/village.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -35,7 +35,8 @@
         font-size: 4.4rem;
         font-weight: 400;
         text-shadow: 0 0 0.4em #df2525;
-        font-family: 'Fruktur', cursive;
+        font-family: 'MedievalSharp',
+        cursive;
     }
 
     p{

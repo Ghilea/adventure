@@ -23,6 +23,7 @@ const Protagonist = () => {
         Read(url)
             .then(items => {
 
+                console.log(items);
                 if (mounted && items.protagonist.length > 0) {
                     setProtagonist(items.protagonist)
                 }
