@@ -114,8 +114,9 @@ const getAllProtagonist = (res) => {
 
 const createProtagonist = (req, res) => {
     con.connect(function (err) {
-        con.query(`INSERT INTO stats SET health = 50, strength = ${req.body.data.str}, dexterity = ${req.body.data.dex}, intellect = ${req.body.data.int}`, (err, result, fields) => {
+        con.query(`INSERT INTO stats SET health = 50, strength = ${req.body.data.str}, dexterity = ${req.body.data.dex}, intellect = ${req.body.data.int}, points = ${req.body.data.points}`, (err, result, fields) => {
 
+            console.log(err);
             con.query(`INSERT INTO protagonist SET name = '${req.body.data.name}', img = '${req.body.data.img}', stats_id = ${result.insertId}`)
         })
         
