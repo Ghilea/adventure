@@ -46,6 +46,7 @@ const Buttons = () => {
          setStore(store => ({
              ...store,
              coords: {
+                ...store.coords,
                 x: newX,
                 y: newY
              }

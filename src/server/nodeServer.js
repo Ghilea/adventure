@@ -113,8 +113,6 @@ const getAllProtagonist = (res) => {
 }
 
 const createProtagonist = (req, res) => {
-    console.log(req.body.data);
-
     con.connect(function (err) {
         con.query(`INSERT INTO stats SET health = 50, strength = ${req.body.data.str}, dexterity = ${req.body.data.dex}, intellect = ${req.body.data.int}`, (err, result, fields) => {
 

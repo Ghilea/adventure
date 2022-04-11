@@ -152,6 +152,7 @@ const Protagonist = () => {
         setStore((store) => ({
             ...store,
             menu: {
+                ...store.menu,
                 showCreate: false
             }
         }));
@@ -174,6 +175,7 @@ const Protagonist = () => {
             setStore((store) => ({
                 ...store,
                 menu: {
+                    ...store.menu,
                     showCreate: false
                 }
             }))

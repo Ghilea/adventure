@@ -59,6 +59,7 @@ const Content = () => {
                     setStore(store => ({
                         ...store,
                         doors: {
+                            ...store.doors,
                             left: JSON.parse(items.adventure[0].content).doors.left,
                             right: JSON.parse(items.adventure[0].content).doors.right,
                             front: JSON.parse(items.adventure[0].content).doors.front,
@@ -85,6 +86,7 @@ const Content = () => {
                     setStore(store => ({
                         ...store,
                         quest: {
+                            ...store.quest,
                             showQuest: true
                         }
                     }))

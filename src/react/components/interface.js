@@ -17,7 +17,7 @@ const Interface = () => {
         intellect: 0,
         dexterity: 0,
         dps: 0,
-        points
+        points: 0
     });
 
     const [coord, setCoord] = useState({
@@ -51,6 +51,7 @@ const Interface = () => {
                     setStore(store => ({
                         ...store, 
                         player: {
+                            ...store.player,
                             playerLevel: items.protagonist[0].level,
                             playerHp: items.protagonist[0].health,
                             playerDps: (items.protagonist[0].strength + items.protagonist[0].intellect + items.protagonist[0].dexterity) / 2,
@@ -139,6 +140,7 @@ const Interface = () => {
         setStore((store)=>({
             ...store,
             player: {
+                ...store.player,
                 playerLevel: lvl
             }
         }))
@@ -182,6 +184,7 @@ const Interface = () => {
         setStore(store => ({
             ...store,
             player: {
+                ...store.player,
                 playerDps: (str + int + dex) / 2,
             }
             

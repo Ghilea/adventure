@@ -33,9 +33,11 @@ const Protagonist = () => {
         setStore((store) => ({
             ...store,
             menu: {
+                ...store.menu,
                 login: true
             },
             player: {
+                ...store.player,
                 playerId: id
             }
         }))
@@ -45,6 +47,7 @@ const Protagonist = () => {
         setStore((store) => ({
             ...store,
             menu: {
+                ...store.menu,
                 showCreate: true
             }
         }))

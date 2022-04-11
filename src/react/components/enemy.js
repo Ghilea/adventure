@@ -32,9 +32,7 @@ const getEnemy = () => {
 
         Read(url)
             .then(items => {
-
-                console.log(items);
-
+                
                 if (mounted && items.enemy.length > 0) {
                     setState(set => ({
                         ...set,
@@ -51,6 +49,7 @@ const getEnemy = () => {
                     setStore(store => ({
                         ...store,
                         enemy: {
+                            ...store.enemy,
                             enemyHp: items.enemy[0].health,
                             enemyDps: (items.enemy[0].strength + items.enemy[0].intellect + items.enemy[0].dexterity) / 2
                         }
@@ -80,6 +79,7 @@ const getEnemy = () => {
         setStore(store => ({
             ...store,
             player: {
+                ...store.player,
                 playerAttack: true
             }
         }))
@@ -94,9 +94,11 @@ const getEnemy = () => {
             setStore(store => ({
                 ...store,
                 player: {
+                    ...store.player,
                     playerAttack: false
                 },
                 enemy: {
+                    ...store.enemy,
                     enemyHp: store.enemy.enemyHp -= store.player.playerDps
                 }
             }))
@@ -108,6 +110,7 @@ const getEnemy = () => {
             setStore(store => ({
                 ...store,
                 player: {
+                    ...store.player,
                     playerExp: store.player.playerExp += set.experience
                 }
             }))
@@ -122,6 +125,7 @@ const getEnemy = () => {
         setStore(store => ({
             ...store,
             enemy: {
+                ...store.enemy,
                 enemyHp: 0
             }
         }))
@@ -137,6 +141,7 @@ const getEnemy = () => {
         setStore(store => ({
             ...store,
             player: {
+                ...store.player,
                 playerHp: store.player.playerHp -= set.dps
             }
         }))
