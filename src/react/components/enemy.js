@@ -26,7 +26,7 @@ const getEnemy = () => {
 
     useEffect(() => {
 
-        let url = `http://localhost:1234/getEnemy`;
+        let url = `http://localhost:3000/getEnemy`;
 
         let mounted = true;
 

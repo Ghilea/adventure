@@ -156,7 +156,7 @@ const Protagonist = () => {
     }
 
     const handleCreate = () => {
-        const url = `http://localhost:1234/createProtagonist`;
+        const url = `http://localhost:3000/createProtagonist`;
         
         if(character.name === null || character.img === null){
             console.log('Fyll i ett namn och välj en avatar');

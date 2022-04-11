@@ -16,7 +16,7 @@ const Protagonist = () => {
     let characterWindow = [];
 
     useEffect(() => {
-        let url = `http://localhost:1234/getAllProtagonist`;
+        let url = `http://localhost:3000/getAllProtagonist`;
 
         let mounted = true;
 

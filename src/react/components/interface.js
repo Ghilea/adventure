@@ -27,7 +27,7 @@ const Interface = () => {
     
     useEffect(() => {
 
-        let url = `http://localhost:1234/getProtagonist?id=${store.player.playerId}`;
+        let url = `http://localhost:3000/getProtagonist?id=${store.player.playerId}`;
 
         let mounted = true;
 
@@ -102,7 +102,7 @@ const Interface = () => {
             hp: set.health
         }
 
-        const url = `http://localhost:1234/updateStats`;
+        const url = `http://localhost:3000/updateStats`;
 
         let mounted = true;
 

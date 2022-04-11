@@ -40,8 +40,8 @@ const Content = () => {
 
     useEffect(()=>{
         
-        let url = `http://localhost:1234/getAdventure?x=${coord.x}&y=${coord.y}`;
-        let url_quest = `http://localhost:1234/getQuest?x=${coord.x}&y=${coord.y}`;
+        let url = `http://localhost:3000/getAdventure?x=${coord.x}&y=${coord.y}`;
+        let url_quest = `http://localhost:3000/getQuest?x=${coord.x}&y=${coord.y}`;
 
         let mounted = true;
 
