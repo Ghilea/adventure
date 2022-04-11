@@ -84,7 +84,9 @@ const Content = () => {
                     }));
                     setStore(store => ({
                         ...store,
-                        showQuest: true
+                        quest: {
+                            showQuest: true
+                        }
                     }))
                 } 
             })

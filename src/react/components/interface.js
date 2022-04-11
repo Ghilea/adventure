@@ -50,10 +50,13 @@ const Interface = () => {
 
                     setStore(store => ({
                         ...store, 
-                        playerLevel: items.protagonist[0].level,
-                        playerHp: items.protagonist[0].health,
-                        playerDps: (items.protagonist[0].strength + items.protagonist[0].intellect + items.protagonist[0].dexterity) / 2,
-                        playerExp: items.protagonist[0].experience
+                        player: {
+                            playerLevel: items.protagonist[0].level,
+                            playerHp: items.protagonist[0].health,
+                            playerDps: (items.protagonist[0].strength + items.protagonist[0].intellect + items.protagonist[0].dexterity) / 2,
+                            playerExp: items.protagonist[0].experience
+                        }
+                        
                     }))
 
                 } 
@@ -135,7 +138,9 @@ const Interface = () => {
 
         setStore((store)=>({
             ...store,
-            playerLevel: lvl
+            player: {
+                playerLevel: lvl
+            }
         }))
     }
 
@@ -176,7 +181,10 @@ const Interface = () => {
 
         setStore(store => ({
             ...store,
-            playerDps: (str + int + dex) / 2,
+            player: {
+                playerDps: (str + int + dex) / 2,
+            }
+            
         }))
     }
 

@@ -151,7 +151,9 @@ const Protagonist = () => {
     const handleBack = () => {
         setStore((store) => ({
             ...store,
-            showCreate: false
+            menu: {
+                showCreate: false
+            }
         }));
     }
 
@@ -171,7 +173,9 @@ const Protagonist = () => {
             });
             setStore((store) => ({
                 ...store,
-                showCreate: false
+                menu: {
+                    showCreate: false
+                }
             }))
         }
     }

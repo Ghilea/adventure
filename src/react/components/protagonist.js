@@ -32,8 +32,12 @@ const Protagonist = () => {
     const handleLogin = (id) => {
         setStore((store) => ({
             ...store,
-            login: true,
-            playerId: id
+            menu: {
+                login: true
+            },
+            player: {
+                playerId: id
+            }
         }))
     }
 

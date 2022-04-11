@@ -50,8 +50,11 @@ const getEnemy = () => {
 
                     setStore(store => ({
                         ...store,
-                        enemyHp: items.enemy[0].health,
-                        enemyDps: (items.enemy[0].strength + items.enemy[0].intellect + items.enemy[0].dexterity) / 2
+                        enemy: {
+                            enemyHp: items.enemy[0].health,
+                            enemyDps: (items.enemy[0].strength + items.enemy[0].intellect + items.enemy[0].dexterity) / 2
+                        }
+                        
                     }))
 
                 }
@@ -76,7 +79,9 @@ const getEnemy = () => {
 
         setStore(store => ({
             ...store,
-            playerAttack: true
+            player: {
+                playerAttack: true
+            }
         }))
 
         const text = document.querySelector('.textBox');
