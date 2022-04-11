@@ -7,7 +7,6 @@ const StoreContext = createContext();
 
 const StoreProvider = (props) => {
     
-
     const [store, setStore] = useState({
         coords: {
             x: 0,
@@ -23,8 +22,11 @@ const StoreProvider = (props) => {
             playerHp: 0,
             playerDps: 0,
             playerExp: 0,
-            playerLevel: 1,
+            playerLevel: 0,
             playerPoints: 0,
+            str: 0,
+            int: 0,
+            dex: 0,
             playerAttack: false
         },
         menu: {

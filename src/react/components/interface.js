@@ -2,6 +2,7 @@ import React, {useContext, useState, useEffect} from 'react';
 import {StoreContext} from './store';
 import Read from '../crud/read';
 import Update from '../crud/update';
+import Points from './points';
 
 const Interface = () => {
 
@@ -9,43 +10,21 @@ const Interface = () => {
 
     const [set, setState] = useState({
         heroName: null,
-        experience: 0,
-        img: null,
-        level: 1,
-        health: 0,
-        strength: 0,
-        intellect: 0,
-        dexterity: 0,
-        dps: 0,
-        points: 0
+        img: null
     });
 
-    const [coord, setCoord] = useState({
-        x: 0,
-        y: 0
-    })
-    
     useEffect(() => {
 
         let url = `http://localhost:3000/getProtagonist?id=${store.player.playerId}`;
 
-        let mounted = true;
-
         Read(url)
             .then(items => {
 
-                if (mounted && items.protagonist.length > 0) {
+                if (items.protagonist.length > 0) {
                     setState(set => ({
                         ...set,
                         heroName: items.protagonist[0].name,
-                        experience: items.protagonist[0].experience,
-                        img: `assets/images/characters/${items.protagonist[0].img}.png`,
-                        level: items.protagonist[0].level,
-                        health: items.protagonist[0].health,
-                        strength: items.protagonist[0].strength,
-                        intellect: items.protagonist[0].intellect,
-                        dexterity: items.protagonist[0].dexterity,
-                        dps: (items.protagonist[0].strength + items.protagonist[0].intellect + items.protagonist[0].dexterity) / 2
+                        img: `assets/images/characters/${items.protagonist[0].img}.png`                      
                     }));
 
                     setStore(store => ({
@@ -55,76 +34,46 @@ const Interface = () => {
                             playerLevel: items.protagonist[0].level,
                             playerHp: items.protagonist[0].health,
                             playerDps: (items.protagonist[0].strength + items.protagonist[0].intellect + items.protagonist[0].dexterity) / 2,
-                            playerExp: items.protagonist[0].experience
+                            playerExp: items.protagonist[0].experience,
+                            str: items.protagonist[0].strength,
+                            int: items.protagonist[0].intellect,
+                            dex: items.protagonist[0].dexterity,
+                            playerPoints: items.protagonist[0].points,
                         }
                         
                     }))
-
                 } 
             })
-        return () => mounted = false;
     }, [])
 
     useEffect(() => {
+        const url = `http://localhost:3000/updateStats`;
 
-        let mounted = true;
-
-        if(mounted && set.heroName != null){
-            gain();
-        }
-        
-        return () => mounted = false;
-    }, [set]);
-
-    useEffect(() => {
-        if (set.heroName != null) {
-            setState(set => ({
-                ...set,
-                level: store.player.playerLevel,
-                experience: store.player.playerExp,
-                health: store.player.playerHp,
-                dps: store.player.playerDps
-            }))
-        }
-        setCoord(coord => ({
-            ...coord,
-            x: store.coords.x,
-            y: store.coords.y
-        }))
-    }, useContext(StoreContext));
-
-    const gain = () => {
         const data = {
             id: store.player.playerId,
             attribute: {
-                str: set.strength,
-                int: set.intellect,
-                dex: set.dexterity
+                str: store.player.str,
+                int: store.player.int,
+                dex: store.player.dex
             },
-            exp: set.experience,
-            level: set.level,
-            hp: set.health
+            exp: store.player.playerExp,
+            level: store.player.playerLevel,
+            hp: store.player.playerHp,
+            points: store.player.playerPoints
         }
 
-        const url = `http://localhost:3000/updateStats`;
-
-        let mounted = true;
-
-        Update(url, data);
-
-        return () => mounted = false;
-    }
+        if (store.player.playerLevel > 0) {
+            Update(url, data);
+        }
+            
+    }, [store.player]);
 
     useEffect(() => {
-
-        let mounted = true;
-
-        if (mounted) {
+        if(store.player.playerExp > 0){
             updateLevel();
         }
-
-        return () => mounted = false;
-    }, [set.experience]);
+        
+    }, [store.player.playerExp]);
 
     const updateLevel = () => {    
         let lvl = set.level;
@@ -146,90 +95,27 @@ const Interface = () => {
         }))
     }
 
-
-    const btnClick = (event) => {
-
-        let str = set.strength,
-            int = set.intellect,
-            dex = set.dexterity;
-
-        switch (event.target.id) {
-            case 'strMin':
-                str -= 1;
-                break;
-            case 'strMax':
-                str += 1;
-                break;
-            case 'intMin':
-                int -= 1;
-                break;
-            case 'intMax':
-                int += 1;
-                break;
-            case 'dexMin':
-                dex -= 1;
-                break;
-            case 'dexMax':
-                dex += 1;
-                break;
-        }
-
-        setState(set => ({
-            ...set,
-            strength: str,
-            intellect: int,
-            dexterity: dex
-        }))
-
-        setStore(store => ({
-            ...store,
-            player: {
-                ...store.player,
-                playerDps: (str + int + dex) / 2,
-            }
-            
-        }))
-    }
-
     return (
-        
         <>
             <div className='interface'>
                 <div className='img'> 
                     <img src={set.img} /> 
                 </div>
-                <div className='heroName'>{set.heroName} (lvl {set.level})</div>
-                <div className='health'>HP: {set.health}</div>
+                <div className='heroName'>{set.heroName} (lvl {store.player.playerLevel})</div>
+                <div className='health'>HP: {store.player.playerHp} points: {store.player.playerPoints}</div>
                 <div className='stats'>
-                    <div className='btnSection'>
-                        <button onClick={(event) => btnClick(event)} id='strMin' className='gainBtn'>-</button>
-                        <p className='str'>Str: {set.strength}</p>
-                        <button onClick={(event) => btnClick(event)} id='strMax' className='gainBtn'>+</button>
-                    </div>
-                    
-                    <div className='btnSection'>
-                        <button onClick={(event) => btnClick(event)} id='intMin' className='gainBtn'>-</button>
-                        <p className='int'>Int: {set.intellect}</p>
-                        <button onClick={(event) => btnClick(event)} id='intMax' className='gainBtn'>+</button>
-                    </div>
-
-                    <div className='btnSection'>
-                        <button onClick={(event) => btnClick(event)} id='dexMin' className='gainBtn'>-</button>
-                        <p className='dex'>Dex: {set.dexterity}</p>
-                        <button onClick={(event) => btnClick(event)} id='dexMax' className='gainBtn'>+</button>
-                    </div>
+                    <Points />
                 </div>
                     
-                <div className='experience'>Exp: {set.experience}</div>
-                <div className='dps'>Dps: {set.dps}</div>
-                <div className='coords'>X: {coord.x} Y: {coord.y}</div>
+                <div className='experience'>Exp: {store.player.playerExp}</div>
+                <div className='dps'>Dps: {store.player.playerDps}</div>
+                <div className='coords'>X: {store.coords.x} Y: {store.coords.y}</div>
 
                 <div className={`playerWeapon ${(store.player.playerAttack) ? 'swing' : ''}`}>
                     <img src='assets/images/gui/sword.png'/>
                 </div>
             </div>
-        </>        
-        
+        </>
     )
 }
 

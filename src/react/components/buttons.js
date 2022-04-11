@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {StoreContext} from './store';
 
 const Buttons = () => {
@@ -9,19 +9,20 @@ const Buttons = () => {
         y: 0
     })
 
+    useEffect(() => {
+        console.log('o: ' + old.x + ' new: ' + store.coords.x);
+        setOld(old => ({
+            ...old,
+            x: store.coords.x,
+            y: store.coords.y
+        }));
+    }, [store.coords])
+
     const btnClick = (event) => {
 
         let newX = store.coords.x,
             newY = store.coords.y;
-      
-        if (event.target.id !== 'down') {
-            setOld(old => ({
-                ...old,
-                x: newX,
-                y: newY
-            }));
-        }
-
+  
         switch (event.target.id) {
             case 'left':
                 newX -= 1;

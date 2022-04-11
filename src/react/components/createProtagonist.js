@@ -3,7 +3,6 @@ import React, {
     useState,
     useContext
 } from 'react';
-import Read from '../crud/read';
 import Create from '../crud/create';
 import { StoreContext } from './store';
 import Points from './points';
@@ -16,7 +15,17 @@ const Protagonist = () => {
     });
 
     const [store, setStore] = useContext(StoreContext);
-       
+    
+    useEffect(() => {
+        setStore(store => ({
+            ...store,
+            player: {
+                ...store.player,
+                playerPoints: 5
+            }
+        }))
+    }, [])
+
     const handleInput = (event) => {
         setCharacter({
             ...character,
@@ -51,10 +60,10 @@ const Protagonist = () => {
             Create(url, {
                 name: character.name,
                 img: character.img,
-                points: attribute.points,
-                str: attribute.strength,
-                int: attribute.intellect,
-                dex: attribute.dexterity
+                points: store.player.playerPoints,
+                str: store.player.str,
+                int: store.player.int,
+                dex: store.player.dex
             });
             setStore((store) => ({
                 ...store,
@@ -97,7 +106,7 @@ const Protagonist = () => {
             </div>
 
             <div className='stats'>
-                <div className='showPoints'>Poäng: {attribute.points}</div>
+                <div className='showPoints'>Poäng: {store.player.playerPoints}</div>
                 <Points />
             </div>
 
