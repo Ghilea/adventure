@@ -103,8 +103,16 @@ const Content = () => {
             <Enemy /> : <> </>
         }
 
+        {
+            (store.map.walking !== null) ? <div className='overlay-black'></div> : <></>
+        }
+        
         <div className='container_3d'>
-            <div className='scen'>
+            
+            <div className={`scen 
+            ${(store.map.walking === 'up') ? 'walkingForward' : ''}
+            `}>
+                
                 <div className='floor firstFloor'></div>
                 <div className='floor roof'></div>
                 <div className='position wallOutside outside_B back'></div>

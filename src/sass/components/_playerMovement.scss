@@ -16,16 +16,17 @@
             ". Position .";
 
         button {
-            max-width: 10em;
-            width: 100%;
+            position: relative;
+            height: 4em;
+            width: 4em;
             background-color: rgb(56, 46, 46);
-            border: 0.3em solid #ffffff;
+            border: 0.1em solid #ffffff;
             border-radius: 0.5em;
             padding: 1em;
             color: #fff;
             letter-spacing: 0.1rem;
             box-shadow: 0 0 1em 0.5em #0000005e;
-        
+                   
             &:hover {
                 background-color: rgb(46, 43, 43);
                 cursor: pointer;
@@ -38,20 +39,50 @@
 
         #up {
             grid-area: Up;
+        
+            img {
+                width:100%;
+                transform: rotate(-90deg);
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
         }
 
         #left {
             grid-area: Left;
+            
+            img {
+                width:100%;
+                transform: rotate(180deg);
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
         }
 
         #down {
             grid-area: Down;
+            
+            img {
+                width:100%;
+                transform: rotate(90deg);
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
         }
 
         #right {
             grid-area: Right;
+
+            img {
+                width:100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
         }
     }
     
 }
-
