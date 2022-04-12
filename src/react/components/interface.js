@@ -76,13 +76,15 @@ const Interface = () => {
     }, [store.player.playerExp]);
 
     const updateLevel = () => {    
-        let lvl = set.level;
+        let points = 0;
+        let lvl = store.player.playerLevel;
         let nextLevel = lvl + 1;
         let formulaLevel = (50 * nextLevel ** 3 / 3 - 100 * nextLevel ** 2 + 850 * nextLevel / 3 - 200);
 
         while (set.experience >= formulaLevel) {
-            lvl++
-            nextLevel++
+            lvl++;
+            nextLevel++;
+            points++;
             formulaLevel = (50 * nextLevel ** 3 / 3 - 100 * nextLevel ** 2 + 850 * nextLevel / 3 - 200);
         }
 
@@ -90,6 +92,7 @@ const Interface = () => {
             ...store,
             player: {
                 ...store.player,
+                playerPoints: points,
                 playerLevel: lvl
             }
         }))
@@ -111,9 +114,11 @@ const Interface = () => {
                 <div className='dps'>Dps: {store.player.playerDps}</div>
                 <div className='coords'>X: {store.coords.x} Y: {store.coords.y}</div>
 
-                <div className={`playerWeapon ${(store.player.playerAttack) ? 'swing' : ''}`}>
+        
+                <div key={'playerWeapon'} className={`playerWeapon ${(store.player.playerAttack) ? 'swing' : ''}`}>
                     <img src='assets/images/gui/sword.png'/>
                 </div>
+                
             </div>
         </>
     )

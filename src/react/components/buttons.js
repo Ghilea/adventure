@@ -1,28 +1,20 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useState, useEffect, useRef} from 'react';
 import {StoreContext} from './store';
 
 const Buttons = () => {
 
     const [store, setStore] = useContext(StoreContext);
-    const [old, setOld] = useState({
-        x: 0,
-        y: 0
-    })
-
-    useEffect(() => {
-        console.log('o: ' + old.x + ' new: ' + store.coords.x);
-        setOld(old => ({
-            ...old,
-            x: store.coords.x,
-            y: store.coords.y
-        }));
-    }, [store.coords])
+    const prevStore = useRef();
 
     const btnClick = (event) => {
 
         let newX = store.coords.x,
             newY = store.coords.y;
-  
+
+        if(event.target.id !== 'down'){
+            prevStore.current = store.coords
+        }
+
         switch (event.target.id) {
             case 'left':
                 newX -= 1;
@@ -31,9 +23,9 @@ const Buttons = () => {
                 newY += 1;
                 break;
             case 'down':
-                if(old.x !== newX && old.x < newX){
+                if (prevStore.current.x < newX) {
                     newX -= 1;
-                }else if(old.x !== newX && old.x > newX){
+                } else if (prevStore.current.x > newX) {
                     newX += 1;
                 }else{
                     newY -= 1;
@@ -43,15 +35,19 @@ const Buttons = () => {
                newX += 1;
                 break;
         }
-        
-         setStore(store => ({
-             ...store,
-             coords: {
-                ...store.coords,
-                x: newX,
-                y: newY
-             }
-         }));
+
+        setStore(store => ({
+            ...store,
+            coords: {
+            ...store.coords,
+            x: newX,
+            y: newY
+            },
+            quest: {
+                ...store.quest,
+                showQuest: false
+            }
+        }));
     }
 
     return (

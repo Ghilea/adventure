@@ -19,36 +19,15 @@ const Content = () => {
         describe: null
     });
 
-
-    const [coord, setCoord] = useState({
-        x: 0,
-        y: 0
-    })
-
-    useEffect(() => {
-        if(store.coords.x !== coord.x || store.coords.y !== coord.y){
-
-            setCoord(coord => ({
-                ...coord,
-                x: store.coords.x,
-                y: store.coords.y
-            }))
-
-        }
-        
-    }, useContext(StoreContext));
-
     useEffect(()=>{
         
-        let url = `http://localhost:3000/getAdventure?x=${coord.x}&y=${coord.y}`;
-        let url_quest = `http://localhost:3000/getQuest?x=${coord.x}&y=${coord.y}`;
-
-        let mounted = true;
+        let url = `http://localhost:3000/getAdventure?x=${store.coords.x}&y=${store.coords.y}`;
+        let url_quest = `http://localhost:3000/getQuest?x=${store.coords.x}&y=${store.coords.y}`;
 
         Read(url)
             .then(items => {
 
-                if (mounted && items.adventure.length > 0) {
+                if (items.adventure.length > 0) {
                     setContent(content => ({
                         ...content,
                         enemyFound: items.enemies,
@@ -77,7 +56,7 @@ const Content = () => {
         Read(url_quest)
             .then(items => {
 
-                if (mounted && items.quest.length > 0) {
+                if (items.quest.length > 0) {
                     setQuest(quest => ({
                         ...quest,
                         title: items.quest[0].title,
@@ -93,28 +72,31 @@ const Content = () => {
                 } 
             })
 
-            return () => mounted = false;
-    }, [coord])
+    }, [store.coords])
 
     return (
         <>
 
-        <div className={`questContainer ${(store.quest.showQuest) ? 'fadeOut' : ''}`}>
-            <h1>
-            {
-                (content.content) ? quest.title: 'unknown'
-            }
-            </h1>
+        {
+            (store.quest.showQuest) ? 
+            <div className={`questContainer ${(store.quest.showQuest) ? 'fadeOut' : ''}`}>
+                <h1>
+                {
+                    (content.content) ? quest.title: 'unknown'
+                }
+                </h1>
 
-            {
-                <div className = 'main_text'>
-                    {
-                        quest.describe
-                    }
-                </div>
-            }
-        </div>
-        
+                {
+                    <div className = 'main_text'>
+                        {
+                            quest.describe
+                        }
+                    </div>
+                }
+            </div>
+            :
+            <></>
+        }
         {
             (content.content && content.enemyFound && content.enemyAllowed) ? 
                     

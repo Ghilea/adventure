@@ -1,7 +1,8 @@
 import React, {
     useEffect,
     useState,
-    useContext
+    useContext,
+    createElement
 } from 'react';
 import {
     StoreContext
@@ -16,34 +17,36 @@ const getEnemy = () => {
         enemyName: null,
         experience: 0,
         img: null,
-        health: 0,
         strength: 0,
         intellect: 0,
         dexterity: 0,
-        dps: 0,
-        canAttack: true
+        playerCanAttack: true,
+        playerRun: false
     });
 
+    const [combatText, setCombatText] = useState({
+        text: null
+    });
+
+    const [anim, setAnim] = useState(true);
+
+    //get and set enemy
     useEffect(() => {
 
         let url = `http://localhost:3000/getEnemy`;
 
-        let mounted = true;
-
         Read(url)
             .then(items => {
                 
-                if (mounted && items.enemy.length > 0) {
+                if (items.enemy.length > 0) {
                     setState(set => ({
                         ...set,
-                        heroName: items.enemy[0].name,
+                        enemyName: items.enemy[0].name,
                         experience: items.enemy[0].experience,
                         img: `assets/images/characters/${items.enemy[0].img}.png`,
-                        health: items.enemy[0].health,
                         strength: items.enemy[0].strength,
                         intellect: items.enemy[0].intellect,
-                        dexterity: items.enemy[0].dexterity,
-                        dps: (items.enemy[0].strength + items.enemy[0].intellect + items.enemy[0].dexterity) / 2
+                        dexterity: items.enemy[0].dexterity
                     }));
 
                     setStore(store => ({
@@ -58,55 +61,11 @@ const getEnemy = () => {
 
                 }
             })
-        return () => mounted = false;
     }, [])
 
+    //update if enemy get hits
     useEffect(() => {
-        if (set.heroName != null) {
-            setState(set => ({
-                ...set,
-                health: store.enemy.enemyHp
-            }))
-        }
-    }, useContext(StoreContext));
-
-    const attack = () => {
-        setState(set => ({
-            ...set,
-            canAttack: false
-        }))
-
-        setStore(store => ({
-            ...store,
-            player: {
-                ...store.player,
-                playerAttack: true
-            }
-        }))
-
-        const text = document.querySelector('.textBox');
-
-        setTimeout(() => {
-            const p = document.createElement('p');
-
-            text.appendChild(p).append(`Du attackerade för ${store.player.playerDps} skada.`);
-
-            setStore(store => ({
-                ...store,
-                player: {
-                    ...store.player,
-                    playerAttack: false
-                },
-                enemy: {
-                    ...store.enemy,
-                    enemyHp: store.enemy.enemyHp -= store.player.playerDps
-                }
-            }))
-        }, 1000);
-    }
-
-    useEffect(()=>{
-        if (store.enemy.enemyHp <= 0) {
+        if (!set.playerRun && store.enemy.enemyHp <= 0) {
             setStore(store => ({
                 ...store,
                 player: {
@@ -114,57 +73,130 @@ const getEnemy = () => {
                     playerExp: store.player.playerExp += set.experience
                 }
             }))
-        } else {
-            setTimeout(() => {
-                enemyAttack();
-            }, 2000);
+        }else if(set.playerRun){
+            setState(set => ({
+                ...set,
+                playerRun: false
+            }))
         }
     }, [store.enemy.enemyHp])
 
-    const run = () => {
-        setStore(store => ({
-            ...store,
-            enemy: {
-                ...store.enemy,
-                enemyHp: 0
-            }
+    //update animation on enemy attacking
+    useEffect(() => {
+        setTimeout(()=>{
+            setStore(store => ({
+                ...store,
+                enemy: {
+                    ...store.enemy,
+                    enemyAttack: false
+                }
+            }))
+        }, 100)        
+    }, [store.player.playerHp])
+
+    //player attack
+    const attack = () => {
+        
+        setState(set => ({
+            ...set,
+            playerCanAttack: false
         }))
-    }
-
-    const enemyAttack = () => {
-        const text = document.querySelector('.textBox');
-
-        const p = document.createElement('p');
-
-        text.appendChild(p).append(`${set.heroName} attackerade dig ${set.dps}skada.`);
 
         setStore(store => ({
             ...store,
             player: {
                 ...store.player,
-                playerHp: store.player.playerHp -= set.dps
+                playerAttack: true
+            },
+            enemy: {
+                ...store.enemy,
+                enemyAttack: false,
+                enemyHp: store.enemy.enemyHp -= store.player.playerDps
+            }
+        }))
+
+        const playerText = createElement(
+            'p', {
+                key: 'combatScrollPlayer',
+                className: 'combatScrollPlayer combatScrollAnimation'
+            }, 
+            store.player.playerDps
+        )
+
+        setCombatText((combatText) => ({
+            ...combatText,
+            text: playerText
+        }))
+
+        setTimeout(() => {
+            enemyAttack();
+        }, 2000);
+    }
+
+    //player run
+    const run = () => {
+        setState(set => ({
+            ...set,
+            playerRun: true
+        }))
+
+        setStore(store => ({
+            ...store,
+            enemy: {
+                ...store.enemy,
+                enemyAttack: false,
+                enemyHp: 0
+            }
+        }))
+    }
+
+    //enemy attack
+    const enemyAttack = () => {
+        const enemyText = createElement(
+            'p', {
+                key: 'combatScrollEnemy',
+                className: 'combatScrollEnemy combatScrollAnimation'
+            },
+            `- ${store.enemy.enemyDps}`
+        )
+
+        setCombatText((combatText) => ({
+            ...combatText,
+            text: enemyText
+        }))
+
+        setStore(store => ({
+            ...store,
+            enemy: {
+                ...store.enemy,
+                enemyAttack: true
+            },
+            player: {
+                ...store.player,
+                playerAttack: false,
+                playerHp: store.player.playerHp -= store.enemy.enemyDps
             }
         }))
 
         setState(set => ({
             ...set,
-            canAttack: true
+            playerCanAttack: true
         }))
     }
 
     return (
         <div className={`enemyContainer ${(store.enemy.enemyHp <= 0) ? 'hide' : ''}`}>
 
-            <div className='textBox'></div>
+            <div className='textBox'>{combatText.text}</div>
            
-                <img className='enemyAvatar' src={set.img} />
+                <img className={`enemyAvatar ${(store.enemy.enemyAttack) ? 'enemyAttackAnimation' : ''}`} src={set.img} />
              
-                <p className='enemyName'>{set.heroName}</p>
-                <p className='enemyHp'>HP: {set.health}</p>
+                <p className='enemyName'>{set.enemyName}</p>
+                <p className='enemyHp'>HP: {store.enemy.enemyHp}</p>
                 
 
                 <div className = {
-                    `enemyBtn ${(set.canAttack) ? '' : 'hide'}`
+                    `enemyBtn ${(set.playerCanAttack) ? '' : 'hide'}`
                 }>
                     <button onClick = {
                         attack
