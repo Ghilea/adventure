@@ -18,6 +18,7 @@ const CharacterSheet = () => {
             <div className='attributes'>
                 <Points />
             </div>
+            <div className='dps'>Dps: {store.player.playerDps}</div>
             
         </div>
      

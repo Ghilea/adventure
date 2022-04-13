@@ -14,6 +14,7 @@ const StoreProvider = (props) => {
         },
         map: {
             walking: null,
+            showCharacterSheet: false
         },
         enemy: {
             enemyHp: 0,

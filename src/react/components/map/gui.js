@@ -2,7 +2,6 @@ import React, {useContext, useState, useEffect} from 'react';
 import {StoreContext} from '../store';
 import Read from '../crud/read';
 import Update from '../crud/update';
-import Points from '../points';
 import HealthBar from '../bars/healthBar';
 import ExpBar from '../bars/expBar';
 import ManaBar from '../bars/manaBar';
@@ -105,6 +104,29 @@ const Interface = () => {
         }))
     }
 
+    const handleKeyCharacterSheet = (event) => {
+        if (event.key === 'c' || event.type === 'click') {
+            if(store.map.showCharacterSheet){
+                setStore(store => ({
+                    ...store,
+                    map: {
+                        ...store.map,
+                        showCharacterSheet: false
+                    }
+                }))
+            }else{
+                setStore(store => ({
+                    ...store,
+                    map: {
+                        ...store.map,
+                        showCharacterSheet: true
+                    }
+                }))
+            }
+            
+        }
+    }
+
     return (
         <>
             <div className='interface'>
@@ -121,12 +143,17 @@ const Interface = () => {
                 <ExpBar />
                 <ManaBar />
                        
-                <div className='experience'>Points: {store.player.playerPoints}</div>
-                <div className='dps'>Dps: {store.player.playerDps}</div>
                 <div className='coords'>X: {store.coords.x} Y: {store.coords.y}</div>
-        
-                <CharacterSheet />
-                
+                 
+                <button className='characterSheetBtn' type='button' 
+                onClick = {
+                    handleKeyCharacterSheet
+                } >
+                    C
+                </button>
+                {
+                    (store.map.showCharacterSheet) ? <CharacterSheet /> : <></>
+                }
                 <div key={'playerWeapon'} className={`playerWeapon ${(store.player.playerAttack) ? 'swing' : ''}`}>
                     <img src='assets/images/gui/sword.png'/>
                 </div>

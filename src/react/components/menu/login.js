@@ -68,7 +68,7 @@ const Login = () => {
                 <>
                 <Interface />
                 <Content />
-                <Buttons />
+                {(!store.map.showCharacterSheet) ? <Buttons /> : <></>}
                 </>
             
             :

@@ -11,12 +11,7 @@
     overflow-y: auto;
     border: 0.1em solid #fff;
     z-index: 3;
-    display:none;
-
-    .points {
-
-    }
-
+ 
     .attributes{
         display: flex;
         flex-direction: column;
@@ -51,6 +46,5 @@
         }
 
     }
-            
-
+         
 }

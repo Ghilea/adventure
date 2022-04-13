@@ -53,18 +53,6 @@
         transform: translateX(-50%);
     }
 
-    .experience {
-        position: absolute;
-        top: 15em;
-        left: 1em;
-    }
-
-    .dps {
-        position: absolute;
-        top: 16.5em;
-        left: 1em;
-    }
-
     .stats{
         display: flex;
         gap: 1em;
@@ -133,6 +121,22 @@
             transform: translate(-50%, 0) rotate(-88deg);
         }
 
+    }
+
+    .characterSheetBtn {
+        width: 4em;
+        height: 4em;
+        padding: 1em;
+        background-color: #aab9c1;
+        border: 0.3em solid #4c575c;
+        border-radius: 50%;
+        position: fixed;
+        left: 8em;
+        bottom: 2em;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
 }
