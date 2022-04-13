@@ -79,7 +79,7 @@ const Protagonist = () => {
                 <h2>
                     {item.name} (<span className='levelTitle'>level {item.level}</span>)
                 </h2>
-                <p>Hp: {item.health} Str: {item.strength} Int: {item.intellect} Dex: {item.dexterity}</p>
+                <p>Hp: {item.health} / {item.maxHealth} Str: {item.strength} Int: {item.intellect} Dex: {item.dexterity}</p>
             </div>
             )
 

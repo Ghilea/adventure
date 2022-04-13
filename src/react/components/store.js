@@ -17,12 +17,14 @@ const StoreProvider = (props) => {
         },
         enemy: {
             enemyHp: 0,
+            enemyMaxHp: 0,
             enemyDps: 0,
             enemyAttack: false
         },
         player: {
             playerId: 0,
             playerHp: 0,
+            playerMaxHp: 0,
             playerDps: 0,
             playerExp: 0,
             playerLevel: 0,

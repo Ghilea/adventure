@@ -82,7 +82,7 @@ const getQuest = (res, x, y) => {
 
 const getEnemy = (res) => {
     con.connect((err) => {
-        con.query(`SELECT name, type, experience, level, img, health, strength, intellect, dexterity FROM enemies JOIN stats ON stats.id = stats_id ORDER BY RAND() LIMIT 1`, (err, result, fields) => {
+        con.query(`SELECT name, type, experience, level, img, health, maxHealth, strength, intellect, dexterity FROM enemies JOIN stats ON stats.id = stats_id ORDER BY RAND() LIMIT 1`, (err, result, fields) => {
             res.status(200).json({
                 'enemy':result
             })
@@ -93,7 +93,7 @@ const getEnemy = (res) => {
 
 const getProtagonist = (res, id) => {
     con.connect(function (err) {
-        con.query(`SELECT name, experience, level, points, img, health, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id WHERE protagonist.id =${id}`, (err, result, fields) => {
+        con.query(`SELECT name, experience, level, points, img, health, maxHealth, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id WHERE protagonist.id =${id}`, (err, result, fields) => {
             res.status(200).json({
                 'protagonist': result
             })
@@ -103,7 +103,7 @@ const getProtagonist = (res, id) => {
 
 const getAllProtagonist = (res) => {
     con.connect(function (err) {
-        con.query(`SELECT protagonist.id, name, experience, img, level, health, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id`, (err, result, fields) => {
+        con.query(`SELECT protagonist.id, name, experience, img, level, health, maxHealth, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id`, (err, result, fields) => {
             res.status(200).json({
                 'protagonist': result
             })
@@ -114,7 +114,7 @@ const getAllProtagonist = (res) => {
 
 const createProtagonist = (req, res) => {
     con.connect(function (err) {
-        con.query(`INSERT INTO stats SET health = 50, strength = ${req.body.data.str}, dexterity = ${req.body.data.dex}, intellect = ${req.body.data.int}, points = ${req.body.data.points}`, (err, result, fields) => {
+        con.query(`INSERT INTO stats SET health = 50, maxHealth = 50, strength = ${req.body.data.str}, dexterity = ${req.body.data.dex}, intellect = ${req.body.data.int}, points = ${req.body.data.points}`, (err, result, fields) => {
 
             console.log(err);
             con.query(`INSERT INTO protagonist SET name = '${req.body.data.name}', img = '${req.body.data.img}', stats_id = ${result.insertId}`)
@@ -126,7 +126,7 @@ const createProtagonist = (req, res) => {
 
 const updateStats = (req, res) => {
     con.connect(function (err) {
-        con.query(`UPDATE stats INNER JOIN protagonist ON stats_id = stats.id SET strength = ${req.body.data.attribute.str}, intellect = ${req.body.data.attribute.int}, dexterity = ${req.body.data.attribute.dex}, health = ${req.body.data.hp}, experience = ${req.body.data.exp}, level = ${req.body.data.level}, points = ${req.body.data.points} WHERE protagonist.id = ${req.body.data.id}`)
+        con.query(`UPDATE stats INNER JOIN protagonist ON stats_id = stats.id SET strength = ${req.body.data.attribute.str}, intellect = ${req.body.data.attribute.int}, dexterity = ${req.body.data.attribute.dex}, health = ${req.body.data.hp}, maxHealth = ${req.body.data.maxHp}, experience = ${req.body.data.exp}, level = ${req.body.data.level}, points = ${req.body.data.points} WHERE protagonist.id = ${req.body.data.id}`)
         res.send('uppdaterade stats')
     })
 }

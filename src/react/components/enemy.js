@@ -54,6 +54,7 @@ const getEnemy = () => {
                         enemy: {
                             ...store.enemy,
                             enemyHp: items.enemy[0].health,
+                            enemyMaxHp: items.enemy[0].maxHealth,
                             enemyDps: (items.enemy[0].strength + items.enemy[0].intellect + items.enemy[0].dexterity) / 2
                         }
                         

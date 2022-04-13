@@ -3,6 +3,7 @@ import {StoreContext} from './store';
 import Read from '../crud/read';
 import Update from '../crud/update';
 import Points from './points';
+import HealthBar from './healthBar';
 
 const Interface = () => {
 
@@ -33,6 +34,7 @@ const Interface = () => {
                             ...store.player,
                             playerLevel: items.protagonist[0].level,
                             playerHp: items.protagonist[0].health,
+                            playerMaxHp: items.protagonist[0].maxHealth,
                             playerDps: (items.protagonist[0].strength + items.protagonist[0].intellect + items.protagonist[0].dexterity) / 2,
                             playerExp: items.protagonist[0].experience,
                             str: items.protagonist[0].strength,
@@ -59,6 +61,7 @@ const Interface = () => {
             exp: store.player.playerExp,
             level: store.player.playerLevel,
             hp: store.player.playerHp,
+            maxHp: store.player.playerMaxHp,
             points: store.player.playerPoints,
         }
 
@@ -106,12 +109,12 @@ const Interface = () => {
                     <img src={set.img} /> 
                 </div>
                 <div className='heroName'>{set.heroName} (lvl {store.player.playerLevel})</div>
-                <div className='health'>HP: {store.player.playerHp} points: {store.player.playerPoints}</div>
+                <HealthBar />
                 <div className='stats'>
                     <Points />
                 </div>
                     
-                <div className='experience'>Exp: {store.player.playerExp}</div>
+                <div className='experience'>Exp: {store.player.playerExp} Points: {store.player.playerPoints}</div>
                 <div className='dps'>Dps: {store.player.playerDps}</div>
                 <div className='coords'>X: {store.coords.x} Y: {store.coords.y}</div>
 

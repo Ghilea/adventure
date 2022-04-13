@@ -1,0 +1,35 @@
+.health-bar {
+    box-sizing: border-box;
+    width: 200px;
+    height: 1em;
+    padding: 0.2em;
+    background-color: #ddd;
+    position: absolute;
+    left: 12em;
+    top: 4em;
+
+    .health {
+        position: absolute;
+        top: -1.5em;
+        left: 0;
+    }
+
+    .bar {
+        background: #c54;
+        width: 100%;
+        height: 10px;
+        position: relative;
+        
+        transition: width .5s linear;
+
+        .hit {
+            background: rgba(255,255,255,0.6);
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 0px;
+            transition: width .5s linear;
+        }
+    }
+}
