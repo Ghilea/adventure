@@ -59,7 +59,8 @@ const Points = () => {
                 playerPoints: p,
                 str: str,
                 int: int,
-                dex: dex
+                dex: dex,
+                playerDps: (str + int + dex) / 2,
             }
         })) 
     }

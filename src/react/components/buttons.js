@@ -24,7 +24,6 @@ const Buttons = () => {
                 case 'up':
                     newY += 1;
                     walking = event.target.id;
-                            console.log('test');
                     break;
                 case 'down':
                     if (prevStore.current.x < newX) {
@@ -72,19 +71,19 @@ const Buttons = () => {
 
     return (
       
-        <section className={`btn ${(store.enemy.enemyHp > 0) ? 'hide' : ''}`}>
+        <section className={`btn ${(store.enemy.enemyHp > 0 || store.map.walking !== null) ? 'hide' : ''}`}>
             <div className='container'>
                 <button onClick={btnClick} type="button" id='left' className={`displayButton 
-                ${(!store.doors.left) ? 'hide' : '' } `}><img src='assets/images/svg/arrow.svg' alt='Vänster'/></button>
+                ${(!store.doors.left) ? 'hide' : '' } `}></button>
 
                 <button onClick={btnClick} type="button" id='up' className={`displayButton 
-                ${(!store.doors.front) ? 'hide' : '' } `} ><img src='assets/images/svg/arrow.svg' alt='Framåt'/></button>
+                ${(!store.doors.front) ? 'hide' : '' } `} ></button>
 
                 <button onClick={btnClick} type="button" id='down' className={`displayButton 
-                ${(!store.doors.back) ? 'hide' : '' } `}><img src='assets/images/svg/arrow.svg' alt='Bakåt'/></button>
+                ${(!store.doors.back) ? 'hide' : '' } `}></button>
 
                 <button onClick={btnClick} type="button" id='right' className={`displayButton 
-                ${(!store.doors.right) ? 'hide' : '' } `}><img src='assets/images/svg/arrow.svg' alt='Höger'/></button>
+                ${(!store.doors.right) ? 'hide' : '' } `}></button>
 
             </div>
         </section>

@@ -129,8 +129,11 @@ const getEnemy = () => {
         }))
 
         setTimeout(() => {
-            enemyAttack();
+            if (store.enemy.enemyHp > 0) {
+                enemyAttack();
+            }
         }, 2000);
+        
     }
 
     //player run

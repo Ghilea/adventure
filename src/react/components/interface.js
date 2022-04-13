@@ -59,7 +59,7 @@ const Interface = () => {
             exp: store.player.playerExp,
             level: store.player.playerLevel,
             hp: store.player.playerHp,
-            points: store.player.playerPoints
+            points: store.player.playerPoints,
         }
 
         if (store.player.playerLevel > 0) {
@@ -75,19 +75,20 @@ const Interface = () => {
         
     }, [store.player.playerExp]);
 
-    const updateLevel = () => {    
-        let points = 0;
+    const updateLevel = () => {
+     
+        let points = store.player.playerPoints;
         let lvl = store.player.playerLevel;
         let nextLevel = lvl + 1;
         let formulaLevel = (50 * nextLevel ** 3 / 3 - 100 * nextLevel ** 2 + 850 * nextLevel / 3 - 200);
 
-        while (set.experience >= formulaLevel) {
+        while (store.player.playerExp >= formulaLevel) {
             lvl++;
             nextLevel++;
             points++;
             formulaLevel = (50 * nextLevel ** 3 / 3 - 100 * nextLevel ** 2 + 850 * nextLevel / 3 - 200);
         }
-
+        
         setStore((store)=>({
             ...store,
             player: {

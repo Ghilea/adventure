@@ -39,49 +39,37 @@
 
         #up {
             grid-area: Up;
-        
-            img {
-                width:100%;
-                transform: rotate(-90deg);
-                position: absolute;
-                left: 0;
-                top: 0;
-            }
+            background-image: url('../../public/assets/images/svg/arrow.svg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            transform: rotate(-90deg);
         }
 
         #left {
             grid-area: Left;
-            
-            img {
-                width:100%;
-                transform: rotate(180deg);
-                position: absolute;
-                left: 0;
-                top: 0;
-            }
+            background-image: url('../../public/assets/images/svg/arrow.svg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            transform: rotate(180deg);
         }
 
         #down {
             grid-area: Down;
-            
-            img {
-                width:100%;
-                transform: rotate(90deg);
-                position: absolute;
-                left: 0;
-                top: 0;
-            }
+            background-image: url('../../public/assets/images/svg/arrow.svg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            transform: rotate(90deg);
         }
 
         #right {
             grid-area: Right;
-
-            img {
-                width:100%;
-                position: absolute;
-                left: 0;
-                top: 0;
-            }
+            background-image: url('../../public/assets/images/svg/arrow.svg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
         }
     }
     
