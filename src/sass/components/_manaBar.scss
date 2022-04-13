@@ -1,4 +1,4 @@
-.health-bar {
+.mana-bar {
     box-sizing: border-box;
     width: 200px;
     height: 1em;
@@ -6,9 +6,9 @@
     background-color: #ddd;
     position: absolute;
     left: 12em;
-    top: 4em;
+    top: 6em;
 
-    .health {
+    .mana {
         position: absolute;
         top: 0;
         left: 50%;
@@ -19,7 +19,7 @@
     }
 
     .bar {
-        background: #c54;
+        background: rgb(66 95 255);
         width: 100%;
         height: 10px;
         position: relative;

@@ -1,4 +1,4 @@
-.health-bar {
+.exp-bar {
     box-sizing: border-box;
     width: 200px;
     height: 1em;
@@ -6,20 +6,20 @@
     background-color: #ddd;
     position: absolute;
     left: 12em;
-    top: 4em;
+    top: 8em;
 
-    .health {
+    .exp {
         position: absolute;
         top: 0;
         left: 50%;
         transform: translateX(-50%);
-        color: rgb(255, 255, 255);
+        color: #000;
         text-shadow: 0 0 2px #000;
         font-weight: 600;
     }
 
     .bar {
-        background: #c54;
+        background: rgb(255, 255, 255);
         width: 100%;
         height: 10px;
         position: relative;

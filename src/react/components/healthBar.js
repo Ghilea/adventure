@@ -1,41 +1,63 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {StoreContext, StoreProvider} from './store'
+import {StoreContext} from './store'
+import Read from '../crud/read';
 
 const HealthBar = () => {
 
     const [store, setStore] = useContext(StoreContext);
-    const [total, setTotal] = useState(store.player.MaxHp);
-
-    const [hitWidth, setHitWidth] = useState(
-        0 + '%'
+    const [health, setHealth] = useState(
+        { 
+            hit: 0 + '%',
+            bar: 100 + '%'
+        }
     );
+    
+    useEffect(() => {
+        let url = `http://localhost:3000/getProtagonist?id=${store.player.playerId}`;
 
-    const [barWidth, setBarWidth] = useState(
-        (store.player.playerHp / total) * 100 + '%'
-    );
-     
-    useEffect(()=>{
+        Read(url)
+            .then(items => {
+                if (items.protagonist.length > 0) {
+                    setHealth(health => ({
+                        ...health,
+                            bar: (items.protagonist[0].health / items.protagonist[0].maxHealth) * 100 + '%'
+                    }))
+                }
+            })
+
+    }, [])
+
+    useEffect(() => {
         if (store.enemy.enemyAttack) {
-            setHitWidth((store.enemy.enemyDps / store.player.playerHp) * 100 + '%');
+            setHealth(health => ({
+                ...health,
+                hit: (store.enemy.enemyDps / store.player.playerHp) * 100 + '%'
+            }))
         }
 
         if(store.player.playerHp <= 0){
             console.log('Du dog');
         }
+
+        setTimeout(function () {
+            setHealth(health => ({
+                ...health,
+                hit: 0 + '%',
+                bar: ((store.player.playerHp - store.enemy.enemyDps) / store.player.playerMaxHp) * 100 + '%'
+            }))
+        }, 500);
     }, [store.enemy.enemyAttack])
     
 
-        /*setTimeout(function () {
-            hit.css({
-                'width': '0'
-            });
-            bar.css('width', barWidth + "%");
-        }, 500);*/
-
-
-       
- 
-//
+    useEffect(() => {
+        if(store.player.playerMaxHp > 0){
+            
+            setHealth(health => ({
+                ...health,
+                bar: (store.player.playerHp / store.player.playerMaxHp) * 100 + '%'
+            }))
+        }
+    }, [store.player.playerMaxHp])
 
     return (
     
@@ -44,20 +66,20 @@ const HealthBar = () => {
             <div className = 'bar'
             style = {
                 {
-                    width: barWidth
+                    width: health.bar
                 }
             }>
                 <div className='hit' 
                 style = {
                     {
-                        width: hitWidth
+                        width: health.hit
                     }
                 }>
 
                 </div>
             </div>
 
-            <div div className = 'health' > {store.player.playerHp} / {store.player.playerMaxHp}</div >
+            <div className = 'health'> {store.player.playerHp} / {store.player.playerMaxHp}</div>
         </div>
      
     )
