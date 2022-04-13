@@ -1,11 +1,12 @@
 import React, {useContext, useState, useEffect} from 'react';
-import {StoreContext} from './store';
+import {StoreContext} from '../store';
 import Read from '../crud/read';
 import Update from '../crud/update';
-import Points from './points';
-import HealthBar from './healthBar';
-import ExpBar from './expBar';
-import ManaBar from './manaBar';
+import Points from '../points';
+import HealthBar from '../bars/healthBar';
+import ExpBar from '../bars/expBar';
+import ManaBar from '../bars/manaBar';
+import CharacterSheet from '../overlays/charactersheet';
 
 const Interface = () => {
 
@@ -119,15 +120,13 @@ const Interface = () => {
                 <HealthBar />
                 <ExpBar />
                 <ManaBar />
-                <div className='stats'>
-                    <Points />
-                </div>
-                    
+                       
                 <div className='experience'>Points: {store.player.playerPoints}</div>
                 <div className='dps'>Dps: {store.player.playerDps}</div>
                 <div className='coords'>X: {store.coords.x} Y: {store.coords.y}</div>
-
         
+                <CharacterSheet />
+                
                 <div key={'playerWeapon'} className={`playerWeapon ${(store.player.playerAttack) ? 'swing' : ''}`}>
                     <img src='assets/images/gui/sword.png'/>
                 </div>

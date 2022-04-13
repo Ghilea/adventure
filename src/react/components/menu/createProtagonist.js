@@ -4,8 +4,8 @@ import React, {
     useContext
 } from 'react';
 import Create from '../crud/create';
-import { StoreContext } from './store';
-import Points from './points';
+import { StoreContext } from '../store';
+import Points from '../points';
 
 const Protagonist = () => {
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useContext} from 'react';
 import Read from '../crud/read';
-import {StoreContext} from './store';
+import {StoreContext} from '../store';
 import Enemy from './enemy';
 
 const Content = () => {
@@ -79,7 +79,7 @@ const Content = () => {
 
         {
             (store.quest.showQuest) ? 
-            <div className={`questContainer ${(store.quest.showQuest) ? 'fadeOut' : ''}`}>
+            <div className = 'questContainer fadeOut'>
                 <h1>
                 {
                     (content.content) ? quest.title: 'unknown'

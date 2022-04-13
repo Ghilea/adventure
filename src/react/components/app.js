@@ -1,6 +1,6 @@
 import React from 'react';
-import {StoreContext, StoreProvider} from './store'
-import Login from './login';
+import {StoreProvider} from './store'
+import Login from './menu/login';
 
 const App = () => {
 

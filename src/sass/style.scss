@@ -1,12 +1,18 @@
-@use './components/misc';
-@use './components/loadingScreen';
-@use './components/interface';
-@use './components/menu';
-@use './components/map';
-@use './components/enemy';
-@use './components/quest';
-@use './components/playerMovement';
-@use './components/healthBar';
-@use './components/expBar';
-@use './components/manaBar';
+//menu
+@use './components/menu/loadingScreen';
+@use './components/menu/menu';
+//map
+@use './components/map/gui';
+@use './components/map/map';
+@use './components/map/enemy';
+@use './components/map/quest';
+@use './components/map/playerMovement';
+//overlays
+@use './components/overlays/characterSheet';
+//bars
+@use './components/bars/healthBar';
+@use './components/bars/expBar';
+@use './components/bars/manaBar';
+//misc
 @use './components/scrollbars';
+@use './components/misc';

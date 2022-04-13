@@ -1,8 +1,8 @@
 import React, {useState, useContext, useEffect} from 'react';
-import Interface from './interface';
-import Content from './content';
-import {StoreContext, StoreProvider} from './store'
-import Buttons from './buttons';
+import Interface from '../map/gui';
+import Content from '../map/content';
+import {StoreContext, StoreProvider} from '../store'
+import Buttons from '../map/buttons';
 import Protagonist from './protagonist';
 import useSound from 'use-sound';
 import { Howler } from 'howler';

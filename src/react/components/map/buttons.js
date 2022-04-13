@@ -1,5 +1,5 @@
 import React, {useContext, useState, useEffect, useRef} from 'react';
-import {StoreContext} from './store';
+import {StoreContext} from '../store';
 
 const Buttons = () => {
 

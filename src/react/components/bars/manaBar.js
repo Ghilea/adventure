@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {StoreContext} from './store'
+import {StoreContext} from '../store'
 import Read from '../crud/read';
 
 const ExpBar = () => {
@@ -12,12 +12,10 @@ const ExpBar = () => {
         }
     );
     
-  
-    
 
     return (
     
-        <div className = 'exp-bar' data-value = {
+        <div className = 'mana-bar' data-value = {
             store.player.playerHp
         } >
             
@@ -37,9 +35,7 @@ const ExpBar = () => {
                 </div>
             </div>
 
-            <div className = 'exp' > {
-                store.player.playerExp
-            } exp
+            <div className = 'mana' > 40
             </div >
         </div>
      

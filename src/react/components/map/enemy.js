@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import {
     StoreContext
-} from './store';
+} from '../store';
 import Read from '../crud/read';
 
 const getEnemy = () => {

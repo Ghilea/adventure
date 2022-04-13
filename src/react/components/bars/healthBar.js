@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {StoreContext} from './store'
+import {StoreContext} from '../store'
 import Read from '../crud/read';
 
 const HealthBar = () => {
