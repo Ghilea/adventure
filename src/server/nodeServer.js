@@ -20,27 +20,22 @@ const con = mySQL.createConnection({
 })
 
 app.get('/getAdventure', (req, res) => {
-    res.setHeader("Content-Type", "application/json; charset=utf-8");
     getAdventure(res, req.query.x, req.query.y);
 });
 
 app.get('/getQuest', (req, res) => {
-    res.setHeader("Content-Type", "application/json; charset=utf-8");
     getQuest(res, req.query.x, req.query.y);
 });
 
 app.get('/getEnemy', (req, res) => {
-    res.setHeader("Content-Type", "application/json; charset=utf-8");
     getEnemy(res);
 });
 
 app.get('/getProtagonist', (req, res) => {
-    res.setHeader("Content-Type", "application/json; charset=utf-8");
     getProtagonist(res, req.query.id);
 });
 
 app.get('/getAllProtagonist', (req, res) => {
-    res.setHeader("Content-Type", "application/json; charset=utf-8");
     getAllProtagonist(res);
 });
 
@@ -82,7 +77,8 @@ const getQuest = (res, x, y) => {
 
 const getEnemy = (res) => {
     con.connect((err) => {
-        con.query(`SELECT name, type, experience, level, img, health, maxHealth, strength, intellect, dexterity FROM enemies JOIN stats ON stats.id = stats_id ORDER BY RAND() LIMIT 1`, (err, result, fields) => {
+        con.query(`SELECT 
+        name, type, experience, level, img, health, maxHealth, strength, intellect, dexterity FROM enemies JOIN stats ON stats.id = stats_id ORDER BY RAND() LIMIT 1`, (err, result, fields) => {
             res.status(200).json({
                 'enemy':result
             })
@@ -117,7 +113,6 @@ const createProtagonist = (req, res) => {
         con.query(`INSERT INTO stats SET health = 50, maxHealth = 50, strength = ${req.body.data.str}, dexterity = ${req.body.data.dex}, intellect = ${req.body.data.int}, points = ${req.body.data.points}`, (err, result, fields) => {
             con.query(`INSERT INTO protagonist SET name = '${req.body.data.name}', img = '${req.body.data.img}', stats_id = ${result.insertId}`)
         })
-        
         res.send('skapade en protagonist')
     })
 }
