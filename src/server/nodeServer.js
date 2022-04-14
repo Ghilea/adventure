@@ -47,7 +47,6 @@ app.post('/createProtagonist', (req, res) => {
     createProtagonist(req, res);
 });
 
-
 app.listen(process.env.PORT, () =>
     console.log(`Adventure listening on port ${process.env.PORT}!`),
 );
