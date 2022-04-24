@@ -7,11 +7,11 @@ const CameraMovement = () => {
 
     useEffect(()=>{
         const handleMouseMove = (ev) => {
-              
+            
             //left & right
             const x = ev.pageX;
-            const w = window.innerWidth;
-            const xMidpoint = w / 2;
+    
+            const xMidpoint = window.innerWidth / 2;
             const posX = x - xMidpoint;
             const finalX = (posX / xMidpoint) * 20;
 

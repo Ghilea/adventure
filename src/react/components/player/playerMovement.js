@@ -14,10 +14,10 @@ const PlayerMovement = () => {
 
             switch (ev.key){
                 case 'w':
-                    newZ += 10;
+                    newZ += 4;
                     break;
                 case 's':
-                    newZ -= 10;
+                    newZ -= 4;
                     break;
                 case 'a':
                     newX += 10;

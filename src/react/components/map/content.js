@@ -107,7 +107,6 @@ const Content = () => {
     return (
         <>
 
-        <CameraMovement />
         <PlayerMovement />
 
         {
@@ -122,7 +121,7 @@ const Content = () => {
                 className = 'camera'
                 style = {
                     {
-                        transform: `translate3d(${store.movement.x}px, ${store.movement.y}px, ${store.movement.z}px) rotateX(${store.mouse.x}deg) rotateY(${store.mouse.y}deg)`
+                        transform: `rotateX(${store.mouse.x}deg) rotateY(${store.mouse.y}deg) translate3d(${store.movement.x}px, ${store.movement.y}px, ${store.movement.z}px)`
                     }
                 }
                 >
