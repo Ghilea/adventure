@@ -2,7 +2,7 @@
 @use './components/menu/loadingScreen';
 @use './components/menu/menu';
 //map
-@use './components/map/gui';
+@use './components/map/interface';
 @use './components/map/map';
 @use './components/map/enemy';
 @use './components/map/quest';

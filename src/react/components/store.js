@@ -8,6 +8,15 @@ const StoreContext = createContext();
 const StoreProvider = (props) => {
     
     const [store, setStore] = useState({
+        movement: {
+            x: -130,
+            y: 30,
+            z: 427.84
+        },
+        mouse: {
+            x: 0,
+            y: 0
+        },
         coords: {
             x: 0,
             y: 0

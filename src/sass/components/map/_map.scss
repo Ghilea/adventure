@@ -1,151 +1,150 @@
-.container_3d {    
+.container_3d {
+    transition: 0.5s;
+    height: 100%;
+
+    .viewport {    
         background-color: #000;
-        position: absolute;
-        top: 0%;
-        left: 50%;
-        right: 50%;
-        font-size: 40px;
-        perspective: 35em;
-        perspective-origin: 50% calc(52% - -13em);
+        position: relative;
+        perspective: 427.84px;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
 
-    .walkingForward {
-        animation: walkingForward 1s ease-in-out forwards;
-    }
-
-    @keyframes walkingForward {
-        to {
-            transform: translate3d(-13.6em, 0em, 5em);
+        .walkingForward {
+            animation: walkingForward 1s ease-in-out forwards;
         }
-    }
 
-    .walkingBack {
-        animation: walkingBack 1s ease-in-out forwards;
-    }
-
-    @keyframes walkingBack {
-        to {
-            transform: translate3d(-13.6em, 0em, -5em);
+        @keyframes walkingForward {
+            to {
+                transform: translate3d(-13.6em, 0em, 5em);
+            }
         }
-    }
 
-    .scen {
-        transform-style: preserve-3d;
-        transform: translate3d(-13.6em, 0em, 0em);
+        .walkingBack {
+            animation: walkingBack 1s ease-in-out forwards;
+        }
 
-        .position {
+        @keyframes walkingBack {
+            to {
+                transform: translate3d(-13.6em, 0em, -5em);
+            }
+        }
+
+        .camera {
             position: absolute;
+            left: 50%;
+            top: 50%;
+            transform-style: preserve-3d;
+            transform: translate3d(-130px, 30px, 427.84px);
+
+            .texture {
+                position: absolute;
+                background-image: url('../assets/images/texture/wall.jpg');
+                background-size: 192px;
+                box-shadow: inset 0 0 5.5em rgb(0, 0, 0);
+                backface-visibility: hidden;
+            }
+
+            .floor {
+                position: absolute;
+                transform-style: preserve-3d;
+                transform: translate3d(-56px, -312px, -612px) rotate3d(1, 0, 0, 90deg) skew(0deg, 0deg);
+                width: 393px;
+                height: 800px;
+                backface-visibility: hidden;
+                background-image: url(../assets/images/texture/wall.jpg);
+                background-size: 1600px;
+                box-shadow: inset 0 0 150px rgb(0 0 0);
+            }
+
+            .outside_L {
+                transform: translate3d(-541px, -214px, -485px) rotate3d(0, 1, 0, 90deg);
+                width: 1000px;
+                height: 300px;
+            }
+
+            .outside_R {
+                transform: translate3d(-541px, -214px, -485px) rotate3d(0, -1, 0, 90deg);
+                width: 1000px;
+                height: 300px;
+            }
+
+            .outside_R {
+                left: 22em;
+            }
+
+            .door{
+                clip-path: polygon(0% 0%, 0% 100%, 27% 100%, 20% 100%, 20% 0%, 80% 0%, 80% 100%, 68% 100%, 95% 100%, 0% 100%, 100% 100%, 100% 0, 0% 0%, 34% 28%);
+            }
+
+            .doorSide{
+                clip-path: polygon(0% 0%, 0% 100%, 27% 100%, 40% 100%, 40% 0%, 66% 0%, 66% 100%, 68% 100%, 95% 100%, 0% 100%, 100% 100%, 100% 0, 0% 0%, 34% 28%);
+            }
+
+            .backFloor {
+                transform: translateX(50%) translateY(50%) translateZ(-57.5em) rotateY(180deg);
+            }
+
+            .roof {
+                position: absolute;
+                transform-style: preserve-3d;
+                transform: translate3d(-56px, -613px, -727px) rotate3d(-1, 0, 0, 90deg) skew(0deg, 0deg);
+                width: 393px;
+                height: 800px;
+                backface-visibility: hidden;
+                background-image: url(../assets/images/texture/wall.jpg);
+                background-size: 200px;
+                box-shadow: inset 0 0 150px rgb(0 0 0);
+            }
+
+            .left {
+                left: -3.34em;
+                width: 5.7em;
+            }
+
+            .right {
+                left: 20.77em;
+                width: 5.7em;
+            }
+
+            .leftPanel {
+                left: 4.15em;
+                top: -2.3em;
+                width: 1.6em;
+                height: 15.8em;
+                transform: translateX(50%) translateY(50%) translateZ(-1.2em) rotateY(180deg);
+            }
+
+            .rightPanel {
+                left: 19.8em;
+                top: -2.3em;
+                width: 1.6em;
+                height: 15.8em;
+                transform: translateX(50%) translateY(50%) translateZ(-1.2em) rotateY(180deg);
+            }
+
+            .leftBPanel {
+                left: 6.7em;
+                top: -2.4em;
+                width: 2.6em;
+                height: 15.9em;
+                transform: translateX(50%) translateY(50%) translateZ(-7em) rotateY(90deg);
+            }
+
+            .rightBPanel {
+                left: 15.2em;
+                top: -2.4em;
+                width: 2.6em;
+                height: 15.9em;
+                transform: translateX(50%) translateY(50%) translateZ(-7em) rotateY(90deg);
+            }
+
+            .back {
+                transform: translate3d(-43px, -214px, -1015px) rotate3d(0,0,0,90deg);
+                width: 370px;
+                height: 300px;
+            }
         }
 
-        .wallOutside {
-            background-image: url('../assets/images/texture/wall.jpg');
-            background-size: 12em;
-            box-shadow: inset 0 0 5.5em rgb(0, 0, 0);
-        }
-
-        .floor {
-            position: absolute;
-            transform: translate(-50%, -50%) rotateX(90deg);
-            width: 16.83em;
-            height: 27.83em;
-            background-image: url('../assets/images/texture/wall.jpg');
-            background-size: 7em;
-            box-shadow: inset 0 0 10em rgb(0 0 0);
-        }
-
-        .outside_L, .outside_R {
-            transform: translate(-50%, -50%) rotateY(90deg);
-            top: 13.5em;
-            left: 5.19em;
-            width: 45.5em;
-            height: 19em;
-        }
-
-        .outside_R {
-            left: 22em;
-        }
-
-        .outside_B {
-            transform: translateX(50%) translateY(50%) translateZ(-7.5em) rotateY(180deg);
-            top: -3.1em;
-            left: -1.15em;
-            width: 14.7em;
-            height: 16.6em;
-        }
-
-        .door{
-            clip-path: polygon(0% 0%, 0% 100%, 27% 100%, 20% 100%, 20% 0%, 80% 0%, 80% 100%, 68% 100%, 95% 100%, 0% 100%, 100% 100%, 100% 0, 0% 0%, 34% 28%);
-        }
-
-        .doorSide{
-            clip-path: polygon(0% 0%, 0% 100%, 27% 100%, 40% 100%, 40% 0%, 66% 0%, 66% 100%, 68% 100%, 95% 100%, 0% 100%, 100% 100%, 100% 0, 0% 0%, 34% 28%);
-        }
-
-        .backFloor {
-            transform: translateX(50%) translateY(50%) translateZ(-57.5em) rotateY(180deg);
-        }
-
-        .firstFloor {
-            top: 23em;
-            left: 13.6em;
-            width: 31.83em;
-            height: 140.83em;
-        }
-
-        .roof {
-            top: 4.1em;
-            left: 13.6em;
-            width: 31.83em;
-            height: 140.83em;
-        }
-
-        .left {
-            left: -3.34em;
-            width: 5.7em;
-        }
-
-        .right {
-            left: 20.77em;
-            width: 5.7em;
-        }
-
-        .leftPanel {
-            left: 4.15em;
-            top: -2.3em;
-            width: 1.6em;
-            height: 15.8em;
-            transform: translateX(50%) translateY(50%) translateZ(-1.2em) rotateY(180deg);
-        }
-
-        .rightPanel {
-            left: 19.8em;
-            top: -2.3em;
-            width: 1.6em;
-            height: 15.8em;
-            transform: translateX(50%) translateY(50%) translateZ(-1.2em) rotateY(180deg);
-        }
-
-        .leftBPanel {
-            left: 6.7em;
-            top: -2.4em;
-            width: 2.6em;
-            height: 15.9em;
-            transform: translateX(50%) translateY(50%) translateZ(-7em) rotateY(90deg);
-        }
-
-        .rightBPanel {
-            left: 15.2em;
-            top: -2.4em;
-            width: 2.6em;
-            height: 15.9em;
-            transform: translateX(50%) translateY(50%) translateZ(-7em) rotateY(90deg);
-        }
-
-        .back {
-            transform: translateX(50%) translateY(50%) translateZ(-57.5em) rotateY(180deg);
-            left: -9em;
-            width: 22.7em;
-        }
     }
-
-    
 }

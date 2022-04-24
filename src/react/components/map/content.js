@@ -1,7 +1,10 @@
 import React, {useEffect, useState, useContext} from 'react';
 import Read from '../crud/read';
 import {StoreContext} from '../store';
+import CameraMovement from '../player/cameraMovement';
 import Enemy from './enemy';
+import RenderMap from './renderMap';
+import PlayerMovement from '../player/playerMovement';
 
 const Content = () => {
 
@@ -35,16 +38,6 @@ const Content = () => {
                         content: JSON.parse(items.adventure[0].content),
                         isContent: items.content
                     }));
-                    setStore(store => ({
-                        ...store,
-                        doors: {
-                            ...store.doors,
-                            left: JSON.parse(items.adventure[0].content).doors.left,
-                            right: JSON.parse(items.adventure[0].content).doors.right,
-                            front: JSON.parse(items.adventure[0].content).doors.front,
-                            back: JSON.parse(items.adventure[0].content).doors.back
-                        }
-                    }))
                 }else{
                     setContent(content => ({
                         ...content,
@@ -74,95 +67,70 @@ const Content = () => {
 
     }, [store.coords])
 
+    useEffect(() => {
+        console.log(store.mouse.x, store.mouse.y);
+    }, [store.mouse])
+
+    useEffect(()=>{
+        console.log(store.movement.z);
+    }, [store.movement])
+    /*
+    
+    {
+        (store.quest.showQuest) ?
+        <
+        div className = 'questContainer fadeOut' >
+            <
+            h1 > {
+                (content.content) ? quest.title : 'unknown'
+            } <
+            /h1>
+
+        {
+            <
+            div className = 'main_text' > {
+                    quest.describe
+                } <
+                /div>
+        } <
+        /div> :
+        <
+        > < />
+    } {
+        (content.content && content.enemyFound && content.enemyAllowed) ?
+
+        <
+        Enemy / >: < > < />
+    }
+    
+    */
     return (
         <>
 
-        {
-            (store.quest.showQuest) ? 
-            <div className = 'questContainer fadeOut'>
-                <h1>
-                {
-                    (content.content) ? quest.title: 'unknown'
-                }
-                </h1>
-
-                {
-                    <div className = 'main_text'>
-                        {
-                            quest.describe
-                        }
-                    </div>
-                }
-            </div>
-            :
-            <></>
-        }
-        {
-            (content.content && content.enemyFound && content.enemyAllowed) ? 
-                    
-            <Enemy /> : <> </>
-        }
+        <CameraMovement />
+        <PlayerMovement />
 
         {
             (store.map.walking !== null) ? <div className='overlay-black'></div> : <></>
         }
         
         <div className='container_3d'>
-            
-            <div className={`scen 
-            ${(store.map.walking === 'up') ? 'walkingForward' : ''}
-            `}>
-                
-                <div className='floor firstFloor'></div>
-                <div className='floor roof'></div>
-                <div className='position wallOutside outside_B back'></div>
-                
-                <div className='position wallOutside outside_B left'></div>
+                        
+            <div className='viewport'>
 
-                {
-                    (content.isContent && content.content.doors.left) ? 
-                    <div className='position wallOutside outside_B leftPanel'></div> : ''
+                <div 
+                className = 'camera'
+                style = {
+                    {
+                        transform: `translate3d(${store.movement.x}px, ${store.movement.y}px, ${store.movement.z}px) rotateX(${store.mouse.x}deg) rotateY(${store.mouse.y}deg)`
+                    }
                 }
+                >
+                    
+                    <RenderMap />
+                    
+                </div>
 
-                {
-                    (content.isContent && content.content.doors.front) ? 
-                    <div className='position wallOutside outside_B leftBPanel'></div> : ''
-                }
-                
-                <div className='position wallOutside outside_B right'></div>
-
-                {
-                    (content.isContent && content.content.doors.right) ? 
-                    <div className='position wallOutside outside_B rightPanel'></div> : ''
-                }
-                
-                {
-                    (content.isContent && content.content.doors.front) ? 
-                    <div className='position wallOutside outside_B rightBPanel'></div> : ''
-                }
-                
-                <div className = {
-                        `position wallOutside outside_L 
-                        ${
-                            (content.isContent && content.content.doors.left) ? 'doorSide' : ''
-                        }
-                        `}>
-                </div>
-                <div className = {
-                        `position wallOutside outside_R 
-                        ${
-                            (content.isContent && content.content.doors.right) ? 'doorSide' : ''
-                        }
-                        `}>  
-                </div>
-                <div className = {
-                        `position wallOutside outside_B 
-                        ${
-                            (content.isContent && content.content.doors.front) ? 'door' : ''
-                        }
-                        `}>
-                </div>
-                
             </div>
         </div>
 

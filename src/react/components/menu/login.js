@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
-import Interface from '../map/gui';
+import Interface from '../map/interface';
 import Content from '../map/content';
 import {StoreContext, StoreProvider} from '../store'
 import Buttons from '../map/buttons';
