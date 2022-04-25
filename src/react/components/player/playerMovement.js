@@ -14,16 +14,16 @@ const PlayerMovement = () => {
 
             switch (ev.key){
                 case 'w':
-                    newZ += 4;
+                    newZ += 100;
                     break;
                 case 's':
-                    newZ -= 4;
+                    newZ -= 100;
                     break;
                 case 'a':
-                    newX += 10;
+                    newX += 50;
                     break;
                 case 'd':
-                    newX -= 10;
+                    newX -= 50;
                     break;
             }
 

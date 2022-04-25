@@ -3,7 +3,7 @@ import React, {
     useState,
     useContext
 } from 'react';
-import { StoreContext } from './store';
+import { StoreContext } from '../store';
 
 const Points = () => {
 

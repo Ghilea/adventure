@@ -5,7 +5,7 @@ import React, {
 } from 'react';
 import Create from '../crud/create';
 import { StoreContext } from '../store';
-import Points from '../points';
+import Points from '../interface/points';
 
 const Protagonist = () => {
 

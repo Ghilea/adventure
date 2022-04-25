@@ -1,8 +1,8 @@
 import React, {useState, useContext, useEffect} from 'react';
-import Interface from '../map/interface';
-import Content from '../map/content';
+import Interface from '../interface/interface';
+import Canvas from '../map/canvas';
 import {StoreContext, StoreProvider} from '../store'
-import Buttons from '../map/buttons';
+import Buttons from '../interface/buttons';
 import Protagonist from './protagonist';
 import useSound from 'use-sound';
 import { Howler } from 'howler';
@@ -67,7 +67,7 @@ const Login = () => {
             :
                 <>
                 <Interface />
-                <Content />
+                <Canvas />
                 {(!store.map.showCharacterSheet) ? <Buttons /> : <></>}
                 </>
             

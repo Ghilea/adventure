@@ -1,14 +1,14 @@
 import React from 'react';
 import {StoreProvider} from './store'
 import Login from './menu/login';
-import Content from './map/content';
+import Canvas from './map/canvas';
 
 const App = () => {
 
     return (
 
         <StoreProvider>
-            <Content />
+            <Canvas />
         </StoreProvider>
     )
 }

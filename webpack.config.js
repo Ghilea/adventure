@@ -1,5 +1,5 @@
 const path = require('path');
-let address = './src/react/default.jsx';
+let address = './src/react/default.js';
 let output = './public/js';
 
 module.exports = {
@@ -19,8 +19,7 @@ module.exports = {
                     "presets": [
                         "@babel/preset-env",
                         "@babel/preset-react"
-                    ],
-                    "comments": false
+                    ]
                 }
             }
         }]

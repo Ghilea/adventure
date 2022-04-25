@@ -1,7 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {StoreContext} from '../store'
+import {StoreContext} from '../../store'
 import Points from '../points';
-import Read from '../crud/read';
+import Read from '../../crud/read';
 
 const CharacterSheet = () => {
 

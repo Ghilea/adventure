@@ -9,18 +9,14 @@ const CameraMovement = () => {
         const handleMouseMove = (ev) => {
             
             //left & right
-            const x = ev.pageX;
-    
             const xMidpoint = window.innerWidth / 2;
-            const posX = x - xMidpoint;
-            const finalX = (posX / xMidpoint) * 20;
+            const posX = ev.pageX - xMidpoint;
+            const finalX = (posX / xMidpoint) * 90;
 
             //up & down
-            const y = ev.pageY;
-            const h = window.innerHeight;
-            const yMidpoint = h / 2;
-            const posY = y - yMidpoint;
-            const finalY = (posY / yMidpoint) * -20;
+            const yMidpoint = window.innerHeight / 2;
+            const posY = ev.pageY - yMidpoint;
+            const finalY = (posY / yMidpoint) * -10;
                         
             setStore((store) => ({
                 ...store,
@@ -28,7 +24,7 @@ const CameraMovement = () => {
                 ...store.mouse,
                     x: finalY,
                     y: finalX
-                } 
+                }
             }))
         }
 

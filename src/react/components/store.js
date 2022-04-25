@@ -8,6 +8,9 @@ const StoreContext = createContext();
 const StoreProvider = (props) => {
     
     const [store, setStore] = useState({
+        rotate: {
+            z: 0
+        },
         movement: {
             x: -130,
             y: 30,

@@ -2,10 +2,10 @@ import React, {useContext, useState, useEffect} from 'react';
 import {StoreContext} from '../store';
 import Read from '../crud/read';
 import Update from '../crud/update';
-import HealthBar from '../bars/healthBar';
-import ExpBar from '../bars/expBar';
-import ManaBar from '../bars/manaBar';
-import CharacterSheet from '../overlays/charactersheet';
+import HealthBar from './healthBar';
+import ExpBar from './expBar';
+import ManaBar from './manaBar';
+import CharacterSheet from './overlays/charactersheet';
 
 const Interface = () => {
 

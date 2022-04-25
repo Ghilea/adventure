@@ -9,6 +9,7 @@
         width: 100%;
         height: 100%;
         overflow: hidden;
+        perspective-origin: 50% 50%;
 
         .walkingForward {
             animation: walkingForward 1s ease-in-out forwards;
@@ -48,32 +49,70 @@
             .floor {
                 position: absolute;
                 transform-style: preserve-3d;
-                transform: translate3d(-56px, -312px, -612px) rotate3d(1, 0, 0, 90deg) skew(0deg, 0deg);
-                width: 393px;
-                height: 800px;
+                transform: translate3d(-331px, -847px, -919px) rotate3d(1, 0, 0, 90deg) skew(0deg, 0deg);
+                width: 932px;
+                height: 1871px;
                 backface-visibility: hidden;
-                background-image: url(../assets/images/texture/wall.jpg);
-                background-size: 1600px;
+                background-image: url('../assets/images/texture/wall.jpg');
+                background-size: 1000px;
                 box-shadow: inset 0 0 150px rgb(0 0 0);
             }
 
-            .outside_L {
+            .roof {
+                position: absolute;
+                transform-style: preserve-3d;
+                transform: translate3d(-331px, -1149px, -919px) rotate3d(-1, 0, 0, 90deg) skew(0deg, 0deg);
+                width: 932px;
+                height: 1871px;
+                backface-visibility: hidden;
+                background-image: url('../assets/images/texture/wall.jpg');
+                background-size: 200px;
+                box-shadow: inset 0 0 150px rgb(0 0 0);
+            }
+
+            .wall_back {
+                transform: translate3d(-52px, -217px, -1695px) rotate3d(0, 0, 0, 90deg);
+                width: 373px;
+                height: 305px;
+            }
+
+            .wall_front {
+                transform: translate3d(-52px, -217px, -982px) rotate3d(0, 0, 0, 90deg);
+                width: 373px;
+                height: 305px;
+                backface-visibility: visible;
+            }
+
+            .wall_left {
                 transform: translate3d(-541px, -214px, -485px) rotate3d(0, 1, 0, 90deg);
                 width: 1000px;
                 height: 300px;
             }
 
-            .outside_R {
-                transform: translate3d(-541px, -214px, -485px) rotate3d(0, -1, 0, 90deg);
+            .wall_right {
+                transform: translate3d(-541px, -214px, -485px) rotate3d(0, 1, 0, 90deg);
                 width: 1000px;
+                height: 300px;
+                left: 22em;
+                backface-visibility: visible;
+            }
+
+            .leftWallRoom {
+                transform: translate3d(-332px, -214px, -741px) rotate3d(0, 0, 0, 90deg);
+                width: 178px;
                 height: 300px;
             }
 
-            .outside_R {
+            .rightWallRoom {
+                transform: translate3d(72px, -214px, -741px) rotate3d(0, 0, 0, 90deg);
+                width: 178px;
+                height: 300px;
                 left: 22em;
+                backface-visibility: visible;
             }
 
-            .door{
+            //doors
+            .doorFront{
                 clip-path: polygon(0% 0%, 0% 100%, 27% 100%, 20% 100%, 20% 0%, 80% 0%, 80% 100%, 68% 100%, 95% 100%, 0% 100%, 100% 100%, 100% 0, 0% 0%, 34% 28%);
             }
 
@@ -81,69 +120,31 @@
                 clip-path: polygon(0% 0%, 0% 100%, 27% 100%, 40% 100%, 40% 0%, 66% 0%, 66% 100%, 68% 100%, 95% 100%, 0% 100%, 100% 100%, 100% 0, 0% 0%, 34% 28%);
             }
 
-            .backFloor {
-                transform: translateX(50%) translateY(50%) translateZ(-57.5em) rotateY(180deg);
-            }
-
-            .roof {
-                position: absolute;
-                transform-style: preserve-3d;
-                transform: translate3d(-56px, -613px, -727px) rotate3d(-1, 0, 0, 90deg) skew(0deg, 0deg);
-                width: 393px;
-                height: 800px;
-                backface-visibility: hidden;
-                background-image: url(../assets/images/texture/wall.jpg);
-                background-size: 200px;
-                box-shadow: inset 0 0 150px rgb(0 0 0);
-            }
-
-            .left {
-                left: -3.34em;
-                width: 5.7em;
-            }
-
-            .right {
-                left: 20.77em;
-                width: 5.7em;
-            }
-
+            //panel
             .leftPanel {
-                left: 4.15em;
-                top: -2.3em;
-                width: 1.6em;
-                height: 15.8em;
-                transform: translateX(50%) translateY(50%) translateZ(-1.2em) rotateY(180deg);
+                width: 100px;
+                height: 300px;
+                transform: translate3d(-142px, -214px, -645px) rotate3d(0, 1, 0, 0deg);
             }
 
             .rightPanel {
-                left: 19.8em;
-                top: -2.3em;
-                width: 1.6em;
-                height: 15.8em;
-                transform: translateX(50%) translateY(50%) translateZ(-1.2em) rotateY(180deg);
+                width: 100px;
+                height: 300px;
+                transform: translate3d(311px, -214px, -645px) rotate3d(0, 1, 0, 0deg);
             }
 
             .leftBPanel {
-                left: 6.7em;
-                top: -2.4em;
-                width: 2.6em;
-                height: 15.9em;
-                transform: translateX(50%) translateY(50%) translateZ(-7em) rotateY(90deg);
+                width: 100px;
+                height: 300px;
+                transform: translate3d(-27px, -207px, -1032px) rotate3d(0, 1, 0, 90deg);
             }
 
             .rightBPanel {
-                left: 15.2em;
-                top: -2.4em;
-                width: 2.6em;
-                height: 15.9em;
-                transform: translateX(50%) translateY(50%) translateZ(-7em) rotateY(90deg);
+                width: 100px;
+                height: 300px;
+                transform: translate3d(196px, -207px, -1032px) rotate3d(0, -1, 0, 90deg);
             }
 
-            .back {
-                transform: translate3d(-43px, -214px, -1015px) rotate3d(0,0,0,90deg);
-                width: 370px;
-                height: 300px;
-            }
         }
 
     }

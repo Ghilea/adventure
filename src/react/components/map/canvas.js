@@ -6,7 +6,7 @@ import Enemy from './enemy';
 import RenderMap from './renderMap';
 import PlayerMovement from '../player/playerMovement';
 
-const Content = () => {
+const Canvas = () => {
 
     const [store, setStore] = useContext(StoreContext);
 
@@ -38,6 +38,16 @@ const Content = () => {
                         content: JSON.parse(items.adventure[0].content),
                         isContent: items.content
                     }));
+                    setStore(store => ({
+                        ...store,
+                        doors: {
+                            ...store.doors,
+                            left: JSON.parse(items.adventure[0].content).doors.left,
+                            right: JSON.parse(items.adventure[0].content).doors.right,
+                            front: JSON.parse(items.adventure[0].content).doors.front,
+                            back: JSON.parse(items.adventure[0].content).doors.back
+                        }
+                    }))
                 }else{
                     setContent(content => ({
                         ...content,
@@ -121,7 +131,7 @@ const Content = () => {
                 className = 'camera'
                 style = {
                     {
-                        transform: `rotateX(${store.mouse.x}deg) rotateY(${store.mouse.y}deg) translate3d(${store.movement.x}px, ${store.movement.y}px, ${store.movement.z}px)`
+                        transform: `rotateX(${store.mouse.x}deg) rotateY(${store.mouse.y}deg) rotateZ(${store.rotate.z}deg) translate3d(${store.movement.x}px, ${store.movement.y}px, ${store.movement.z}px)`
                     }
                 }
                 >
@@ -137,4 +147,4 @@ const Content = () => {
     )
 }
 
-export default Content;
+export default Canvas;
