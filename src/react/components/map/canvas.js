@@ -117,7 +117,11 @@ const Canvas = () => {
     return (
         <>
 
-        <PlayerMovement />
+        {
+            (!store.map.showCharacterSheet || store.enemy.enemyHp < 0 || store.map.walking === null) ?
+            <PlayerMovement /> 
+            : <></>
+        }
 
         {
             (store.map.walking !== null) ? <div className='overlay-black'></div> : <></>
@@ -131,7 +135,7 @@ const Canvas = () => {
                 className = 'camera'
                 style = {
                     {
-                        transform: `rotateX(${store.mouse.x}deg) rotateY(${store.mouse.y}deg) rotateZ(${store.rotate.z}deg) translate3d(${store.movement.x}px, ${store.movement.y}px, ${store.movement.z}px)`
+                        transform: `matrix3d(${store.mouse.m1}, 0, ${store.mouse.m2}, 0, ${store.mouse.m3}, ${store.mouse.m4}, ${store.mouse.m5}, 0, ${store.mouse.m6}, ${store.mouse.m7}, ${store.mouse.m8}, 0, 0, 0, 0, 1) rotateX(${store.mouse.x}deg) rotateY(${store.mouse.y}deg) rotateZ(${store.rotate.z}deg) translate3d(${store.movement.x}px, ${store.movement.y}px, ${store.movement.z}px)`
                     }
                 }
                 >

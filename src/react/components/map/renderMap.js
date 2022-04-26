@@ -53,7 +53,6 @@ const RenderMap = () => {
                 <>
                     <div className='texture leftBPanel'></div>
                     <div className='texture rightBPanel'></div> 
-                    <div className='texture wall_back'></div> 
                 </> : ''
             }
       

@@ -12,11 +12,19 @@ const StoreProvider = (props) => {
             z: 0
         },
         movement: {
-            x: -130,
+            x: -135.5,
             y: 30,
-            z: 427.84
+            z: 527.84
         },
         mouse: {
+            m1: 1,
+            m2: 0,
+            m3: 0,
+            m4: 1,
+            m5: 0,
+            m6: 0,
+            m7: 0,
+            m8: 1,
             x: 0,
             y: 0
         },

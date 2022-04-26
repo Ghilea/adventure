@@ -2,10 +2,11 @@ import React, {useState, useContext, useEffect} from 'react';
 import Interface from '../interface/interface';
 import Canvas from '../map/canvas';
 import {StoreContext, StoreProvider} from '../store'
-import Buttons from '../interface/buttons';
+import Buttons from '../player/playerMovementBtn';
 import Protagonist from './protagonist';
 import useSound from 'use-sound';
 import { Howler } from 'howler';
+import PlayerMovement from '../player/playerMovement';
 
 const Login = () => {
 
@@ -68,7 +69,6 @@ const Login = () => {
                 <>
                 <Interface />
                 <Canvas />
-                {(!store.map.showCharacterSheet) ? <Buttons /> : <></>}
                 </>
             
             :
