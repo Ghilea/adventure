@@ -6,6 +6,9 @@ import HealthBar from './healthBar';
 import ExpBar from './expBar';
 import ManaBar from './manaBar';
 import CharacterSheet from './overlays/charactersheet';
+import {
+    useKey
+} from 'rooks';
 
 const Interface = () => {
 
@@ -127,10 +130,12 @@ const Interface = () => {
         }
     }
 
+    useKey(['c'], handleKeyCharacterSheet);
+
     return (
         <>
             <div className='interface'>
-                <div className='img'> 
+                <div className='avatar'> 
                     <img src={set.img} /> 
                 </div>
                 <div className='heroName'>{set.heroName}</div>
@@ -144,13 +149,7 @@ const Interface = () => {
                 <ManaBar />
                        
                 <div className='coords'>X: {store.coords.x} Y: {store.coords.y}</div>
-                 
-                <button className='characterSheetBtn' type='button' 
-                onClick = {
-                    handleKeyCharacterSheet
-                } >
-                    C
-                </button>
+  
                 {
                     (store.map.showCharacterSheet) ? <CharacterSheet /> : <></>
                 }
@@ -158,6 +157,7 @@ const Interface = () => {
                     <img src='assets/images/gui/sword.png'/>
                 </div>
                 
+                <div className='chat'></div>
             </div>
         </>
     )

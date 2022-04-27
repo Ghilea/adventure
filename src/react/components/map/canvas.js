@@ -77,56 +77,34 @@ const Canvas = () => {
 
     }, [store.coords])
 
-    useEffect(() => {
-        console.log(store.mouse.x, store.mouse.y);
-    }, [store.mouse])
-
-    useEffect(()=>{
-        console.log(store.movement.z);
-    }, [store.movement])
-    /*
-    
-    {
-        (store.quest.showQuest) ?
-        <
-        div className = 'questContainer fadeOut' >
-            <
-            h1 > {
-                (content.content) ? quest.title : 'unknown'
-            } <
-            /h1>
-
-        {
-            <
-            div className = 'main_text' > {
-                    quest.describe
-                } <
-                /div>
-        } <
-        /div> :
-        <
-        > < />
-    } {
-        (content.content && content.enemyFound && content.enemyAllowed) ?
-
-        <
-        Enemy / >: < > < />
-    }
-    
-    */
     return (
         <>
-
+    
+        <PlayerMovement /> 
+  
         {
-            (!store.map.showCharacterSheet || store.enemy.enemyHp < 0 || store.map.walking === null) ?
-            <PlayerMovement /> 
-            : <></>
-        }
-
-        {
-            (store.map.walking !== null) ? <div className='overlay-black'></div> : <></>
+            (store.map.walking) ? <div className='overlay-black'></div> : <></>
         }
         
+        {
+            (store.quest.showQuest) ?
+                <div className = 'questContainer fadeOut' >
+                    <h1 > 
+                        {
+                            (content.content) ? quest.title : 'unknown'
+                        } 
+                    </h1>
+
+                    {
+                        <div className = 'main_text' > 
+                            {
+                                quest.describe
+                            } 
+                        </div>
+                    } 
+                </div> : <></>
+        } 
+  
         <div className='container_3d'>
                         
             <div className='viewport'>
@@ -141,6 +119,12 @@ const Canvas = () => {
                 >
                     
                     <RenderMap />
+
+                    {
+                        (content.content && content.enemyFound && content.enemyAllowed && store.enemy.enemyHp > 0) ?
+
+                        <Enemy /> : <> </>
+                    }
                     
                 </div>
 

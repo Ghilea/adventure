@@ -37,39 +37,71 @@
             }
         }
 
-        #up {
+        #w {
+            position: relative;
             grid-area: Up;
             background-image: url('../../public/assets/images/svg/arrow.svg');
             background-position: center;
             background-repeat: no-repeat;
             background-size: contain;
             transform: rotate(-90deg);
+
+            &::before {
+                content: 'w';
+                position: absolute;
+                left: 3px;
+                top: 3px;
+                transform: rotate(90deg);
+            }
         }
 
-        #left {
+        #a {
             grid-area: Left;
             background-image: url('../../public/assets/images/svg/arrow.svg');
             background-position: center;
             background-repeat: no-repeat;
             background-size: contain;
             transform: rotate(180deg);
+
+            &::before {
+                content: 'a';
+                position: absolute;
+                left: 3px;
+                top: 3px;
+                transform: rotate(-180deg);
+            }
         }
 
-        #down {
+        #s {
             grid-area: Down;
             background-image: url('../../public/assets/images/svg/arrow.svg');
             background-position: center;
             background-repeat: no-repeat;
             background-size: contain;
             transform: rotate(90deg);
+
+            &::before {
+                content: 's';
+                position: absolute;
+                left: 3px;
+                top: 3px;
+                transform: rotate(-90deg);
+            }
         }
 
-        #right {
+        #d {
             grid-area: Right;
             background-image: url('../../public/assets/images/svg/arrow.svg');
             background-position: center;
             background-repeat: no-repeat;
             background-size: contain;
+
+            &::before {
+                content: 'd';
+                position: absolute;
+                left: 3px;
+                bottom: 3px;
+            }
         }
     }
     

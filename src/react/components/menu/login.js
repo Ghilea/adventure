@@ -2,11 +2,9 @@ import React, {useState, useContext, useEffect} from 'react';
 import Interface from '../interface/interface';
 import Canvas from '../map/canvas';
 import {StoreContext, StoreProvider} from '../store'
-import Buttons from '../player/playerMovementBtn';
 import Protagonist from './protagonist';
 import useSound from 'use-sound';
 import { Howler } from 'howler';
-import PlayerMovement from '../player/playerMovement';
 
 const Login = () => {
 
@@ -45,6 +43,12 @@ const Login = () => {
         }
     },[store.menu.login])
 
+    /**
+     * <button type='button' className = 'music'
+            onClick = {audioPlay} >
+            <img src = 'assets/images/gui/button_10_s06.png' />
+        </button>
+     */
     return (
 
         <>
@@ -61,25 +65,22 @@ const Login = () => {
         {
             (start) ? 
             
-            (!store.menu.login) ?
-                <>
-                <Protagonist />
-                </>
-            :
-                <>
-                <Interface />
-                <Canvas />
-                </>
+                (!store.menu.login) ?
+                    <>
+                    <Protagonist />
+                    </>
+                :
+                    <>
+                    <Interface />
+                    <Canvas />
+                    </>
             
             :
 
             ''
         }
     
-        <button type='button' className = 'music'
-            onClick = {audioPlay} >
-            <img src = 'assets/images/gui/button_10_s06.png' />
-        </button>
+        
         </>
         
     )

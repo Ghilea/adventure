@@ -1,3 +1,13 @@
+.enemyAvatar {
+    position: absolute;
+    transform: translate3d(36px, -177px, -347px);
+    width: 223px;
+
+    img {
+        width: 100%;
+    }
+}
+
 .enemyContainer{
         display:flex;
         z-index: 1;
@@ -57,18 +67,7 @@
 
         }
 
-        .enemyAvatar {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -15%);
-            width: 100%;
-            max-width: 33em;
-
-            img {
-                width: 100%;
-            }
-        }
+        
 
         .enemyName {
             position: absolute;

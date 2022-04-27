@@ -189,29 +189,32 @@ const getEnemy = () => {
     }
 
     return (
-        <div className={`enemyContainer ${(store.enemy.enemyHp <= 0) ? 'hide' : ''}`}>
+        <>
+            <img className = {
+                `enemyAvatar ${(store.enemy.enemyAttack) ? 'enemyAttackAnimation' : ''}`
+            }
+            src = {
+                set.img
+            }
+            />
 
             <div className='textBox'>{combatText.text}</div>
-           
-                <img className={`enemyAvatar ${(store.enemy.enemyAttack) ? 'enemyAttackAnimation' : ''}`} src={set.img} />
-             
-                <p className='enemyName'>{set.enemyName}</p>
-                <p className='enemyHp'>HP: {store.enemy.enemyHp}</p>
                 
+            <p className='enemyName'>{set.enemyName}</p>
+            <p className='enemyHp'>HP: {store.enemy.enemyHp}</p>
+                    
 
-                <div className = {
-                    `enemyBtn ${(set.playerCanAttack) ? '' : 'hide'}`
-                }>
-                    <button onClick = {
-                        attack
-                    } > Anfall </button>
-                    <button onClick = {
-                        run
-                    } > Fly </button>
-                </div>
-      
-        </div>
-        
+            <div className = {
+                `enemyBtn ${(set.playerCanAttack) ? '' : 'hide'}`
+            }>
+                <button onClick = {
+                    attack
+                } > Anfall </button>
+                <button onClick = {
+                    run
+                } > Fly </button>
+            </div>
+        </>
     )
 }
 

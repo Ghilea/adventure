@@ -30,10 +30,12 @@
         "webpack-cli": "^4.9.2",
         "cors": "2.8.5",
         "dotenv": "^16.0.0",
-        "body-parser": "1.20.0"
+        "body-parser": "1.20.0",
+        "rooks": "5.11.0",
+        "ws": "^8.5.0"
     },
     "scripts": {
-        "start": "nodemon src/server/nodeServer.js",
+        "start": "nodemon src/server/nodeServer.mjs",
         "watch": "nodemon --exec \"npm run build\"",
         "build:sass": "sass --no-source-map %npm_package_config_address%sass:%npm_package_config_output%/css",
         "copy:assets": "copyfiles -u 1 %npm_package_config_address%assets/**/* %npm_package_config_output%",
@@ -46,7 +48,7 @@
         "watch": [
             "./src/*"
         ],
-        "ext": "js,scss,html,jsx",
+        "ext": "js,mjs,cjs,scss,html,jsx",
         "ignore": [
             "public/*"
         ],

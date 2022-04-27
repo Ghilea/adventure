@@ -33,7 +33,7 @@ const StoreProvider = (props) => {
             y: 0
         },
         map: {
-            walking: null,
+            walking: false,
             showCharacterSheet: false
         },
         enemy: {
@@ -43,8 +43,8 @@ const StoreProvider = (props) => {
             enemyAttack: false
         },
         player: {
-            playerId: 0,
-            playerHp: 0,
+            playerId: 1,
+            playerHp: 1,
             playerMaxHp: 0,
             playerDps: 0,
             playerExp: 0,

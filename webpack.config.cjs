@@ -1,5 +1,5 @@
 const path = require('path');
-let address = './src/react/default.js';
+let address = './src/react/react.js';
 let output = './public/js';
 
 module.exports = {

@@ -1,9 +1,8 @@
 import React from 'react';
-import {StoreProvider} from './store'
+import { StoreProvider } from './store'
 import Login from './menu/login';
-import Canvas from './map/canvas';
 
-const App = () => {
+const Default = () => {
 
     return (
 
@@ -13,4 +12,4 @@ const App = () => {
     )
 }
 
-export default App;
+export default Default;

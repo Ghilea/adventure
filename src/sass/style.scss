@@ -1,14 +1,16 @@
 //menu
 @use './components/menu/loadingScreen';
 @use './components/menu/menu';
+//interface
+@use './components/interface/interface';
+@use './components/interface/chat';
+@use './components/interface/overlays/characterSheet';
 //map
-@use './components/map/interface';
 @use './components/map/map';
 @use './components/map/enemy';
 @use './components/map/quest';
-@use './components/map/playerMovement';
-//overlays
-@use './components/overlays/characterSheet';
+//player
+@use './components/player/playerMovement';
 //bars
 @use './components/bars/healthBar';
 @use './components/bars/expBar';
