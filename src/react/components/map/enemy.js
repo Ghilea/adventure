@@ -13,6 +13,11 @@ const getEnemy = () => {
 
     const [store, setStore] = useContext(StoreContext);
 
+    const [health, setHealth] = useState({
+        hit: 0 + '%',
+        bar: 100 + '%'
+    });
+
     const [set, setState] = useState({
         enemyName: null,
         experience: 0,
@@ -20,15 +25,11 @@ const getEnemy = () => {
         strength: 0,
         intellect: 0,
         dexterity: 0,
-        playerCanAttack: true,
-        playerRun: false
     });
 
     const [combatText, setCombatText] = useState({
         text: null
     });
-
-    const [anim, setAnim] = useState(true);
 
     //get and set enemy
     useEffect(() => {
@@ -39,6 +40,11 @@ const getEnemy = () => {
             .then(items => {
                 
                 if (items.enemy.length > 0) {
+                    setHealth(health => ({
+                        ...health,
+                        bar: (items.enemy[0].health / items.enemy[0].maxHealth) * 100 + '%'
+                    }))
+
                     setState(set => ({
                         ...set,
                         enemyName: items.enemy[0].name,
@@ -66,7 +72,14 @@ const getEnemy = () => {
 
     //update if enemy get hits
     useEffect(() => {
-        if (!set.playerRun && store.enemy.enemyHp <= 0) {
+        if (store.enemy.enemyAttack) {
+            setHealth(health => ({
+                ...health,
+                hit: (store.player.playerDps / store.enemy.enemyHp) * 100 + '%'
+            }))
+        }
+
+        if (store.enemy.enemyHp <= 0) {
             setStore(store => ({
                 ...store,
                 player: {
@@ -74,13 +87,26 @@ const getEnemy = () => {
                     playerExp: store.player.playerExp += set.experience
                 }
             }))
-        }else if(set.playerRun){
-            setState(set => ({
-                ...set,
-                playerRun: false
+        }
+
+        setTimeout(function () {
+            setHealth(health => ({
+                ...health,
+                hit: 0 + '%',
+                bar: ((store.enemy.enemyHp - store.player.playerDps) / store.enemy.enemyMaxHp) * 100 + '%'
+            }))
+        }, 500);
+    }, [store.enemy.enemyHp])
+
+    useEffect(() => {
+        if (store.player.playerMaxHp > 0) {
+
+            setHealth(health => ({
+                ...health,
+                bar: (store.enemy.enemyHp / store.enemy.enemyMaxHp) * 100 + '%'
             }))
         }
-    }, [store.enemy.enemyHp])
+    }, [store.enemy.enemyMaxHp])
 
     //update animation on enemy attacking
     useEffect(() => {
@@ -98,11 +124,7 @@ const getEnemy = () => {
     //player attack
     const attack = () => {
         
-        setState(set => ({
-            ...set,
-            playerCanAttack: false
-        }))
-
+        
         setStore(store => ({
             ...store,
             player: {
@@ -137,23 +159,6 @@ const getEnemy = () => {
         
     }
 
-    //player run
-    const run = () => {
-        setState(set => ({
-            ...set,
-            playerRun: true
-        }))
-
-        setStore(store => ({
-            ...store,
-            enemy: {
-                ...store.enemy,
-                enemyAttack: false,
-                enemyHp: 0
-            }
-        }))
-    }
-
     //enemy attack
     const enemyAttack = () => {
         const enemyText = createElement(
@@ -182,10 +187,6 @@ const getEnemy = () => {
             }
         }))
 
-        setState(set => ({
-            ...set,
-            playerCanAttack: true
-        }))
     }
 
     return (
@@ -198,22 +199,32 @@ const getEnemy = () => {
             }
             />
 
-            <div className='textBox'>{combatText.text}</div>
-                
+            <div className='textBox'>{store.combat.text}</div>
+ 
+            <div className = 'enemyHealth-bar' data-value = {store.enemy.enemyHp}>
+            
+            <div className = 'enemyBar'
+            style = {
+                {
+                    width: health.bar
+                }
+            }>
+                <div className='enemyHit' 
+                style = {
+                    {
+                        width: health.hit
+                    }
+                }>
+
+                    </div>
+                </div>
+
+                <div className = 'enemyHealth'> {store.enemy.enemyHp} / {store.enemy.enemyMaxHp}</div>
+            </div>
+
             <p className='enemyName'>{set.enemyName}</p>
             <p className='enemyHp'>HP: {store.enemy.enemyHp}</p>
-                    
 
-            <div className = {
-                `enemyBtn ${(set.playerCanAttack) ? '' : 'hide'}`
-            }>
-                <button onClick = {
-                    attack
-                } > Anfall </button>
-                <button onClick = {
-                    run
-                } > Fly </button>
-            </div>
         </>
     )
 }

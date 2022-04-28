@@ -36,6 +36,9 @@ const StoreProvider = (props) => {
             walking: false,
             showCharacterSheet: false
         },
+        combat: {
+            text: null
+        },
         enemy: {
             enemyHp: 0,
             enemyMaxHp: 0,
@@ -53,7 +56,9 @@ const StoreProvider = (props) => {
             str: 0,
             int: 0,
             dex: 0,
-            playerAttack: false
+            playerAttack: false,
+            playerCanAttack: true,
+            playerBlock: false
         },
         menu: {
             showCreate: false,

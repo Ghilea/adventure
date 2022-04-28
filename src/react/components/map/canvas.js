@@ -1,10 +1,8 @@
 import React, {useEffect, useState, useContext} from 'react';
 import Read from '../crud/read';
 import {StoreContext} from '../store';
-import CameraMovement from '../player/cameraMovement';
 import Enemy from './enemy';
 import RenderMap from './renderMap';
-import PlayerMovement from '../player/playerMovement';
 
 const Canvas = () => {
 
@@ -79,8 +77,6 @@ const Canvas = () => {
 
     return (
         <>
-    
-        <PlayerMovement /> 
   
         {
             (store.map.walking) ? <div className='overlay-black'></div> : <></>
@@ -121,8 +117,8 @@ const Canvas = () => {
                     <RenderMap />
 
                     {
-                        (content.content && content.enemyFound && content.enemyAllowed && store.enemy.enemyHp > 0) ?
-
+                        (content.isContent && content.enemyFound && content.enemyAllowed) ?
+                        
                         <Enemy /> : <> </>
                     }
                     

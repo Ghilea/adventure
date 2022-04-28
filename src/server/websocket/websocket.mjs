@@ -6,27 +6,32 @@ const Socket = (server) => {
         noServer: true,
         path: '/websockets'
     });
+    const clients = new Map();
 
     server.on('upgrade', (request, socket, head) => {
         wss.handleUpgrade(request, socket, head, (WebSocketServer) => {
             wss.emit('connection', WebSocketServer, request);
             console.log('New client connection');
+            clients.set(WebSocketServer);
         })
     })
 
     wss.on('connection', (websocketConnection, connectionRequest) => {
-        const [_path, params] = connectionRequest?.url?.split('?');
-        
-        const connectionParams = new URLSearchParams(params);
+        //const [_path, params] = connectionRequest?.url?.split('?');
+        //const connectionParams = new URLSearchParams(params);
+        //console.log(connectionParams);
 
-        console.log(connectionParams);
-
-        websocketConnection.on('message', (message) => {
+        websocketConnection.on('message', message => {
+            
             const parsedMessage = JSON.parse(message);
             console.log(parsedMessage);
-            websocketConnection.send(JSON.stringify({
-                message: parsedMessage
-            }))
+            
+            [...clients.keys()].forEach((client) => {
+                client.send(JSON.stringify({
+                    message: parsedMessage
+                }))
+            })
+            
         })
     })
 

@@ -94,6 +94,36 @@
 
     }
 
+    .playerShield {
+        width: 732px;
+        position: absolute;
+        bottom: -89%;
+        left: -20%;
+        transform: translate(50%, 0) rotate(8deg);
+        z-index: 2;
+        animation: shieldAnimation 4s ease-in-out infinite;
+        
+        img {
+            width: 100%;
+        }
+
+        @keyframes shieldAnimation {
+            0% {
+                transform: translate(50%, 0) rotate(8deg);
+            }
+
+            50% {
+                transform: translate(50%, 0) rotate(7deg);
+            }
+
+            100% {
+                transform: translate(50%, 0) rotate(8deg);
+            }
+
+        }
+        
+    }
+
     .playerWeapon {
         width: 732px;
         position: absolute;
@@ -146,4 +176,34 @@
         }
 
     }
+
+    .enemyBtn {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            left: 50%;
+            bottom: 8%;
+            gap: 1em;
+            transform: translate(-50%, -50%);
+            font-size: 1.4rem;
+            text-shadow: 0 0 0.1em #000;
+
+            button {
+                max-width: 10em;
+                width: 100%;
+                background-color: rgb(56, 46, 46);
+                border: 0.3em solid #ffffff;
+                border-radius: 0.5em;
+                padding: 1em;
+                color: #fff;
+                letter-spacing: 0.1rem;
+                box-shadow: 0 0 1em 0.5em #0000005e;
+            
+                &:hover {
+                    background-color: rgb(46, 43, 43);
+                    cursor: pointer;
+                } 
+
+            }
+        }
 }
