@@ -43,7 +43,9 @@ const StoreProvider = (props) => {
             enemyHp: 0,
             enemyMaxHp: 0,
             enemyDps: 0,
-            enemyAttack: false
+            enemyAttack: false,
+            enemyExp: 0,
+            dead: true
         },
         player: {
             playerId: 1,

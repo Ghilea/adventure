@@ -184,7 +184,8 @@ const Interface = () => {
 
     const handleMouseClick = (event) => {
         event.preventDefault();
-        if (event.type === 'click' && store.enemy.enemyHp > 0) {
+
+        if (event.type === 'click' && store.enemy.enemyHp > 0 && store.player.playerCanAttack) {
             console.log('left');
             
             const playerText = createElement(
@@ -209,11 +210,12 @@ const Interface = () => {
                 enemy: {
                     ...store.enemy,
                     enemyAttack: false,
-                    enemyHp: store.enemy.enemyHp -= store.player.playerDps
+                    enemyHp: (store.enemy.enemyHp -= store.player.playerDps)
                 }
             }))
 
             setTimeout(() => {
+                console.log('reset');
                 setStore(store => ({
                     ...store,
                     player: {
@@ -228,10 +230,24 @@ const Interface = () => {
                 }))
             }, 1500)
 
-
-        } else if (event.type === 'contextmenu') {
-            console.log('right');
+        } else if (event.type === 'mousedown' && event.button === 2) {
+            setStore((store)=>({
+                ...store,
+                player: {
+                    ...store.player,
+                    playerBlock: true
+                }
+            }))
+        }else if (event.type === 'contextmenu') {
+            setStore((store) => ({
+                ...store,
+                player: {
+                    ...store.player,
+                    playerBlock: false
+                }
+            }))
         }
+
     }
 
     useKey(['c'], handleKeyCharacterSheet);
@@ -243,7 +259,10 @@ const Interface = () => {
             onClick = {
                 handleMouseClick
             }
-            onContextMenu = {handleMouseClick}>
+            onContextMenu = {handleMouseClick}
+            onMouseDown = {
+                handleMouseClick
+            } >
                 <div className='avatar'> 
                     <img src={set.img} /> 
                 </div>
@@ -264,7 +283,7 @@ const Interface = () => {
                     (store.map.showCharacterSheet) ? <CharacterSheet /> : <></>
                 }
 
-                <div key={'playerShield'} className={`playerShield ${(store.player.block) ? 'block' : ''}`}>
+                <div key={'playerShield'} className={`playerShield ${(store.player.playerBlock) ? 'block' : ''}`}>
                     <img src='assets/images/gui/shield.png'/>
                 </div>
 

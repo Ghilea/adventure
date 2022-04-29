@@ -6,6 +6,7 @@
     bottom: 0;
     z-index: 1;
     box-shadow: inset 0 0 30em 2em #000;
+    user-select: none;
 
     .avatar {
         max-width: 6em;
@@ -97,9 +98,9 @@
     .playerShield {
         width: 732px;
         position: absolute;
-        bottom: -89%;
-        left: -20%;
-        transform: translate(50%, 0) rotate(8deg);
+        bottom: -45em;
+        left: 35%;
+        transform: translate(-50%, 0) rotate(8deg);
         z-index: 2;
         animation: shieldAnimation 4s ease-in-out infinite;
         
@@ -109,15 +110,15 @@
 
         @keyframes shieldAnimation {
             0% {
-                transform: translate(50%, 0) rotate(8deg);
+                transform: translate(-50%, 0) rotate(8deg);
             }
 
             50% {
-                transform: translate(50%, 0) rotate(7deg);
+                transform: translate(-50%, 0) rotate(7deg);
             }
 
             100% {
-                transform: translate(50%, 0) rotate(8deg);
+                transform: translate(-50%, 0) rotate(8deg);
             }
 
         }
@@ -127,7 +128,7 @@
     .playerWeapon {
         width: 732px;
         position: absolute;
-        bottom: -4%;
+        bottom: -2em;
         left: 84%;
         transform: translate(-50%, 0) rotate(-88deg);
         z-index: 2;
@@ -156,25 +157,37 @@
 
     .swing {
         animation: swing 0.5s ease-in-out;
+
+        @keyframes swing {
+            0%{
+                transform: translate(-50%, 0) rotate(-88deg);
+            }
+
+            25%{
+                transform: translate(-50%, 0) rotate(-51deg);
+            }
+
+            50% {
+                transform: translate(-50%, 0) rotate(-103deg);
+            }
+
+            100% {
+                transform: translate(-50%, 0) rotate(-88deg);
+            }
+        }
     }
 
-    @keyframes swing {
-        0%{
-            transform: translate(-50%, 0) rotate(-88deg);
-        }
+    .block {
+        animation: block 0.5s ease-in-out forwards;
 
-        25%{
-            transform: translate(-50%, 0) rotate(-51deg);
-        }
+        @keyframes block {
+            to{
+                bottom: -36em;
+                left: 50%;
+                transform: translate(-50%, 0) rotate(0);
+            }
 
-        50% {
-            transform: translate(-50%, 0) rotate(-103deg);
         }
-
-        100% {
-            transform: translate(-50%, 0) rotate(-88deg);
-        }
-
     }
 
     .enemyBtn {

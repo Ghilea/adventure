@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useContext} from 'react';
 import Read from '../crud/read';
 import {StoreContext} from '../store';
-import Enemy from './enemy';
+import Enemy from '../enemy/enemy';
 import RenderMap from './renderMap';
 
 const Canvas = () => {

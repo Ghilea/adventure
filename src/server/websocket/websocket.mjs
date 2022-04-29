@@ -2,7 +2,6 @@ import {WebSocketServer} from 'ws'
 
 const Socket = (server) => {
     const wss = new WebSocketServer({
-        //port: 1234,
         noServer: true,
         path: '/websockets'
     });
