@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
-import Interface from '../interface/interface';
+import Interface from '../interface/Interface';
 import Canvas from '../map/canvas';
 import {StoreContext, StoreProvider} from '../store'
 import Protagonist from './protagonist';

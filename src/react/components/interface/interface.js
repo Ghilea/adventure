@@ -8,12 +8,9 @@ import React, {
 import {
     StoreContext
 } from '../store';
-import Read from '../crud/read';
-import Update from '../crud/update';
-import HealthBar from './healthBar';
-import ExpBar from './expBar';
-import ManaBar from './manaBar';
-import CharacterSheet from './overlays/charactersheet';
+import { Read, Update } from '../crud';
+import { Health, Mana, Exp } from './Bar';
+import { CharacterSheet } from './Charactersheet';
 import PlayerMovement from '../player/playerMovement';
 import {
     useKey
@@ -272,9 +269,9 @@ const Interface = () => {
                         store.player.playerLevel
                     }
                 </div>
-                <HealthBar />
-                <ExpBar />
-                <ManaBar />
+                <Health />
+                <Exp />
+                <Mana />
                 <PlayerMovement />
                        
                 <div className='coords'>X: {store.coords.x} Y: {store.coords.y}</div>

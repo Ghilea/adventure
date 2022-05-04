@@ -1,9 +1,8 @@
-import React, {useState, useContext, useEffect} from 'react';
-import {StoreContext} from '../../store'
-import Points from '../points';
-import Read from '../../crud/read';
+import React, {useContext} from 'react';
+import { StoreContext } from '../store'
+import { Points } from './Points';
 
-const CharacterSheet = () => {
+export const CharacterSheet = () => {
 
     const [store, setStore] = useContext(StoreContext);
     
@@ -24,5 +23,3 @@ const CharacterSheet = () => {
      
     )
 }
-
-export default CharacterSheet;

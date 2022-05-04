@@ -1,11 +1,7 @@
-import React, {
-    useEffect,
-    useState,
-    useContext
-} from 'react';
-import Create from '../crud/create';
+import React, { useEffect, useState, useContext } from 'react';
+import { Create } from '../Crud';
 import { StoreContext } from '../store';
-import Points from '../interface/points';
+import { Points } from '../interface/Points';
 
 const Protagonist = () => {
 

@@ -1,8 +1,9 @@
 import React, {useEffect, useState, useContext} from 'react';
-import Read from '../crud/read';
-import {StoreContext} from '../store';
+import { Read } from '../Crud';
+import { StoreContext } from '../store';
 import Enemy from '../enemy/enemy';
 import RenderMap from './renderMap';
+import CanvasRenderMap from './canvas_renderMap';
 
 const Canvas = () => {
 
@@ -75,10 +76,9 @@ const Canvas = () => {
 
     }, [store.coords])
 
-    return (
-        <>
-  
-        {
+    /**
+     * 
+      {
             (store.map.walking) ? <div className='overlay-black'></div> : <></>
         }
         
@@ -100,7 +100,9 @@ const Canvas = () => {
                     } 
                 </div> : <></>
         } 
-  
+
+       
+
         <div className='container_3d'>
                         
             <div className='viewport'>
@@ -126,6 +128,12 @@ const Canvas = () => {
 
             </div>
         </div>
+     * 
+     */
+    return (
+        <>
+  
+         <CanvasRenderMap />
 
         </>
     )

@@ -1,15 +1,14 @@
 import React from 'react';
 import { StoreProvider } from './store'
 import Login from './menu/login';
+import Canvas from './map/canvas';
 
-const Default = () => {
+export default function Default (){
 
     return (
 
         <StoreProvider>
-            <Login />
+            <Canvas />
         </StoreProvider>
     )
 }
-
-export default Default;

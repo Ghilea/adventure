@@ -1,5 +1,4 @@
 import React, {useEffect, useState, useContext} from 'react';
-import Read from '../crud/read';
 import {StoreContext} from '../store';
 
 const RenderMap = () => {

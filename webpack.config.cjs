@@ -1,5 +1,5 @@
 const path = require('path');
-let address = './src/react/react.js';
+let address = './src/react/index.js';
 let output = './public/js';
 
 module.exports = {
@@ -10,18 +10,27 @@ module.exports = {
         filename: 'bundle.js'
     },
     module: {
-        rules: [{
-            test: /\.js|jsx/,
-            exclude: /(node_modules)/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    "presets": [
-                        "@babel/preset-env",
-                        "@babel/preset-react"
-                    ]
+        rules: [
+            {
+                test: /\.js|jsx/,
+                exclude: /(node_modules)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        "presets": [
+                            "@babel/preset-env",
+                            "@babel/preset-react"
+                        ],
+                        "plugins": ["@babel/plugin-transform-runtime"]
+                    }
                 }
+
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                type: 'asset/resource',
+                exclude: /node_modules/
             }
-        }]
+        ]
     }
 }

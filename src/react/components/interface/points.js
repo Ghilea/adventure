@@ -1,11 +1,7 @@
-import React, {
-    useEffect,
-    useState,
-    useContext
-} from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { StoreContext } from '../store';
 
-const Points = () => {
+export const Points = () => {
 
     const [store, setStore] = useContext(StoreContext);
 
@@ -144,5 +140,3 @@ const Points = () => {
         </>
     )
 }
-
-export default Points;

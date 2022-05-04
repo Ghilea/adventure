@@ -12,9 +12,11 @@ const StoreProvider = (props) => {
             z: 0
         },
         movement: {
-            x: -135.5,
-            y: 30,
-            z: 527.84
+            moveForward: false,
+            moveBackward: false,
+            moveLeft: false,
+            moveRight: false,
+            Jump: false
         },
         mouse: {
             m1: 1,
@@ -33,6 +35,7 @@ const StoreProvider = (props) => {
             y: 0
         },
         map: {
+            level: 1,
             walking: false,
             showCharacterSheet: false
         },

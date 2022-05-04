@@ -7,7 +7,7 @@ import React, {
 import {
     StoreContext
 } from '../store';
-import Read from '../crud/read';
+import { Read } from '../crud';
 import EnemyHealthBar from './enemyHealthBar';
 
 const getEnemy = () => {

@@ -9,21 +9,16 @@ import websockets from './websocket/websocket.mjs';
 dotenv.config();
 
 //api
-import {
-    getQuest
-} from './api/quest.mjs';
+import { getQuest } from './api/quest.mjs';
 import {
     getProtagonist,
     getAllProtagonist,
     createProtagonist,
     updateStatsProtagonist
 } from './api/protagonist.mjs';
-import {
-    getAdventure
-} from './api/adventure.mjs';
-import {
-    getEnemy
-} from './api/enemy.mjs';
+import { getAdventure } from './api/adventure.mjs';
+import { getEnemy } from './api/enemy.mjs';
+import { getLevel } from './api/level.mjs'
 
 const app = express();
 
@@ -50,6 +45,10 @@ const con = mySQL.createConnection({
 //GET
 app.get('/getAdventure', (req, res) => {
     getAdventure(con, res, req.query.x, req.query.y);
+});
+
+app.get('/getLevel', (req, res) => {
+    getLevel(con, res, req.query.id);
 });
 
 app.get('/getQuest', (req, res) => {
