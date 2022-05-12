@@ -1,0 +1,254 @@
+.protagonistContainer {
+    background-color: #382e2e;
+    background-image: url('../../public/assets/bg/village.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    @keyframes fadeIn {
+        0% {
+            opacity:0;
+        }
+        100% {
+            opacity:1;
+        }
+    }
+
+    .fadeIn {
+        animation: fadeIn 3s ease-in forwards;
+    }
+
+    .celticImg {
+        width: 15em;
+        position: fixed;
+        z-index: -1;
+        transform: translate(0, -21em);
+    }
+
+    h1 {
+        position: fixed;
+        transform: translate(0, -4.6em);
+        margin: 0;
+        text-shadow: 0 0 0.1em rgb(0 0 0);
+        font-size: 4.3rem;
+    }
+
+    .box {
+        display: flex;
+        gap: 2em;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+        transform: translate(0, 3em);
+
+
+        .list {
+            background-color: #382e2e;
+            min-width: 25em;
+            width: 100%;
+            height: 33em;
+            border: 0.3em solid #ffffff;
+            border-radius: 0.5em;
+            box-shadow: 0 0 1em 0.5em #00000063;
+            overflow-y: auto;
+            overflow-x: hidden;
+            margin: 3em 0 0 0;
+
+            .createWindow {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                position: relative;
+                overflow: hidden;
+
+                label {
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    color: #fff;
+                    margin: 1em 0 0.5em -8.5em;
+                }
+
+                .goBack_characterWindow {
+                    position: absolute;
+                    width: 3em;
+                    height: 3em;
+                    border-radius: 50%;
+                    left: 0;
+                    top: 0;
+                    display:flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    &::before{
+                        content: '<';
+                        font-weight: 600;
+                        font-size: 1.2rem;
+                    }
+                }
+
+                input {
+                    width: 15em;
+                    padding: 0.5em;
+                }
+
+                .avatars {
+                    display:flex;
+                    gap: 1em;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    margin: 2em;
+
+                    .button {
+                        position: relative;
+                        width: 6em;
+                        height: 6em;
+                        overflow: hidden;
+                        background-color: #545e63;
+                        border: 0.2em solid #bdc8cf;
+
+                        &:hover {
+                            cursor: pointer;
+                            background-color:#bdc8cf; 
+                            border: 0.2em solid #545e63;
+                        }
+
+                    }
+
+                    img {
+                        position: absolute;
+                        left: -3.5em;
+                        top: -0.5em;
+                        width: 13em;
+                    }
+                }
+
+                .stats{
+                    display: flex;
+                    flex-direction: column;
+                    width: 15em;
+                    align-items: center;
+                    
+                    .showPoints {
+                        color: #fff;
+                        position: absolute;
+                    }
+
+                    .str, .int, .dex {
+                        color: #fff;
+                        padding: 0.2em 0.5em;
+                    }
+
+                    .btnSection {
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .gainBtn {
+                        width: 2em;
+                        height: 2em;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        &:hover {
+                            cursor: pointer;
+                            background-color: rgba(154, 154, 154, 0.486);
+                        }
+                    }
+
+                }
+            }
+
+            .character{
+                background-color: #382e2e;
+                height: 6em;
+                color: #fff;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                border: 0.3em solid #ffffff;
+                border-radius: 0.3em;
+                position: relative;
+                overflow: hidden;
+                margin: 0.3em;
+
+                .levelTitle {
+                    font-size: 0.85rem;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    border: 0.3em solid #acbac3;
+                    background-color: #bcc7ce;
+                }
+
+                h2 {
+                    margin-left: 0.5em;
+                }
+
+                p {
+                    margin-left: 0.5em;
+                }
+
+                img {
+                    width: 25em;
+                    position: absolute;
+                    right: -6em;
+                    top: -1.8em;
+                }
+            }
+        }
+    }
+
+    button {
+        max-width: 10em;
+        width: 100%;
+        background-color: rgb(56 46 46);
+        border: 0.3em solid #ffffff;
+        border-radius: 0.5em;
+        padding: 1em;
+        color: #fff;
+        letter-spacing: 0.1rem;
+        margin: 1em;
+    
+        &:hover {
+            background-color: rgb(46, 43, 43);
+            cursor: pointer;
+        } 
+    }
+
+    .createHero{
+        max-width: 10em;
+        width: 100%;
+        background-color: rgb(56, 46, 46);
+        border: 0.3em solid #ffffff;
+        border-radius: 0.5em;
+        padding: 1em;
+        color: #fff;
+        letter-spacing: 0.1rem;
+        position: fixed;
+        transform: translate(0, 28em);
+    
+        &:hover {
+            background-color: rgb(46, 43, 43);
+            cursor: pointer;
+        } 
+    
+    }
+    
+}
+
+.chooseAvatar {
+    box-shadow: 0 0 2em #000;
+}
