@@ -1,6 +1,6 @@
 import React from 'react';
 import { usePlane } from '@react-three/cannon';
-import { useLoader } from 'react-three-fiber';
+import { useLoader } from '@react-three/fiber';
 import { TextureLoader, RepeatWrapping } from 'three';
 import wallTexture from '../../../assets/images/texture/wall.jpg';
 

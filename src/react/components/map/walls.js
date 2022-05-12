@@ -1,7 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { useBox } from '@react-three/cannon';
 import * as texture from './buildLevel/textures';
-import { Color } from 'react-three-fiber'
 
 export const Walls = ({rotation, position, type, ...props}) => {
     const [hover, setHover] = useState(null);
@@ -13,13 +12,18 @@ export const Walls = ({rotation, position, type, ...props}) => {
         ...props
     }))
 
+    /*useEffect(() => {
+        
+    }, [hover])
+*/
     return (
         <mesh ref = {ref} castShadow 
-            onPointerMove={(event) => {
+            onPointerOver={(event) => {
                 event.stopPropagation();
                 setHover(Math.floor(event.faceIndex / 2));
             }}>
-            {[...Array(6)].map((_, index) => ( 
+            {[...Array(6)].map((_, index) => (
+                
             <meshStandardMaterial attachArray = 'material'
                 map = {
                     (type == 'stone') ? texture.stone() : console.log('inget')

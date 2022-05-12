@@ -4,7 +4,7 @@ import React, {
     useContext, 
     useRef
 } from 'react';
-import { Canvas } from 'react-three-fiber';
+import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import Level from './level';
 import { Player } from '../player/Player';

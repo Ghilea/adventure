@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useLoader } from 'react-three-fiber';
+import { useLoader } from '@react-three/fiber';
 import { TextureLoader, RepeatWrapping} from 'three';
 
 import stoneImg from '../../../../assets/images/texture/wall.jpg';
