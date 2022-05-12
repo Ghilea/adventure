@@ -1,7 +1,5 @@
 import { useState, useEffect} from "react"
-import {
-    useKey
-} from 'rooks';
+import { useKey } from 'rooks';
 
 function actionByKey(key) {
     const keys = { 

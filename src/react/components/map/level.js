@@ -18,13 +18,13 @@ const Level = () => {
                 if (items.level.length > 0) {
 
                     JSON.parse(items.level[0].wall).args.map((use, index) => {
-                        
+    
                         setBuild((state) => ([
                             ...state,
                             <Walls key={index} position = {
                                 [
                                     use.posX,
-                                    use.posY,
+                                    (4 / 2) + use.posY,
                                     use.posZ
                                 ]
                             }
@@ -33,6 +33,11 @@ const Level = () => {
                                     use.rotX,
                                     use.rotY,
                                     use.rotZ
+                                ]
+                            }
+                            type = {
+                                [ 
+                                    use.texture
                                 ]
                             }
                             />
@@ -45,7 +50,7 @@ const Level = () => {
 
     return (
         <>
-            <Ground position = {[0, 0.5, 0]} />
+            <Ground position = {[0, 0, 0]} />
             {build}
             <Cube position={[0.1, 5, 0]} />
             <Cube position={[0, 10, -1]} />

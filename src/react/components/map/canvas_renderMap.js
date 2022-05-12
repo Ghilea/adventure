@@ -4,17 +4,12 @@ import React, {
     useContext, 
     useRef
 } from 'react';
-import { 
-    StoreContext 
-} from '../store';
 import { Canvas } from 'react-three-fiber';
 import { Physics } from '@react-three/cannon';
 import Level from './level';
 import { Player } from '../player/Player';
 
 const RenderMap = () => {
-
-    const [store, setStore] = useContext(StoreContext);
 
     return (
         <Canvas shadows>

@@ -1,31 +1,32 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { useBox } from '@react-three/cannon';
-import { useLoader } from 'react-three-fiber';
-import { TextureLoader, RepeatWrapping } from 'three';
-import wallTexture from '../../../assets/images/texture/wall.jpg';
+import * as texture from './buildLevel/textures';
 
-export const Walls = (props) => {
+export const Walls = ({rotation, position, type, ...props}) => {
     const [ref] = useBox(() => ({
-        args: [8, 8, 0.5],
+        args: [8, 4, 0.5],
+        rotation,
+        position,
         ...props
     }))
 
-    const texture = useLoader(TextureLoader, wallTexture);
-    texture.wrapS = RepeatWrapping;
-    texture.wrapT = RepeatWrapping;
-    //wallRef.geometry.computeBoundingBox();
-
-    //var max = wallRef.geometry.boundingBox.max;
-    //var min = wallRef.geometry.boundingBox.min;
-    //var height = max.y - min.y;
-    //var width = max.x - min.x;
-
-    //texture.repeat.set(8 / 894, 0.5 / 894);
-
+    console.log(texture.stone())
+    const side =
+        [...Array(6)].map((_, index) => ( 
+        <meshStandardMaterial attachArray = 'material'
+            map = {
+                (type == 'stone') ? texture.stone() : console.log('inget')
+            }
+            key = {
+                index
+            }
+            />
+        ))
+    
     return (
         <mesh ref = {ref} castShadow>
-            <boxGeometry args = {[8, 8, 0.5]} />
-            <meshStandardMaterial map={texture} />
+            <boxGeometry args = {[8, 4, 0.5]} />
+            {side}
         </mesh>
     )
 

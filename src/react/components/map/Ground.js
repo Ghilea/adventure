@@ -6,8 +6,9 @@ import wallTexture from '../../../assets/images/texture/wall.jpg';
 
 export const Ground = (props) => {
     const [ref] = usePlane(() => ({
-       rotation: [-Math.PI / 2, 0, 0],
-       ...props
+        args: [10, 10],
+        rotation: [-Math.PI / 2, 0, 0],
+        ...props
     }))
 
     const texture = useLoader(TextureLoader, wallTexture);
@@ -17,7 +18,7 @@ export const Ground = (props) => {
 
     return (
         <mesh ref={ref} receiveShadow>
-            <planeBufferGeometry args = {[100, 100]} />
+            <planeBufferGeometry args = {[10, 10]} />
             <meshStandardMaterial map={texture} />
         </mesh>
     )
