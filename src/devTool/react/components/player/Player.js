@@ -16,12 +16,8 @@ export const Player = (props) => {
         jump
     } = useKeyboardControls();
 
-    const { camera } = useThree(
-        75,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000
-    );
+    const { camera } = useThree();
+    
     const [ref, api] = useSphere(() => ({
         mass: 1,
         ...props

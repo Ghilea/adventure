@@ -4,11 +4,18 @@ import { Player } from '../player/Player';
 import { Ground } from './Ground';
 import { Walls } from './walls';
 import { Physics } from '@react-three/cannon';
+import { OrbitControls } from '@react-three/drei'
 
 const Render = () => {
 
     return (
-        <Canvas>
+        <Canvas camera = {
+            {
+                fov: 70,
+                position: [0, 0, 3]
+            }
+        } >
+            <OrbitControls />
             <ambientLight intensity={1} />
             <Physics gravity = {
                 [0, -30, 0]
