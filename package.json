@@ -44,9 +44,12 @@
     "scripts": {
         "start": "nodemon src/server/nodeServer.mjs",
         "watch": "nodemon --exec \"npm run build\"",
-        "build:sass": "sass --no-source-map %npm_package_config_clientAddress%sass:%npm_package_config_clientOutput%/css",
-        "copy:assets": "copyfiles -u 2 %npm_package_config_clientAddress%assets/**/* %npm_package_config_clientOutput%",
-        "copy:index": "copyfiles -u 2 %npm_package_config_clientAddress%index.html %npm_package_config_clientOutput%",
+        "build:client-sass": "sass --no-source-map %npm_package_config_clientAddress%sass:%npm_package_config_clientOutput%/css",
+        "copy:client-assets": "copyfiles -u 2 %npm_package_config_clientAddress%assets/**/* %npm_package_config_clientOutput%",
+        "copy:client-index": "copyfiles -u 2 %npm_package_config_clientAddress%index.html %npm_package_config_clientOutput%",
+        "build:editor-sass": "sass --no-source-map %npm_package_config_editorAddress%sass:%npm_package_config_editorOutput%/css",
+        "copy:editor-assets": "copyfiles -u 2 %npm_package_config_editorAddress%assets/**/* %npm_package_config_editorOutput%",
+        "copy:editor-index": "copyfiles -u 2 %npm_package_config_editorAddress%index.html %npm_package_config_editorOutput%",
         "copy": "npm-run-all --parallel copy:*",
         "webpack": "webpack",
         "build": "npm-run-all webpack copy build:* start"
