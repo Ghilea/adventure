@@ -2,7 +2,7 @@ import React from 'react';
 import { usePlane } from '@react-three/cannon';
 import { useLoader } from '@react-three/fiber';
 import { TextureLoader, RepeatWrapping } from 'three';
-import wallTexture from '../../../assets/images/texture/wall.jpg';
+import groundTexture from '../../../assets/images/texture/floor.jpg';
 
 export const Ground = (props) => {
     const [ref] = usePlane(() => ({
@@ -11,7 +11,7 @@ export const Ground = (props) => {
         ...props
     }))
 
-    const texture = useLoader(TextureLoader, wallTexture);
+    const texture = useLoader(TextureLoader, groundTexture);
     texture.wrapS = RepeatWrapping;
     texture.wrapT = RepeatWrapping;
     texture.repeat.set(8, 8);

@@ -4,9 +4,67 @@
     top: 0;
     z-index: 1;
     user-select: none;
-    background-color: #a9a9a9;
+    background-color: #ffffff;
     min-width: 15em;
     width: 30vw;
     height: 100vh;
     box-shadow: 0 0 5px #000;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+    padding: 1em;
+    justify-content: center;
+
+    h2 {
+        color: #000;
+        font-size: 1.3rem;
+    }
+
+    .walls {
+        height: fit-content;
+        display: flex;
+        gap: 1em;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .wallBtn {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.405);
+
+            &:hover {
+                box-shadow: 0 0 5px #000;
+                cursor: grab;
+            }
+        }
+
+        .stone {
+            width: 2em;
+            height: 3em;
+            padding: 1em;
+            background-image: url(../assets/images/texture/stone.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+         .stone2 {
+            width: 2em;
+            height: 3em;
+            padding: 1em;
+            background-image: url(../assets/images/texture/stone2.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .stoneWindow {
+            width: 2em;
+            height: 3em;
+            padding: 1em;
+            background-image: url(../assets/images/texture/stone_window.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+    }
 }

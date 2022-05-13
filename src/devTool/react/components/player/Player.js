@@ -3,7 +3,7 @@ import { useSphere } from '@react-three/cannon';
 import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeyboardControls } from '../../hooks/useKeyboardControls';
-import { CameraMovement } from './cameraMovement';
+import { useWindowScrollPosition } from 'rooks';
 
 const SPEED = 6;
 
@@ -16,7 +16,12 @@ export const Player = (props) => {
         jump
     } = useKeyboardControls();
 
-    const { camera } = useThree();
+    const { camera } = useThree(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+    );
     const [ref, api] = useSphere(() => ({
         mass: 1,
         ...props
@@ -54,8 +59,7 @@ export const Player = (props) => {
 
     return (
         <>
-            <CameraMovement />
-            <mesh ref={ref} castShadow/>
+            <mesh ref={ref}/>
         </>
     )
 
