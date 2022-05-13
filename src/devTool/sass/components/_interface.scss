@@ -1,0 +1,12 @@
+.interface {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    user-select: none;
+    background-color: #a9a9a9;
+    min-width: 15em;
+    width: 30vw;
+    height: 100vh;
+    box-shadow: 0 0 5px #000;
+}

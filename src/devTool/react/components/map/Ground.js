@@ -17,7 +17,7 @@ export const Ground = (props) => {
     texture.repeat.set(8, 8);
 
     return (
-        <mesh ref={ref} receiveShadow>
+        <mesh ref={ref}>
             <planeBufferGeometry args = {[10, 10]} />
             <meshStandardMaterial map={texture} />
         </mesh>

@@ -41,18 +41,6 @@ const StoreProvider = (props) => {
             moveRight: false,
             Jump: false
         },
-        mouse: {
-            m1: 1,
-            m2: 0,
-            m3: 0,
-            m4: 1,
-            m5: 0,
-            m6: 0,
-            m7: 0,
-            m8: 1,
-            x: 0,
-            y: 0
-        },
         coords: {
             x: 0,
             y: 0
