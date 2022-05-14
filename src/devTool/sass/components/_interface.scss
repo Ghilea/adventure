@@ -72,4 +72,13 @@
             background-position: center;
         }
     }
+
+    .ground {
+        height: fit-content;
+        display: flex;
+        gap: 1em;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
 }
