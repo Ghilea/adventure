@@ -10,6 +10,7 @@ import { build, mousePosition } from '../store';
 const Render = () => {
 
     const buildCheck = build(state => state);
+    const addWall = build(state => state.addWall);
     const position = mousePosition(state => state)
 
     const [wall, setWall] = useState([]);
@@ -19,9 +20,8 @@ const Render = () => {
         event.preventDefault();
 
         if (event.type === 'click') {
-            console.log(event);
-            console.log('left click up');
             if (buildCheck.active) {
+                addWall(position.x, position.y, position.z, buildCheck.texture)
                 setWall((state)=>([
                     ...state,
                     <Walls key = {
@@ -51,10 +51,8 @@ const Render = () => {
 
                 setIndex(index + 1);
             }
-        } else if (event.type === 'mousedown' && event.button === 2) {
-            console.log('right click down');
         } else if (event.type === 'contextmenu') {
-            console.log('right click up');
+            event.preventDefault();
         }
 
     }
