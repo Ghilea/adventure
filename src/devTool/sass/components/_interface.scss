@@ -29,12 +29,16 @@
         flex-direction: row;
         flex-wrap: wrap;
 
+        .activeBtn {
+            box-shadow: 0 0 10px 5px rgb(119 29 1);
+        }
+
         .wallBtn {
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.405);
 
             &:hover {
                 box-shadow: 0 0 5px #000;
-                cursor: grab;
+                cursor: pointer;
             }
         }
 

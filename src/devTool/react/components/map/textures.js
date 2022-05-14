@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { useLoader } from '@react-three/fiber';
 import { TextureLoader, RepeatWrapping} from 'three';
 
-import stoneImg from '../../../../assets/images/texture/stone.jpg';
-import stone_windowImg from '../../../../assets/images/texture/stone_window.png';
-import stone2Img from '../../../../assets/images/texture/stone2.jpg';
+import stoneImg from '../../../assets/images/texture/stone.jpg';
+import stone_windowImg from '../../../assets/images/texture/stone_window.png';
+import stone2Img from '../../../assets/images/texture/stone2.jpg';
 
 export const stone = () => {
     
@@ -16,7 +16,7 @@ export const stone = () => {
     return texture;
 } 
 
-export const stone_window = () => {
+export const stoneWindow = () => {
     const texture = useLoader(TextureLoader, stone_windowImg);
     return texture;
 }

@@ -13,12 +13,14 @@ const StoreProvider = (props) => {
     const [store, setStore] = useState({
         buildLevel: {
             wall: getLocalStorage('level') || [{pos:[0, 0, 0], type:'stone'}],
-            addWall: (x, y, z, type) => 
-                set(state => {
+            addWall: (x, y, z, type) => {
+                /*set(state => {
                     ({
                         wall: [...state.wall, { pos:[x, y, z], type }]
                     })
-                }),
+                }),*/
+                console.log(x,y,z,type)
+            },
             removeWall: (x, y ,z) => 
                 set((state) => 
                     state.wall.filter(
@@ -31,64 +33,12 @@ const StoreProvider = (props) => {
                 setLocalStorage('level', state.wall)
             }))
         },
-        rotate: {
-            z: 0
+        build: {
+            isWall: {
+                active: false,
+                texture: null
+            }     
         },
-        movement: {
-            moveForward: false,
-            moveBackward: false,
-            moveLeft: false,
-            moveRight: false,
-            Jump: false
-        },
-        coords: {
-            x: 0,
-            y: 0
-        },
-        map: {
-            level: 1,
-            walking: false,
-            showCharacterSheet: false
-        },
-        combat: {
-            text: null
-        },
-        enemy: {
-            enemyHp: 0,
-            enemyMaxHp: 0,
-            enemyDps: 0,
-            enemyAttack: false,
-            enemyExp: 0,
-            dead: true
-        },
-        player: {
-            playerId: 1,
-            playerHp: 1,
-            playerMaxHp: 0,
-            playerDps: 0,
-            playerExp: 0,
-            playerLevel: 0,
-            playerPoints: 0,
-            str: 0,
-            int: 0,
-            dex: 0,
-            playerAttack: false,
-            playerCanAttack: true,
-            playerBlock: false
-        },
-        menu: {
-            showCreate: false,
-            login: false
-        },
-        quest: {
-            showQuest: false
-        },
-        doors: {
-            left: false,
-            front: true,
-            right: false,
-            back: false
-        }
     });
 
     return (
