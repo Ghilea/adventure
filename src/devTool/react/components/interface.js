@@ -31,6 +31,24 @@ export const Interface = () => {
         }
         >
             <div>
+                <h2>Ground</h2>
+                <div className='ground'>
+                    <h3>Size</h3>
+                    <input type={'range'} min={10} max={1000}/>
+                    <select>
+                        <option>
+                            Choose texture
+                        </option>
+                        <option>
+                            Stone
+                        </option>
+                        <option>
+                            Wood
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div>
                 <h2>Walls</h2>
                 <div className = 'walls' >
                     
@@ -52,6 +70,9 @@ export const Interface = () => {
                         } onClick={() => handleWall('stoneWindow') }>
                     </div>
                 </div>
+            </div>
+            <div>
+                <button>Save level</button>
             </div>
             
         </div>
