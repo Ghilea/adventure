@@ -3,13 +3,15 @@ import { Canvas, useThree } from '@react-three/fiber';
 import { Ground } from './Ground';
 import { Physics } from '@react-three/cannon';
 import { OrbitControls } from '@react-three/drei'
-import { StoreContext } from '../store';
 import { Interface } from '../interface';
 import { Walls } from './walls';
+import { build, mousePosition } from '../store';
 
 const Render = () => {
 
-    const [store, setStore] = useContext(StoreContext);
+    const buildCheck = build(state => state);
+    const position = mousePosition(state => state)
+
     const [wall, setWall] = useState([]);
     const [index, setIndex] = useState(0);
     
@@ -19,7 +21,7 @@ const Render = () => {
         if (event.type === 'click') {
             console.log(event);
             console.log('left click up');
-            if(store.build.isWall.active){
+            if (buildCheck.active) {
                 setWall((state)=>([
                     ...state,
                     <Walls key = {
@@ -27,9 +29,9 @@ const Render = () => {
                     }
                     position = {
                         [
-                            store.planePosition.x,
-                            (4 / 2) + store.planePosition.y,
-                            store.planePosition.z
+                            position.x,
+                            (4 / 2) + position.y,
+                            position.z
                         ]
                     }
                     rotation = {
@@ -41,7 +43,7 @@ const Render = () => {
                     }
                     type = {
                         [ 
-                            store.build.isWall.texture
+                            buildCheck.texture
                         ]
                     }
                     />

@@ -1,36 +1,18 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { StoreContext } from './store';
+import { build } from './store';
 
 export const Interface = () => {
 
-    const [store, setStore] = useContext(StoreContext);
+    const buildCheck = build(state => state);
+    const buildBtn = build(state => state.buildBtn);
 
     const handleWall = (setTexture) => {
         
         console.log(setTexture);
-        if(store.build.isWall.active && store.build.isWall.texture === setTexture){
-            setStore(store => ({
-                ...store,
-                build: {
-                    ...store.build,
-                    isWall: {
-                        active: false,
-                        texture: null
-                    }
-                }
-            }))
+        if (buildCheck.active && buildCheck.texture === setTexture) {
+            buildBtn(false, null)
         }else{
-            console.log('true');
-            setStore(store => ({
-                ...store,
-                build: {
-                    ...store.build,
-                    isWall: {
-                        active: true,
-                        texture: setTexture
-                    }
-                }
-            })) 
+            buildBtn(true, setTexture)
         }
     }
 
@@ -53,19 +35,19 @@ export const Interface = () => {
                 <div className = 'walls' >
                     
                     <div className={`stone ${
-                        (store.build.isWall.active && store.build.isWall.texture === 'stone') ? 
+                        (buildCheck.active && buildCheck.texture === 'stone') ?
                         'activeBtn' : 'wallBtn'}`
                         } onClick={() => handleWall('stone') }>
                     </div>
 
                     <div className={`stone2 ${
-                        (store.build.isWall.active && store.build.isWall.texture ==='stone2') ? 
+                        (buildCheck.active && buildCheck.texture === 'stone2') ?
                         'activeBtn' : 'wallBtn'}`
                         } onClick={() => handleWall('stone2') }>
                     </div>
 
                     <div className={`stoneWindow ${
-                        (store.build.isWall.active && store.build.isWall.texture === 'stoneWindow') ? 
+                        (buildCheck.active && buildCheck.texture === 'stoneWindow') ?
                         'activeBtn' : 'wallBtn'}`
                         } onClick={() => handleWall('stoneWindow') }>
                     </div>

@@ -3,7 +3,7 @@ import { usePlane } from '@react-three/cannon';
 import { useLoader } from '@react-three/fiber';
 import { TextureLoader, RepeatWrapping } from 'three';
 import groundTexture from '../../../assets/images/texture/floor.jpg';
-import { StoreContext } from '../store';
+import { mousePosition } from '../store';
 
 export const Ground = (props) => {
     
@@ -18,19 +18,10 @@ export const Ground = (props) => {
     texture.wrapT = RepeatWrapping;
     texture.repeat.set(8, 8);
     
-    const [store, setStore] = useContext(StoreContext);
+    const editPosition = mousePosition(state => state.editPosition)
 
     const pointerMove = (event) => {
-
-        setStore(store => ({
-            ...store,
-            mouse: {
-                x: event.point.x,
-                y: event.point.y,
-                z: event.point.z
-            }
-
-        }))
+        editPosition(event.point.x, event.point.y, event.point.z)
     }
 
     return (

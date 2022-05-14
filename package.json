@@ -19,7 +19,8 @@
         "three": "0.140.2",
         "@react-three/fiber": "8.0.14",
         "@react-three/drei": "9.7.1",
-        "@react-three/cannon": "6.3.0"
+        "@react-three/cannon": "6.3.0",
+        "zustand": "4.0.0-rc.1"
     },
     "devDependencies": {
         "@babel/cli": "^7.17.10",
