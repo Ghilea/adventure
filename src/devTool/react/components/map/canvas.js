@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useThree } from '@react-three/fiber';
 import { Ground } from './Ground';
 import { Physics } from '@react-three/cannon';
 import { OrbitControls } from '@react-three/drei'
@@ -12,11 +12,6 @@ const Render = () => {
     const [store, setStore] = useContext(StoreContext);
     const [wall, setWall] = useState([]);
     const [index, setIndex] = useState(0);
-    const [pointer, setPointer] = useState({
-        x: null,
-        y: null,
-        z: 0
-    })
     
     const handleMouseClick = (event) => {
         event.preventDefault();
@@ -32,9 +27,9 @@ const Render = () => {
                     }
                     position = {
                         [
-                            pointer.x,
-                            (4 / 2) + pointer.z,
-                            pointer.y
+                            store.planePosition.x,
+                            (4 / 2) + store.planePosition.y,
+                            store.planePosition.z
                         ]
                     }
                     rotation = {
@@ -62,25 +57,10 @@ const Render = () => {
 
     }
 
-    const pointerMove = (event) => {
-        setPointer(state => ({
-            ...state,
-            x: ((event.clientX / innerWidth) * 2 - 1),
-            y: ((event.clientY / innerHeight) * 2 + 1)
-
-        }))
-
-        console.log(pointer)
-
-    }
-
     return (
         <>
             <Interface />
             <Canvas 
-            onPointerMove = {
-                pointerMove
-            }
             onClick = {
                 handleMouseClick
             }
@@ -95,9 +75,13 @@ const Render = () => {
                 <Physics gravity = {
                     [0, -30, 0]
                 } >
-                    <Ground position = {[0, 0, 0]} />
+                    <Ground position = {
+                        [0, 0, 0]
+                    }
+                    />
                     {wall}       
                 </Physics>
+                <gridHelper args={[8, 8]}/>
             </Canvas>
         </>    
     )

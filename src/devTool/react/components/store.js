@@ -3,7 +3,7 @@ import React, {
     createContext
 } from 'react';
 
-const StoreContext = createContext();
+const StoreContext = createContext([{}, function() {}]);
 
 const StoreProvider = (props) => {
     
@@ -39,6 +39,11 @@ const StoreProvider = (props) => {
                 texture: null
             }     
         },
+        mouse: {
+            x: 0,
+            y: 0,
+            z: 0
+        }
     });
 
     return (
