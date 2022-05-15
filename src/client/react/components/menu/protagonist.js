@@ -78,7 +78,7 @@ const Protagonist = () => {
 
     const [play, {
         stop
-    }] = useSound('assets/effects/btnHover.mp3');
+    }] = useSound('assets/sounds/btnHover.mp3');
 
 
     return (

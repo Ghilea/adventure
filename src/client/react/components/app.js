@@ -6,9 +6,8 @@ import Canvas from './map/canvas';
 export default function Default (){
 
     return (
-
         <StoreProvider>
-            <Canvas />
+            <Login />
         </StoreProvider>
     )
 }

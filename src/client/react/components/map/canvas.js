@@ -3,7 +3,6 @@ import { Read } from '../Crud';
 import { StoreContext } from '../store';
 import Enemy from '../enemy/enemy';
 import RenderMap from './renderMap';
-import CanvasRenderMap from './canvas_renderMap';
 
 const Canvas = () => {
 
@@ -133,7 +132,7 @@ const Canvas = () => {
     return (
         <>
   
-         <CanvasRenderMap />
+         <RenderMap />
 
         </>
     )

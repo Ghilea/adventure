@@ -11,7 +11,7 @@ import {
 import { Read, Update } from '../crud';
 import { Health, Mana, Exp } from './Bar';
 import { CharacterSheet } from './Charactersheet';
-import PlayerMovement from '../player/playerMovement';
+
 import {
     useKey
 } from 'rooks';
@@ -180,6 +180,7 @@ const Interface = () => {
     }
 
     const handleMouseClick = (event) => {
+        console.log('click');
         event.preventDefault();
 
         if (event.type === 'click' && store.enemy.enemyHp > 0 && store.player.playerCanAttack) {
@@ -272,7 +273,6 @@ const Interface = () => {
                 <Health />
                 <Exp />
                 <Mana />
-                <PlayerMovement />
                        
                 <div className='coords'>X: {store.coords.x} Y: {store.coords.y}</div>
   

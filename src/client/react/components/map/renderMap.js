@@ -1,61 +1,25 @@
-import React, {useEffect, useState, useContext} from 'react';
-import {StoreContext} from '../store';
+import React, {
+    useEffect, 
+    useState, 
+    useContext, 
+    useRef
+} from 'react';
+import { Canvas } from '@react-three/fiber';
+import { Physics } from '@react-three/cannon';
+import Level from './level';
+import { Player } from '../player/Player';
 
 const RenderMap = () => {
-
-    const [store, setStore] = useContext(StoreContext);
     
     return (
-        <>       
-
-            <div className = {
-                    `texture wall_left 
-                    ${
-                        (store.doors.left) ? 'doorSide' : ''
-                    }
-                    `}>
-            </div>
-            <div className = {
-                    `texture wall_right 
-                    ${
-                        (store.doors.right) ? 'doorSide' : ''
-                    }
-                    `}>  
-            </div>
-            <div className = {
-                    `texture wall_front 
-                    ${
-                        (store.doors.front) ? 'doorFront' : ''
-                    }
-                    `}>
-            </div>
-    
-            <div className='floor'></div>
-            <div className='roof'></div>
-
-            {
-                (store.doors.left) ?
-                <>
-                    <div className='texture leftPanel'></div>
-                    <div className='texture leftWallRoom'></div> 
-                </> : ''
-            }
-            {
-                (store.doors.right) ?
-                <>
-                    <div className='texture rightPanel'></div>
-                    <div className='texture rightWallRoom'></div> 
-                </> : ''
-            }
-            {
-                (store.doors.front) ?
-                <>
-                    <div className='texture leftBPanel'></div>
-                    <div className='texture rightBPanel'></div> 
-                </> : ''
-            }
-      
-        </>
+        <Canvas shadows>
+            <ambientLight intensity={0.5} />
+            <directionalLight position={[10, 10, 10]} castShadow shadow-mapSize={[2048, 2048]} />
+            <Physics gravity={[0, -30, 0]}>
+                <Level />                
+                <Player position = {[0, 1.5, 10]} />
+            </Physics>
+        </Canvas>    
     )
 }
 

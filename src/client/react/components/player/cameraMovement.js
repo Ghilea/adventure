@@ -12,6 +12,7 @@ export const CameraMovement = (props) => {
     useEffect(() => {
         document.addEventListener('click', () => {
             controls.current.lock();
+           console.log(controls.current);
         })
     }, [])
 
