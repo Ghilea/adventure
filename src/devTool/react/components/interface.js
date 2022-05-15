@@ -33,11 +33,10 @@ export const Interface = () => {
             <div className='container'>
                 <h2>Ground</h2>
                 <div className='ground'>
-                    <h3>Size</h3>
                     <input type={'range'} min={10} max={1000}/>
                     <select>
                         <option>
-                            Choose texture
+                            Choose Texture
                         </option>
                         <option>
                             Stone
