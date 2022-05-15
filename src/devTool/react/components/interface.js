@@ -30,7 +30,7 @@ export const Interface = () => {
             handleMouseClick
         }
         >
-            <div>
+            <div className='container'>
                 <h2>Ground</h2>
                 <div className='ground'>
                     <h3>Size</h3>
@@ -48,7 +48,7 @@ export const Interface = () => {
                     </select>
                 </div>
             </div>
-            <div>
+            <div className='container'>
                 <h2>Walls</h2>
                 <div className = 'walls' >
                     
@@ -71,7 +71,7 @@ export const Interface = () => {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className='container'>
                 <button>Save level</button>
             </div>
             
