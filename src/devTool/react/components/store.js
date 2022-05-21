@@ -47,3 +47,8 @@ export const build = create(set => ({
         console.log(state.walls);
     }))
 }))
+
+export const ground = create(set => ({
+    x: 10,
+    y: 10
+}))

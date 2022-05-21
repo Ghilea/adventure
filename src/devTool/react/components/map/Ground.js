@@ -4,11 +4,12 @@ import { useLoader } from '@react-three/fiber';
 import { TextureLoader, RepeatWrapping } from 'three';
 import groundTexture from '../../../assets/images/texture/floor.jpg';
 import { mousePosition } from '../store';
+import { ground } from '../store';
 
 export const Ground = (props) => {
     
     const [ref] = usePlane(() => ({
-        args: [10, 10],
+        args: [ground.x, ground.y],
         rotation: [-Math.PI / 2, 0, 0],
         ...props
     }))
@@ -26,7 +27,7 @@ export const Ground = (props) => {
 
     return (
         <mesh ref={ref} onPointerMove={pointerMove}>
-            <planeBufferGeometry attach='geometry' args = {[10, 10]} />
+            <planeBufferGeometry attach='geometry' args = {[ground.x, ground.y]} />
             <meshStandardMaterial attach='material' map={texture} />
         </mesh>
     )
