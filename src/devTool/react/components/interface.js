@@ -27,14 +27,14 @@ export const Interface = () => {
     }
 
     const handleSave = () => {
-        //saveLevel(buildCheck.walls)
-        const url = `http://localhost:3000/createLevel`;
+        saveLevel(buildCheck.walls)
+        /*const url = `http://localhost:3000/createLevel`;
 
         console.log(buildCheck.walls);
 
         Create(url, {
             content: JSON.stringify(buildCheck.walls)
-        });
+        });*/
     }
 
     return (

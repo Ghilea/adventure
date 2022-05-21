@@ -6,22 +6,23 @@ import { OrbitControls } from '@react-three/drei'
 import { Interface } from '../interface';
 import { Walls } from './walls';
 import { build, mousePosition } from '../store';
+import { useKey } from 'rooks';
 
 const Render = () => {
 
-    const buildCheck = build(state => state);
-    const addWall = build(state => state.addWall);
+    const store = build(state => state);
     const position = mousePosition(state => state)
 
     const [wall, setWall] = useState([]);
     const [index, setIndex] = useState(0);
+    const [rotate, setRotate] =useState(false);
     
     const handleMouseClick = (event) => {
         event.preventDefault();
 
         if (event.type === 'click') {
-            if (buildCheck.active) {
-                addWall(position.x, position.y, position.z, 0, 0, 0, buildCheck.texture)
+            if (store.active) {
+                store.addWall([position.x, (4 / 2) + position.y, position.z], (rotate) ? [0, 1.58, 0] : [0, 0, 0], store.texture)
                 setWall((state)=>([
                     ...state,
                     <Walls key = {
@@ -35,15 +36,11 @@ const Render = () => {
                         ]
                     }
                     rotation = {
-                        [
-                            0,
-                            0,
-                            0
-                        ]
+                        (rotate) ? [0, 1.58, 0] : [0, 0, 0]
                     }
                     type = {
                         [ 
-                            buildCheck.texture
+                            store.texture
                         ]
                     }
                     />
@@ -56,6 +53,20 @@ const Render = () => {
         }
 
     }
+
+    const keyHandler = (e) => {
+        if (e.type === 'keydown' && e.code === 'ControlLeft') {
+            setRotate(true);
+        }
+
+        if (e.type === 'keyup' && e.code === 'ControlLeft') {
+            setRotate(false);
+        }
+    }
+
+    useKey(['Control', 'a'], keyHandler, {
+        eventTypes: ['keydown', 'keyup']
+    });
 
     return (
         <>

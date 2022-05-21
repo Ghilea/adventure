@@ -25,12 +25,12 @@ export const build = create(set => ({
         active: active,
         texture: texture
     })),
-    addWall: (x, y, z, rx, ry, rz, type) => set(state => ({
+    addWall: (position, rotate, type) => set(state => ({
         walls: [
             ...state.walls,
             {
-                pos: [x, y, z], 
-                rotate: [rx, ry, rz],
+                pos: position, 
+                rotate: rotate,
                 type: type
             }
         ]        
