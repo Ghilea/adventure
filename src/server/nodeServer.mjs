@@ -18,7 +18,7 @@ import {
 } from './api/protagonist.mjs';
 import { getAdventure } from './api/adventure.mjs';
 import { getEnemy } from './api/enemy.mjs';
-import { getLevel } from './api/level.mjs'
+import { getLevel, createLevel } from './api/level.mjs'
 
 const app = express();
 
@@ -75,6 +75,10 @@ app.put('/updateStats', (req, res) => {
 //POST
 app.post('/createProtagonist', (req, res) => {
     createProtagonist(con, req, res);
+});
+
+app.post('/createLevel', (req, res) => {
+    createLevel(con, req, res);
 });
 
 //LISTENER

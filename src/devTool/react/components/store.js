@@ -1,8 +1,8 @@
 import create from 'zustand';
 
-const getLocalStorage = (key) => JSON.parse(window.localStorage.getItem(key));
+/*const getLocalStorage = (key) => JSON.parse(window.localStorage.getItem(key));
 const setLocalStorage = (key, value) => window.localStorage.setItem(key, JSON.stringify(value));
-
+*/
 export const mousePosition = create(set => ({
     x: 0,
     y: 0,
@@ -18,20 +18,19 @@ export const mousePosition = create(set => ({
 export const build = create(set => ({
     active: false,
     texture: null,
-    walls: getLocalStorage('level') || [{
-        pos: [0, 0, 0],
-        type: 'stone'
-    }],
+    walls: /*getLocalStorage('level') ||*/ 
+    [],
     buildBtn: (active, texture) => set(state => ({
         ...state,
         active: active,
         texture: texture
     })),
-    addWall: (x, y, z, type) => set(state => ({
+    addWall: (x, y, z, rx, ry, rz, type) => set(state => ({
         walls: [
             ...state.walls,
             {
                 pos: [x, y, z], 
+                rotate: [rx, ry, rz],
                 type: type
             }
         ]        
@@ -44,7 +43,7 @@ export const build = create(set => ({
         ),
     ),
     saveLevel: () => set((state => {
-        setLocalStorage('level', state.walls)
-        console.log(getLocalStorage('level'));
+        /*setLocalStorage('level', state.walls)*/
+        console.log(state.walls);
     }))
 }))

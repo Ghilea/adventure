@@ -21,7 +21,7 @@ const Render = () => {
 
         if (event.type === 'click') {
             if (buildCheck.active) {
-                addWall(position.x, position.y, position.z, buildCheck.texture)
+                addWall(position.x, position.y, position.z, 0, 0, 0, buildCheck.texture)
                 setWall((state)=>([
                     ...state,
                     <Walls key = {

@@ -7,3 +7,10 @@ export const getLevel = (con, res, id) => {
         })
     })
 }
+
+export const createLevel = (con, req, res) => {
+    con.connect((err) => {
+        con.query(`INSERT INTO levels SET content = '${req.body.data.content}'`)
+        res.send('La till en ny level')
+    })
+}
