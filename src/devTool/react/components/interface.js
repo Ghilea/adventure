@@ -5,6 +5,7 @@ export const Interface = () => {
 
     const buildCheck = build(state => state);
     const buildBtn = build(state => state.buildBtn);
+    const saveLevel = build(state => state.saveLevel);
 
     const handleWall = (setTexture) => {
         
@@ -22,6 +23,10 @@ export const Interface = () => {
             event.preventDefault();
         }
 
+    }
+
+    const handleSave = () => {
+        saveLevel(buildCheck.walls)
     }
 
     return (
@@ -71,7 +76,7 @@ export const Interface = () => {
                 </div>
             </div>
             <div className='container'>
-                <button>Save level</button>
+                <button onClick={handleSave}>Save level</button>
             </div>
             
         </div>

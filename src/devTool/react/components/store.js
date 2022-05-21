@@ -28,11 +28,13 @@ export const build = create(set => ({
         texture: texture
     })),
     addWall: (x, y, z, type) => set(state => ({
-        ...state,
-        x: x,
-        y: y,
-        z: z,
-        type: type
+        walls: [
+            ...state.walls,
+            {
+                pos: [x, y, z], 
+                type: type
+            }
+        ]        
     })),
     removeWall: (x, y, z) => set((state) =>
         state.wall.filter(wall => 
@@ -43,5 +45,6 @@ export const build = create(set => ({
     ),
     saveLevel: () => set((state => {
         setLocalStorage('level', state.walls)
+        console.log(getLocalStorage('level'));
     }))
 }))
