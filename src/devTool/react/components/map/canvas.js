@@ -3,7 +3,7 @@ import { Canvas, useThree } from '@react-three/fiber';
 import { Ground } from './Ground';
 import { Physics } from '@react-three/cannon';
 import { OrbitControls } from '@react-three/drei'
-import { Interface } from '../interface';
+import { Interface } from '../interface/interface';
 import { Walls } from './walls';
 import { build, mousePosition, ground } from '../store';
 import { useKey } from 'rooks';
