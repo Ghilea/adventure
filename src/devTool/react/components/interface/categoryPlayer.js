@@ -1,18 +1,20 @@
 import React from "react";
-import { player, interfaceButtons } from '../store';
+import { player, interfaceButtons, build } from '../store';
 
 export const CategoryPlayer = () => {
     
     const store = player(state => state);
+    const storeBuild = build(state => state);
     const interBtn = interfaceButtons(state => state);
 
     const handleButton = (setBtn) => {
-
-        console.log(setBtn);
         if (interBtn.active && interBtn.button === setBtn) {
             interBtn.btn(false, null)
+            store.changePlayer(false)
         } else {
             interBtn.btn(true, setBtn)
+            storeBuild.buildBtn(false, null)
+            store.changePlayer(true)
         }
     }
 

@@ -5,12 +5,13 @@ import { Physics } from '@react-three/cannon';
 import { OrbitControls } from '@react-three/drei'
 import { Interface } from '../interface/interface';
 import { Walls } from './walls';
-import { build, mousePosition, ground } from '../store';
+import { build, mousePosition, ground, player } from '../store';
 import { useKey } from 'rooks';
 
 const Render = () => {
 
-    const store = build(state => state);
+    const storeBuild = build(state => state);
+    const storePlayer = player(state => state);
     const position = mousePosition(state => state);
     const storeGround = ground(state => state)
 
@@ -22,8 +23,8 @@ const Render = () => {
         event.preventDefault();
 
         if (event.type === 'click') {
-            if (store.active) {
-                store.addWall([position.x, (4 / 2) + position.y, position.z], (rotate) ? [0, 1.58, 0] : [0, 0, 0], store.texture)
+            if (storeBuild.active) {
+                storeBuild.addWall([position.x, (4 / 2) + position.y, position.z], (rotate) ? [0, 1.58, 0] : [0, 0, 0], storeBuild.texture)
                 setWall((state)=>([
                     ...state,
                     <Walls key = {
@@ -41,13 +42,16 @@ const Render = () => {
                     }
                     type = {
                         [ 
-                            store.texture
+                            storeBuild.texture
                         ]
                     }
                     />
                 ]))
 
                 setIndex(index + 1);
+            }else if (storePlayer.active) {
+                storePlayer.addPlayer(position.x, position.y);
+                console.log(storePlayer)
             }
         } else if (event.type === 'contextmenu') {
             event.preventDefault();

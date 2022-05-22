@@ -69,8 +69,13 @@ export const ground = create(set => ({
 }))
 
 export const player = create(set => ({
-    x: 10,
-    y: 10,
+    active: false,
+    x: 0,
+    y: 0,
+    changePlayer: (active) => set(state => ({
+        ...state,
+        active: active
+    })),
     addPlayer: (x, y) => set(state => ({
         ...state,
         x: x,
