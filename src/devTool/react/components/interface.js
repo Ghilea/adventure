@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
-import { build } from './store';
+import { build, ground } from './store';
 import { Create } from './Crud';
 
 export const Interface = () => {
 
     const buildCheck = build(state => state);
+    const storeGround = ground(state => state);
     const buildBtn = build(state => state.buildBtn);
     const saveLevel = build(state => state.saveLevel);
-    const groundRef = useRef();
 
     const handleWall = (setTexture) => {
         
@@ -39,8 +39,8 @@ export const Interface = () => {
     }
 
     const handleSlider = (e) => {
-        console.log(e);
-        console.log(groundRef.current);
+        storeGround.changeGround(e.target.value, e.target.value, 'stone')
+        console.log(storeGround.x);
     }
 
     return (
@@ -52,7 +52,7 @@ export const Interface = () => {
             <div className='container'>
                 <h2>Ground</h2>
                 <div className='ground'>
-                    <input ref={groundRef} type='range' min={10} max={1000} onChange={handleSlider}/>
+                    <input type='range' min={10} max={1000} onChange={handleSlider}/>
                     <select>
                         <option>
                             Choose Texture

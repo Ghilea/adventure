@@ -5,7 +5,7 @@ import { Physics } from '@react-three/cannon';
 import { OrbitControls } from '@react-three/drei'
 import { Interface } from '../interface';
 import { Walls } from './walls';
-import { build, mousePosition } from '../store';
+import { build, mousePosition, ground } from '../store';
 import { useKey } from 'rooks';
 
 const Render = () => {
@@ -92,7 +92,7 @@ const Render = () => {
                     />
                     {wall}       
                 </Physics>
-                <gridHelper args={[8, 8]}/>
+                <gridHelper args={[ground.x, ground.y]}/>
             </Canvas>
         </>    
     )

@@ -50,5 +50,12 @@ export const build = create(set => ({
 
 export const ground = create(set => ({
     x: 10,
-    y: 10
+    y: 10,
+    texture: 'stone',
+    changeGround: (x, y, texture) => set(state => ({
+        ...state,
+        x: x,
+        y: y, 
+        texture: texture
+    })),
 }))

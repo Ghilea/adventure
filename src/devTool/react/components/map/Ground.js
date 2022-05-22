@@ -7,9 +7,10 @@ import { mousePosition } from '../store';
 import { ground } from '../store';
 
 export const Ground = (props) => {
-    
+    const storeGround = ground(state => state);
+
     const [ref] = usePlane(() => ({
-        args: [ground.x, ground.y],
+        args: [storeGround.x, storeGround.y],
         rotation: [-Math.PI / 2, 0, 0],
         ...props
     }))
@@ -27,7 +28,7 @@ export const Ground = (props) => {
 
     return (
         <mesh ref={ref} onPointerMove={pointerMove}>
-            <planeBufferGeometry attach='geometry' args = {[ground.x, ground.y]} />
+            <planeBufferGeometry attach='geometry' args = {[storeGround.x, storeGround.y]} />
             <meshStandardMaterial attach='material' map={texture} />
         </mesh>
     )
