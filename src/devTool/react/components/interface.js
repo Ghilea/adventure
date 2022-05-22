@@ -52,7 +52,7 @@ export const Interface = () => {
             <div className='container'>
                 <h2>Ground</h2>
                 <div className='ground'>
-                    <input type='range' min={10} max={1000} onChange={handleSlider}/>
+                    <input type='range' min={10} max={500} value={10} onChange={handleSlider}/>
                     <select>
                         <option>
                             Choose Texture

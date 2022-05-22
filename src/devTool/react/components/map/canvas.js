@@ -11,7 +11,8 @@ import { useKey } from 'rooks';
 const Render = () => {
 
     const store = build(state => state);
-    const position = mousePosition(state => state)
+    const position = mousePosition(state => state);
+    const storeGround = ground(state => state)
 
     const [wall, setWall] = useState([]);
     const [index, setIndex] = useState(0);
@@ -92,7 +93,7 @@ const Render = () => {
                     />
                     {wall}       
                 </Physics>
-                <gridHelper args={[ground.x, ground.y]}/>
+                <gridHelper args={[storeGround.x, storeGround.y]}/>
             </Canvas>
         </>    
     )
