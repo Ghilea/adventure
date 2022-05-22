@@ -89,6 +89,37 @@
         gap: 1em;
         flex-direction: column;
         flex-wrap: wrap;
+    }
+
+    .player {
+        height: fit-content;
+        display: flex;
+        gap: 1em;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .activeBtn {
+            box-shadow: 0 0 10px 5px rgb(119 29 1);
+        }
+
+        .playerBtn {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.405);
+
+            &:hover {
+                box-shadow: 0 0 5px #000;
+                cursor: pointer;
+            }
+        }
+
+        .img {
+            width: 2em;
+            height: 3em;
+            padding: 1em;
+            background-image: url(../assets/images/characters/FantasyCharacters_h_warrior_female_bg.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
 
     }
 

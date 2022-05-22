@@ -21,10 +21,10 @@ export const CategoryPlayer = () => {
             <h2>Player</h2>
             <div className='player'>
                 <div className={
-                `
+                `img
                 ${
                     (interBtn.active && interBtn.button === 'player') ?
-                'activeBtn' : 'wallBtn'
+                'activeBtn' : 'playerBtn'
                 }`
                 } onClick={() => handleButton('player') }>
                 </div>
