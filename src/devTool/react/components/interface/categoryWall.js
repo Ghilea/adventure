@@ -1,9 +1,10 @@
 import React from "react";
-import { build } from '../store';
+import { build, interfaceButtons } from '../store';
 
 export const CategoryWall = () => {
     const store = build(state => state);
-    
+    const interBtn = interfaceButtons(state => state);
+
     const textureArr = [
         'stone',
         'stone2',
@@ -15,7 +16,7 @@ export const CategoryWall = () => {
             <div key={item+index} className={
                 `${item} 
                 ${
-                    (store.active && store.texture === item) ?
+                    (interBtn.active && interBtn.button === item) ?
                 'activeBtn' : 'wallBtn'
                 }`
             } onClick={() => handleWall(item) }>
@@ -24,11 +25,11 @@ export const CategoryWall = () => {
     })
 
     const handleWall = (setTexture) => {
-
-        console.log(setTexture);
-        if (store.active && store.texture === setTexture) {
+        if (interBtn.active && interBtn.button === setTexture) {
+            interBtn.btn(false, null)
             store.buildBtn(false, null)
         } else {
+            interBtn.btn(true, setTexture)
             store.buildBtn(true, setTexture)
         }
     }

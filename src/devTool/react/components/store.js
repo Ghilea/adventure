@@ -15,11 +15,20 @@ export const mousePosition = create(set => ({
     }))
 }))
 
+export const interfaceButtons = create(set => ({
+    active: false,
+    button: null,
+    btn: (active, button) => set(state => ({
+        ...state,
+        active: active,
+        button: button
+    }))
+}))
+
 export const build = create(set => ({
     active: false,
     texture: null,
-    walls: /*getLocalStorage('level') ||*/ 
-    [],
+    walls: [],
     buildBtn: (active, texture) => set(state => ({
         ...state,
         active: active,
@@ -43,7 +52,6 @@ export const build = create(set => ({
         ),
     ),
     saveLevel: () => set((state => {
-        /*setLocalStorage('level', state.walls)*/
         console.log(state.walls);
     }))
 }))
@@ -57,5 +65,15 @@ export const ground = create(set => ({
         x: x,
         y: y, 
         texture: texture
+    })),
+}))
+
+export const player = create(set => ({
+    x: 10,
+    y: 10,
+    changePosition: (x, y) => set(state => ({
+        ...state,
+        x: x,
+        y: y
     })),
 }))

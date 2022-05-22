@@ -2,6 +2,7 @@ import React from 'react';
 import { SaveLevel } from './saveLevel';
 import { CategoryGround } from './categoryGround';
 import { CategoryWall } from './categoryWall';
+import { CategoryPlayer } from './categoryPlayer';
 
 export const Interface = () => {
 
@@ -19,6 +20,7 @@ export const Interface = () => {
         >
             <CategoryGround />
             <CategoryWall />
+            <CategoryPlayer />
             <SaveLevel />
         </div>
     )
