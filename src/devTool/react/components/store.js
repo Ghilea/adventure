@@ -38,18 +38,16 @@ export const build = create(set => ({
         walls: [
             ...state.walls,
             {
-                pos: position, 
-                rotate: rotate,
-                type: type
+            pos: position, 
+            rotate: rotate,
+            type: type
             }
         ]        
     })),
-    removeWall: (x, y, z) => set((state) =>
-        state.wall.filter(wall => 
-            wall.x !== x || 
-            wall.y !== y, 
-            wall.z !== z
-        ),
+    removeWall: (removePosition) => 
+        set((state) => ({
+            walls: state.walls.filter(({pos}) => pos !== removePosition)
+        })
     ),
     saveLevel: () => set((state => {
         console.log(state.walls);
@@ -70,15 +68,13 @@ export const ground = create(set => ({
 
 export const player = create(set => ({
     active: false,
-    x: 0,
-    y: 0,
+    playerMark: [],
     changePlayer: (active) => set(state => ({
         ...state,
         active: active
     })),
-    addPlayer: (x, y) => set(state => ({
+    addPlayer: (pos) => set(state => ({
         ...state,
-        x: x,
-        y: y
+        playerMark: pos
     }))
 }))

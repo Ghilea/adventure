@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Ground } from './Ground';
 import { Cube } from './cube';
 import { Walls } from './walls';
-import { Read } from '../Crud';
+import { Read } from '../../../../shared/components/Crud';
 
 const Level = () => {
 
@@ -17,27 +17,24 @@ const Level = () => {
 
                 if (items.level.length > 0) {
 
-                    JSON.parse(items.level[0].wall).args.map((use, index) => {
+                    JSON.parse(items.level[0].content).map((use, index) => {
     
+                        console.log(use);
                         setBuild((state) => ([
                             ...state,
                             <Walls key={index} position = {
                                 [
-                                    use.posX,
-                                    (4 / 2) + use.posY,
-                                    use.posZ
+                                    use.pos
                                 ]
                             }
                             rotation = {
                                 [
-                                    use.rotX,
-                                    use.rotY,
-                                    use.rotZ
+                                    use.rotate
                                 ]
                             }
                             type = {
                                 [ 
-                                    use.texture
+                                    use.type
                                 ]
                             }
                             />

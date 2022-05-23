@@ -7,7 +7,7 @@ import React, {
 import {
     StoreContext
 } from '../store';
-import { Read } from '../crud';
+import { Read } from '../../../../shared/components/Crud';
 import EnemyHealthBar from './enemyHealthBar';
 
 const getEnemy = () => {

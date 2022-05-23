@@ -1,6 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react';
 import { StoreContext } from '../store'
-import { Read } from '../crud';
+import { Read } from '../../../../shared/components/Crud';
 
 export const Health = () => {
 

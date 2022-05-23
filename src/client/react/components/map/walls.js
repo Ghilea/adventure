@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { useBox } from '@react-three/cannon';
-import * as texture from './buildLevel/textures';
+import * as texture from '../../../../shared/components/textures';
 
 export const Walls = ({rotation, position, type, ...props}) => {
 
@@ -17,7 +17,7 @@ export const Walls = ({rotation, position, type, ...props}) => {
                 
             <meshStandardMaterial
                 map = {
-                    (type == 'stone') ? texture.stone() : ''
+                    (type == 'stone') ? texture.stone(): (type == 'stone2') ? texture.stone2() : (type == 'stoneWindow') ? texture.stoneWindow() : ''
                 }
                 key = {
                     index

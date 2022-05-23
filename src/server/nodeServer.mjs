@@ -10,12 +10,7 @@ dotenv.config();
 
 //api
 import { getQuest } from './api/quest.mjs';
-import {
-    getProtagonist,
-    getAllProtagonist,
-    createProtagonist,
-    updateStatsProtagonist
-} from './api/protagonist.mjs';
+import { getProtagonist, getAllProtagonist, createProtagonist, updateStatsProtagonist } from './api/protagonist.mjs';
 import { getAdventure } from './api/adventure.mjs';
 import { getEnemy } from './api/enemy.mjs';
 import { getLevel, createLevel } from './api/level.mjs'

@@ -1,57 +1,55 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
 import { Ground } from './Ground';
 import { Physics } from '@react-three/cannon';
 import { OrbitControls } from '@react-three/drei'
 import { Interface } from '../interface/interface';
-import { Walls } from './walls';
-import { build, mousePosition, ground, player } from '../store';
+import { build, ground, player, mousePosition} from '../store';
 import { useKey } from 'rooks';
+import { AddWall } from './add/addWall';
+import { AddPlayer } from './add/addPlayer';
 
 const Render = () => {
 
     const storeBuild = build(state => state);
     const storePlayer = player(state => state);
-    const position = mousePosition(state => state);
     const storeGround = ground(state => state)
+    const position = mousePosition(state => state);
 
     const [wall, setWall] = useState([]);
+    const [playerMark, setPlayerMark] = useState(null);
     const [index, setIndex] = useState(0);
-    const [rotate, setRotate] =useState(false);
+    const [rotate, setRotate] = useState(false);
     
     const handleMouseClick = (event) => {
         event.preventDefault();
 
         if (event.type === 'click') {
             if (storeBuild.active) {
-                storeBuild.addWall([position.x, (4 / 2) + position.y, position.z], (rotate) ? [0, 1.58, 0] : [0, 0, 0], storeBuild.texture)
-                setWall((state)=>([
-                    ...state,
-                    <Walls key = {
-                        index
-                    }
+
+                setWall((state) => ([
+                    ...state, 
+                    <AddWall key = {'wall'+index}
                     position = {
-                        [
-                            position.x,
-                            (4 / 2) + position.y,
-                            position.z
-                        ]
+                        [position.x, (4 / 2) + position.y, position.z]
                     }
                     rotation = {
                         (rotate) ? [0, 1.58, 0] : [0, 0, 0]
                     }
                     type = {
-                        [ 
-                            storeBuild.texture
-                        ]
+                        [storeBuild.texture]
                     }
                     />
                 ]))
-
+ 
                 setIndex(index + 1);
+
             }else if (storePlayer.active) {
-                storePlayer.addPlayer(position.x, position.y);
-                console.log(storePlayer)
+
+                setPlayerMark(<AddPlayer 
+                    position = {
+                        [position.x, (2 / 2) + position.y, position.z]
+                    } /> )
             }
         } else if (event.type === 'contextmenu') {
             event.preventDefault();
@@ -95,7 +93,8 @@ const Render = () => {
                         [0, 0, 0]
                     }
                     />
-                    {wall}       
+                    {wall}
+                    {playerMark}   
                 </Physics>
                 <gridHelper args={[storeGround.x, storeGround.y]}/>
             </Canvas>

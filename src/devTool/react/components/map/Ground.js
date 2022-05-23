@@ -1,8 +1,8 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React from 'react';
 import { usePlane } from '@react-three/cannon';
 import { useLoader } from '@react-three/fiber';
 import { TextureLoader, RepeatWrapping } from 'three';
-import groundTexture from '../../../assets/images/texture/floor.jpg';
+import groundTexture from '../../../../shared/assets/images/texture/floor.jpg';
 import { ground, mousePosition} from '../store';
 
 export const Ground = (props) => {

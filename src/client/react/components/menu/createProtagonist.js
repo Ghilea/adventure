@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Create } from '../Crud';
+import { Create } from '../../../../shared/components/Crud';
 import { StoreContext } from '../store';
 import { Points } from '../interface/Points';
 

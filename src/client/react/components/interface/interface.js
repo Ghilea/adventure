@@ -8,7 +8,7 @@ import React, {
 import {
     StoreContext
 } from '../store';
-import { Read, Update } from '../crud';
+import { Read, Update } from '../../../../shared/components/Crud';
 import { Health, Mana, Exp } from './Bar';
 import { CharacterSheet } from './Charactersheet';
 

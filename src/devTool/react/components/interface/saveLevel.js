@@ -1,6 +1,6 @@
 import React from 'react';
 import { build } from '../store';
-import { Create } from '../Crud';
+import { Create } from '../../../../shared/components/Crud';
 
 export const SaveLevel = () => {
     
@@ -9,13 +9,12 @@ export const SaveLevel = () => {
 
     const handleSave = () => {
         saveLevel(store.walls)
-        /*const url = `http://localhost:3000/createLevel`;
-
-        console.log(buildCheck.walls);
+        
+        const url = `http://localhost:3000/createLevel`;
 
         Create(url, {
-            content: JSON.stringify(buildCheck.walls)
-        });*/
+            content: JSON.stringify(store.walls)
+        });
     }
 
     return (

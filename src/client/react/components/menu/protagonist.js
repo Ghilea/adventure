@@ -3,7 +3,7 @@ import React, {
     useState,
     useContext
 } from 'react';
-import { Read } from '../Crud';
+import { Read } from '../../../../shared/components/Crud';
 import { StoreContext } from '../store';
 import CreateWindow from './createProtagonist';
 import useSound from 'use-sound';
