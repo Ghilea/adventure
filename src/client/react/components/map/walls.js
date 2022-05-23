@@ -2,12 +2,12 @@ import React, {useEffect, useRef, useState} from 'react';
 import { useBox } from '@react-three/cannon';
 import * as texture from '../../../../shared/components/textures';
 
-export const Walls = ({rotation, position, type, ...props}) => {
+export const Walls = ({position, rotation, type, ...props}) => {
 
     const [ref] = useBox(() => ({
         args: [8, 4, 0.5],
-        rotation,
         position,
+        rotation,
         ...props
     }))
 

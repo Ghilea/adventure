@@ -19,24 +19,12 @@ const Level = () => {
 
                     JSON.parse(items.level[0].content).map((use, index) => {
     
-                        console.log(use);
+                        console.log(use.pos);
                         setBuild((state) => ([
                             ...state,
-                            <Walls key={index} position = {
-                                [
-                                    use.pos
-                                ]
-                            }
-                            rotation = {
-                                [
-                                    use.rotate
-                                ]
-                            }
-                            type = {
-                                [ 
-                                    use.type
-                                ]
-                            }
+                            <Walls key={index} position = {use.pos}
+                            rotation = { use.rotate }
+                            type = { use.type }
                             />
                         ]))
 
