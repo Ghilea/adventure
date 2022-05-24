@@ -142,7 +142,7 @@ const Interface = () => {
     const handleKeyCharacterSheet = (event) => {
         if (event.key === 'c' && !chatOpen) {
             (storeMap.showCharacterSheet) ? 
-            storeMap.CharacterSheet(false) : storeMap.CharacterSheet(true);            
+            storeMap.characterSheet(false) : storeMap.characterSheet(true);            
         }
     }
 
@@ -224,7 +224,7 @@ const Interface = () => {
        
                 {
                     (chatOpen) ?
-                        < input id = 'chatInput'
+                        <input id = 'chatInput'
                         className = 'chatInput'
                         type = 'text'
                         ref = {
