@@ -4,12 +4,14 @@ import { Cube } from './cube';
 import { Walls } from './walls';
 import { Read } from '../../../../shared/components/Crud';
 import { map } from '../store';
+import { Player } from '../player/Player';
 
 const Level = () => {
 
     const storeMap = map(state => state);
 
     const [build, setBuild] = useState([]);
+    const [createPlayer, setCreateplayer] = useState();
 
     useEffect(() => {
 
@@ -33,8 +35,11 @@ const Level = () => {
                         ]))
                     })
 
+                    setCreateplayer(() => (
+                        <Player position = {parsed.player} />
+                    ))
+
                     storeMap.setPlayerPosition(parsed.player);
-     
                 }   
             })
     }, [])
@@ -43,9 +48,11 @@ const Level = () => {
         <>
             <Ground position = {[0, 0, 0]} />
             {build}
+            {createPlayer}
             <Cube position={[0.1, 5, 0]} />
             <Cube position={[0, 10, -1]} />
             <Cube position={[0, 20, -2]} />
+            
         </>
     )
 }

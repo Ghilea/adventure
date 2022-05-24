@@ -16,6 +16,11 @@ export const player = create(set => ({
     attack: false,
     canAttack: true,
     block: false,
+    movementSpeed: 6,
+    setMovementSpeed: (speed) => set(state => ({
+        ...state,
+        movementSpeed: speed
+    })),
     setPlayerId: (id) => set(state => ({
         ...state,
         id: id
@@ -69,14 +74,9 @@ export const player = create(set => ({
     })) 
 }))
 
-export const coords = create(set => ({
-    x: 0,
-    y: 0
-}))
-
 export const map = create(set => ({
     level: 1,
-    playerPosition: [0, 0, 0],
+    playerPosition: null,
     walking: false,
     showCharacterSheet: false,
     characterSheet: (value) => set(state => ({
@@ -85,7 +85,7 @@ export const map = create(set => ({
     })),
     setPlayerPosition: (position) => set(state => ({
         ...state,
-        playerPosition: position
+        playerPosition: [position]
     }))
 }))
 
@@ -117,14 +117,6 @@ export const enemy = create(set => ({
         attack: attack,
         hp: hp
     })) 
-}))
-
-export const movement = create(set => ({
-    moveForward: false,
-    moveBackward: false,
-    moveLeft: false,
-    moveRight: false,
-    Jump: false
 }))
 
 export const menu = create(set => ({

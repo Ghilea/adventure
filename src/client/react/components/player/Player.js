@@ -4,10 +4,12 @@ import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeyboardControls } from '../../hooks/useKeyboardControls';
 import { CameraMovement } from './cameraMovement';
+import { player } from '../store';
 
-const SPEED = 6;
+export const Player = ({position, ...props}) => {
 
-export const Player = (props) => {
+    const storePlayer = player(state => state);
+
     const {
         moveForward,
         moveBackward,
@@ -19,6 +21,7 @@ export const Player = (props) => {
     const { camera } = useThree();
     const [ref, api] = useSphere(() => ({
         mass: 1,
+        position,
         ...props
     }))
 
@@ -40,7 +43,7 @@ export const Player = (props) => {
         direction
         .subVectors(frontVector, sideVector)
         .normalize()
-        .multiplyScalar(SPEED)
+        .multiplyScalar(storePlayer.movementSpeed)
         .applyEuler(camera.rotation);
         
         api.velocity.set(direction.x, velocity.current[1], direction.z);
