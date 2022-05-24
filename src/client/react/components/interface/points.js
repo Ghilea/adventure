@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { StoreContext } from '../store';
+import React, { useEffect, useState } from 'react';
+import { player } from '../store';
 
 export const Points = () => {
 
-    const [store, setStore] = useContext(StoreContext);
+     const storePlayer = player(state => state);
 
     const [disabled, setDisabled] = useState([{
         strMin: false,
@@ -16,10 +16,10 @@ export const Points = () => {
     
     const handleAttribute = (event) => {
 
-        let str = store.player.str,
-            int = store.player.int,
-            dex = store.player.dex,
-            p = store.player.playerPoints;
+        let str = storePlayer.str,
+            int = storePlayer.int,
+            dex = storePlayer.dex,
+            p = storePlayer.points;
 
         switch (event.target.id) {
             case 'strMin':
@@ -48,51 +48,42 @@ export const Points = () => {
                 break;
         }
     
-        setStore(store => ({
-            ...store,
-            player: {
-                ...store.player,
-                playerPoints: p,
-                str: str,
-                int: int,
-                dex: dex,
-                playerDps: (str + int + dex) / 2,
-            }
-        })) 
+        storePlayer.updatePoints(p, str, int, dex);
+
     }
 
     useEffect(() => {
         //min
-        if (store.player.str <= 0) {
+        if (storePlayer.str <= 0) {
             setDisabled((disabled) => ({
                 ...disabled,
                 strMin: true
             }));
-        } else if (store.player.str >= 1) {
+        } else if (storePlayer.str >= 1) {
             setDisabled((disabled) => ({
                 ...disabled,
                 strMin: false
             }));
         }
 
-        if (store.player.int <= 0) {
+        if (storePlayer.int <= 0) {
             setDisabled((disabled) => ({
                 ...disabled,
                 intMin: true
             }));
-        } else if (store.player.int >= 1) {
+        } else if (storePlayer.int >= 1) {
             setDisabled((disabled) => ({
                 ...disabled,
                 intMin: false
             }));
         }
 
-        if (store.player.dex <= 0) {
+        if (storePlayer.dex <= 0) {
             setDisabled((disabled) => ({
                 ...disabled,
                 dexMin: true
             }));
-        } else if (store.player.dex >= 1) {
+        } else if (storePlayer.dex >= 1) {
             setDisabled((disabled) => ({
                 ...disabled,
                 dexMin: false
@@ -100,14 +91,14 @@ export const Points = () => {
         }
 
         //max
-        if (store.player.playerPoints <= 0) {
+        if (storePlayer.points <= 0) {
             setDisabled((disabled) => ({
                 ...disabled,
                 strMax: true,
                 intMax: true,
                 dexMax: true
             }));
-        } else if (store.player.playerPoints >= 1) {
+        } else if (storePlayer.points >= 1) {
             setDisabled((disabled) => ({
                 ...disabled,
                 strMax: false,
@@ -116,25 +107,25 @@ export const Points = () => {
             }));
         }
 
-    }, [store.player])
+    }, [storePlayer])
 
     return (
         <>
             <div className='btnSection'>
                 <button onClick={handleAttribute} id='strMin' className='gainBtn' disabled={disabled.strMin}>-</button>
-                <p className='str'>Str: {store.player.str}</p>
+                <p className='str'>Str: {storePlayer.str}</p>
                 <button onClick={handleAttribute} id='strMax' className='gainBtn' disabled={disabled.strMax}>+</button>
             </div>
             
             <div className='btnSection'>
                 <button onClick={handleAttribute} id='intMin' className='gainBtn' disabled={disabled.intMin}>-</button>
-                <p className='int'>Int: {store.player.int}</p>
+                <p className='int'>Int: {storePlayer.int}</p>
                 <button onClick={handleAttribute} id='intMax' className='gainBtn' disabled={disabled.intMax}>+</button>
             </div>
 
             <div className='btnSection'>
                 <button onClick={handleAttribute} id='dexMin' className='gainBtn' disabled={disabled.dexMin}>-</button>
-                <p className='dex'>Dex: {store.player.dex}</p>
+                <p className='dex'>Dex: {storePlayer.dex}</p>
                 <button onClick={handleAttribute} id='dexMax' className='gainBtn' disabled={disabled.dexMax}>+</button>
             </div>
         </>

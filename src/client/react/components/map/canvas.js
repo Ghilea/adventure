@@ -1,12 +1,9 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Read } from '../../../../shared/components/Crud';
-import { StoreContext } from '../store';
 import Enemy from '../enemy/enemy';
 import RenderMap from './renderMap';
 
 const Canvas = () => {
-
-    const [store, setStore] = useContext(StoreContext);
 
     const [content, setContent] = useState({
         enemyAllowed: null,
@@ -20,39 +17,9 @@ const Canvas = () => {
         describe: null
     });
 
-    useEffect(()=>{
+    /*useEffect(()=>{
         
-        let url = `http://localhost:3000/getAdventure?x=${store.coords.x}&y=${store.coords.y}`;
         let url_quest = `http://localhost:3000/getQuest?x=${store.coords.x}&y=${store.coords.y}`;
-
-        Read(url)
-            .then(items => {
-
-                if (items.adventure.length > 0) {
-                    setContent(content => ({
-                        ...content,
-                        enemyFound: items.enemies,
-                        enemyAllowed: items.adventure[0].enemy,
-                        content: JSON.parse(items.adventure[0].content),
-                        isContent: items.content
-                    }));
-                    setStore(store => ({
-                        ...store,
-                        doors: {
-                            ...store.doors,
-                            left: JSON.parse(items.adventure[0].content).doors.left,
-                            right: JSON.parse(items.adventure[0].content).doors.right,
-                            front: JSON.parse(items.adventure[0].content).doors.front,
-                            back: JSON.parse(items.adventure[0].content).doors.back
-                        }
-                    }))
-                }else{
-                    setContent(content => ({
-                        ...content,
-                        isContent: false
-                    }));
-                }
-            })
 
         Read(url_quest)
             .then(items => {
@@ -73,7 +40,7 @@ const Canvas = () => {
                 } 
             })
 
-    }, [store.coords])
+    }, [store.coords])*/
 
     /**
      * 

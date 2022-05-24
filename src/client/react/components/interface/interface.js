@@ -1,13 +1,5 @@
-import React, {
-    useContext, 
-    useState,
-    useEffect, 
-    useRef, 
-    createElement
-} from 'react';
-import {
-    StoreContext
-} from '../store';
+import React, { useState, useEffect,  useRef,  createElement } from 'react';
+import { player, enemy, map, combat } from '../store';
 import { Read, Update } from '../../../../shared/components/Crud';
 import { Health, Mana, Exp } from './Bar';
 import { CharacterSheet } from './Charactersheet';
@@ -18,7 +10,10 @@ import {
 
 const Interface = () => {
 
-    const [store, setStore] = useContext(StoreContext);
+    const storePlayer = player(state => state);
+    const storeEnemy = enemy(state => state);
+    const storeCombat = combat(state => state);
+    const storeMap = map(state => state);
 
     const ws = useRef(null);
     const inputRef = useRef(null);
@@ -28,7 +23,7 @@ const Interface = () => {
     }, [])
     
     const [set, setState] = useState({
-        heroName: '',
+        name: '',
         img: null
     });
 
@@ -57,7 +52,7 @@ const Interface = () => {
 
         if(chatOpen){
             if (textInput.length > 0) {
-                ws.current.send(JSON.stringify({"name":set.heroName,"message": textInput}));
+                ws.current.send(JSON.stringify({"name":set.name,"message": textInput}));
             }
             SetTextInput('');
             setChatOpen(false);
@@ -70,7 +65,7 @@ const Interface = () => {
 
     useEffect(() => {
 
-        let url = `http://localhost:3000/getProtagonist?id=${store.player.playerId}`;
+        let url = `http://localhost:3000/getProtagonist?id=${storePlayer.id}`;
 
         Read(url)
             .then(items => {
@@ -78,26 +73,21 @@ const Interface = () => {
                 if (items.protagonist.length > 0) {
                     setState(set => ({
                         ...set,
-                        heroName: items.protagonist[0].name,
+                        name: items.protagonist[0].name,
                         img: `assets/images/characters/${items.protagonist[0].img}.png`                      
                     }));
 
-                    setStore(store => ({
-                        ...store, 
-                        player: {
-                            ...store.player,
-                            playerLevel: items.protagonist[0].level,
-                            playerHp: items.protagonist[0].health,
-                            playerMaxHp: items.protagonist[0].maxHealth,
-                            playerDps: (items.protagonist[0].strength + items.protagonist[0].intellect + items.protagonist[0].dexterity) / 2,
-                            playerExp: items.protagonist[0].experience,
-                            str: items.protagonist[0].strength,
-                            int: items.protagonist[0].intellect,
-                            dex: items.protagonist[0].dexterity,
-                            playerPoints: items.protagonist[0].points,
-                        }
-                        
-                    }))
+                    storePlayer.setPlayer(
+                        items.protagonist[0].level,
+                        items.protagonist[0].health,
+                        items.protagonist[0].maxHealth,
+                        (items.protagonist[0].strength + items.protagonist[0].intellect + items.protagonist[0].dexterity) / 2,
+                        items.protagonist[0].experience,
+                        items.protagonist[0].intellect,
+                        items.protagonist[0].dexterity,
+                        items.protagonist[0].strength,
+                        items.protagonist[0].points
+                    );
                 } 
             })
     }, [])
@@ -106,76 +96,53 @@ const Interface = () => {
         const url = `http://localhost:3000/updateStats`;
 
         const data = {
-            id: store.player.playerId,
+            id: storePlayer.id,
             attribute: {
-                str: store.player.str,
-                int: store.player.int,
-                dex: store.player.dex
+                str: storePlayer.str,
+                int: storePlayer.int,
+                dex: storePlayer.dex
             },
-            exp: store.player.playerExp,
-            level: store.player.playerLevel,
-            hp: store.player.playerHp,
-            maxHp: store.player.playerMaxHp,
-            points: store.player.playerPoints,
+            exp: storePlayer.exp,
+            level: storePlayer.level,
+            hp: storePlayer.hp,
+            maxHp: storePlayer.maxHp,
+            points: storePlayer.points,
         }
 
-        if (store.player.playerLevel > 0) {
+        if (storePlayer.level > 0) {
             Update(url, data);
         }
             
-    }, [store.player]);
+    }, [storePlayer]);
 
     useEffect(() => {
-        if(store.player.playerExp > 0){
+        if(storePlayer.exp > 0){
             updateLevel();
         }
         
-    }, [store.player.playerExp]);
+    }, [storePlayer.exp]);
 
     const updateLevel = () => {
      
-        let points = store.player.playerPoints;
-        let lvl = store.player.playerLevel;
+        let points = storePlayer.points;
+        let lvl = storePlayer.level;
         let nextLevel = lvl + 1;
         let formulaLevel = (50 * nextLevel ** 3 / 3 - 100 * nextLevel ** 2 + 850 * nextLevel / 3 - 200);
 
-        while (store.player.playerExp >= formulaLevel) {
+        while (storePlayer.exp >= formulaLevel) {
             lvl++;
             nextLevel++;
             points++;
             formulaLevel = (50 * nextLevel ** 3 / 3 - 100 * nextLevel ** 2 + 850 * nextLevel / 3 - 200);
         }
         
-        setStore((store)=>({
-            ...store,
-            player: {
-                ...store.player,
-                playerPoints: points,
-                playerLevel: lvl
-            }
-        }))
+        storePlayer.gainLevel(points, lvl);
     }
 
     const handleKeyCharacterSheet = (event) => {
         if (event.key === 'c' && !chatOpen) {
-            if(store.map.showCharacterSheet){
-                setStore(store => ({
-                    ...store,
-                    map: {
-                        ...store.map,
-                        showCharacterSheet: false
-                    }
-                }))
-            }else{
-                setStore(store => ({
-                    ...store,
-                    map: {
-                        ...store.map,
-                        showCharacterSheet: true
-                    }
-                }))
-            }
-            
+            (storeMap.showCharacterSheet) ? 
+            storeMap.CharacterSheet(false) : storeMap.CharacterSheet(true);            
         }
     }
 
@@ -183,7 +150,7 @@ const Interface = () => {
         console.log('click');
         event.preventDefault();
 
-        if (event.type === 'click' && store.enemy.enemyHp > 0 && store.player.playerCanAttack) {
+        if (event.type === 'click' && storeEnemy.hp > 0 && storePlayer.canAttack) {
             console.log('left');
             
             const playerText = createElement(
@@ -191,59 +158,22 @@ const Interface = () => {
                     key: 'combatScrollPlayer',
                     className: 'combatScrollPlayer combatScrollAnimation'
                 },
-                store.player.playerDps
+                storePlayer.dps
             )
 
-            setStore(store => ({
-                ...store,
-                combat: {
-                    ...store.combat,
-                    text: playerText
-                },
-                player: {
-                    ...store.player,
-                    playerCanAttack: false,
-                    playerAttack: true,
-                },
-                enemy: {
-                    ...store.enemy,
-                    enemyAttack: false,
-                    enemyHp: (store.enemy.enemyHp -= store.player.playerDps)
-                }
-            }))
+            storePlayer.allowAttack(false, true);
+            storeEnemy.gettingHit(false, (storeEnemy.hp -= storePlayer.dps));
+            storeCombat.changeText(playerText);
 
             setTimeout(() => {
-                console.log('reset');
-                setStore(store => ({
-                    ...store,
-                    player: {
-                        ...store.player,
-                        playerCanAttack: true,
-                        playerAttack: false,
-                    },
-                    combat: {
-                        ...store.combat,
-                        text: null
-                    },
-                }))
+                storePlayer.allowAttack(true, false);
+                storeCombat.changeText(null);
             }, 1500)
 
-        } else if (event.type === 'mousedown' && event.button === 2) {
-            setStore((store)=>({
-                ...store,
-                player: {
-                    ...store.player,
-                    playerBlock: true
-                }
-            }))
+        }else if (event.type === 'mousedown' && event.button === 2) {
+            storePlayer.isBlock(true);
         }else if (event.type === 'contextmenu') {
-            setStore((store) => ({
-                ...store,
-                player: {
-                    ...store.player,
-                    playerBlock: false
-                }
-            }))
+            storePlayer.isBlock(false);
         }
 
     }
@@ -264,27 +194,25 @@ const Interface = () => {
                 <div className='avatar'> 
                     <img src={set.img} /> 
                 </div>
-                <div className='heroName'>{set.heroName}</div>
+                <div className='heroName'>{set.name}</div>
                 <div className='level'>
                     {
-                        store.player.playerLevel
+                        storePlayer.level
                     }
                 </div>
                 <Health />
                 <Exp />
                 <Mana />
                        
-                <div className='coords'>X: {store.coords.x} Y: {store.coords.y}</div>
-  
                 {
-                    (store.map.showCharacterSheet) ? <CharacterSheet /> : <></>
+                    (storeMap.showCharacterSheet) ? <CharacterSheet /> : <></>
                 }
 
-                <div key={'playerShield'} className={`playerShield ${(store.player.playerBlock) ? 'block' : ''}`}>
+                <div key={'playerShield'} className={`playerShield ${(storePlayer.block) ? 'block' : ''}`}>
                     <img src='assets/images/gui/shield.png'/>
                 </div>
 
-                <div key={'playerWeapon'} className={`playerWeapon ${(store.player.playerAttack) ? 'swing' : ''}`}>
+                <div key={'playerWeapon'} className={`playerWeapon ${(storePlayer.attack) ? 'swing' : ''}`}>
                     <img src='assets/images/gui/sword.png'/>
                 </div>
                 

@@ -1,10 +1,12 @@
-import React, {useState, useContext, useEffect} from 'react';
-import { StoreContext } from '../store'
+import React, {useState, useEffect} from 'react';
+import { enemy, player } from '../store'
 import { Read } from '../../../../shared/components/Crud';
 
 export const Health = () => {
 
-    const [store, setStore] = useContext(StoreContext);
+    const storeEnemy = enemy(state => state);
+    const storePlayer = player(state => state);
+
     const [health, setHealth] = useState(
         { 
             hit: 0 + '%',
@@ -13,7 +15,7 @@ export const Health = () => {
     );
     
     useEffect(() => {
-        let url = `http://localhost:3000/getProtagonist?id=${store.player.playerId}`;
+        let url = `http://localhost:3000/getProtagonist?id=${storePlayer.id}`;
 
         Read(url)
             .then(items => {
@@ -28,14 +30,14 @@ export const Health = () => {
     }, [])
 
     useEffect(() => {
-        if (store.enemy.enemyAttack) {
+        if (storeEnemy.attack) {
             setHealth(health => ({
                 ...health,
-                hit: (store.enemy.enemyDps / store.player.playerHp) * 100 + '%'
+                hit: (storeEnemy.dps / storePlayer.hp) * 100 + '%'
             }))
         }
 
-        if(store.player.playerHp <= 0){
+        if(storePlayer.hp <= 0){
             console.log('Du dog');
         }
 
@@ -43,25 +45,25 @@ export const Health = () => {
             setHealth(health => ({
                 ...health,
                 hit: 0 + '%',
-                bar: ((store.player.playerHp - store.enemy.enemyDps) / store.player.playerMaxHp) * 100 + '%'
+                bar: ((storePlayer.hp - storeEnemy.dps) / storePlayer.maxHp) * 100 + '%'
             }))
         }, 500);
-    }, [store.enemy.enemyAttack])
+    }, [storeEnemy.attack])
     
 
     useEffect(() => {
-        if(store.player.playerMaxHp > 0){
+        if(storePlayer.maxHp > 0){
             
             setHealth(health => ({
                 ...health,
-                bar: (store.player.playerHp / store.player.playerMaxHp) * 100 + '%'
+                bar: (storePlayer.hp / storePlayer.maxHp) * 100 + '%'
             }))
         }
-    }, [store.player.playerMaxHp])
+    }, [storePlayer.maxHp])
 
     return (
     
-        <div className = 'health-bar' data-value = {store.player.playerHp}>
+        <div className = 'health-bar' data-value = {storePlayer.hp}>
             
             <div className = 'bar'
             style = {
@@ -79,7 +81,7 @@ export const Health = () => {
                 </div>
             </div>
 
-            <div className = 'health'> {store.player.playerHp} / {store.player.playerMaxHp}</div>
+            <div className = 'health'> {storePlayer.hp} / {storePlayer.maxHp}</div>
         </div>
      
     )
@@ -87,8 +89,9 @@ export const Health = () => {
 
 export const Mana = () => {
 
-    const [store, setStore] = useContext(StoreContext);
-    const [health, setHealth] = useState(
+    const storePlayer = player(state => state);
+
+    const [mana, setMana] = useState(
         { 
             hit: 0 + '%',
             bar: 100 + '%'
@@ -99,19 +102,19 @@ export const Mana = () => {
     return (
     
         <div className = 'mana-bar' data-value = {
-            store.player.playerHp
+            storePlayer.mana
         } >
             
             <div className = 'bar'
             style = {
                 {
-                    width: health.bar
+                    width: mana.bar
                 }
             }>
                 <div className='hit' 
                 style = {
                     {
-                        width: health.hit
+                        width: mana.hit
                     }
                 }>
 
@@ -127,8 +130,9 @@ export const Mana = () => {
 
 export const Exp = () => {
 
-    const [store, setStore] = useContext(StoreContext);
-    const [health, setHealth] = useState(
+    const storePlayer = player(state => state);
+
+    const [exp, setExp] = useState(
         { 
             hit: 0 + '%',
             bar: 100 + '%'
@@ -138,19 +142,19 @@ export const Exp = () => {
     return (
     
         <div className = 'exp-bar' data-value = {
-            store.player.playerHp
+            storePlayer.exp
         } >
             
             <div className = 'bar'
             style = {
                 {
-                    width: health.bar
+                    width: exp.bar
                 }
             }>
                 <div className='hit' 
                 style = {
                     {
-                        width: health.hit
+                        width: exp.hit
                     }
                 }>
 
@@ -158,7 +162,7 @@ export const Exp = () => {
             </div>
 
             <div className = 'exp' > {
-                store.player.playerExp
+                storePlayer.exp
             } exp
             </div >
         </div>

@@ -1,15 +1,10 @@
-import React, {
-    useEffect,
-    useState,
-    useContext
-} from 'react';
-import {
-    StoreContext
-} from '../store';
+import React, { useEffect, useState } from 'react';
+import { enemy, player } from '../store';
 
 const EnemyHealthBar = () => {
 
-    const [store, setStore] = useContext(StoreContext);
+    const storeEnemy = enemy(state => state);
+    const storePlayer = player(state => state);
 
     const [health, setHealth] = useState({
         hit: 0 + '%',
@@ -18,41 +13,32 @@ const EnemyHealthBar = () => {
 
     useEffect(() => {
 
-        if(store.player.playerAttack) {
+        if(storePlayer.attack) {
             setHealth(health => ({
                 ...health,
-                hit: (store.player.playerDps / store.enemy.enemyHp) * 100 + '%'
+                hit: (storePlayer.dps / storeEnemy.hp) * 100 + '%'
             }))
 
-            if (store.enemy.enemyHp <= 0) {
-                setStore(store => ({
-                    ...store,
-                    player: {
-                        ...store.player,
-                        playerExp: (store.player.playerExp += store.enemy.enemyExp)
-                    },
-                    enemy: {
-                        ...store.enemy,
-                        dead: true
-                    }
-                }))
+            if (storeEnemy.hp <= 0) {
+                storePlayer.gainExp(storePlayer.exp += storeEnemy.exp);
+                storeEnemy.isDead(true);
             }
 
             setTimeout(function () {
                 setHealth(health => ({
                     ...health,
                     hit: 0 + '%',
-                    bar: ((store.enemy.enemyHp - store.player.playerDps) / store.enemy.enemyMaxHp) * 100 + '%'
+                    bar: ((storeEnemy.hp - storePlayer.dps) / storeEnemy.maxHp) * 100 + '%'
                 }))
 
             }, 500);
         }
 
-    }, [store.player.playerAttack])
+    }, [storePlayer.attack])
 
     return ( 
 
-        <div className = 'enemyHealth-bar' data-value = {store.enemy.enemyHp}>
+        <div className = 'enemyHealth-bar' data-value = {storeEnemy.hp}>
         
             <div className = 'enemyBar'
             style = {
@@ -71,7 +57,7 @@ const EnemyHealthBar = () => {
 
             </div>
 
-            <div className = 'enemyHealth'> {store.enemy.enemyHp} / {store.enemy.enemyMaxHp}</div>
+            <div className = 'enemyHealth'> {storeEnemy.hp} / {storeEnemy.maxHp}</div>
 
         </div>
 

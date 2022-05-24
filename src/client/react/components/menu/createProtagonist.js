@@ -1,25 +1,20 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Create } from '../../../../shared/components/Crud';
-import { StoreContext } from '../store';
+import { player, menu } from '../store';
 import { Points } from '../interface/Points';
 
 const Protagonist = () => {
 
+    const storePlayer = player(state => state);
+    const storeMenu = menu(state => state);
+    
     const [character, setCharacter] = useState({
         name: null,
         img: null
     });
-
-    const [store, setStore] = useContext(StoreContext);
     
     useEffect(() => {
-        setStore(store => ({
-            ...store,
-            player: {
-                ...store.player,
-                playerPoints: 5
-            }
-        }))
+        storePlayer.setPoints(5);
     }, [])
 
     const handleInput = (event) => {
@@ -38,13 +33,7 @@ const Protagonist = () => {
     }
 
     const handleBack = () => {
-        setStore((store) => ({
-            ...store,
-            menu: {
-                ...store.menu,
-                showCreate: false
-            }
-        }));
+        storeMenu.createWindow(false);
     }
 
     const handleCreate = () => {
@@ -56,18 +45,12 @@ const Protagonist = () => {
             Create(url, {
                 name: character.name,
                 img: character.img,
-                points: store.player.playerPoints,
-                str: store.player.str,
-                int: store.player.int,
-                dex: store.player.dex
+                points: storePlayer.points,
+                str: storePlayer.str,
+                int: storePlayer.int,
+                dex: storePlayer.dex
             });
-            setStore((store) => ({
-                ...store,
-                menu: {
-                    ...store.menu,
-                    showCreate: false
-                }
-            }))
+            storeMenu.createWindow(false);
         }
     }
 
@@ -102,7 +85,7 @@ const Protagonist = () => {
             </div>
 
             <div className='stats'>
-                <div className='showPoints'>Poäng: {store.player.playerPoints}</div>
+                <div className='showPoints'>Poäng: {storePlayer.points}</div>
                 <Points />
             </div>
 

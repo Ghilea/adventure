@@ -1,19 +1,19 @@
-import React, { useEffect, useState, useRef, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Ground } from './Ground';
 import { Cube } from './cube';
 import { Walls } from './walls';
 import { Read } from '../../../../shared/components/Crud';
-import { StoreContext } from '../store';
+import { map } from '../store';
 
 const Level = () => {
 
-    //const [store, setStore] = useContext(StoreContext);
+    const storeMap = map(state => state);
 
     const [build, setBuild] = useState([]);
 
     useEffect(() => {
 
-        let url = `http://localhost:3000/getLevel?&id=1`;
+        let url = `http://localhost:3000/getLevel?&id=${storeMap.level}`;
     
         Read(url)
             .then(items => {
@@ -33,14 +33,8 @@ const Level = () => {
                         ]))
                     })
 
-                    /*setStore((store) => ({
-                        ...store,
-                        map: {
-                            ...store.map,
-                            playerPosition: parsed.player
-                        }
-                    }))*/
- 
+                    storeMap.setPlayerPosition(parsed.player);
+     
                 }   
             })
     }, [])

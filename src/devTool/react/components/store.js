@@ -1,8 +1,5 @@
 import create from 'zustand';
 
-/*const getLocalStorage = (key) => JSON.parse(window.localStorage.getItem(key));
-const setLocalStorage = (key, value) => window.localStorage.setItem(key, JSON.stringify(value));
-*/
 export const mousePosition = create(set => ({
     x: 0,
     y: 0,

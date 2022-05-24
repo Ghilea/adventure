@@ -1,23 +1,23 @@
-import React, {useContext} from 'react';
-import { StoreContext } from '../store'
+import React from 'react';
+import { player } from '../store'
 import { Points } from './Points';
 
 export const CharacterSheet = () => {
 
-    const [store, setStore] = useContext(StoreContext);
+    const storePlayer = player(state => state);
     
     return (
     
         <div className='characterSheet'>
             <div className='points'>Poäng: 
                 {
-                    store.player.playerPoints
+                    storePlayer.points
                 }
             </div>
             <div className='attributes'>
                 <Points />
             </div>
-            <div className='dps'>Dps: {store.player.playerDps}</div>
+            <div className='dps'>Dps: {storePlayer.dps}</div>
             
         </div>
      

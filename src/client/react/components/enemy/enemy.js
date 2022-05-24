@@ -1,21 +1,16 @@
-import React, {
-    useEffect,
-    useState,
-    useContext,
-    createElement
-} from 'react';
-import {
-    StoreContext
-} from '../store';
+import React, { useEffect, useState, createElement } from 'react';
+import { enemy, player, combat } from '../store';
 import { Read } from '../../../../shared/components/Crud';
 import EnemyHealthBar from './enemyHealthBar';
 
 const getEnemy = () => {
 
-    const [store, setStore] = useContext(StoreContext);
+    const storeEnemy = enemy(state => state);
+    const storePlayer = player(state => state);
+    const storeCombat = combat(state => state);
 
     const [set, setState] = useState({
-        enemyName: null,
+        name: null,
         img: null,
         strength: 0,
         intellect: 0,
@@ -33,44 +28,30 @@ const getEnemy = () => {
                 if (items.enemy.length > 0) {
                     setState(set => ({
                         ...set,
-                        enemyName: items.enemy[0].name,
+                        name: items.enemy[0].name,
                         img: `assets/images/characters/${items.enemy[0].img}.png`,
                         strength: items.enemy[0].strength,
                         intellect: items.enemy[0].intellect,
                         dexterity: items.enemy[0].dexterity,
                     }));
 
-                    setStore(store => ({
-                        ...store,
-                        enemy: {
-                            ...store.enemy,
-                            enemyHp: items.enemy[0].health,
-                            enemyExp: items.enemy[0].experience,
-                            enemyMaxHp: items.enemy[0].maxHealth,
-                            enemyDps: (items.enemy[0].strength + items.enemy[0].intellect + items.enemy[0].dexterity) / 2,
-                            dead: false,
-                        }
-                        
-                    }))
-
+                    storeEnemy.setEnemy(
+                        items.enemy[0].health,
+                        items.enemy[0].maxHealth,
+                        items.enemy[0].experience,
+                        (items.enemy[0].strength + items.enemy[0].intellect + items.enemy[0].dexterity) / 2,
+                        false
+                    );
                 }
             })
-
-            console.log(store.enemy.enemyHp);
     }, [])
 
     //update animation on enemy attacking
     useEffect(() => {
         setTimeout(()=>{
-            setStore(store => ({
-                ...store,
-                enemy: {
-                    ...store.enemy,
-                    enemyAttack: false
-                }
-            }))
+            storeEnemy.isAttack(false)
         }, 100)        
-    }, [store.player.playerHp])
+    }, [storePlayer.hp])
 
     //enemy attack
     const enemyAttack = () => {
@@ -79,42 +60,34 @@ const getEnemy = () => {
                 key: 'combatScrollEnemy',
                 className: 'combatScrollEnemy combatScrollAnimation'
             },
-            `- ${store.enemy.enemyDps}`
+            `- ${storeEnemy.dps}`
         )
 
-        setStore(store => ({
-            ...store,
-            enemy: {
-                ...store.enemy,
-                enemyAttack: true
-            },
-            player: {
-                ...store.player,
-                playerAttack: false,
-                playerHp: store.player.playerHp -= store.enemy.enemyDps
-            }
-        }))
+        storeEnemy.isAttack(true)
+        
+        storePlayer.isAttack(false, storePlayer.hp -= store.dps)
+
     }
 
     return (
         <>
             {
-                (!store.enemy.dead) ?
+                (!storeEnemy.dead) ?
 
                 <>
                     <img className = {
-                        `enemyAvatar ${(store.enemy.enemyAttack) ? 'enemyAttackAnimation' : ''}`
+                        `enemyAvatar ${(storeEnemy.attack) ? 'enemyAttackAnimation' : ''}`
                     }
                     src = {
                         set.img
                     }
                     />
 
-                    <div className='textBox'>{store.combat.text}</div>
+                    <div className='textBox'>{storeCombat.text}</div>
         
                    <EnemyHealthBar />
 
-                    <p className='enemyName'>{set.enemyName}</p>
+                    <p className='enemyName'>{set.name}</p>
                 </>
                 : <></>
 

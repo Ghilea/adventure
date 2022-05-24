@@ -1,18 +1,13 @@
-import React, {
-    useEffect, 
-    useState, 
-    useContext, 
-    useRef
-} from 'react';
+import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import Level from './level';
 import { Player } from '../player/Player';
-import { StoreContext } from '../store';
+import { map } from '../store';
 
 const RenderMap = () => {
     
-    const [store, setStore] = useContext(StoreContext);
+    const storeMap = map(state => state);
 
     return (
         <Canvas shadows>
@@ -20,7 +15,7 @@ const RenderMap = () => {
             <directionalLight position={[10, 10, 10]} castShadow shadow-mapSize={[2048, 2048]} />
             <Physics gravity={[0, -30, 0]}>
                 <Level />                
-                <Player position = {store.map.playerPosition} />
+                <Player position = {storeMap.playerPosition} />
             </Physics>
         </Canvas>    
     )

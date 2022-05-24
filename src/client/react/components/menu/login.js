@@ -1,14 +1,15 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import Interface from '../interface/Interface';
 import Canvas from '../map/canvas';
-import {StoreContext, StoreProvider} from '../store'
+import { menu } from '../store'
 import Protagonist from './protagonist';
 import useSound from 'use-sound';
 import { Howler } from 'howler';
 
 const Login = () => {
 
-    const [store, setStore] = useContext(StoreContext);
+    const storeMenu = menu(state => state);
+
     const [start, setStart] = useState(false);
     const [playing, setPlaying] = useState(false);
     const [volume, setVolume] = useState(0.25);
@@ -34,14 +35,14 @@ const Login = () => {
      }
 
     useEffect(()=>{
-        if (store.menu.login) {
+        if (storeMenu.login) {
             sound.fade(volume, 0, 1000);
             setTimeout(() => {
                 stop();
                 setPlaying(false);
             }, 1000);
         }
-    },[store.menu.login])
+    },[storeMenu.login])
 
     /**
      * <button type='button' className = 'music'
@@ -65,7 +66,7 @@ const Login = () => {
         {
             (start) ? 
             
-                (!store.menu.login) ?
+                (!storeMenu.login) ?
                     <>
                     <Protagonist />
                     </>

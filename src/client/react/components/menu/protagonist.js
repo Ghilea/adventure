@@ -1,16 +1,14 @@
-import React, {
-    useEffect,
-    useState,
-    useContext
-} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Read } from '../../../../shared/components/Crud';
-import { StoreContext } from '../store';
+import { menu, player } from '../store';
 import CreateWindow from './createProtagonist';
 import useSound from 'use-sound';
 
 const Protagonist = () => {
 
-    const [store, setStore] = useContext(StoreContext);
+    const storeMenu = menu(state => state);
+    const storePlayer = player(state => state);
+
     const [characterList, setCharacterList] = useState([]);
   
     useEffect(() => {
@@ -50,30 +48,15 @@ const Protagonist = () => {
                 }
             })
 
-    }, [store.menu.showCreate])
+    }, [storeMenu.showCreate])
     
     const handleLogin = (id) => {
-        setStore((store) => ({
-            ...store,
-            menu: {
-                ...store.menu,
-                login: true
-            },
-            player: {
-                ...store.player,
-                playerId: id
-            }
-        }))
+        storeMenu.isLogin(true);
+        storePlayer.setPlayerId(id);
     }
 
     const createClick = () => {
-        setStore((store) => ({
-            ...store,
-            menu: {
-                ...store.menu,
-                showCreate: true
-            }
-        }))
+        storeMenu.createWindow(true);
     }
 
     const [play, {
@@ -88,13 +71,13 @@ const Protagonist = () => {
                 
                 <div className='list fadeIn'>
                     {
-                        (store.menu.showCreate) ? < CreateWindow />: characterList
+                        (storeMenu.showCreate) ? < CreateWindow />: characterList
                     }
                 </div>
             </div>
 
             {
-                (store.menu.showCreate) ? '' : <button className='fadeIn createHero' type='button' onClick = {
+                (storeMenu.showCreate) ? '' : <button className='fadeIn createHero' type='button' onClick = {
                     createClick
                 } > Skapa hjälte </button> }
             
