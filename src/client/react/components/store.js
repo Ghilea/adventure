@@ -7,30 +7,7 @@ const StoreContext = createContext();
 
 const StoreProvider = (props) => {
     
-    const getLocalStorage = (key) => JSON.parse(window.localStorage.getItem(key));
-    const setLocalStorage = (key, value) => window.localStorage.setItem(key, JSON.stringify(value));
-
     const [store, setStore] = useState({
-        buildLevel: {
-            wall: getLocalStorage('level') || [{pos:[0, 0, 0], type:'stone'}],
-            addWall: (x, y, z, type) => 
-                set(state => {
-                    ({
-                        wall: [...state.wall, { pos:[x, y, z], type }]
-                    })
-                }),
-            removeWall: (x, y ,z) => 
-                set((state) => 
-                    state.wall.filter(
-                        wall => wall.x !== x || wall.y !== y, wall.z !== z
-                    ),
-                ),
-            texure: 'wall',
-            setTexture: (texture) => set((state) => ({texture})),
-            saveLevel: () => set((state => {
-                setLocalStorage('level', state.wall)
-            }))
-        },
         rotate: {
             z: 0
         },
@@ -41,24 +18,13 @@ const StoreProvider = (props) => {
             moveRight: false,
             Jump: false
         },
-        mouse: {
-            m1: 1,
-            m2: 0,
-            m3: 0,
-            m4: 1,
-            m5: 0,
-            m6: 0,
-            m7: 0,
-            m8: 1,
-            x: 0,
-            y: 0
-        },
         coords: {
             x: 0,
             y: 0
         },
         map: {
             level: 1,
+            playerPosition: [0,0,0],
             walking: false,
             showCharacterSheet: false
         },

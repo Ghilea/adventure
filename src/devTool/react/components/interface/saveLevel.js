@@ -9,13 +9,16 @@ export const SaveLevel = () => {
     const saveLevel = build(state => state.saveLevel);
 
     const handleSave = () => {
-        saveLevel({'walls': store.walls, 'player': storePlayer.playerMark})
+        console.log({'walls': store.walls, 'player': storePlayer.playerMark})
         
-        /*const url = `http://localhost:3000/createLevel`;
+        const url = `http://localhost:3000/createLevel`;
 
         Create(url, {
-            content: JSON.stringify(store.walls)
-        });*/
+            content: JSON.stringify({
+                'walls': store.walls,
+                'player': storePlayer.playerMark
+            })
+        });
     }
 
     return (

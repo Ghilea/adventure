@@ -1,10 +1,13 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useContext } from 'react';
 import { Ground } from './Ground';
 import { Cube } from './cube';
 import { Walls } from './walls';
 import { Read } from '../../../../shared/components/Crud';
+import { StoreContext } from '../store';
 
 const Level = () => {
+
+    //const [store, setStore] = useContext(StoreContext);
 
     const [build, setBuild] = useState([]);
 
@@ -17,18 +20,27 @@ const Level = () => {
 
                 if (items.level.length > 0) {
 
-                    JSON.parse(items.level[0].content).map((use, index) => {
-    
-                        console.log(use.pos);
+                    const parsed = JSON.parse(items.level[0].content)
+
+                    parsed.walls.map((use, index) => {
+
                         setBuild((state) => ([
                             ...state,
-                            <Walls key={index} position = {use.pos}
+                            <Walls key={'wall'+index} position = {use.pos}
                             rotation = { use.rotate }
                             type = { use.type }
                             />
                         ]))
-
                     })
+
+                    /*setStore((store) => ({
+                        ...store,
+                        map: {
+                            ...store.map,
+                            playerPosition: parsed.player
+                        }
+                    }))*/
+ 
                 }   
             })
     }, [])

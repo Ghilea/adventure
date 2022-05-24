@@ -48,10 +48,7 @@ export const build = create(set => ({
         set((state) => ({
             walls: state.walls.filter(({pos}) => pos !== removePosition)
         })
-    ),
-    saveLevel: () => set((state => {
-        console.log(state.walls);
-    }))
+    )
 }))
 
 export const ground = create(set => ({
