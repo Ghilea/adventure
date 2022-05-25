@@ -77,8 +77,22 @@ export const player = create(set => ({
 export const map = create(set => ({
     level: 1,
     playerPosition: null,
-    walking: false,
+    camera: false,
     showCharacterSheet: false,
+    chatWindow: true,
+    chatInput: false,
+    closeChatWindow: (value) => set(state => ({
+        ...state,
+        chatWindow: value
+    })),
+    openChat: (value) => set(state => ({
+        ...state,
+        chatInput: value
+    })),
+    disableCamera: (value) => set(state => ({
+        ...state,
+        camera: value
+    })),
     characterSheet: (value) => set(state => ({
         ...state, 
         showCharacterSheet: value

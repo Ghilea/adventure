@@ -5,10 +5,12 @@ import { Vector3 } from 'three';
 import { useKeyboardControls } from '@hooks/useKeyboardControls';
 import { CameraMovement } from '@comp/player/cameraMovement';
 import { player } from '@comp/store';
+import { map } from '@comp/store';
 
 export const Player = ({position, ...props}) => {
 
     const storePlayer = player(state => state);
+    const storeMap = map(state => state);
 
     const {
         moveForward,
@@ -37,8 +39,8 @@ export const Player = ({position, ...props}) => {
         camera.position.copy(ref.current.position);
       
         const direction = new Vector3();
-        const frontVector = new Vector3(0, 0, (moveBackward? 1 : 0) - (moveForward ? 1 : 0));
-        const sideVector = new Vector3((moveLeft ? 1 : 0) - (moveRight ? 1 : 0), 0, 0);
+        const frontVector = new Vector3(0, 0, ((moveBackward && !storeMap.chatInput) ? 1 : 0) - ((moveForward && !storeMap.chatInput) ? 1 : 0));
+        const sideVector = new Vector3(((moveLeft && !storeMap.chatInput) ? 1 : 0) - ((moveRight && !storeMap.chatInput) ? 1 : 0), 0, 0);
         
         direction
         .subVectors(frontVector, sideVector)
@@ -50,7 +52,7 @@ export const Player = ({position, ...props}) => {
 
         ref.current.getWorldPosition(ref.current.position)
 
-        if(jump && Math.abs(velocity.current[1].toFixed(2)) <= 0.00){
+        if (jump && !storeMap.chatInput && Math.abs(velocity.current[1].toFixed(2)) <= 0.00) {
             api.velocity.set(velocity.current[0], 8, velocity.current[2]);  
         }
     });

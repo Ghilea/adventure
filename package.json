@@ -59,7 +59,7 @@
         "watch": [
             "./src/*"
         ],
-        "ext": "js,mjs,cjs,scss,html,jsx",
+        "ext": "js,mjs,cjs,scss,html",
         "ignore": [
             "public/*",
             "editor/*"

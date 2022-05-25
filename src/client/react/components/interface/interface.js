@@ -4,10 +4,7 @@ import { Read, Update } from '@shared/components/Crud';
 import { Health, Mana, Exp } from '@comp/interface/Bar';
 import { CharacterSheet } from '@comp/interface/Charactersheet';
 import { fetchURL, fetchSocketURL } from '@shared/global';
-
-import {
-    useKey
-} from 'rooks';
+import { useKey } from 'rooks';
 
 const Interface = () => {
 
@@ -30,8 +27,6 @@ const Interface = () => {
 
     const [chatMessage, setChatMessage]= useState([])
 
-    const [chatOpen, setChatOpen] = useState(false);
-
     const [textInput, SetTextInput] = useState('');
 
     useEffect(()=>{
@@ -51,15 +46,24 @@ const Interface = () => {
     const openChatInput = (event) => {
         event.preventDefault();
 
-        if(chatOpen){
+        if(storeMap.chatInput){
+            storeMap.disableCamera(false)
             if (textInput.length > 0) {
                 ws.current.send(JSON.stringify({"name":set.name,"message": textInput}));
             }
             SetTextInput('');
-            setChatOpen(false);
+            inputRef.current.value = '';
+            storeMap.openChat(false);
+            inputRef.current.blur();
+            storeMap.closeChatWindow(true);
         }else{
-            setChatOpen(true);
-            inputRef.current.focus();
+            storeMap.disableCamera(true)
+            storeMap.openChat(true);
+            storeMap.closeChatWindow(false);
+
+            setTimeout(() => {
+                inputRef.current.focus();
+            }, 300)
         }
         
     }
@@ -141,9 +145,14 @@ const Interface = () => {
     }
 
     const handleKeyCharacterSheet = (event) => {
-        if (event.key === 'c' && !chatOpen) {
-            (storeMap.showCharacterSheet) ? 
-            storeMap.characterSheet(false) : storeMap.characterSheet(true);            
+        if (event.key === 'c' && !storeMap.chatInput) {
+            if(storeMap.showCharacterSheet){
+                storeMap.characterSheet(false)
+                storeMap.disableCamera(false)
+            }else{
+                storeMap.characterSheet(true);
+                storeMap.disableCamera(true);
+            }
         }
     }
 
@@ -217,27 +226,22 @@ const Interface = () => {
                     <img src='assets/images/gui/sword.png'/>
                 </div>
                 
-                <div className='chat'>
+                <div className = {
+                    `chat ${(storeMap.chatWindow) ? 'fadeOut' : ''}`
+                } >
                     {
                         chatMessage                
                     }
                 </div>
-       
-                {
-                    (chatOpen) ?
-                        <input id = 'chatInput'
-                        className = 'chatInput'
-                        type = 'text'
-                        ref = {
-                            inputRef
-                        }
-                        onChange = {
-                            (e) => SetTextInput(e.target.value)
-                        } />
-                    :
-                    <></>
-                }   
-                
+
+                <input id = 'chatInput' className = {`chatInput ${(!storeMap.chatInput) ? 'hide' : ''}`} type = 'text'
+                    ref = {
+                        inputRef
+                    }
+                    onChange = {
+                        (e) => SetTextInput(e.target.value)
+                } />
+ 
             </div>
         </>
     )
