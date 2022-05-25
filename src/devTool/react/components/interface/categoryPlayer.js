@@ -1,5 +1,5 @@
 import React from "react";
-import { player, interfaceButtons, build } from '../store';
+import { player, interfaceButtons, build } from '@comp/store';
 
 export const CategoryPlayer = () => {
     

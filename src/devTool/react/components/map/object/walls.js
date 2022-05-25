@@ -1,7 +1,7 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import { useBox } from '@react-three/cannon';
-import * as texture from '../../../../../shared/components/textures';
-import { build } from '../../store';
+import * as texture from '@shared/components/textures';
+import { build } from '@comp/store';
 
 export const Walls = ({rotation, position, type, ...props}) => {
     const [hover, setHover] = useState(null);

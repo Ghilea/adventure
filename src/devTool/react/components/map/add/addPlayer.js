@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { player, mousePosition } from '../../store';
-import { Player } from '../object/player';
+import { player, mousePosition } from '@comp/store';
+import { Player } from '@comp/map/object/player';
 
 export const AddPlayer = ({position}) => {
 

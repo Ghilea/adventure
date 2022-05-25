@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Read } from '../../../../shared/components/Crud';
-import Enemy from '../enemy/enemy';
-import RenderMap from './renderMap';
+import { Read } from '@shared/components/Crud';
+import Enemy from '@comp/enemy/enemy';
+import RenderMap from '@comp/map/renderMap';
 
 const Canvas = () => {
 

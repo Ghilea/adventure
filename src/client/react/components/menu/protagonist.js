@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Read } from '../../../../shared/components/Crud';
-import { menu, player } from '../store';
-import CreateWindow from './createProtagonist';
+import { Read } from '@shared/components/Crud';
+import { menu, player } from '@comp/store';
+import CreateWindow from '@comp/menu/createProtagonist';
 import useSound from 'use-sound';
 
 const Protagonist = () => {

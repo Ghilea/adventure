@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import Interface from '../interface/Interface';
-import Canvas from '../map/canvas';
-import { menu } from '../store'
-import Protagonist from './protagonist';
+import Interface from '@comp/interface/Interface';
+import Canvas from '@comp/map/canvas';
+import { menu } from '@comp/store'
+import Protagonist from '@comp/menu/protagonist';
 import useSound from 'use-sound';
 import { Howler } from 'howler';
 

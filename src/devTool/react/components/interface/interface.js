@@ -1,8 +1,8 @@
 import React from 'react';
-import { SaveLevel } from './saveLevel';
-import { CategoryGround } from './categoryGround';
-import { CategoryWall } from './categoryWall';
-import { CategoryPlayer } from './categoryPlayer';
+import { SaveLevel } from '@comp/interface/saveLevel';
+import { CategoryGround } from '@comp/interface/categoryGround';
+import { CategoryWall } from '@comp/interface/categoryWall';
+import { CategoryPlayer } from '@comp/interface/categoryPlayer';
 
 export const Interface = () => {
 

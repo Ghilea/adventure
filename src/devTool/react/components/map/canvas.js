@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Canvas, useThree } from '@react-three/fiber';
-import { Ground } from './Ground';
+import React, { useState } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { Ground } from '@comp/map/Ground';
 import { Physics } from '@react-three/cannon';
 import { OrbitControls } from '@react-three/drei'
-import { Interface } from '../interface/interface';
-import { build, ground, player, mousePosition} from '../store';
+import { Interface } from '@comp/interface/interface';
+import { build, ground, player, mousePosition} from '@comp/store';
 import { useKey } from 'rooks';
-import { AddWall } from './add/addWall';
-import { AddPlayer } from './add/addPlayer';
+import { AddWall } from '@comp/map/add/addWall';
+import { AddPlayer } from '@comp/map/add/addPlayer';
 
 const Render = () => {
 

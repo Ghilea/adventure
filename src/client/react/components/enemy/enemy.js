@@ -1,7 +1,7 @@
 import React, { useEffect, useState, createElement } from 'react';
-import { enemy, player, combat } from '../store';
-import { Read } from '../../../../shared/components/Crud';
-import EnemyHealthBar from './enemyHealthBar';
+import { enemy, player, combat } from '@comp/store';
+import { Read } from '@/shared/components/Crud';
+import EnemyHealthBar from '@comp/enemy/enemyHealthBar';
 
 const getEnemy = () => {
 

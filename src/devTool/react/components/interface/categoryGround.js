@@ -1,5 +1,5 @@
 import React from "react";
-import { ground } from '../store';
+import { ground } from '@comp/store';
 
 export const CategoryGround = () => {
     

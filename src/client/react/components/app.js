@@ -1,9 +1,8 @@
 import React from 'react';
-import Login from './menu/login';
-import Canvas from './map/canvas';
+import Login from '@comp/menu/login';
+import Canvas from '@comp/map/canvas';
 
 export default function Default (){
-
     return (
         <Login />
     )

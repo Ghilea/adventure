@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
-import Level from './level';
+import Level from '@comp/map/level';
 
 const RenderMap = () => {
         

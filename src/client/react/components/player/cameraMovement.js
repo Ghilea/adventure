@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import { PointerLockControls as PointerLockControlsImpl } from '@react-three/drei';
 import { extend, useThree } from '@react-three/fiber';
-import { map } from '../store';
+import { map } from '@comp/store';
 
 extend({ PointerLockControlsImpl });
 

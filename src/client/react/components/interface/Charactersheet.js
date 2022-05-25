@@ -1,6 +1,6 @@
 import React from 'react';
-import { player } from '../store'
-import { Points } from './Points';
+import { player } from '@comp/store'
+import { Points } from '@comp/interface/Points';
 
 export const CharacterSheet = () => {
 

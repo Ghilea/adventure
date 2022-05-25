@@ -1,8 +1,8 @@
 import React, { useState, useEffect,  useRef,  createElement } from 'react';
-import { player, enemy, map, combat } from '../store';
-import { Read, Update } from '../../../../shared/components/Crud';
-import { Health, Mana, Exp } from './Bar';
-import { CharacterSheet } from './Charactersheet';
+import { player, enemy, map, combat } from '@comp/store';
+import { Read, Update } from '@shared/components/Crud';
+import { Health, Mana, Exp } from '@comp/interface/Bar';
+import { CharacterSheet } from '@comp/interface/Charactersheet';
 
 import {
     useKey

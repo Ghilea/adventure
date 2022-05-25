@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Create } from '../../../../shared/components/Crud';
-import { player, menu } from '../store';
-import { Points } from '../interface/Points';
+import { Create } from '@shared/components/Crud';
+import { player, menu } from '@comp/store';
+import { Points } from '@comp/interface/Points';
 
 const Protagonist = () => {
 

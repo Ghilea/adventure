@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { enemy, player } from '../store';
+import { enemy, player } from '@comp/store';
 
 const EnemyHealthBar = () => {
 

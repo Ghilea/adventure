@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { useSphere } from '@react-three/cannon';
 import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
-import { useKeyboardControls } from '../../hooks/useKeyboardControls';
-import { CameraMovement } from './cameraMovement';
-import { player } from '../store';
+import { useKeyboardControls } from '@hooks/useKeyboardControls';
+import { CameraMovement } from '@comp/player/cameraMovement';
+import { player } from '@comp/store';
 
 export const Player = ({position, ...props}) => {
 

@@ -13,6 +13,15 @@ module.exports = [
             path: path.resolve(__dirname, clientOutput),
             filename: 'bundle.js'
         },
+        resolve: {
+            extensions: ['.js', '.json', '.mjs'],
+            alias: {
+                '@': path.resolve(__dirname, 'src'),
+                '@comp': path.resolve(__dirname, 'src/client/react/components'),
+                '@hooks': path.resolve(__dirname, 'src/client/react/hooks'),
+                '@shared': path.resolve(__dirname, 'src/shared')
+            }
+        },
         module: {
             rules: [
                 {
@@ -45,6 +54,14 @@ module.exports = [
         output: {
             path: path.resolve(__dirname, editorOutput),
             filename: 'bundle.js'
+        },
+        resolve: {
+            extensions: ['.js', '.json', '.mjs'],
+            alias: {
+                '@': path.resolve(__dirname, 'src'),
+                '@comp': path.resolve(__dirname, 'src/devTool/react/components'),
+                '@shared': path.resolve(__dirname, 'src/shared')
+            }
         },
         module: {
             rules: [{

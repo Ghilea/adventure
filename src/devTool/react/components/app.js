@@ -1,5 +1,5 @@
 import React from 'react';
-import Canvas from './map/canvas';
+import Canvas from '@comp/map/canvas';
 
 export default function Default (){
     return (

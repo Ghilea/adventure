@@ -1,5 +1,5 @@
 import React from "react";
-import { build, interfaceButtons } from '../store';
+import { build, interfaceButtons } from '@comp/store';
 
 export const CategoryWall = () => {
     const store = build(state => state);

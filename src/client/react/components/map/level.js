@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Ground } from './Ground';
-import { Cube } from './cube';
-import { Walls } from './walls';
-import { Read } from '../../../../shared/components/Crud';
-import { map } from '../store';
-import { Player } from '../player/Player';
+import { Ground } from '@comp/map/Ground';
+import { Cube } from '@comp/map/cube';
+import { Walls } from '@comp/map/walls';
+import { Read } from '@shared/components/Crud';
+import { map } from '@comp/store';
+import { Player } from '@comp/player/Player';
 
 const Level = () => {
 

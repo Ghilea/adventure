@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { player } from '../store';
+import { player } from '@comp/store';
 
 export const Points = () => {
 

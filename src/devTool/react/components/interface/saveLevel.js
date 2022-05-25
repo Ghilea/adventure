@@ -1,6 +1,6 @@
 import React from 'react';
-import { build, player } from '../store';
-import { Create } from '../../../../shared/components/Crud';
+import { build, player } from '@comp/store';
+import { Create } from '@shared/components/Crud';
 
 export const SaveLevel = () => {
     
