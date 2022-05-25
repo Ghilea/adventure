@@ -3,6 +3,7 @@ import { player, enemy, map, combat } from '@comp/store';
 import { Read, Update } from '@shared/components/Crud';
 import { Health, Mana, Exp } from '@comp/interface/Bar';
 import { CharacterSheet } from '@comp/interface/Charactersheet';
+import { fetchURL, fetchSocketURL } from '@shared/global';
 
 import {
     useKey
@@ -19,7 +20,7 @@ const Interface = () => {
     const inputRef = useRef(null);
 
     useEffect(()=>{
-        ws.current = new WebSocket(`ws://localhost:3000/websockets`);
+        ws.current = new WebSocket(`ws://${fetchSocketURL}/websockets`);
     }, [])
     
     const [set, setState] = useState({
@@ -65,7 +66,7 @@ const Interface = () => {
 
     useEffect(() => {
 
-        let url = `http://localhost:3000/getProtagonist?id=${storePlayer.id}`;
+        let url = `${fetchURL}/getProtagonist?id=${storePlayer.id}`;
 
         Read(url)
             .then(items => {
@@ -93,7 +94,7 @@ const Interface = () => {
     }, [])
 
     useEffect(() => {
-        const url = `http://localhost:3000/updateStats`;
+        const url = `${fetchURL}/updateStats`;
 
         const data = {
             id: storePlayer.id,

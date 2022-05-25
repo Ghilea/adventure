@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { enemy, player } from '@comp/store'
 import { Read } from '@shared/components/Crud';
+import { fetchURL } from '@shared/global';
 
 export const Health = () => {
 
@@ -15,7 +16,7 @@ export const Health = () => {
     );
     
     useEffect(() => {
-        let url = `http://localhost:3000/getProtagonist?id=${storePlayer.id}`;
+        let url = `${fetchURL}/getProtagonist?id=${storePlayer.id}`;
 
         Read(url)
             .then(items => {

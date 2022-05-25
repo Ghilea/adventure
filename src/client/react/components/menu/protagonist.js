@@ -3,6 +3,7 @@ import { Read } from '@shared/components/Crud';
 import { menu, player } from '@comp/store';
 import CreateWindow from '@comp/menu/createProtagonist';
 import useSound from 'use-sound';
+import { fetchURL } from '@shared/global';
 
 const Protagonist = () => {
 
@@ -12,7 +13,7 @@ const Protagonist = () => {
     const [characterList, setCharacterList] = useState([]);
   
     useEffect(() => {
-        let url = `http://localhost:3000/getAllProtagonist`;
+        let url = `${fetchURL}/getAllProtagonist`;
         let list = [];
 
         Read(url)

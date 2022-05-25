@@ -1,6 +1,8 @@
 import React from 'react';
 import { build, player } from '@comp/store';
 import { Create } from '@shared/components/Crud';
+import { fetchURL } from '@shared/global';
+
 
 export const SaveLevel = () => {
     
@@ -11,7 +13,7 @@ export const SaveLevel = () => {
     const handleSave = () => {
         console.log({'walls': store.walls, 'player': storePlayer.playerMark})
         
-        const url = `http://localhost:3000/createLevel`;
+        const url = `${fetchURL}/createLevel`;
 
         Create(url, {
             content: JSON.stringify({

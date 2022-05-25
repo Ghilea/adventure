@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Create } from '@shared/components/Crud';
 import { player, menu } from '@comp/store';
 import { Points } from '@comp/interface/Points';
+import { fetchURL } from '@shared/global';
+
 
 const Protagonist = () => {
 
@@ -37,7 +39,7 @@ const Protagonist = () => {
     }
 
     const handleCreate = () => {
-        const url = `http://localhost:3000/createProtagonist`;
+        const url = `${fetchURL}/createProtagonist`;
         
         if(character.name === null || character.img === null){
             console.log('Fyll i ett namn och välj en avatar');

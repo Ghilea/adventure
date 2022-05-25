@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Read } from '@shared/components/Crud';
 import Enemy from '@comp/enemy/enemy';
 import RenderMap from '@comp/map/renderMap';
+import { fetchURL } from '@shared/global';
+
 
 const Canvas = () => {
 
@@ -19,7 +21,7 @@ const Canvas = () => {
 
     /*useEffect(()=>{
         
-        let url_quest = `http://localhost:3000/getQuest?x=${store.coords.x}&y=${store.coords.y}`;
+        let url_quest = `${fetchURL}/getQuest?x=${store.coords.x}&y=${store.coords.y}`;
 
         Read(url_quest)
             .then(items => {

@@ -5,9 +5,6 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv'
 import websockets from './websocket/websocket.mjs';
 
-//env
-dotenv.config();
-
 //api
 import { getQuest } from './api/quest.mjs';
 import { getProtagonist, getAllProtagonist, createProtagonist, updateStatsProtagonist } from './api/protagonist.mjs';
@@ -15,6 +12,8 @@ import { getAdventure } from './api/adventure.mjs';
 import { getEnemy } from './api/enemy.mjs';
 import { getLevel, createLevel } from './api/level.mjs'
 
+//env
+dotenv.config();
 const app = express();
 
 app.use(bodyParser.json());

@@ -5,6 +5,8 @@ import { Walls } from '@comp/map/walls';
 import { Read } from '@shared/components/Crud';
 import { map } from '@comp/store';
 import { Player } from '@comp/player/Player';
+import { fetchURL } from '@shared/global';
+
 
 const Level = () => {
 
@@ -15,7 +17,7 @@ const Level = () => {
 
     useEffect(() => {
 
-        let url = `http://localhost:3000/getLevel?&id=${storeMap.level}`;
+        let url = `${fetchURL}/getLevel?&id=${storeMap.level}`;
     
         Read(url)
             .then(items => {
