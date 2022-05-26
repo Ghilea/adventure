@@ -163,7 +163,6 @@
 
             &:hover {
                 border: 0.6em double #acbac3;
-                background-color: #bcc7ce;
             }
 
             h2 {
@@ -186,7 +185,6 @@
         }
     }
     
-
     button {
         max-width: 10em;
         width: 100%;
@@ -199,7 +197,8 @@
         margin: 1em;
     
         &:hover {
-            background-color: rgb(46, 43, 43);
+            border: 0.4em double #acbac3;
+            cursor: url(../assets/images/cursor.gif), auto;
         } 
     }
 
@@ -215,11 +214,9 @@
         letter-spacing: 0.1rem;
     
         &:hover {
-            background-color: rgb(46, 43, 43);
+            border: 0.4em double #acbac3;
         } 
-    
     }
-    
 }
 
 .chooseAvatar {
