@@ -12,7 +12,6 @@ const Interface = () => {
     const storeEnemy = enemy(state => state);
     const storeCombat = combat(state => state);
     
-
     const [set, setState] = useState({
         name: '',
         img: null
