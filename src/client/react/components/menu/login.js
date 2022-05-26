@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Interface from '@comp/interface/Interface';
 import { RenderCanvas, RenderBg } from '@comp/map/canvas';
 import { menu } from '@comp/store'
-import Protagonist from '@comp/menu/protagonist';
+import { Menu } from '@comp/menu/menu';
 import useSound from 'use-sound';
 import { Howler } from 'howler';
 
@@ -68,7 +68,7 @@ const Login = () => {
                 (!storeMenu.login) ?
                     <>
                         <RenderBg />
-                        <Protagonist />
+                        <Menu />
                     </>
                 :
                     <>
