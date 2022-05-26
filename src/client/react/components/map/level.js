@@ -8,7 +8,7 @@ import { Player } from '@comp/player/Player';
 import { fetchURL } from '@shared/global';
 
 
-const Level = () => {
+export const Level = () => {
 
     const storeMap = map(state => state);
 
@@ -58,5 +58,3 @@ const Level = () => {
         </>
     )
 }
-
-export default Level;

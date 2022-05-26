@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Interface from '@comp/interface/Interface';
-import Canvas from '@comp/map/canvas';
+import { Render } from '@comp/map/canvas';
 import { menu } from '@comp/store'
 import Protagonist from '@comp/menu/protagonist';
 import useSound from 'use-sound';
@@ -68,12 +68,12 @@ const Login = () => {
             
                 (!storeMenu.login) ?
                     <>
-                    <Protagonist />
+                        <Protagonist />
                     </>
                 :
                     <>
-                    <Interface />
-                    <Canvas />
+                        <Interface />
+                        <Render />
                     </>
             
             :
