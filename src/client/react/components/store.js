@@ -134,11 +134,16 @@ export const enemy = create(set => ({
 }))
 
 export const menu = create(set => ({
-    showCreate: false,
+    create: false,
+    options: false,
     login: false,
-    createWindow: (value) => set(state => ({
+    isCreate: (value) => set(state => ({
         ...state,
-        showCreate: value
+        create: value
+    })),
+    isOptions: (value) => set(state => ({
+        ...state,
+        options: value
     })),
     isLogin: (value) => set(state => ({
         ...state,
