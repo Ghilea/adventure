@@ -29,21 +29,23 @@
     }
 
     .celticImg {
-        width: 5em;
+        width: 4em;
         position: fixed;
-        left: 5em;
-        top: 2%;
+        left: 7em;
+        top: 1em;
         height: auto;
     }
 
     h1 {
         position: fixed;
-        left: 4.5em;
-        top: 0.6em;
+        left: 5em;
+        top: 0.7em;
         margin: 0;
         text-shadow: 0 0 0.1em rgb(0 0 0);
-        font-size: 3rem;
-        text-align: left;
+        font-size: 2.5rem;
+        width: fit-content;
+        font-family: "Astloch", cursive;
+        font-weight: normal;
     }
 
     .box {
@@ -113,8 +115,7 @@
                         background-color: #545e63;
                         border: 0.2em solid #bdc8cf;
 
-                        &:hover {
-                            cursor: pointer;
+                        &:hover {  
                             background-color:#bdc8cf; 
                             border: 0.2em solid #545e63;
                         }
@@ -158,7 +159,6 @@
                         justify-content: center;
 
                         &:hover {
-                            cursor: pointer;
                             background-color: rgba(154, 154, 154, 0.486);
                         }
                     }
@@ -167,8 +167,10 @@
             }
 
             .character{
+                font-family: "Astloch", cursive;
+                letter-spacing: 0.1em;
                 background: rgb(112, 35, 35);
-                background: linear-gradient(0deg, rgb(55 49 49) 0%, rgb(54 54 54) 50%, rgb(93 70 70) 100%);
+                background: linear-gradient(0deg, rgb(55, 49, 49) 0%, rgb(54, 54, 54) 50%, rgb(93, 70, 70) 100%);
                 height: 6em;
                 color: #fff;
                 display: flex;
@@ -177,7 +179,6 @@
                 border-radius: 0.3em;
                 position: relative;
                 overflow: hidden;
-                margin: 0.3em;
                 justify-content: center;
 
                 .levelTitle {
@@ -185,24 +186,26 @@
                 }
 
                 &:hover {
-                    cursor: pointer;
                     border: 0.6em double #acbac3;
                     background-color: #bcc7ce;
                 }
 
                 h2 {
-                    margin-left: 0.5em;
+                    margin:0;
+                    margin-left: 0.3em;
                 }
 
                 p {
+                    margin:0;
                     margin-left: 0.5em;
                 }
 
                 img {
-                    width: 25em;
+                    width: 20em;
                     position: absolute;
-                    right: -6em;
-                    top: -1.8em;
+                    right: -5.5em;
+                    top: -1.2em;
+                    opacity: 0.6;
                 }
             }
         }
@@ -221,7 +224,6 @@
     
         &:hover {
             background-color: rgb(46, 43, 43);
-            cursor: pointer;
         } 
     }
 
@@ -240,7 +242,6 @@
     
         &:hover {
             background-color: rgb(46, 43, 43);
-            cursor: pointer;
         } 
     
     }

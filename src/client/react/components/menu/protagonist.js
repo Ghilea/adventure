@@ -39,7 +39,10 @@ const Protagonist = () => {
                             <h2>
                                 {item.name} (<span className='levelTitle'>level {item.level}</span>)
                             </h2>
-                            <p>Hp: {item.health} / {item.maxHealth} Str: {item.strength} Int: {item.intellect} Dex: {item.dexterity}</p>
+                            <p>Hp: {item.health} / {item.maxHealth} </p>
+                            <p>
+                                Str: {item.strength} Int: {item.intellect} Dex: {item.dexterity}
+                            </p>
                         </div>
                         )
 
@@ -68,7 +71,7 @@ const Protagonist = () => {
     return (
         <div className='protagonistContainer'>
             <img className='celticImg' src='assets/images/svg/celtic.svg' alt='logo'/>
-            <h1>Äventyret</h1>
+            <h1>Adventure</h1>
             <div className='box'>
                 
                 <div className='list'>
@@ -81,7 +84,7 @@ const Protagonist = () => {
             {
                 (storeMenu.showCreate) ? '' : <button className='createHero' type='button' onClick = {
                     createClick
-                } > Skapa hjälte </button> }
+                } >New Game</button> }
         </div>
     )
 }
