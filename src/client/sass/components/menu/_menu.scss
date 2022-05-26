@@ -1,4 +1,4 @@
-.protagonistContainer {
+.menuContainer {
     background-color: rgba(0, 0, 0, 0.502);
     background: linear-gradient(0deg, rgb(21 11 11 / 80%) 0%, rgb(55 54 54) 50%, rgb(0 0 0 / 80%) 100%);
     position: fixed;
@@ -15,31 +15,12 @@
     justify-content: center;
     padding: 0 1em;
 
-    @keyframes fadeIn {
-        0% {
-            opacity:0;
-        }
-        100% {
-            opacity:1;
-        }
-    }
-
-    .fadeIn {
-        animation: fadeIn 3s ease-in forwards;
-    }
-
-    .celticImg {
+    .logo {
         width: 4em;
-        position: fixed;
-        left: 7em;
-        top: 1em;
         height: auto;
     }
 
     h1 {
-        position: fixed;
-        left: 5em;
-        top: 0.7em;
         margin: 0;
         text-shadow: 0 0 0.1em rgb(0 0 0);
         font-size: 2.5rem;
@@ -48,168 +29,163 @@
         font-weight: normal;
     }
 
-    .box {
+    .list {
+        width: 100%;
+        height: 33em;
+        overflow-y: auto;
+        overflow-x: hidden;
         display: flex;
-        gap: 2em;
+        gap: 0.5em;
         flex-direction: column;
-        align-items: center;
-        position: fixed;
 
-        .list {
-            min-width: 25em;
-            width: 100%;
-            height: 33em;
-            overflow-y: auto;
-            overflow-x: hidden;
+        .createWindow {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
 
-            .createWindow {
-                display: flex;
+            label {
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: #fff;
+                margin: 1em 0 0.5em -8.5em;
+            }
+
+            .goBack_characterWindow {
+                position: absolute;
+                width: 3em;
+                height: 3em;
+                border-radius: 50%;
+                left: 0;
+                top: 0;
+                display:flex;
                 align-items: center;
-                flex-direction: column;
-                position: relative;
-                overflow: hidden;
+                justify-content: center;
 
-                label {
-                    font-size: 1.2rem;
+                &::before{
+                    content: '<';
                     font-weight: 600;
-                    color: #fff;
-                    margin: 1em 0 0.5em -8.5em;
-                }
-
-                .goBack_characterWindow {
-                    position: absolute;
-                    width: 3em;
-                    height: 3em;
-                    border-radius: 50%;
-                    left: 0;
-                    top: 0;
-                    display:flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    &::before{
-                        content: '<';
-                        font-weight: 600;
-                        font-size: 1.2rem;
-                    }
-                }
-
-                input {
-                    width: 15em;
-                    padding: 0.5em;
-                }
-
-                .avatars {
-                    display:flex;
-                    gap: 1em;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    justify-content: center;
-                    margin: 2em;
-
-                    .button {
-                        position: relative;
-                        width: 6em;
-                        height: 6em;
-                        overflow: hidden;
-                        background-color: #545e63;
-                        border: 0.2em solid #bdc8cf;
-
-                        &:hover {  
-                            background-color:#bdc8cf; 
-                            border: 0.2em solid #545e63;
-                        }
-
-                    }
-
-                    img {
-                        position: absolute;
-                        left: -3.5em;
-                        top: -0.5em;
-                        width: 13em;
-                    }
-                }
-
-                .stats{
-                    display: flex;
-                    flex-direction: column;
-                    width: 15em;
-                    align-items: center;
-                    
-                    .showPoints {
-                        color: #fff;
-                        position: absolute;
-                    }
-
-                    .str, .int, .dex {
-                        color: #fff;
-                        padding: 0.2em 0.5em;
-                    }
-
-                    .btnSection {
-                        display: flex;
-                        align-items: center;
-                    }
-
-                    .gainBtn {
-                        width: 2em;
-                        height: 2em;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-
-                        &:hover {
-                            background-color: rgba(154, 154, 154, 0.486);
-                        }
-                    }
-
+                    font-size: 1.2rem;
                 }
             }
 
-            .character{
-                font-family: "Astloch", cursive;
-                letter-spacing: 0.1em;
-                background: rgb(112, 35, 35);
-                background: linear-gradient(0deg, rgb(55, 49, 49) 0%, rgb(54, 54, 54) 50%, rgb(93, 70, 70) 100%);
-                height: 6em;
-                color: #fff;
-                display: flex;
-                flex-direction: column;
-                border: 0.6em double #626262;
-                border-radius: 0.3em;
-                position: relative;
-                overflow: hidden;
+            input {
+                width: 15em;
+                padding: 0.5em;
+            }
+
+            .avatars {
+                display:flex;
+                gap: 1em;
+                flex-direction: row;
+                flex-wrap: wrap;
                 justify-content: center;
+                margin: 2em;
 
-                .levelTitle {
-                    font-size: 0.85rem;
-                }
+                .button {
+                    position: relative;
+                    width: 6em;
+                    height: 6em;
+                    overflow: hidden;
+                    background-color: #545e63;
+                    border: 0.2em solid #bdc8cf;
 
-                &:hover {
-                    border: 0.6em double #acbac3;
-                    background-color: #bcc7ce;
-                }
+                    &:hover {  
+                        background-color:#bdc8cf; 
+                        border: 0.2em solid #545e63;
+                    }
 
-                h2 {
-                    margin:0;
-                    margin-left: 0.3em;
-                }
-
-                p {
-                    margin:0;
-                    margin-left: 0.5em;
                 }
 
                 img {
-                    width: 20em;
                     position: absolute;
-                    right: -5.5em;
-                    top: -1.2em;
-                    opacity: 0.6;
+                    left: -3.5em;
+                    top: -0.5em;
+                    width: 13em;
                 }
+            }
+
+            .stats{
+                display: flex;
+                flex-direction: column;
+                width: 15em;
+                align-items: center;
+                
+                .showPoints {
+                    color: #fff;
+                    position: absolute;
+                }
+
+                .str, .int, .dex {
+                    color: #fff;
+                    padding: 0.2em 0.5em;
+                }
+
+                .btnSection {
+                    display: flex;
+                    align-items: center;
+                }
+
+                .gainBtn {
+                    width: 2em;
+                    height: 2em;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    &:hover {
+                        background-color: rgba(154, 154, 154, 0.486);
+                    }
+                }
+
+            }
+        }
+
+        .character{
+            font-family: "Astloch", cursive;
+            letter-spacing: 0.1em;
+            background: rgb(112, 35, 35);
+            background: linear-gradient(0deg, rgb(55, 49, 49) 0%, rgb(54, 54, 54) 50%, rgb(93, 70, 70) 100%);
+            height: 6em;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            border: 0.6em double #626262;
+            border-radius: 0.3em;
+            position: relative;
+            overflow: hidden;
+            justify-content: center;
+
+            .levelTitle {
+                font-size: 0.85rem;
+            }
+
+            &:hover {
+                border: 0.6em double #acbac3;
+                background-color: #bcc7ce;
+            }
+
+            h2 {
+                margin:0;
+                margin-left: 0.3em;
+            }
+
+            p {
+                margin:0;
+                margin-left: 0.5em;
+            }
+
+            img {
+                width: 20em;
+                position: absolute;
+                right: -5.5em;
+                top: -1.2em;
+                opacity: 0.6;
             }
         }
     }
+    
 
     button {
         max-width: 10em;
@@ -237,8 +213,6 @@
         padding: 1em;
         color: #fff;
         letter-spacing: 0.1rem;
-        position: fixed;
-        bottom: 3%;
     
         &:hover {
             background-color: rgb(46, 43, 43);

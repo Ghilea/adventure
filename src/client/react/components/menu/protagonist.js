@@ -69,16 +69,14 @@ const Protagonist = () => {
 
 
     return (
-        <div className='protagonistContainer'>
-            <img className='celticImg' src='assets/images/svg/celtic.svg' alt='logo'/>
+        <div className='menuContainer'>
+            <img className='logo' src='assets/images/svg/celtic.svg' alt='logo'/>
             <h1>Adventure</h1>
-            <div className='box'>
-                
-                <div className='list'>
-                    {
-                        (storeMenu.showCreate) ? < CreateWindow />: characterList
-                    }
-                </div>
+            
+            <div className='list'>
+                {
+                    (storeMenu.showCreate) ? < CreateWindow />: characterList
+                }
             </div>
 
             {
