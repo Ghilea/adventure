@@ -1,73 +1,23 @@
-import React, { useState, useEffect,  useRef,  createElement } from 'react';
-import { player, enemy, map, combat } from '@comp/store';
+import React, { useState, useEffect, createElement } from 'react';
+import { player, enemy, combat } from '@comp/store';
 import { Read, Update } from '@shared/components/Crud';
 import { Health, Mana, Exp } from '@comp/interface/Bar';
 import { CharacterSheet } from '@comp/interface/Charactersheet';
-import { fetchURL, fetchSocketURL } from '@shared/global';
-import { useKey } from 'rooks';
+import { fetchURL } from '@shared/global';
+import { Chat } from '@comp/interface/chat';
 
 const Interface = () => {
 
     const storePlayer = player(state => state);
     const storeEnemy = enemy(state => state);
     const storeCombat = combat(state => state);
-    const storeMap = map(state => state);
-
-    const ws = useRef(null);
-    const inputRef = useRef(null);
-
-    useEffect(()=>{
-        ws.current = new WebSocket(`ws://${fetchSocketURL}/websockets`);
-    }, [])
     
+
     const [set, setState] = useState({
         name: '',
         img: null
     });
-
-    const [chatMessage, setChatMessage]= useState([])
-
-    const [textInput, SetTextInput] = useState('');
-
-    useEffect(()=>{
-        let messageId = 0;
-
-        ws.current.onmessage = (message) => {
-            const output = JSON.parse(message.data);
-            
-            setChatMessage(chatMessage => ([
-                ...chatMessage,
-                <p key={output.message.name+messageId}><span>{output.message.name}: </span>{output.message.message}</p>
-            ]))
-            messageId++;
-        };
-    }, [ws.current])
         
-    const openChatInput = (event) => {
-        event.preventDefault();
-
-        if(storeMap.chatInput){
-            storeMap.disableCamera(false)
-            if (textInput.length > 0) {
-                ws.current.send(JSON.stringify({"name":set.name,"message": textInput}));
-            }
-            SetTextInput('');
-            inputRef.current.value = '';
-            storeMap.openChat(false);
-            inputRef.current.blur();
-            storeMap.closeChatWindow(true);
-        }else{
-            storeMap.disableCamera(true)
-            storeMap.openChat(true);
-            storeMap.closeChatWindow(false);
-
-            setTimeout(() => {
-                inputRef.current.focus();
-            }, 300)
-        }
-        
-    }
-
     useEffect(() => {
 
         let url = `${fetchURL}/getProtagonist?id=${storePlayer.id}`;
@@ -144,18 +94,6 @@ const Interface = () => {
         storePlayer.gainLevel(points, lvl);
     }
 
-    const handleKeyCharacterSheet = (event) => {
-        if (event.key === 'c' && !storeMap.chatInput) {
-            if(storeMap.showCharacterSheet){
-                storeMap.characterSheet(false)
-                storeMap.disableCamera(false)
-            }else{
-                storeMap.characterSheet(true);
-                storeMap.disableCamera(true);
-            }
-        }
-    }
-
     const handleMouseClick = (event) => {
         console.log('click');
         event.preventDefault();
@@ -188,9 +126,6 @@ const Interface = () => {
 
     }
 
-    useKey(['c'], handleKeyCharacterSheet);
-    useKey(['Enter'], openChatInput);
-
     return (
         <>
             <div className = 'interface'
@@ -213,11 +148,8 @@ const Interface = () => {
                 <Health />
                 <Exp />
                 <Mana />
-                       
-                {
-                    (storeMap.showCharacterSheet) ? <CharacterSheet /> : <></>
-                }
-
+                <CharacterSheet />
+    
                 <div key={'playerShield'} className={`playerShield ${(storePlayer.block) ? 'block' : ''}`}>
                     <img src='assets/images/gui/shield.png'/>
                 </div>
@@ -226,22 +158,7 @@ const Interface = () => {
                     <img src='assets/images/gui/sword.png'/>
                 </div>
                 
-                <div className = {
-                    `chat ${(storeMap.chatWindow) ? 'fadeOut' : ''}`
-                } >
-                    {
-                        chatMessage                
-                    }
-                </div>
-
-                <input id = 'chatInput' className = {`chatInput ${(!storeMap.chatInput) ? 'hide' : ''}`} type = 'text'
-                    ref = {
-                        inputRef
-                    }
-                    onChange = {
-                        (e) => SetTextInput(e.target.value)
-                } />
- 
+                <Chat name={set.name}/> 
             </div>
         </>
     )
