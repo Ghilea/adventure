@@ -65,7 +65,7 @@ const Login = () => {
         <>
             {
                 
-                (!storeMenu.login) ?
+                (!storeMenu.loginSuccess) ?
                     <>
                         <RenderBg />
                         <Menu />

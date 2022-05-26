@@ -53,13 +53,13 @@ export const CharacterList = () => {
     }, [])
     
     const handleLogin = (id) => {
-        storeMenu.isLogin(true);
+        storeMenu.isLoginSuccess(true);
         storePlayer.setPlayerId(id);
     }
 
-    return (     
-        <div className='list'>
+    return (    
+        <>
             {characterList}
-        </div>
+        </>    
     )
 }

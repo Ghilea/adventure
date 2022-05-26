@@ -137,6 +137,7 @@ export const menu = create(set => ({
     create: false,
     options: false,
     login: false,
+    loginSuccess: false,
     isCreate: (value) => set(state => ({
         ...state,
         create: value
@@ -148,6 +149,10 @@ export const menu = create(set => ({
     isLogin: (value) => set(state => ({
         ...state,
         login: value
+    })),
+    isLoginSuccess: (value) => set(state => ({
+        ...state,
+        loginSuccess: value
     }))
 }))
 

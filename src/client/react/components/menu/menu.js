@@ -8,15 +8,36 @@ export const Menu = () => {
     const storeMenu = menu(state => state);
 
     const handleLogin = () => {
-        storeMenu.isLogin(true)
+        if (storeMenu.login) {
+            storeMenu.isLogin(false)
+        }else{
+            storeMenu.isLogin(true);
+        } 
+
+        storeMenu.isCreate(false);
+        storeMenu.isOptions(false);
     }
 
     const handleCreate = () => {
-        storeMenu.isCreate(true);
+        if(storeMenu.create){
+            storeMenu.isCreate(false);
+        }else{
+            storeMenu.isCreate(true);
+        }
+        
+        storeMenu.isLogin(false);
+        storeMenu.isOptions(false);
     }
 
     const handleOptions = () => {
-        storeMenu.isOptions(true);
+        if(storeMenu.options){
+            storeMenu.isOptions(false);
+        }else{
+            storeMenu.isOptions(true);
+        }
+        
+        storeMenu.isLogin(false);
+        storeMenu.isCreate(false);
     }
 
     return (
@@ -45,18 +66,21 @@ export const Menu = () => {
                 
             </div>
 
-            <div className='boxMenuContainer'>
-                <div className='list'>
-                {
-                    (storeMenu.create) ? 
-                    <CreateWindow /> : 
-                    (storeMenu.login) ?  <CharacterList /> :
-                    (storeMenu.options) ?
-                    <Options /> :
-                    <></>
-                }
+            {   (storeMenu.create || storeMenu.login || storeMenu.options) ?
+                <div className='boxMenuContainer'>
+                    <div className='list'>
+                    {
+                        (storeMenu.create) ? 
+                        <CreateWindow /> : 
+                        (storeMenu.login) ?  <CharacterList /> :
+                        (storeMenu.options) ?
+                        <Options /> :
+                        <></>
+                    }
+                    </div>
                 </div>
-            </div>
+                : <></>
+            }
         </>
     )
 }

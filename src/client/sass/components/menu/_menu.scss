@@ -1,6 +1,9 @@
 .menuContainer {
     background-color: rgba(0, 0, 0, 0.502);
-    background: linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background-image: url(../assets/images/texture/dirt.png), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     position: fixed;
     left: 3em;
     right: 3em;
@@ -50,7 +53,10 @@
         max-width: 25em;
         width: 100%;
         background-color: rgb(56, 46, 46);
-        background: linear-gradient(0deg, rgb(55, 49, 49) 0%, rgb(54, 54, 54) 50%, rgb(93, 70, 70) 100%);
+        background-image: url(../assets/images/texture/overlay.png), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
         border: 0.4em double #626262;
         border-radius: 0.5em;
         padding: 1em;
@@ -69,7 +75,10 @@
     overflow-x: hidden;
     display: flex;
     background-color: rgba(0, 0, 0, 0.502);
-    background: linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background-image: url(../assets/images/texture/dirt.png), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     position: fixed;
     left: 29em;
     right: 3em;
@@ -78,9 +87,11 @@
     border-left: 5px double rgba(77, 77, 77, 0.4);
     border-right: 5px double rgba(77, 77, 77, 0.4);
     align-items: center;
-    justify-content: flex-start;
     padding: 2em 1em;
     gap: 2em;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 
     .list {
         width: 100%;
@@ -195,8 +206,10 @@
         .character{
             font-family: "Astloch", cursive;
             letter-spacing: 0.1em;
-            background: rgb(112, 35, 35);
-            background: linear-gradient(0deg, rgb(55, 49, 49) 0%, rgb(54, 54, 54) 50%, rgb(93, 70, 70) 100%);
+            background-image: url(../assets/images/texture/overlay.png), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
             height: 6em;
             color: #fff;
             display: flex;
