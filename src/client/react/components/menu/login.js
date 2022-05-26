@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Interface from '@comp/interface/Interface';
-import { Render } from '@comp/map/canvas';
+import { RenderCanvas, RenderBg } from '@comp/map/canvas';
 import { menu } from '@comp/store'
 import Protagonist from '@comp/menu/protagonist';
 import useSound from 'use-sound';
@@ -49,10 +49,7 @@ const Login = () => {
             onClick = {audioPlay} >
             <img src = 'assets/images/gui/button_10_s06.png' />
         </button>
-     */
-    return (
 
-        <>
         <div className = {
             `loadingScreen ${(start) ? 'hide' : ''}`
         }
@@ -63,27 +60,23 @@ const Login = () => {
             <p>Klicka för att starta...</p>
             <img className='celticImg' src='assets/images/svg/celtic.svg' alt='logo'/>
         </div>
-        {
-            (start) ? 
-            
+     */
+    return (
+        <>
+            {
+                
                 (!storeMenu.login) ?
                     <>
+                        <RenderBg />
                         <Protagonist />
                     </>
                 :
                     <>
                         <Interface />
-                        <Render />
+                        <RenderCanvas />
                     </>
-            
-            :
-
-            ''
-        }
-    
-        
-        </>
-        
+            }
+        </>        
     )
 }
 

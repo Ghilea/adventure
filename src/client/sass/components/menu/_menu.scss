@@ -1,9 +1,4 @@
 .protagonistContainer {
-    background-color: #382e2e;
-    background-image: url('../../public/assets/bg/village.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     position: fixed;
     left: 0;
     top: 0;
@@ -37,7 +32,8 @@
 
     h1 {
         position: fixed;
-        transform: translate(0, -4.6em);
+        left: 0;
+        top: 0;
         margin: 0;
         text-shadow: 0 0 0.1em rgb(0 0 0);
         font-size: 4.3rem;
