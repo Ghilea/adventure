@@ -34,10 +34,6 @@ const Protagonist = () => {
         });
     }
 
-    const handleBack = () => {
-        storeMenu.createWindow(false);
-    }
-
     const handleCreate = () => {
         const url = `${fetchURL}/createProtagonist`;
         
@@ -58,9 +54,8 @@ const Protagonist = () => {
 
     return (
         <div className='createWindow'>
-            <button onClick={handleBack} title='Tillbaka' className='goBack_characterWindow'></button>
-
-            <label form='name'>Namn</label>
+    
+            <label form='name'>Name</label>
             <input onChange={handleInput} type='text' id='name' placeholder='Din hjälte'/>
             
             <div className='avatars'>
@@ -87,11 +82,11 @@ const Protagonist = () => {
             </div>
 
             <div className='stats'>
-                <div className='showPoints'>Poäng: {storePlayer.points}</div>
+                <div className='showPoints'>Points: {storePlayer.points}</div>
                 <Points />
             </div>
 
-            <button onClick={handleCreate}>Skapa</button>
+            <button type='button' onClick={handleCreate}>Create</button>
         </div>
     )
 }

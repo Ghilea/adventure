@@ -48,25 +48,6 @@
         width: 100%;
         flex-wrap: wrap;
     }
-    
-    button {
-        max-width: 25em;
-        width: 100%;
-        background-color: rgb(56, 46, 46);
-        background-image: url(../assets/images/texture/overlay.png), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        border: 0.4em double #626262;
-        border-radius: 0.5em;
-        padding: 1em;
-        color: #fff;
-        letter-spacing: 0.1rem;
-    
-        &:hover {
-            border: 0.4em double #acbac3;
-        } 
-    }
 
 }
 
@@ -105,35 +86,28 @@
             flex-direction: column;
             position: relative;
             overflow: hidden;
+            gap: 1em;
 
             label {
                 font-size: 1.2rem;
                 font-weight: 600;
                 color: #fff;
-                margin: 1em 0 0.5em -8.5em;
-            }
-
-            .goBack_characterWindow {
-                position: absolute;
-                width: 3em;
-                height: 3em;
-                border-radius: 50%;
-                left: 0;
-                top: 0;
-                display:flex;
-                align-items: center;
-                justify-content: center;
-
-                &::before{
-                    content: '<';
-                    font-weight: 600;
-                    font-size: 1.2rem;
-                }
+                margin: 0 0 0 -17.5em;
             }
 
             input {
-                width: 15em;
                 padding: 0.5em;
+                max-width: 25em;
+                width: 100%;
+                background-color: rgb(56, 46, 46);
+                background-image: url(../assets/images/texture/overlay.png), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                border: 0.4em double #626262;
+                border-radius: 0.5em;
+                color: #fff;
+                letter-spacing: 0.1rem;
             }
 
             .avatars {
@@ -145,24 +119,30 @@
                 margin: 2em;
 
                 .button {
+                    padding: 0.5em;
+                    max-width: 25em;
+                    width: 100%;
+                    background-color: rgb(56, 46, 46);
+                    background-image: url(../assets/images/texture/overlay.png), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    border: 0.4em double #626262;
+                    border-radius: 0.5em;
+                    color: #fff;
+                    letter-spacing: 0.1rem;
                     position: relative;
                     width: 6em;
                     height: 6em;
                     overflow: hidden;
-                    background-color: #545e63;
-                    border: 0.2em solid #bdc8cf;
 
                     &:hover {  
-                        background-color:#bdc8cf; 
-                        border: 0.2em solid #545e63;
+                        border: 0.4em double #acbac3;
                     }
 
                 }
 
                 img {
-                    position: absolute;
-                    left: -3.5em;
-                    top: -0.5em;
                     width: 13em;
                 }
             }
@@ -170,22 +150,18 @@
             .stats{
                 display: flex;
                 flex-direction: column;
-                width: 15em;
-                align-items: center;
-                
-                .showPoints {
-                    color: #fff;
-                    position: absolute;
-                }
-
-                .str, .int, .dex {
-                    color: #fff;
-                    padding: 0.2em 0.5em;
-                }
-
+                max-width: 25em;
+                width: 100%;
+                gap: 1em;
+                color: #fff;
+             
                 .btnSection {
                     display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: row;
+                    justify-content: flex-start;
                     align-items: center;
+                    gap: 1em;
                 }
 
                 .gainBtn {

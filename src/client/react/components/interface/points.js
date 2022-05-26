@@ -112,20 +112,26 @@ export const Points = () => {
     return (
         <>
             <div className='btnSection'>
+                <p className='str'>Strength: {storePlayer.str}</p>
+
                 <button onClick={handleAttribute} id='strMin' className='gainBtn' disabled={disabled.strMin}>-</button>
-                <p className='str'>Str: {storePlayer.str}</p>
+                
                 <button onClick={handleAttribute} id='strMax' className='gainBtn' disabled={disabled.strMax}>+</button>
             </div>
             
             <div className='btnSection'>
+                <p className='int'>Intellect: {storePlayer.int}</p>
+
                 <button onClick={handleAttribute} id='intMin' className='gainBtn' disabled={disabled.intMin}>-</button>
-                <p className='int'>Int: {storePlayer.int}</p>
+                
                 <button onClick={handleAttribute} id='intMax' className='gainBtn' disabled={disabled.intMax}>+</button>
             </div>
 
             <div className='btnSection'>
+                <p className='dex'>Dexterity: {storePlayer.dex}</p>
+                
                 <button onClick={handleAttribute} id='dexMin' className='gainBtn' disabled={disabled.dexMin}>-</button>
-                <p className='dex'>Dex: {storePlayer.dex}</p>
+                
                 <button onClick={handleAttribute} id='dexMax' className='gainBtn' disabled={disabled.dexMax}>+</button>
             </div>
         </>
