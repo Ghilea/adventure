@@ -67,10 +67,11 @@ const Protagonist = () => {
 
     return (
         <div className='protagonistContainer'>
-            <h1 className='fadeIn'>Äventyret</h1>
+            <img className='celticImg' src='assets/images/svg/celtic.svg' alt='logo'/>
+            <h1>Äventyret</h1>
             <div className='box'>
                 
-                <div className='list fadeIn'>
+                <div className='list'>
                     {
                         (storeMenu.showCreate) ? < CreateWindow />: characterList
                     }
@@ -78,11 +79,9 @@ const Protagonist = () => {
             </div>
 
             {
-                (storeMenu.showCreate) ? '' : <button className='fadeIn createHero' type='button' onClick = {
+                (storeMenu.showCreate) ? '' : <button className='createHero' type='button' onClick = {
                     createClick
                 } > Skapa hjälte </button> }
-            
-            <img className='celticImg fadeIn' src='assets/images/svg/celtic.svg' alt='logo'/>
         </div>
     )
 }
