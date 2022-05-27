@@ -26,6 +26,8 @@ export const build = create(set => ({
     active: false,
     texture: null,
     walls: [],
+    sizeX: 1,
+    sizeY: 1,
     buildBtn: (active, texture) => set(state => ({
         ...state,
         active: active,

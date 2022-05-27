@@ -89,6 +89,7 @@ const Render = () => {
                 <Physics gravity = {
                     [0, -30, 0]
                 } >
+                    <gridHelper args={[storeGround.x, storeGround.y]}/>
                     <Ground position = {
                         [0, 0, 0]
                     }
@@ -96,7 +97,7 @@ const Render = () => {
                     {wall}
                     {playerMark}   
                 </Physics>
-                <gridHelper args={[storeGround.x, storeGround.y]}/>
+                
             </Canvas>
         </>    
     )
