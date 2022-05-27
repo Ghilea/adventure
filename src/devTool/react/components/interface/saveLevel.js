@@ -1,23 +1,27 @@
 import React from 'react';
-import { build, player } from '@comp/store';
+import { build, player, ground } from '@comp/store';
 import { Create } from '@shared/components/Crud';
 import { fetchURL } from '@shared/global';
 
 
 export const SaveLevel = () => {
     
-    const store = build(state => state);
+    const storeBuild = build(state => state);
     const storePlayer = player(state => state);
-    const saveLevel = build(state => state.saveLevel);
+    const storeGround = player(state => state);
 
     const handleSave = () => {
-        console.log({'walls': store.walls, 'player': storePlayer.playerMark})
+        console.log({
+            'walls': storeBuild.walls,
+            'player': storePlayer.playerMark
+        })
         
         const url = `${fetchURL}/createLevel`;
 
         Create(url, {
             content: JSON.stringify({
-                'walls': store.walls,
+                'walls': storeBuild.walls,
+                'ground': [storeGround.x, storeGround.y, storeGround.texture],
                 'player': storePlayer.playerMark
             })
         });

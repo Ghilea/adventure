@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePlane } from '@react-three/cannon';
-import { useFrame, useLoader } from '@react-three/fiber';
-import { TextureLoader, RepeatWrapping } from 'three';
-import groundTexture from '@shared/assets/images/texture/floor.jpg';
+import { useFrame } from '@react-three/fiber';
+import * as texture from '@shared/components/textures';
 import { ground, mousePosition, build } from '@comp/store';
 
 export const Ground = (props) => {
@@ -21,12 +20,7 @@ export const Ground = (props) => {
         position: [0.5, 0.01, 0.5],
         rotation: [-Math.PI / 2, 0, 0],
     }))
-
-    const texture = useLoader(TextureLoader, groundTexture);
-    texture.wrapS = RepeatWrapping;
-    texture.wrapT = RepeatWrapping;
-    texture.repeat.set(8, 8);
-    
+   
     const pointerMove = (event) => {
         storePosition.editPosition(event.point.x, event.point.y, event.point.z)
     }
@@ -35,15 +29,13 @@ export const Ground = (props) => {
         setHighLight.position.set(Math.floor(storePosition.x) + 0.5, storePosition.y +0.01, Math.floor(storePosition.z) + 0.5);
     })
 
-    useEffect(()=>{
-        console.log(storeBuild.sizeX, storeBuild.sizeY, storeBuild.rotate);
-    }, [storeBuild.rotate])
-
     return (
         <>
             <mesh ref={ref} onPointerMove={pointerMove}>
                 <planeBufferGeometry attach='geometry' args = {[storeGround.x, storeGround.y]} />
-                <meshStandardMaterial attach='material' map={texture} />
+                <meshStandardMaterial attach='material' map={
+                    (storeGround.texture == 'stone') ? texture.stone(): (storeGround.texture == 'floor') ? texture.floor() : ''
+                } />
             </mesh>
 
             <mesh ref = {highLight}>

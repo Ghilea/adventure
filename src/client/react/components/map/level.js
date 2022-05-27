@@ -14,6 +14,10 @@ export const Level = () => {
 
     const [build, setBuild] = useState([]);
     const [createPlayer, setCreateplayer] = useState();
+    const [ground, setGround] = useState({
+        texture: 'stone',
+        size: [10, 10]
+    });
 
     useEffect(() => {
 
@@ -41,6 +45,12 @@ export const Level = () => {
                         <Player position = {parsed.player} />
                     ))
 
+                    setGround((state) => ({
+                        ...state,
+                        texture: parsed.ground[2],
+                        size: [parsed.ground[0], parsed.ground[1]]
+                    }))
+
                     storeMap.setPlayerPosition(parsed.player);
                 }   
             })
@@ -48,7 +58,7 @@ export const Level = () => {
 
     return (
         <>
-            <Ground position = {[0, 0, 0]} />
+            <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
             {build}
             {createPlayer}
             <Cube position={[0.1, 5, 0]} />

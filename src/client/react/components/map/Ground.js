@@ -1,25 +1,21 @@
 import React from 'react';
 import { usePlane } from '@react-three/cannon';
-import { useLoader } from '@react-three/fiber';
-import { TextureLoader, RepeatWrapping } from 'three';
-import wallTexture from '@shared/assets/images/texture/floor.jpg';
+import * as texture from '@shared/components/textures';
 
-export const Ground = (props) => {
+export const Ground = ({position, groundTexture, size, ...props}) => {
     const [ref] = usePlane(() => ({
-        args: [10, 10],
+        args: size,
+        position,
         rotation: [-Math.PI / 2, 0, 0],
         ...props
     }))
 
-    const texture = useLoader(TextureLoader, wallTexture);
-    texture.wrapS = RepeatWrapping;
-    texture.wrapT = RepeatWrapping;
-    texture.repeat.set(8, 8);
-
     return (
         <mesh ref={ref} receiveShadow>
-            <planeBufferGeometry args = {[10, 10]} />
-            <meshStandardMaterial map={texture} />
+            <planeBufferGeometry args = {size} />
+            <meshStandardMaterial map={
+                (groundTexture == 'stone') ? texture.stone(): (groundTexture == 'floor') ? texture.floor() : ''
+            } />
         </mesh>
     )
 

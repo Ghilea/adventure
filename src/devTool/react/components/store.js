@@ -61,10 +61,13 @@ export const ground = create(set => ({
     x: 10,
     y: 10,
     texture: 'stone',
-    changeGround: (x, y, texture) => set(state => ({
+    groundSize: (x, y) => set(state => ({
         ...state,
         x: x,
-        y: y, 
+        y: y
+    })),
+    groundTexture: (texture) => set(state => ({
+        ...state,
         texture: texture
     })),
 }))

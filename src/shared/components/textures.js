@@ -1,9 +1,10 @@
 import { useLoader } from '@react-three/fiber';
 import { TextureLoader, RepeatWrapping} from 'three';
 
-import stoneImg from '../assets/images/texture/stone.jpg';
-import stone_windowImg from '../assets/images/texture/stone_window.png';
-import stone2Img from '../assets/images/texture/stone2.jpg';
+import stoneImg from '@shared/assets/images/texture/stone.jpg';
+import stone_windowImg from '@shared/assets/images/texture/stone_window.png';
+import stone2Img from '@shared/assets/images/texture/stone2.jpg';
+import floorImg from '@shared/assets/images/texture/floor.jpg';
 
 export const stone = () => {
     
@@ -22,5 +23,10 @@ export const stoneWindow = () => {
 
 export const stone2 = () => {
     const texture = useLoader(TextureLoader, stone2Img);
+    return texture;
+}
+
+export const floor = () => {
+    const texture = useLoader(TextureLoader, floorImg);
     return texture;
 }

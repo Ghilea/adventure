@@ -3,16 +3,20 @@ import { ground } from '@comp/store';
 
 export const CategoryGround = () => {
     
-    const store = ground(state => state);
+    const storeGround = ground(state => state);
 
     const handleSlider = (e) => {
-        store.changeGround(e.target.value, e.target.value, 'stone')
-        console.log(store.x);
+        storeGround.groundSize(e.target.value, e.target.value)
+    }
+
+    const handleTexture = (e) => {
+        storeGround.groundTexture(e.target.value)
     }
 
     const optionArr = [
         'Choose Texture',
-        'Stone'
+        'stone',
+        'floor'
     ];
 
     const selectOptions = optionArr.map((item, index) => {
@@ -25,8 +29,8 @@ export const CategoryGround = () => {
         <div className='container'>
             <h2>Ground</h2>
             <div className='ground'>
-                <input type='range' min={10} max={500} value={store.x} onChange={handleSlider}/>
-                <select>
+                <input type='range' min={10} max={500} value={storeGround.x} onChange={handleSlider}/>
+                <select onChange={handleTexture}>
                     {selectOptions}
                 </select>
             </div>
