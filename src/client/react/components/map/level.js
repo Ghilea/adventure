@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Ground } from '@comp/map/Ground';
-import { Cube } from '@comp/map/cube';
+import { Object } from '@comp/map/object';
 import { Walls } from '@comp/map/walls';
 import { Read } from '@shared/components/Crud';
 import { map } from '@comp/store';
@@ -60,11 +60,7 @@ export const Level = () => {
         <>
             <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
             {build}
-            {createPlayer}
-            <Cube position={[0.1, 5, 0]} />
-            <Cube position={[0, 10, -1]} />
-            <Cube position={[0, 20, -2]} />
-            
+            {createPlayer}         
         </>
     )
 }

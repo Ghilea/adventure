@@ -50,7 +50,8 @@ export const MenuBg = () => {
     return (
         <>
             <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
-            {build}           
+            {build} 
+            <Object position={[0.1, 5, 0]} />       
         </>
     )
 }
