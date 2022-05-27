@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { usePlane } from '@react-three/cannon';
 import { useFrame, useLoader } from '@react-three/fiber';
 import { TextureLoader, RepeatWrapping } from 'three';
@@ -34,6 +34,10 @@ export const Ground = (props) => {
     useFrame(() => {
         setHighLight.position.set(Math.floor(storePosition.x) + 0.5, storePosition.y +0.01, Math.floor(storePosition.z) + 0.5);
     })
+
+    useEffect(()=>{
+        console.log(storeBuild.sizeX, storeBuild.sizeY, storeBuild.rotate);
+    }, [storeBuild.rotate])
 
     return (
         <>

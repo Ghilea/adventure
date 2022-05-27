@@ -31,10 +31,10 @@ const Render = () => {
                     ...state, 
                     <AddWall key = {'wall'+index}
                     position = {
-                        [position.x, (4 / 2) + position.y, position.z]
+                        [Math.floor(position.x) + 0.5, (4 / 2) + position.y, Math.floor(position.z) + 0.5]
                     }
                     rotation = {
-                        (rotate) ? [0, 1.58, 0] : [0, 0, 0]
+                        (storeBuild.rotate) ? [0, 1.58, 0] : [0, 0, 0]
                     }
                     type = {
                         [storeBuild.texture]
@@ -56,13 +56,12 @@ const Render = () => {
         }
     }
 
-    const keyHandler = (e) => {
-        if (rotate) {
-            setRotate(false);
-            storeBuild.changeRaySize(storeBuild.sizeY, storeBuild.sizeX)
+    const keyHandler = () => {
+        console.log(storeBuild.rotate)
+        if (storeBuild.rotate) {
+            storeBuild.changeRaySize(storeBuild.sizeY, storeBuild.sizeX, false) 
         }else{
-            setRotate(true);
-            storeBuild.changeRaySize(storeBuild.sizeX, storeBuild.sizeY)
+            storeBuild.changeRaySize(storeBuild.sizeY, storeBuild.sizeX, true)
         }
     }
 
