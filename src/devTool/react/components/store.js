@@ -28,6 +28,11 @@ export const build = create(set => ({
     walls: [],
     sizeX: 1,
     sizeY: 1,
+    changeRaySize: (x, y) => set(state => ({
+        ...state,
+        sizeX: x,
+        sizeY: y
+    })),
     buildBtn: (active, texture) => set(state => ({
         ...state,
         active: active,

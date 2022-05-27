@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Ground } from '@comp/map/Ground';
 import { Physics } from '@react-three/cannon';
@@ -54,22 +54,19 @@ const Render = () => {
         } else if (event.type === 'contextmenu') {
             event.preventDefault();
         }
-
     }
 
     const keyHandler = (e) => {
-        if (e.type === 'keydown' && e.code === 'ControlLeft') {
-            setRotate(true);
-        }
-
-        if (e.type === 'keyup' && e.code === 'ControlLeft') {
+        if (rotate) {
             setRotate(false);
+            storeBuild.changeRaySize(storeBuild.sizeY, storeBuild.sizeX)
+        }else{
+            setRotate(true);
+            storeBuild.changeRaySize(storeBuild.sizeX, storeBuild.sizeY)
         }
     }
 
-    useKey(['Control', 'a'], keyHandler, {
-        eventTypes: ['keydown', 'keyup']
-    });
+    useKey(['Control'], keyHandler);
 
     return (
         <>

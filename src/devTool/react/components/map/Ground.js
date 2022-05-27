@@ -17,7 +17,7 @@ export const Ground = (props) => {
     }))
     
     const [highLight, setHighLight] = usePlane(() => ({
-        args: [1, 1],
+        args: [storeBuild.sizeX, storeBuild.sizeY],
         position: [0.5, 0.01, 0.5],
         rotation: [-Math.PI / 2, 0, 0],
     }))

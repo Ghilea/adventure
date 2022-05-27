@@ -2,7 +2,7 @@ import React from "react";
 import { build, interfaceButtons } from '@comp/store';
 
 export const CategoryWall = () => {
-    const store = build(state => state);
+    const storeBuild = build(state => state);
     const interBtn = interfaceButtons(state => state);
 
     const textureArr = [
@@ -27,10 +27,13 @@ export const CategoryWall = () => {
     const handleWall = (setTexture) => {
         if (interBtn.active && interBtn.button === setTexture) {
             interBtn.btn(false, null)
-            store.buildBtn(false, null)
+            storeBuild.buildBtn(false, null)
+            storeBuild.changeRaySize(1, 1)
         } else {
-            interBtn.btn(true, setTexture)
-            store.buildBtn(true, setTexture)
+            interBtn.btn(true, setTexture);
+            storeBuild.buildBtn(true, setTexture);
+            storeBuild.changeRaySize(8, 1)
+
         }
     }
 
