@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { menu } from '@comp/store';
 import CreateWindow from '@comp/menu/createProtagonist';
-import { CharacterList } from './characterList';
+import { CharacterList } from '@comp/menu/characterList';
+import { Options } from '@comp/menu/options'
 
 export const Menu = () => {
 
