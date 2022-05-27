@@ -10,6 +10,10 @@ export const MenuBg = () => {
     const storeMap = map(state => state);
 
     const [build, setBuild] = useState([]);
+    const [ground, setGround] = useState({
+        texture: 'stone',
+        size: [10, 10]
+    });
 
     useEffect(() => {
 
@@ -33,13 +37,19 @@ export const MenuBg = () => {
                         ]))
                     })
 
+                    setGround((state) => ({
+                        ...state,
+                        texture: parsed.ground[2],
+                        size: [parsed.ground[0], parsed.ground[1]]
+                    }))
+
                 }   
             })
     }, [])
 
     return (
         <>
-            <Ground position = {[0, 0, 0]} />
+            <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
             {build}           
         </>
     )

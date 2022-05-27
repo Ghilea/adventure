@@ -8,11 +8,12 @@ export const SaveLevel = () => {
     
     const storeBuild = build(state => state);
     const storePlayer = player(state => state);
-    const storeGround = player(state => state);
+    const storeGround = ground(state => state);
 
     const handleSave = () => {
         console.log({
             'walls': storeBuild.walls,
+            'ground': [storeGround.x, storeGround.y, storeGround.texture],
             'player': storePlayer.playerMark
         })
         

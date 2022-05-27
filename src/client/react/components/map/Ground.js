@@ -3,6 +3,7 @@ import { usePlane } from '@react-three/cannon';
 import * as texture from '@shared/components/textures';
 
 export const Ground = ({position, groundTexture, size, ...props}) => {
+    
     const [ref] = usePlane(() => ({
         args: size,
         position,
