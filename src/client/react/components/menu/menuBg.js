@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Ground } from '@comp/map/Ground';
 import { Walls } from '@comp/map/walls';
 import { Read } from '@shared/components/Crud';
-import { map } from '@comp/store';
 import { fetchURL } from '@shared/global';
+import { Object } from '@comp/map/object';
 
 export const MenuBg = () => {
-
-    const storeMap = map(state => state);
 
     const [build, setBuild] = useState([]);
     const [ground, setGround] = useState({
@@ -17,7 +15,7 @@ export const MenuBg = () => {
 
     useEffect(() => {
 
-        let url = `${fetchURL}/getLevel?&id=0`;
+        const url = `${fetchURL}/getLevel?&id=0`;
     
         Read(url)
             .then(items => {
@@ -51,7 +49,9 @@ export const MenuBg = () => {
         <>
             <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
             {build} 
-            <Object position={[0.1, 5, 0]} />       
+            <Object position={[0.1, 5, 0]} size={[1,1, 1]} objectTexture = {'wood'}/>
+            <Object position={[0.2, 10, -1]} size={[0.5, 0.5, 0.5]} objectTexture={'wood2'}/>
+            <Object position={[-1.5, 20, -2]} size={[1, 1, 1]} objectTexture={'wood'}/>
         </>
     )
 }

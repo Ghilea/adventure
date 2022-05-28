@@ -2,7 +2,7 @@ import React from 'react';
 import { useBox } from '@react-three/cannon';
 import * as texture from '@shared/components/objectTextures';
 
-export const Object = ({position, size, ...props}) => {
+export const Object = ({position, size, objectTexture, ...props}) => {
   
   const [ref] = useBox(() => ({
     mass: 10, 
@@ -15,7 +15,9 @@ export const Object = ({position, size, ...props}) => {
   return (
     <mesh receiveShadow castShadow ref={ref}>
       <boxGeometry args={size}/>
-      <meshLambertMaterial map={texture.stone()} />
+      <meshLambertMaterial map={
+        (objectTexture === 'wood') ? texture.wood() : 
+        (objectTexture === 'wood2') ? texture.wood2() : ''} />
     </mesh>
   )
 }

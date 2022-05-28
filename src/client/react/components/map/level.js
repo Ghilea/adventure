@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Ground } from '@comp/map/Ground';
-import { Object } from '@comp/map/object';
 import { Walls } from '@comp/map/walls';
 import { Read } from '@shared/components/Crud';
 import { map } from '@comp/store';
 import { Player } from '@comp/player/Player';
 import { fetchURL } from '@shared/global';
-
 
 export const Level = () => {
 

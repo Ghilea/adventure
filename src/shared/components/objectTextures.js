@@ -1,11 +1,20 @@
 import { useLoader } from '@react-three/fiber';
 import { TextureLoader} from 'three';
 
-import stoneImg from '@shared/assets/images/texture/stone.jpg';
+import woodImg from '@shared/assets/images/texture/wood.jpg';
 
-export const stone = () => {
+import wood2Img from '@shared/assets/images/texture/wood2.jpg';
+
+export const wood = () => {
     
-    const texture = useLoader(TextureLoader, stoneImg);
+    const texture = useLoader(TextureLoader, woodImg);
 
     return texture;
 } 
+
+export const wood2 = () => {
+
+    const texture = useLoader(TextureLoader, wood2Img);
+
+    return texture;
+}
