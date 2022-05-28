@@ -2,7 +2,7 @@ import React from 'react';
 import { useBox } from '@react-three/cannon';
 import * as texture from '@shared/components/objectTextures';
 
-export const Object = ({position, size, objectTexture, light, mass, rotation, ...props}) => {
+export const Object = ({position, size, objectTexture, light, mass, rotation, distance, ...props}) => {
   
   const [ref] = useBox(() => ({
     mass, 
@@ -16,7 +16,7 @@ export const Object = ({position, size, objectTexture, light, mass, rotation, ..
     <mesh receiveShadow castShadow ref={ref}>
       {
         (light) ?
-          <pointLight position={position} distance={5} intensity={5} />
+          <pointLight position={position} distance={distance} intensity={10} />
         :
           <></>
       }
