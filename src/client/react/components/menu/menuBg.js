@@ -49,9 +49,7 @@ export const MenuBg = () => {
         <>
             <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
             {build} 
-            <Object position={[0.1, 5, 0]} size={[1,1, 1]} objectTexture = {'wood'}/>
-            <Object position={[0.2, 10, -1]} size={[0.5, 0.5, 0.5]} objectTexture={'wood2'}/>
-            <Object position={[-1.5, 20, -2]} size={[1, 1, 1]} objectTexture={'wood'}/>
+            <Object mass={0} light={true} rotation = {[0, 0, 0]} position={[-1.5, 1, -2]} size={[1, 1, 1]} objectTexture={'wood'}/>
         </>
     )
 }
