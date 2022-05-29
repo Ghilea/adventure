@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Ground } from '@comp/map/Ground';
 import { Walls } from '@comp/map/walls';
 import { Object } from '@comp/map/object';
+import { Torch } from '@shared/components/models/torch';
 
 export const MenuBg = () => {
 
@@ -66,6 +67,7 @@ export const MenuBg = () => {
             <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
             {build} 
             <Object mass={0} light={true} distance={1.5} rotation = {[0, 0, 0]} position={[-1.5, 0.1, 1]} size={[0.1, 0.1, 0.1]} objectTexture={'wood'}/>
+            <Torch position={[-1, 1, -5]} scale={[0.1, 0.1, 0.1]}/>
         </>
     )
 }

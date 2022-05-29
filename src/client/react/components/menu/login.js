@@ -50,10 +50,10 @@ const Login = () => {
     useEffect(() => {
         setLoading(true);
 
-        /*setTimeout(() => {
+        setTimeout(() => {
             setLoading(false);
-        }, 5000);
-        */
+        }, 1000);
+        
     }, [storeMenu.loginSuccess])
         
     return (

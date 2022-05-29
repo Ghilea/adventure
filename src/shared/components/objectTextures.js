@@ -18,3 +18,4 @@ export const wood2 = () => {
 
     return texture;
 }
+
