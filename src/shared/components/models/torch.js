@@ -7,6 +7,7 @@ export const Torch = (props) => {
     const {nodes, materials} = useGLTF("./assets/images/3d/Torch.gltf");
     
     return ( 
+        <>
         <group ref = {group} {...props} dispose = {null} >
             
             <mesh castShadow receiveShadow geometry = {nodes.lsdGroup15825.geometry} material = {nodes.lsdGroup15825.material}/> 
@@ -15,6 +16,10 @@ export const Torch = (props) => {
         
             <mesh castShadow receiveShadow geometry = {nodes.Mashal_MMMGroup63307.geometry} material = {nodes.Mashal_MMMGroup63307.material}/>
 
+            <pointLight position={[-3.5, 3, 2.5]} distance={3} intensity={7} />
+            
         </group>
+
+        </>
     );
 }

@@ -66,8 +66,8 @@ export const MenuBg = () => {
         <>
             <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
             {build} 
-            <Object mass={0} light={true} distance={1.5} rotation = {[0, 0, 0]} position={[-1.5, 0.1, 1]} size={[0.1, 0.1, 0.1]} objectTexture={'wood'}/>
-            <Torch position={[-1, 1, -5]} scale={[0.1, 0.1, 0.1]}/>
+            <Object mass={0} light={false} distance={1.5} rotation = {[0, 0, 0]} position={[-1.5, 1, 1]} size={[1, 1, 1]} objectTexture={'wood'}/>
+            <Torch position={[-1, 2, -3]} scale={[0.1, 0.1, 0.1]} rotation={[0, -1.5, 0]}/>
         </>
     )
 }
