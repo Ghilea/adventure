@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Ground } from '@comp/map/Ground';
 import { Walls } from '@comp/map/walls';
-import { Read } from '@shared/components/Crud';
-import { fetchURL } from '@shared/global';
 import { Object } from '@comp/map/object';
 
 export const MenuBg = () => {
@@ -14,42 +12,60 @@ export const MenuBg = () => {
     });
 
     useEffect(() => {
-
-        const url = `${fetchURL}/getLevel?&id=0`;
     
-        Read(url)
-            .then(items => {
+        const items = {
+            "walls": [{
+                "pos": [-0.5, 1.99999983815115, 4.5],
+                "rotate": [0, 0, 0],
+                "type": ["stoneWindow"]
+            }, {
+                "pos": [-4.5, 1.9999999330563478, 1.5],
+                "rotate": [0, 1.58, 0],
+                "type": ["stone"]
+            }, {
+                "pos": [4.5, 1.9999998326444188, 4.5],
+                "rotate": [0, 0, 0],
+                "type": ["stone"]
+            }, {
+                "pos": [4.5, 1.9999999295635922, 2.5],
+                "rotate": [0, 1.58, 0],
+                "type": ["stone"]
+            }, {
+                "pos": [4.5, 2.0000001094138553, -3.5],
+                "rotate": [0, 1.58, 0],
+                "type": ["stone"]
+            }, {
+                "pos": [-4.5, 2.000000106379448, -3.5],
+                "rotate": [0, 1.58, 0],
+                "type": ["stone"]
+            }],
+            "ground": [10, 10, "stone"],
+            "player": []
+        }
+            
+        items.walls.map((use, index) => {
 
-                if (items.level.length > 0) {
+            setBuild((state) => ([
+                ...state,
+                <Walls key={'wall'+index} position = {use.pos}
+                rotation = { use.rotate }
+                type = { use.type }
+                />
+            ]))
+        })
 
-                    const parsed = JSON.parse(items.level[0].content)
-
-                    parsed.walls.map((use, index) => {
-
-                        setBuild((state) => ([
-                            ...state,
-                            <Walls key={'wall'+index} position = {use.pos}
-                            rotation = { use.rotate }
-                            type = { use.type }
-                            />
-                        ]))
-                    })
-
-                    setGround((state) => ({
-                        ...state,
-                        texture: parsed.ground[2],
-                        size: [parsed.ground[0], parsed.ground[1]]
-                    }))
-
-                }   
-            })
+        setGround((state) => ({
+            ...state,
+            texture: items.ground[2],
+            size: [items.ground[0], items.ground[1]]
+        }))
     }, [])
 
     return (
         <>
             <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
             {build} 
-            <Object mass={0} light={true} distance={5} rotation = {[0, 0, 0]} position={[-1.5, 1, -2]} size={[1, 1, 1]} objectTexture={'wood'}/>
+            <Object mass={0} light={true} distance={1.5} rotation = {[0, 0, 0]} position={[-1.5, 0.1, 1]} size={[0.1, 0.1, 0.1]} objectTexture={'wood'}/>
         </>
     )
 }

@@ -5,10 +5,13 @@ import { menu } from '@comp/store'
 import { Menu } from '@comp/menu/menu';
 import useSound from 'use-sound';
 import { Howler } from 'howler';
+import { LoadingScreen } from '@comp/menu/loadingScreen';
 
 const Login = () => {
 
     const storeMenu = menu(state => state);
+
+    const [loading, setLoading] = useState(true);
 
     const [start, setStart] = useState(false);
     const [playing, setPlaying] = useState(false);
@@ -44,27 +47,24 @@ const Login = () => {
         }
     },[storeMenu.login])
 
-    /**
-     * <button type='button' className = 'music'
-            onClick = {audioPlay} >
-            <img src = 'assets/images/gui/button_10_s06.png' />
-        </button>
-
-        <div className = {
-            `loadingScreen ${(start) ? 'hide' : ''}`
-        }
-        onClick = {
-            audioPlay
-        } >
-            <h1>Äventyret</h1>
-            <p>Klicka för att starta...</p>
-            <img className='celticImg' src='assets/images/svg/celtic.svg' alt='logo'/>
-        </div>
-     */
+    useEffect(() => {
+        setLoading(true);
+        
+        setTimeout(() => {
+            setLoading(false);
+        }, 5000);
+        
+    }, [storeMenu.loginSuccess])
+        
     return (
         <>
             {
-                
+                (loading) ?
+                    <LoadingScreen />
+                :
+                    <></>
+            }
+            {                    
                 (!storeMenu.loginSuccess) ?
                     <>
                         <RenderBg />
