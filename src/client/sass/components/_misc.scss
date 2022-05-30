@@ -116,3 +116,13 @@ button {
         border: 0.4em double #acbac3;
     } 
 }
+
+@keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
