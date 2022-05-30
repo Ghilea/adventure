@@ -43,7 +43,7 @@ const Login = () => {
             setTimeout(() => {
                 stop();
                 setPlaying(false);
-            }, 100);
+            }, 10);
         }
     },[storeMenu.login])
 

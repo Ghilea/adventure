@@ -26,7 +26,6 @@ export const RenderBg = () => {
                 position: [0, 2, -7]
             }
         } >
-            <ambientLight intensity={0.5} />
             <Physics gravity={[0, -30, 0]}>
                 <MenuBg />   
             </Physics>
