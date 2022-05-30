@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { menu } from '@comp/store'
 
-export const LoadingScreen = () => {
+export const Loading = ({loadTime}) => {
+
+    const storeMenu = menu(state => state);
 
     const [message, setMessage] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         
@@ -16,8 +20,20 @@ export const LoadingScreen = () => {
 
     }, [])
 
+    useEffect(() => {
+
+        setTimeout(() => {
+            setLoading(false);
+        }, loadTime);
+
+        setTimeout(() => {
+            storeMenu.isLoadingDone(true)
+        }, loadTime + 3000);
+
+    }, [])
+
     return (
-        <div className="loadingScreen">
+        <div className={`loadingScreen ${(!loading) ? 'fadeOut' : ''}`}>
             <h1>Loading...</h1>
             <p>{message}</p>
         </div>

@@ -71,11 +71,9 @@ export const Menu = () => {
                 <div className='boxMenuContainer'>
                     <div className='list'>
                     {
-                        (storeMenu.create) ? 
-                        <CreateWindow /> : 
-                        (storeMenu.login) ?  <CharacterList /> :
-                        (storeMenu.options) ?
-                        <Options /> :
+                        (storeMenu.create) ? <CreateWindow /> : 
+                        (storeMenu.login) ? <CharacterList /> :
+                        (storeMenu.options) ? <Options /> :
                         <></>
                     }
                     </div>

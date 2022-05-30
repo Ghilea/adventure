@@ -138,6 +138,11 @@ export const menu = create(set => ({
     options: false,
     login: false,
     loginSuccess: false,
+    loadingDone: false,
+    isLoadingDone: (value) => set(state => ({
+        ...state,
+        loadingDone: value
+    })),
     isCreate: (value) => set(state => ({
         ...state,
         create: value

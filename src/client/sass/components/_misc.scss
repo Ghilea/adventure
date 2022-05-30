@@ -50,7 +50,7 @@ h1 {
 }
 
 .fadeOut {
-    animation: fadeOut 8s ease-in-out forwards;
+    animation: fadeOut 2.5s ease-in-out forwards;
 
     @keyframes fadeOut {
         to{
@@ -116,13 +116,3 @@ button {
         border: 0.4em double #acbac3;
     } 
 }
-
-@keyframes fadeOut {
-        from {
-            opacity: 1;
-        }
-
-        to {
-            opacity: 0;
-        }
-    }

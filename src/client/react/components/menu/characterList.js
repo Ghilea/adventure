@@ -53,6 +53,7 @@ export const CharacterList = () => {
     }, [])
     
     const handleLogin = (id) => {
+        storeMenu.isLoadingDone(false);
         storeMenu.isLoginSuccess(true);
         storePlayer.setPlayerId(id);
     }
