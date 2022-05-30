@@ -3,6 +3,7 @@ import { Ground } from '@comp/map/Ground';
 import { Walls } from '@comp/map/walls';
 import { Object } from '@comp/map/object';
 import { Torch } from '@shared/components/models/torch';
+import { RockPile } from '@shared/components/models/rockpile';
 
 export const MenuBg = () => {
 
@@ -62,14 +63,19 @@ export const MenuBg = () => {
         }))
     }, [])
 
+    /*
+        <Object mass={0} light={false} rotation = {[0, 0, 0]} position={[0, 1, -2]} size={[1, 1, 1]} objectTexture={'wood'}/>
+            <Object mass={0} light={false} rotation = {[0, 0, 0]} position={[-2, 1, -2]} size={[1, 1, 1]} objectTexture={'wood'}/>
+    */
+
     return (
         <>
             <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
             {build} 
-            <Object mass={0} light={false} rotation = {[0, 0, 0]} position={[0, 1, -2]} size={[1, 1, 1]} objectTexture={'wood'}/>
-            <Object mass={0} light={false} rotation = {[0, 0, 0]} position={[-2, 1, -2]} size={[1, 1, 1]} objectTexture={'wood'}/>
+            
             <Torch position={[2, 2.5, 4]} scale={[0.1, 0.1, 0.1]} rotation={[0, -1.5, 0]}/>
             <Torch position={[-3.5, 2.5, -1]} scale={[0.1, 0.1, 0.1]} rotation={[0, 2.5, 0]}/>
+            <RockPile position={[-2.5, 0.1, -2]} scale={[1, 1, 1]}/>
         </>
     )
 }

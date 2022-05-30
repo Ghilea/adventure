@@ -33,6 +33,7 @@ export const Torch = (props) => {
             color={'white'}
             position={[0, 0.5, -2]}
             castShadow
+            shadow-mapSize={[2048, 2048]}
             />
 
         </group>
