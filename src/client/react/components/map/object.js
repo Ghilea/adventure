@@ -13,7 +13,12 @@ export const Object = ({position, size, objectTexture, light, mass, rotation, di
   }))
 
   return (
-    <mesh receiveShadow castShadow ref={ref}>
+    <mesh castShadow ref = {
+      ref
+    }
+    intensity = {
+      10
+    } >
       {
         (light) ?
           <pointLight position={position} distance={distance} intensity={10} />
