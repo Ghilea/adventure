@@ -48,8 +48,10 @@ const Login = () => {
     },[storeMenu.login])
 
     useEffect(() => {
-        setLoading(true);
-
+        if(!loading){
+            setLoading(true);
+        }
+        
         setTimeout(() => {
             setLoading(false);
         }, 1000);
@@ -62,20 +64,20 @@ const Login = () => {
                 (loading) ?
                     <LoadingScreen />
                 :
-                    <></>
+                                    
+                    (!storeMenu.loginSuccess) ?
+                        <>
+                            <RenderBg />
+                            <Menu />
+                        </>
+                    :
+                        <>
+                            <Interface />
+                            <RenderCanvas />
+                        </>
+                
             }
-            {                    
-                (!storeMenu.loginSuccess) ?
-                    <>
-                        <RenderBg />
-                        <Menu />
-                    </>
-                :
-                    <>
-                        <Interface />
-                        <RenderCanvas />
-                    </>
-            }
+            
         </>        
     )
 }
