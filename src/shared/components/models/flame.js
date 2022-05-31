@@ -6,21 +6,46 @@ export const Flame = (props) => {
   const group = useRef();
   const { nodes, materials } = useGLTF("./assets/images/3d/flame/flame.gltf");
 
-  const [animation, setAnimation] = useState(2);
+  const [lightAnimation, setLightAnimation] = useState(2);
+  const [flameAnimation, setFlameAnimation] = useState(0.5);
 
   useEffect(() => {
     setTimeout(() => {
-      if (animation === 2) {
-        setAnimation(1.8);
+      if (lightAnimation === 2) {
+        setLightAnimation(1.8);
       } else {
-        setAnimation(2);
+        setLightAnimation(2);
       }
 
     }, Math.floor(Math.random() * (500 - 300 + 1) + 300))
-  }, [animation])
+  }, [lightAnimation])
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (flameAnimation === 0.5) {
+        setFlameAnimation(0.6);
+      } else {
+        setFlameAnimation(0.5);
+      }
+
+    }, Math.floor(Math.random() * (300 - 100 + 1) + 100))
+  }, [flameAnimation])
 
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref = {
+      group
+    } {
+      ...props
+    }
+    rotation = {
+      [0, flameAnimation, 0]
+    }
+    scale = {
+      [0.5, flameAnimation, 0.5]
+    }
+    dispose = {
+      null
+    } >
       <mesh
         castShadow
         geometry={nodes.mesh_0.geometry}
@@ -29,7 +54,7 @@ export const Flame = (props) => {
       />
 
       <pointLight
-            intensity={animation}
+            intensity={lightAnimation}
             distance={5.5}
             color={'#d4c4af'}
             position={[0, 0.5, -2]}

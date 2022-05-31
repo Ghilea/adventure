@@ -43,7 +43,7 @@ export const Torch = (props) => {
                 transparent={true} 
                 color={'#323232'} />
             </mesh> 
-            <Flame position={[-1, 3, 3.9]} rotation={[0,0,0]} scale={[0.5, 0.5, 0.5]}/>    
+            <Flame position={[-1, 3, 3.9]}/>    
         </group>
     );
 }
