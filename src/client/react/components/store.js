@@ -136,6 +136,7 @@ export const enemy = create(set => ({
 export const menu = create(set => ({
     create: false,
     options: false,
+    mapEditor: false,
     login: false,
     loginSuccess: false,
     loadingDone: false,
@@ -146,6 +147,10 @@ export const menu = create(set => ({
     isCreate: (value) => set(state => ({
         ...state,
         create: value
+    })),
+    isMapEditor: (value) => set(state => ({
+        ...state,
+        mapEditor: value
     })),
     isOptions: (value) => set(state => ({
         ...state,

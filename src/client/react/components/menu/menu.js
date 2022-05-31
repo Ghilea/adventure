@@ -15,6 +15,7 @@ export const Menu = () => {
             storeMenu.isLogin(true);
         } 
 
+        storeMenu.isMapEditor(false);
         storeMenu.isCreate(false);
         storeMenu.isOptions(false);
     }
@@ -26,6 +27,7 @@ export const Menu = () => {
             storeMenu.isCreate(true);
         }
         
+        storeMenu.isMapEditor(false);
         storeMenu.isLogin(false);
         storeMenu.isOptions(false);
     }
@@ -37,6 +39,19 @@ export const Menu = () => {
             storeMenu.isOptions(true);
         }
         
+        storeMenu.isMapEditor(false);
+        storeMenu.isLogin(false);
+        storeMenu.isCreate(false);
+    }
+
+    const handleMapEditor = () => {
+        if (storeMenu.mapEditor) {
+            storeMenu.isMapEditor(false);
+        } else {
+            storeMenu.isMapEditor(true);
+        }
+
+        storeMenu.isOptions(false);
         storeMenu.isLogin(false);
         storeMenu.isCreate(false);
     }
@@ -63,6 +78,10 @@ export const Menu = () => {
                     <button type='button' onClick={handleOptions}>
                         Options
                     </button>
+
+                    <button type = 'button' onClick = {handleMapEditor} >
+                        Map Editor
+                    </button>
                 </div>
                 
             </div>
@@ -74,6 +93,7 @@ export const Menu = () => {
                         (storeMenu.create) ? <CreateWindow /> : 
                         (storeMenu.login) ? <CharacterList /> :
                         (storeMenu.options) ? <Options /> :
+                        (storeMenu.mapEditor) ? <></> :
                         <></>
                     }
                     </div>
