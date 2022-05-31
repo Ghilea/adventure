@@ -12,12 +12,14 @@ export const Ground = ({position, groundTexture, size, ...props}) => {
     }))
 
     return (
+        <>
         <mesh ref={ref} receiveShadow>
             <planeBufferGeometry args = {size} />
             <meshStandardMaterial map={
                 (groundTexture == 'stone') ? texture.stone(): (groundTexture == 'floor') ? texture.floor() : ''
             } />
         </mesh>
+        </>
     )
 
 }

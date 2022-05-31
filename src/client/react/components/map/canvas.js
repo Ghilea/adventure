@@ -23,8 +23,8 @@ export const RenderBg = () => {
     return (
         <Canvas shadows camera = {
             {
-                fov: 45,
-                position: [0, 2, -7]
+                fov: 60,
+                position: [0, 3, -7]
             }
         } >
             <OrbitControls />
