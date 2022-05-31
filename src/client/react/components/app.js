@@ -15,7 +15,7 @@ export const App = () => {
                 (!storeMenu.loginSuccess) ?
                     <>
                         {
-                            (!storeMenu.loadingDone) ? <Loading loadTime = {1000} /> : <></>
+                            (!storeMenu.loadingDone) ? <Loading loadTime = {3000} /> : <></>
                         }
 
                         <RenderBg />
