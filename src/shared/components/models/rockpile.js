@@ -31,7 +31,6 @@ export const RockPile = (props) => {
         receiveShadow
         geometry={nodes.Rock_6.geometry}
         material={nodes.Rock_6.material}
-        material-color={'grey'}
         >
             <meshStandardMaterial attach="material" 
             map={texture}

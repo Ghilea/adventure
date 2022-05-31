@@ -4,7 +4,6 @@ import { Walls } from '@comp/map/walls';
 import { Object } from '@comp/map/object';
 import { Torch } from '@shared/components/models/torch';
 import { RockPile } from '@shared/components/models/rockpile';
-
 export const MenuBg = () => {
 
     const [build, setBuild] = useState([]);

@@ -15,7 +15,7 @@ export const Torch = (props) => {
     texture.wrapT = RepeatWrapping;
     texture.repeat.set(10, 10);
         
-    return ( 
+    return (
         <group castShadow receiveShadow ref = {group} {...props} dispose = {null} >
             
             <mesh castShadow receiveShadow geometry = {
@@ -23,29 +23,27 @@ export const Torch = (props) => {
             }
             material = {
                 nodes.lsdGroup15825.material
-            }
-            material-color = {
-                'red'
-            } >
+            }>
                 <meshStandardMaterial attach="material" 
                 map={texture}
-                transparent={true} />
+                transparent={true}
+                color={'#323232'} />
             </mesh> 
             
             <mesh castShadow receiveShadow geometry = {nodes.chorchGroup1799_Mashal.geometry} material = {nodes.chorchGroup1799_Mashal.material} >
                 <meshStandardMaterial attach="material" 
                 map={texture}
-                transparent={true} />
+                transparent={true} 
+                color={'#323232'} />
             </mesh>  
         
             <mesh castShadow receiveShadow geometry = {nodes.Mashal_MMMGroup63307.geometry} material = {nodes.Mashal_MMMGroup63307.material} >
                 <meshStandardMaterial attach="material" 
                 map={texture}
-                transparent={true} />
+                transparent={true} 
+                color={'#323232'} />
             </mesh> 
-
-            <Flame position={[-5, 0.5, 0]}/>
-
+            <Flame position={[-1, 3, 3.9]} rotation={[0,0,0]} scale={[0.5, 0.5, 0.5]}/>    
         </group>
     );
 }
