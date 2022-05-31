@@ -16,7 +16,7 @@ export const Torch = (props) => {
         
             <mesh castShadow receiveShadow geometry = {nodes.Mashal_MMMGroup63307.geometry} material = {nodes.Mashal_MMMGroup63307.material}/>
 
-            <Flame position={[-1, 0.5, 0]}/>
+            <Flame position={[-2, 0.5, 0]}/>
 
         </group>
     );

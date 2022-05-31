@@ -75,6 +75,7 @@ export const MenuBg = () => {
             
             <Torch position={[2, 2.5, 4]} scale={[0.1, 0.1, 0.1]} rotation={[0, -1.5, 0]}/>
             <Torch position={[-3.5, 2.5, -1]} scale={[0.1, 0.1, 0.1]} rotation={[0, 2.5, 0]}/>
+            <Torch position={[0.5, 1, -4]} scale={[0.1, 0.1, 0.1]} rotation={[0, -1.5, 0]}/>
             <RockPile position={[-2.5, 0.1, -2]} scale={[1, 1, 1]}/>
         </>
     )
