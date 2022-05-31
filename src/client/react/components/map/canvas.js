@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import { Level } from '@comp/map/level';
 import { MenuBg } from '@comp/menu/menuBg'
+import { OrbitControls } from '@react-three/drei'
 
 export const RenderCanvas = () => {
 
@@ -26,6 +27,8 @@ export const RenderBg = () => {
                 position: [0, 2, -7]
             }
         } >
+            <OrbitControls />
+            <ambientLight intensity={3} />
             <Physics gravity={[0, -30, 0]}>
                 <MenuBg />   
             </Physics>

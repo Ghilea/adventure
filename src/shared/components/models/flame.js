@@ -23,12 +23,12 @@ export const Flame = (props) => {
   useEffect(() => {
     setTimeout(() => {
       if (flameAnimation === 0.5) {
-        setFlameAnimation(0.6);
+        setFlameAnimation(0.51);
       } else {
         setFlameAnimation(0.5);
       }
 
-    }, Math.floor(Math.random() * (300 - 100 + 1) + 100))
+    }, Math.floor(Math.random() * (200 - 100 + 1) + 100))
   }, [flameAnimation])
 
   return (
