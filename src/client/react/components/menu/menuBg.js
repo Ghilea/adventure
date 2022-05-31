@@ -3,7 +3,7 @@ import { Ground } from '@comp/map/Ground';
 import { Walls } from '@comp/map/walls';
 import { Object } from '@comp/map/object';
 import { Torch } from '@shared/components/models/torch';
-import { RockPile } from '@shared/components/models/rockpile';
+import { Rock } from '@shared/components/models/rocks';
 import { StoneWall } from '@shared/components/models/walls';
 
 export const MenuBg = () => {
@@ -58,7 +58,7 @@ export const MenuBg = () => {
         <Object mass={0} light={false} rotation = {[0, 0, 0]} position={[0, 1, -2]} size={[1, 1, 1]} objectTexture={'wood'}/>
             <Object mass={0} light={false} rotation = {[0, 0, 0]} position={[-2, 1, -2]} size={[1, 1, 1]} objectTexture={'wood'}/>
 
-            <Torch position={[-3.5, 2.5, -1]} scale={[0.1, 0.1, 0.1]} rotation={[0, 2.5, 0]}/>
+            
             <Torch position={[0.5, 1, -4]} scale={[0.1, 0.1, 0.1]} rotation={[0, -1.5, 0]}/>
     */
 
@@ -67,8 +67,8 @@ export const MenuBg = () => {
             <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
             {build} 
             <Torch position={[0, 1.5, 3.85]} scale={[0.03, 0.03, 0.03]} rotation={[0, Math.PI * (360/360), 0]}/>
-            
-            <RockPile position={[-2.5, 0.1, -2]} scale={[1, 1, 1]}/>
+            <Torch position={[-3.5, 1.5, -1]} scale={[0.03, 0.03, 0.03]} rotation={[0, Math.PI * (180/360), 0]}/>
+            <Rock position={[-2.5, 0.5, -2]} scale={[1, 1, 1]}/>
         </>
     )
 }

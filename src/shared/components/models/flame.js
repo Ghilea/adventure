@@ -7,7 +7,7 @@ export const Flame = (props) => {
   const { nodes, materials } = useGLTF("./assets/images/3d/flame/flame.gltf");
 
   const [lightAnimation, setLightAnimation] = useState(2);
-  const [flameAnimation, setFlameAnimation] = useState(0.5);
+  const [flameAnimation, setFlameAnimation] = useState(1.5);
 
   useEffect(() => {
     setTimeout(() => {
@@ -22,10 +22,10 @@ export const Flame = (props) => {
 
   useEffect(() => {
     setTimeout(() => {
-      if (flameAnimation === 0.5) {
-        setFlameAnimation(0.51);
+      if (flameAnimation === 1.5) {
+        setFlameAnimation(1.51);
       } else {
-        setFlameAnimation(0.5);
+        setFlameAnimation(1.5);
       }
 
     }, Math.floor(Math.random() * (200 - 100 + 1) + 100))
@@ -41,7 +41,7 @@ export const Flame = (props) => {
       [0, flameAnimation, 0]
     }
     scale = {
-      [0.5, flameAnimation, 0.5]
+      [1.5, flameAnimation, 1.5]
     }
     dispose = {
       null
