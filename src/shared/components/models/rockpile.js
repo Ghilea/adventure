@@ -1,25 +1,18 @@
 import React, { useRef } from "react";
 import { useLoader } from '@react-three/fiber';
-import { useGLTF, useTexture } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import { TextureLoader, RepeatWrapping } from 'three';
 import aoImg from '@shared/assets/images/3d/rock/rock_ao.jpg';
 import dImg from '@shared/assets/images/3d/rock/rock_d.jpg';
-import n from '@shared/assets/images/3d/rock/rock_n.jpg';
+import nImg from '@shared/assets/images/3d/rock/rock_n.jpg';
 import s from '@shared/assets/images/3d/rock/rock_s.jpg';
 import t from '@shared/assets/images/3d/rock/texture.jpg';
 
 export const RockPile = (props) => {
     const group = useRef();
     const { nodes, materials } = useGLTF("./assets/images/3d/rock/Rock.gltf");
-    
-    /*const texture = useTexture({
-        map: t,
-        normalMap: n,
-        aoMap: ao,
-        displacementMap: s
-    });*/
 
-    const [texture, ao, d] = useLoader(TextureLoader, [t, aoImg, dImg]);
+    const [texture, ao, d, n] = useLoader(TextureLoader, [t, aoImg, dImg, nImg]);
     texture.wrapS = RepeatWrapping;
     texture.wrapT = RepeatWrapping;
     texture.repeat.set(10, 10);
@@ -42,8 +35,9 @@ export const RockPile = (props) => {
         >
             <meshStandardMaterial attach="material" 
             map={texture}
-            displacementMap={d} 
-            bumpMap={ao} bumpScale={0.05} 
+            displacementMap={d}
+            aoMap={ao}
+            normalMap={n}
             transparent={true} />
         </mesh>
   

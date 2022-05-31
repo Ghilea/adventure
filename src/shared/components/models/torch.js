@@ -1,23 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
+import { Flame } from '@shared/components/models/flame';
 
 export const Torch = (props) => {
     
     const group = useRef();
     const {nodes, materials} = useGLTF("./assets/images/3d/Torch.gltf");
-    const [animation, setAnimation] = useState(2);
-
-    useEffect(() => {
-        setTimeout(()=>{
-            if(animation === 2){
-                setAnimation(1.8);
-            }else{
-                setAnimation(2);
-            }
-            
-        }, Math.floor(Math.random() * (500 - 300 + 1) + 300))
-    }, [animation])
-    
+        
     return ( 
         <group castShadow receiveShadow ref = {group} {...props} dispose = {null} >
             
@@ -27,14 +16,7 @@ export const Torch = (props) => {
         
             <mesh castShadow receiveShadow geometry = {nodes.Mashal_MMMGroup63307.geometry} material = {nodes.Mashal_MMMGroup63307.material}/>
 
-            <pointLight
-            intensity={animation}
-            distance={5}
-            color={'white'}
-            position={[0, 0.5, -2]}
-            castShadow
-            shadow-mapSize={[2048, 2048]}
-            />
+            <Flame />
 
         </group>
     );
