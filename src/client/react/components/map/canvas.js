@@ -28,7 +28,6 @@ export const RenderBg = () => {
             }
         } >
             <OrbitControls />
-            <ambientLight intensity={3} />
             <Physics gravity={[0, -30, 0]}>
                 <MenuBg />   
             </Physics>

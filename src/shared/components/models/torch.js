@@ -37,7 +37,7 @@ export const Torch = (props) => {
                             .material
                         }
                     />
-                    <Flame position={[-1, 3, 3.9]}/> 
+                    <Flame position={[0, 30, 2]}/> 
                 </group>
             </group>
         </group>  

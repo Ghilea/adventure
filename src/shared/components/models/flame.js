@@ -47,14 +47,14 @@ export const Flame = (props) => {
       null
     } >
       <mesh
-        castShadow
+   
         geometry={nodes.mesh_0.geometry}
         material={nodes.mesh_0.material}
         material-color={'yellow'}
       />
 
       <pointLight
-            intensity={lightAnimation}
+            intensity={1}
             distance={5.5}
             color={'#d4c4af'}
             position={[0, 0.5, -2]}
