@@ -47,10 +47,12 @@ export const MapEditor = () => {
 
             }else if (storePlayer.active) {
 
-                setPlayerMark(<AddPlayer 
-                    position = {
-                        [Math.floor(position.x) + 0.5, 0.55 + position.y, Math.floor(position.z) + 0.5]
-                    } /> )
+                setPlayerMark(
+                    <AddPlayer 
+                        position = {
+                            [Math.floor(position.x) + 0.5, 0.55 + position.y, Math.floor(position.z) + 0.5]
+                        } /> 
+                )
             }
         } else if (event.type === 'contextmenu') {
             event.preventDefault();

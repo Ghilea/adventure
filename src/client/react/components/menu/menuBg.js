@@ -47,8 +47,8 @@ export const MenuBg = () => {
 
         setGround((state) => ({
             ...state,
-            texture: items.ground[2],
-            size: [items.ground[0], items.ground[1]]
+            texture: ground.texture,
+            size: ground.size
         }))
     }, [])
 

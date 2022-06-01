@@ -4,10 +4,11 @@ import { PlayerPose } from '@shared/components/models/player';
 
 export const AddPlayer = ({position}) => {
 
-    const store = player(state => state);
+    const storePlayer = player(state => state);
 
     useEffect(() => {
-        store.addPlayer(position);
+        storePlayer.addPlayer(position);
+        console.log(storePlayer.playerMark)
     }, [])
 
     return (
