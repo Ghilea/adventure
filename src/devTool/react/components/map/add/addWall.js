@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { build, mousePosition } from '@comp/store';
-import { Walls } from '@comp/map/object/walls';
+import { build } from '@devComp/store';
+import { Walls } from '@devComp/map/object/walls';
 
 export const AddWall = ({position, rotation, type}) => {
 

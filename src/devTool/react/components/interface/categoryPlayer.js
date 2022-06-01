@@ -1,5 +1,5 @@
 import React from "react";
-import { player, interfaceButtons, build } from '@comp/store';
+import { player, interfaceButtons, build } from '@devComp/store';
 
 export const CategoryPlayer = () => {
     
@@ -11,10 +11,12 @@ export const CategoryPlayer = () => {
         if (interBtn.active && interBtn.button === setBtn) {
             interBtn.btn(false, null)
             store.changePlayer(false)
+            storeBuild.changeRaySize(1, 1)
         } else {
             interBtn.btn(true, setBtn)
             storeBuild.buildBtn(false, null)
             store.changePlayer(true)
+            storeBuild.changeRaySize(1, 1)
         }
     }
 

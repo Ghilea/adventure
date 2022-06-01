@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { usePlane } from '@react-three/cannon';
 import { useFrame } from '@react-three/fiber';
 import * as texture from '@shared/components/textures';
-import { ground, mousePosition, build } from '@comp/store';
+import { ground, mousePosition, build } from '@devComp/store';
 
 export const Ground = (props) => {
     const storeGround = ground(state => state);

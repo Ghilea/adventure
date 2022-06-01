@@ -1,5 +1,5 @@
 import React from "react";
-import { build, interfaceButtons } from '@comp/store';
+import { build, interfaceButtons } from '@devComp/store';
 
 export const CategoryWall = () => {
     const storeBuild = build(state => state);
@@ -32,7 +32,7 @@ export const CategoryWall = () => {
         } else {
             interBtn.btn(true, setTexture);
             storeBuild.buildBtn(true, setTexture);
-            storeBuild.changeRaySize(8, 1, false)
+            storeBuild.changeRaySize(4, 1, false)
             console.log('click', storeBuild.sizeX, storeBuild.sizeY, storeBuild.rotate);
 
         }

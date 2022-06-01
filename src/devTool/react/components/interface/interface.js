@@ -1,8 +1,8 @@
 import React from 'react';
-import { SaveLevel } from '@comp/interface/saveLevel';
-import { CategoryGround } from '@comp/interface/categoryGround';
-import { CategoryWall } from '@comp/interface/categoryWall';
-import { CategoryPlayer } from '@comp/interface/categoryPlayer';
+import { SaveLevel } from '@devComp/interface/saveLevel';
+import { CategoryGround } from '@devComp/interface/categoryGround';
+import { CategoryWall } from '@devComp/interface/categoryWall';
+import { CategoryPlayer } from '@devComp/interface/categoryPlayer';
 
 export const Interface = () => {
 
@@ -13,7 +13,7 @@ export const Interface = () => {
     }
 
     return (
-        <div className="interface" 
+        <div className="editorInterface" 
         onContextMenu = {
             handleMouseClick
         }

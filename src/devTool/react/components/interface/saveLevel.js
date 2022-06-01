@@ -1,5 +1,5 @@
 import React from 'react';
-import { build, player, ground } from '@comp/store';
+import { build, player, ground } from '@devComp/store';
 import { Create } from '@shared/components/Crud';
 import { fetchURL } from '@shared/global';
 
@@ -29,9 +29,7 @@ export const SaveLevel = () => {
     }
 
     return (
-        <div className='container'>
-            <button onClick={handleSave}>Save level</button>
-        </div>
+        <button onClick={handleSave}>Save level</button>
     )
 
 }

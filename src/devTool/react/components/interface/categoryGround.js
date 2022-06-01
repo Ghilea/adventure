@@ -1,5 +1,5 @@
 import React from "react";
-import { ground } from '@comp/store';
+import { ground } from '@devComp/store';
 
 export const CategoryGround = () => {
     
@@ -14,14 +14,19 @@ export const CategoryGround = () => {
     }
 
     const optionArr = [
-        'Choose Texture',
-        'stone',
-        'floor'
+        {
+            name: 'stone',
+        },
+        {
+            name: 'floor',
+        }
     ];
 
     const selectOptions = optionArr.map((item, index) => {
         return (
-            <option key={'ground'+item+index}>{item}</option>
+            <option key={'ground'+item.name+index}>
+                {item.name}
+            </option>
         )
     })
 

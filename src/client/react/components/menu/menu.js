@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { menu } from '@comp/store';
 import CreateWindow from '@comp/menu/createProtagonist';
 import { CharacterList } from '@comp/menu/characterList';
-import { Options } from '@comp/menu/options'
+import { Options } from '@comp/menu/options';
 
 export const Menu = () => {
 
@@ -45,6 +45,8 @@ export const Menu = () => {
     }
 
     const handleMapEditor = () => {
+        storeMenu.isLoadingDone(false);
+
         if (storeMenu.mapEditor) {
             storeMenu.isMapEditor(false);
         } else {
@@ -93,7 +95,6 @@ export const Menu = () => {
                         (storeMenu.create) ? <CreateWindow /> : 
                         (storeMenu.login) ? <CharacterList /> :
                         (storeMenu.options) ? <Options /> :
-                        (storeMenu.mapEditor) ? <></> :
                         <></>
                     }
                     </div>

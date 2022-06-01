@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { player, mousePosition } from '@comp/store';
-import { Player } from '@comp/map/object/player';
+import { player } from '@devComp/store';
+import { PlayerPose } from '@shared/components/models/player';
 
 export const AddPlayer = ({position}) => {
 
@@ -11,10 +11,6 @@ export const AddPlayer = ({position}) => {
     }, [])
 
     return (
-
-        <Player 
-            position = { position }
-        />
-
+        <PlayerPose position = {position} />
     )
 }

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useBox } from '@react-three/cannon';
 import * as texture from '@shared/components/textures';
-import { build } from '@comp/store';
+import { build } from '@devComp/store';
 
 export const Walls = ({rotation, position, type, ...props}) => {
     const [hover, setHover] = useState(null);
@@ -41,7 +41,7 @@ export const Walls = ({rotation, position, type, ...props}) => {
                 key = {index}
                 />
             ))}
-            <boxGeometry args = {[8, 4, 0.5]} />
+            <boxGeometry args = {[4, 2, 0.5]} />
         </mesh>
     )
 
