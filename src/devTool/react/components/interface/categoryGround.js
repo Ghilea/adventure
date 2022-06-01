@@ -34,7 +34,7 @@ export const CategoryGround = () => {
         <div className='container'>
             <h2>Ground</h2>
             <div className='ground'>
-                <input type='range' min={10} max={500} value={storeGround.x} onChange={handleSlider}/>
+                <input type='range' min={10} max={500} step={2} value={storeGround.x} onChange={handleSlider}/>
                 <select onChange={handleTexture}>
                     {selectOptions}
                 </select>

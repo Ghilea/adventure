@@ -1,3 +1,4 @@
+import { GreaterStencilFunc } from 'three';
 import create from 'zustand';
 
 export const mousePosition = create(set => ({
@@ -26,9 +27,14 @@ export const build = create(set => ({
     active: false,
     texture: null,
     walls: [],
-    sizeX: 0,
-    sizeY: 0,
+    sizeX: 1,
+    sizeY: 1,
     rotate: false,
+    removeByIndex: null,
+    removeIndex: (value) => set(state => ({
+        ...state,
+        removeByIndex: value
+    })),
     changeRaySize: (x, y, rotate) => set(state => ({
         ...state,
         sizeX: x,
@@ -40,19 +46,22 @@ export const build = create(set => ({
         active: active,
         texture: texture
     })),
-    addWall: (position, rotate, type) => set(state => ({
+    addWall: (position, rotate, type, indexKey) => set(state => ({
         walls: [
             ...state.walls,
             {
-            pos: position, 
-            rotate: rotate,
-            type: type
+                pos: position, 
+                rotate: rotate,
+                type: type,
+                indexKey: indexKey
             }
         ]        
     })),
-    removeWall: (removePosition) => 
+    removeWall: (x, y, z) => 
         set((state) => ({
-            walls: state.walls.filter(({pos}) => pos !== removePosition)
+            walls: state.walls.filter((item) => {
+                return item.pos[0] !== x || item.pos[1] !== y || item.pos[2] !== z
+            })
         })
     )
 }))
@@ -61,6 +70,11 @@ export const ground = create(set => ({
     x: 10,
     y: 10,
     texture: 'stone',
+    color: 'green',
+    groundColor: (color) => set(state => ({
+        ...state,
+        color: color
+    })),
     groundSize: (x, y) => set(state => ({
         ...state,
         x: x,

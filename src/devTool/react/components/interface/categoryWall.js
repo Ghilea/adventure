@@ -32,7 +32,7 @@ export const CategoryWall = () => {
         } else {
             interBtn.btn(true, setTexture);
             storeBuild.buildBtn(true, setTexture);
-            storeBuild.changeRaySize(4, 1, false)
+            storeBuild.changeRaySize(5, 1, false)
             console.log('click', storeBuild.sizeX, storeBuild.sizeY, storeBuild.rotate);
 
         }

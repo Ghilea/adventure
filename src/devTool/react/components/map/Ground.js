@@ -7,7 +7,7 @@ import { ground, mousePosition, build } from '@devComp/store';
 export const Ground = (props) => {
     const storeGround = ground(state => state);
     const storePosition = mousePosition(state => state);
-    const storeBuild = build(state => state)
+    const storeBuild = build(state => state);
 
     const [ref] = usePlane(() => ({
         args: [storeGround.x, storeGround.y],
@@ -22,11 +22,32 @@ export const Ground = (props) => {
     }))
    
     const pointerMove = (event) => {
-        storePosition.editPosition(event.point.x, event.point.y, event.point.z)
+        const x = event.point.x;
+        const y = event.point.y;
+        const z = event.point.z;
+
+        storePosition.editPosition(x, y, z)
+
+        if(storeBuild.walls.length > 0){
+
+            console.log('wall', storeBuild.walls[0]);
+            console.log('ground', x);
+
+            storeBuild.walls.map((item) => {
+                if ((x < item.pos[0]) && (x > (item.pos[0] + 4))) {
+                    console.log('error', event.point.x);
+                    storeGround.groundColor('red');
+                }else{
+                    storeGround.groundColor('green');
+                }
+            })
+            
+        }
     }
 
     useFrame(() => {
-        setHighLight.position.set(Math.floor(storePosition.x) + 0.5, storePosition.y +0.01, Math.floor(storePosition.z) + 0.5);
+       
+        setHighLight.position.set(Math.floor(storePosition.x) + 0.5, storePosition.y + 0.01, Math.floor(storePosition.z) + 0.5);
     })
 
     return (
@@ -40,7 +61,7 @@ export const Ground = (props) => {
 
             <mesh ref = {highLight}>
                 <planeBufferGeometry attach='geometry' args = {[storeBuild.sizeX, storeBuild.sizeY]}/>
-                <meshStandardMaterial attach='material' color={'red'}/>
+                <meshStandardMaterial attach='material' color={storeGround.color}/>
             </mesh>
         </>
         

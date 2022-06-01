@@ -4,7 +4,6 @@ import * as texture from '@shared/components/textures';
 import { build } from '@devComp/store';
 
 export const Walls = ({rotation, position, type, ...props}) => {
-    const [hover, setHover] = useState(null);
 
     const store = build(state => state);
 
@@ -14,34 +13,26 @@ export const Walls = ({rotation, position, type, ...props}) => {
         ...props
     }))
 
-     const removeWall = (e) => {
-        store.removeWall([e.object.position.x, e.object.position.y, e.object.position.z])
+    const removeWall = (e) => {
+        store.removeWall(e.object.position.x, e.object.position.y, e.object.position.z)
 
-        //console.log(e.object.position, position);
-        console.log(store.walls.filter(({
-            pos
-        }) => pos !== [e.object.position.x, e.object.position.y, e.object.position.z]))
-     }
+        const filtredItem = store.walls.filter((item) => {
+            return item.pos[0] === e.object.position.x && item.pos[1] === e.object.position.y && item.pos[2] === e.object.position.z
+        })
+
+        store.removeIndex(filtredItem[0].indexKey);
+    }
 
     return (
-        <mesh ref = {ref} castShadow 
-            onPointerMove={(event) => {
-                event.stopPropagation();
-                setHover(Math.floor(event.faceIndex / 2));
-            }}
-            
+        <mesh ref = {ref} castShadow             
             onClick = {removeWall}
-            >
-            {[...Array(6)].map((_, index) => (
-                
+            >  
             <meshStandardMaterial
                 map = {
                     (type == 'stone') ? texture.stone() : (type == 'stone2') ? texture.stone2() : (type == 'stoneWindow') ? texture.stoneWindow() : ''
                 }
-                key = {index}
                 />
-            ))}
-            <boxGeometry args = {[4, 2, 0.5]} />
+            <boxGeometry args = {[5, 2, 1]} />
         </mesh>
     )
 

@@ -19,22 +19,23 @@ export const MapEditor = () => {
     const [wall, setWall] = useState([]);
     const [playerMark, setPlayerMark] = useState(null);
     const [index, setIndex] = useState(0);
-    const [rotate, setRotate] = useState(false);
     
     const handleMouseClick = (event) => {
         event.preventDefault();
 
         if (event.type === 'click') {
+
             if (storeBuild.active) {
 
                 setWall((state) => ([
                     ...state, 
                     <AddWall key = {'wall'+index}
+                    indexKey = {'wall'+index}
                     position = {
-                        [Math.floor(position.x) + 0.5, (2 / 2) + position.y, Math.floor(position.z) + 0.5]
+                        [Math.floor(position.x) + 0.5, position.y + Math.floor(2 / 2), Math.floor(position.z) + 0.5]
                     }
                     rotation = {
-                        (storeBuild.rotate) ? [0, 1.58, 0] : [0, 0, 0]
+                        (storeBuild.rotate) ? [0, Math.PI * (180 / 360), 0] : [0, Math.PI * (360 / 360), 0]
                     }
                     type = {
                         [storeBuild.texture]
@@ -55,6 +56,16 @@ export const MapEditor = () => {
             event.preventDefault();
         }
     }
+
+    useEffect(()=> {
+        
+        const removeWall = wall.filter((item) => {
+            return item.key !== storeBuild.removeByIndex
+        })
+
+        setWall(removeWall)
+
+    }, [storeBuild.walls])
 
     const keyHandler = () => {
         console.log(storeBuild.rotate)
