@@ -5,16 +5,14 @@ import * as texture from '@shared/components/textures';
 export const Walls = ({position, rotation, type, ...props}) => {
 
     const [ref] = useBox(() => ({
-        args: [4, 2, 1],
+        args: [5, 2, 1],
         position,
         rotation,
         ...props
     }))
 
     return (
-        <mesh ref = {ref} castShadow>
-            {[...Array(6)].map((_, index) => (
-                
+        <mesh ref = {ref} castShadow>               
             <meshStandardMaterial
                 map = {
                     (type == 'stone') ? texture.stone(): (type == 'stone2') ? texture.stone2() : (type == 'stoneWindow') ? texture.stoneWindow() : ''
@@ -23,8 +21,8 @@ export const Walls = ({position, rotation, type, ...props}) => {
                     index
                 }
                 />
-            ))}
-            <boxGeometry args = {[4, 2, 1]} />
+            
+            <boxGeometry args = {[5, 2, 1]} />
         </mesh>
     )
 
