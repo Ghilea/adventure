@@ -12,13 +12,10 @@ export const Walls = ({position, rotation, type, ...props}) => {
     }))
 
     return (
-        <mesh ref = {ref} castShadow>               
+        <mesh ref = {ref} castShadow receiveShadow>               
             <meshStandardMaterial
                 map = {
                     (type == 'stone') ? texture.stone(): (type == 'stone2') ? texture.stone2() : (type == 'stoneWindow') ? texture.stoneWindow() : ''
-                }
-                key = {
-                    index
                 }
                 />
             
