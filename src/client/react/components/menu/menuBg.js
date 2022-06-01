@@ -26,9 +26,7 @@ export const MenuBg = () => {
             },{
                 "pos": [4.5, 0, -0.5],
                 "rotate": [0, -180, 0]
-            }],
-            "ground": [10, 10, "stone"],
-            "player": []
+            }]
         }
             
         items.walls.map((use, index) => {
@@ -53,14 +51,6 @@ export const MenuBg = () => {
             size: [items.ground[0], items.ground[1]]
         }))
     }, [])
-
-    /*
-        <Object mass={0} light={false} rotation = {[0, 0, 0]} position={[0, 1, -2]} size={[1, 1, 1]} objectTexture={'wood'}/>
-            <Object mass={0} light={false} rotation = {[0, 0, 0]} position={[-2, 1, -2]} size={[1, 1, 1]} objectTexture={'wood'}/>
-
-            
-            <Torch position={[0.5, 1, -4]} scale={[0.1, 0.1, 0.1]} rotation={[0, -1.5, 0]}/>
-    */
 
     return (
         <>

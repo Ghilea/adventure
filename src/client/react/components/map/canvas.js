@@ -27,7 +27,6 @@ export const RenderBg = () => {
                 position: [0, 3, -7]
             }
         } >
-            <OrbitControls />
             <Physics gravity={[0, -30, 0]}>
                 <MenuBg />   
             </Physics>
