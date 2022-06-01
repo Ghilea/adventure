@@ -5,7 +5,7 @@ import * as texture from '@shared/components/textures';
 export const Walls = ({position, rotation, type, ...props}) => {
 
     const [ref] = useBox(() => ({
-        args: [8, 4, 0.5],
+        args: [4, 2, 1],
         position,
         rotation,
         ...props
@@ -24,7 +24,7 @@ export const Walls = ({position, rotation, type, ...props}) => {
                 }
                 />
             ))}
-            <boxGeometry args = {[8, 4, 0.5]} />
+            <boxGeometry args = {[4, 2, 1]} />
         </mesh>
     )
 
