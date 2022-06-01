@@ -1,8 +1,7 @@
 const path = require('path');
 let clientAddress = './src/client/react/index.js';
-let clientOutput = './public/js';
+let output = './public/assets/js';
 let editorAddress = './src/devTool/react/index.js';
-let editorOutput = './editor/js';
 
 module.exports = [
     {
@@ -10,8 +9,8 @@ module.exports = [
         mode: 'development',
         entry: clientAddress,
         output: {
-            path: path.resolve(__dirname, clientOutput),
-            filename: 'bundle.js'
+            path: path.resolve(__dirname, output),
+            filename: 'clientBundle.js'
         },
         resolve: {
             extensions: ['.js', '.json', '.mjs'],
@@ -52,8 +51,8 @@ module.exports = [
         mode: 'development',
         entry: editorAddress,
         output: {
-            path: path.resolve(__dirname, editorOutput),
-            filename: 'bundle.js'
+            path: path.resolve(__dirname, output),
+            filename: 'mapEditorBundle.js'
         },
         resolve: {
             extensions: ['.js', '.json', '.mjs'],

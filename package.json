@@ -6,9 +6,8 @@
     "author": "Ghilea",
     "config": {
         "clientAddress": "./src/client/",
-        "clientOutput": "./public",
-        "editorAddress": "./src/devTool/",
-        "editorOutput": "./editor"
+        "output": "./public",
+        "editorAddress": "./src/devTool/"
     },
     "dependencies": {
         "howler": "2.2.3",
@@ -48,12 +47,11 @@
     "scripts": {
         "start": "nodemon src/server/nodeServer.mjs",
         "watch": "nodemon --exec \"npm run build\"",
-        "build:client-sass": "sass --no-source-map %npm_package_config_clientAddress%sass:%npm_package_config_clientOutput%/css",
-        "copy:client-assets": "copyfiles -u 2 ./src/shared/assets/**/* %npm_package_config_clientOutput%",
-        "copy:client-index": "copyfiles -u 2 %npm_package_config_clientAddress%index.html %npm_package_config_clientOutput%",
-        "build:editor-sass": "sass --no-source-map %npm_package_config_editorAddress%sass:%npm_package_config_editorOutput%/css",
-        "copy:editor-assets": "copyfiles -u 2 ./src/shared/assets/**/* %npm_package_config_editorOutput%",
-        "copy:editor-index": "copyfiles -u 2 %npm_package_config_editorAddress%index.html %npm_package_config_editorOutput%",
+        "build:client-sass": "sass --no-source-map %npm_package_config_clientAddress%sass:%npm_package_config_output%/assets/css",
+        "build:editor-sass": "sass --no-source-map %npm_package_config_editorAddress%sass:%npm_package_config_output%/assets/css/",
+        "copy:client-assets": "copyfiles -u 2 ./src/shared/assets/**/* %npm_package_config_output%",
+        "copy:client-index": "copyfiles -u 2 %npm_package_config_clientAddress%index.html %npm_package_config_output%",
+        "copy:editor-index": "copyfiles -u 2 %npm_package_config_editorAddress%mapEdtior.html %npm_package_config_output%",
         "copy": "npm-run-all --parallel copy:*",
         "webpack": "webpack",
         "build": "npm-run-all webpack copy build:* start"
