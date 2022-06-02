@@ -60,7 +60,14 @@ export const Player = ({position, ...props}) => {
     return (
         <>
             <CameraMovement />
-            <mesh ref={ref} castShadow/>
+            <mesh ref={ref} castShadow receiveShadow >
+                <pointLight
+                intensity={2}
+                distance={5.5}
+                color={'#d4c4af'}
+                position={[0, 0.5, 0]}
+                />
+            </mesh>
         </>
     )
 

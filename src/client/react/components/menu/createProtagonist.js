@@ -48,7 +48,7 @@ const Protagonist = () => {
                 int: storePlayer.int,
                 dex: storePlayer.dex
             });
-            storeMenu.createWindow(false);
+            storeMenu.isCreate(false);
         }
     }
 

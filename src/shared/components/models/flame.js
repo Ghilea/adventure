@@ -55,11 +55,9 @@ export const Flame = (props) => {
 
       <pointLight
             intensity={lightAnimation}
-            distance={5.5}
+            distance={5}
             color={'#d4c4af'}
             position={[0, 0.5, -2]}
-            castShadow
-            shadow-mapSize={[2048, 2048]}
             />
     </group>
   );
