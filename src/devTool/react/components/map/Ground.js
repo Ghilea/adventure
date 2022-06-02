@@ -28,7 +28,7 @@ export const Ground = (props) => {
 
         storePosition.editPosition(x, y, z)
 
-        if(storeBuild.walls.length > 0){
+        /*if(storeBuild.walls.length > 0){
 
             console.log('wall', storeBuild.walls[0]);
             console.log('ground', x);
@@ -42,7 +42,7 @@ export const Ground = (props) => {
                 }
             })
             
-        }
+        }*/
     }
 
     useFrame(() => {
