@@ -45,8 +45,6 @@ export const Menu = () => {
     }
 
     const handleMapEditor = () => {
-        storeMenu.isLoadingDone(false);
-
         if (storeMenu.mapEditor) {
             storeMenu.isMapEditor(false);
         } else {

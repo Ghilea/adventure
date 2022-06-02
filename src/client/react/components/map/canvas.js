@@ -3,9 +3,8 @@ import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import { Level } from '@comp/map/level';
 import { MenuBg } from '@comp/menu/menuBg'
-import { OrbitControls } from '@react-three/drei'
 
-export const RenderCanvas = () => {
+export const CanvasLevel = () => {
 
     return (
         <Canvas shadows>
@@ -18,18 +17,20 @@ export const RenderCanvas = () => {
     )
 }
 
-export const RenderBg = () => {
+export const CanvasMenu = () => {
 
     return (
-        <Canvas shadows camera = {
-            {
-                fov: 60,
-                position: [0, 3, -7]
-            }
-        } >
-            <Physics gravity={[0, -30, 0]}>
-                <MenuBg />   
-            </Physics>
-        </Canvas> 
+        <>
+            <Canvas shadows camera = {
+                {
+                    fov: 60,
+                    position: [0, 3, -7]
+                }
+            } >
+                <Physics gravity={[0, -30, 0]}>
+                    <MenuBg />
+                </Physics>
+            </Canvas>
+        </>
     )
 }

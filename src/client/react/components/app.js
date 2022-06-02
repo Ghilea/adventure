@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import Interface from '@comp/interface/Interface';
-import { RenderCanvas, RenderBg } from '@comp/map/canvas';
+import { CanvasLevel, CanvasMenu } from '@comp/map/canvas';
 import { menu } from '@comp/store'
 import { Menu } from '@comp/menu/menu';
-import { Loading } from '@comp/menu/loading';
 import { MapEditor } from '@devComp/map/editor';
+import { Loader } from '@comp/menu/loader';
 
 export const App = () => {
 
     const storeMenu = menu(state => state);
+
+    useEffect(() => {
+        
+    }, []);
 
     return (
         <>  
@@ -16,27 +20,23 @@ export const App = () => {
                 (!storeMenu.loginSuccess) ?
                     <>
                         {
-                            (!storeMenu.loadingDone) ? <Loading loadTime = {3000} /> : <></>
-                        }
-
-                        {
                             (storeMenu.mapEditor) ?
                                 <MapEditor /> :
                                 <>
-                                    <RenderBg />
-                                    <Menu />
+                                    <CanvasMenu />
+                                    {
+                                        (storeMenu.loadingDone) ? 
+                                        <Menu /> : <></>
+                                    }
+                                    
                                 </>
                         }
                         
                     </>
                 :
                     <>
-                        {
-                            (!storeMenu.loadingDone) ? <Loading loadTime = {1000} /> : <></>
-                        }
-
+                        <CanvasLevel />
                         <Interface />
-                        <RenderCanvas />
                     </>
             }
         </>        

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Ground } from '@comp/map/Ground';
-import { Walls } from '@comp/map/walls';
-import { Object } from '@comp/map/object';
 import { Torch } from '@shared/components/models/torch';
 import { Rock } from '@shared/components/models/rocks';
 import { StoneWall, StoneWall_2 } from '@shared/components/models/walls';
+import { PlayerPose } from '@shared/components/models/player';
+import { Loader } from '@comp/menu/loader';
 
 export const MenuBg = () => {
 
@@ -54,11 +54,23 @@ export const MenuBg = () => {
 
     return (
         <>
-            <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
-            {build} 
-            <Torch position={[0, 1.5, 3.8]} scale={[0.03, 0.03, 0.03]} rotation={[0, Math.PI * (360/360), 0]}/>
-            <Torch position={[-4.3, 1.5, -2]} scale={[0.03, 0.03, 0.03]} rotation={[0, Math.PI * (180/360), 0]}/>
-            <Rock position={[-2.5, 0.5, -2]} scale={[1, 1, 1]}/>
+            <Suspense fallback={<Loader />}>
+                <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
+            </Suspense>
+            
+            <Suspense fallback={<Loader />}>
+                {build} 
+            </Suspense>
+
+            <Suspense fallback = {<Loader />}>
+                <Torch position={[0, 1.5, 3.8]} scale={[0.03, 0.03, 0.03]} rotation={[0, Math.PI * (360/360), 0]}/>
+                <Torch position={[-4.3, 1.5, -2]} scale={[0.03, 0.03, 0.03]} rotation={[0, Math.PI * (180/360), 0]}/>
+                <Rock position={[-2.5, 0.5, -2]} scale={[1, 1, 1]}/>
+            </Suspense>
+
+            <Suspense fallback = {<Loader />}>
+                <PlayerPose position={[0, 0.5, -2]} scale={2.5} rotation={[0, Math.PI * (360/360), 0]}/>
+            </Suspense>
         </>
     )
 }

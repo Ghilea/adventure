@@ -1,15 +1,17 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
+import { useConvexPolyhedron } from '@react-three/cannon';
 
 export const StoneWall = (props) => {
+  
   const group = useRef();
-  const { nodes, materials } = useGLTF("./assets/images/3d/stoneWall.gltf");
+  const { nodes } = useGLTF("./assets/images/3d/stoneWall.gltf");
+
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref = {group} {...props}dispose = {null} >
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <group
-            position={[0, 0, 6.28]}
             rotation={[-Math.PI / 2, 0, 0]}
             scale={[100, 99.88, 100]}
           >

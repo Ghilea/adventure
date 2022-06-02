@@ -8,8 +8,7 @@ export const AddPlayer = ({position}) => {
 
     useEffect(() => {
         storePlayer.addPlayer(position);
-        console.log(storePlayer.playerMark)
-    }, [])
+    }, [position])
 
     return (
         <PlayerPose position = {position} />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Ground } from '@devComp/map/Ground';
 import { Physics } from '@react-three/cannon';
@@ -10,7 +10,6 @@ import { AddWall } from '@devComp/map/add/addWall';
 import { AddPlayer } from '@devComp/map/add/addPlayer';
 
 export const MapEditor = () => {
-
     const storeBuild = build(state => state);
     const storePlayer = player(state => state);
     const storeGround = ground(state => state)
@@ -32,7 +31,7 @@ export const MapEditor = () => {
                     <AddWall key = {'wall'+index}
                     indexKey = {'wall'+index}
                     position = {
-                        [Math.floor(position.x) + 0.5, position.y + Math.floor(2 / 2), Math.floor(position.z) + 0.5]
+                        [Math.floor(position.x) + 0.5, position.y, Math.floor(position.z) + 0.5]
                     }
                     rotation = {
                         (storeBuild.rotate) ? [0, Math.PI * (180 / 360), 0] : [0, Math.PI * (360 / 360), 0]
@@ -48,10 +47,12 @@ export const MapEditor = () => {
             }else if (storePlayer.active) {
 
                 setPlayerMark(
-                    <AddPlayer 
-                        position = {
-                            [Math.floor(position.x) + 0.5, 0.55 + position.y, Math.floor(position.z) + 0.5]
-                        } /> 
+                  
+                        <AddPlayer 
+                            position = {
+                                [Math.floor(position.x) + 0.5, position.y + 0.55, Math.floor(position.z) + 0.5]
+                            } />
+                
                 )
             }
         } else if (event.type === 'contextmenu') {

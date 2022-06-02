@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { build } from '@devComp/store';
-import { Walls } from '@devComp/map/object/walls';
+//import { Walls } from '@devComp/map/object/walls';
+import { StoneWall, StoneWall_2 } from '@shared/components/models/walls';
 
 export const AddWall = ({position, rotation, type, indexKey}) => {
 
@@ -12,7 +13,7 @@ export const AddWall = ({position, rotation, type, indexKey}) => {
 
     return (
 
-        <Walls
+        <StoneWall
             position = { position }
             rotation = { rotation }
             type = { type }

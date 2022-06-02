@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { Ground } from '@comp/map/Ground';
-import { Walls } from '@comp/map/walls';
 import { Read } from '@shared/components/Crud';
 import { map } from '@comp/store';
 import { Player } from '@comp/player/Player';
 import { fetchURL } from '@shared/global';
+import { Loader } from '@comp/menu/loader';
+import { StoneWall, StoneWall_2 } from '@shared/components/models/walls';
 
 export const Level = () => {
 
@@ -32,7 +33,8 @@ export const Level = () => {
 
                         setBuild((state) => ([
                             ...state,
-                            <Walls key={'wall'+index} position = {use.pos}
+                            <StoneWall key={'wall'+index} 
+                            position = {use.pos}
                             rotation = { use.rotate }
                             type = { use.type }
                             />
@@ -56,9 +58,15 @@ export const Level = () => {
 
     return (
         <>
-            <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
-            {build}
-            {createPlayer}         
+            <Suspense fallback={<Loader />}>
+                <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
+            </Suspense>
+            <Suspense fallback = {<Loader />} >
+                {build}
+            </Suspense>
+            <Suspense fallback = {<Loader />} >
+                {createPlayer}        
+            </Suspense> 
         </>
     )
 }

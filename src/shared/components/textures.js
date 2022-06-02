@@ -9,9 +9,9 @@ import floorImg from '@shared/assets/images/texture/floor.jpg';
 export const stone = () => {
     
     const texture = useLoader(TextureLoader, stoneImg);
-    //stone.wrapS = RepeatWrapping;
-    //stone.wrapT = RepeatWrapping;
-    //stone.repeat.set(5, 5);
+    texture.wrapS = RepeatWrapping;
+    texture.wrapT = RepeatWrapping;
+    texture.repeat.set(5, 5);
 
     return texture;
 } 
