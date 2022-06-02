@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
 
+.startGame {
+    background-image: url('../images/loadingScreen.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: 999;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width:100vw;
+    height: 100vh;
+    position: relative;
+}
 
 .loadingScreen {
     background-image: url('../images/loadingScreen.jpg');

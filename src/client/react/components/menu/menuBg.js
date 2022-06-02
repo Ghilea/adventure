@@ -69,7 +69,7 @@ export const MenuBg = () => {
             </Suspense>
 
             <Suspense fallback = {<Loader />}>
-                <PlayerPose position={[0, 0.5, -2]} scale={2.5} rotation={[0, Math.PI * (360/360), 0]}/>
+                <PlayerPose position={[0, 1.15, -2]} scale={2.5} rotation={[0, Math.PI * (360/360), 0]}/>
             </Suspense>
         </>
     )

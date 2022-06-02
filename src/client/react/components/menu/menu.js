@@ -58,6 +58,7 @@ export const Menu = () => {
 
     return (
         <>
+            
             <div className='menuContainer'>
                 
                 <header>
@@ -82,6 +83,7 @@ export const Menu = () => {
                     <button type = 'button' onClick = {handleMapEditor} >
                         Map Editor
                     </button>
+                    
                 </div>
                 
             </div>
