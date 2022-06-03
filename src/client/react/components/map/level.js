@@ -3,9 +3,9 @@ import { Ground } from '@comp/map/Ground';
 import { Read } from '@shared/components/Crud';
 import { map } from '@comp/store';
 import { Player } from '@comp/player/Player';
-import { fetchURL } from '@shared/global';
+import { fetchURL } from '@shared/components/global';
 import { Loader } from '@comp/menu/loader';
-import { StoneWall, StoneWall_2 } from '@shared/components/models/walls';
+import { StoneWall, StoneWall_2, StoneWall_3 } from '@shared/components/models/walls';
 
 export const Level = () => {
 
@@ -33,7 +33,7 @@ export const Level = () => {
 
                         setBuild((state) => ([
                             ...state,
-                            <StoneWall key={'wall'+index} 
+                            <StoneWall_3 key={'wall'+index} 
                             position = {use.pos}
                             rotation = { use.rotate }
                             type = { use.type }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { map } from '@comp/store';
-import { fetchSocketURL } from '@shared/global';
+import { fetchSocketURL } from '@shared/components/global';
 import { useKey } from 'rooks';
 
 export const Chat = ({name}) => {

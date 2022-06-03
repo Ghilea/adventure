@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Create } from '@shared/components/Crud';
 import { player, menu } from '@comp/store';
 import { Points } from '@comp/interface/Points';
-import { fetchURL } from '@shared/global';
+import { fetchURL } from '@shared/components/global';
 
 
 const Protagonist = () => {

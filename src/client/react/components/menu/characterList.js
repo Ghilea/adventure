@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Read } from '@shared/components/Crud';
 import { menu, player } from '@comp/store';
-import { fetchURL } from '@shared/global';
+import { fetchURL } from '@shared/components/global';
 import useSound from 'use-sound';
 
 export const CharacterList = () => {

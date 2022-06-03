@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { Ground } from '@comp/map/Ground';
 import { Torch } from '@shared/components/models/torch';
 import { Rock } from '@shared/components/models/rocks';
-import { StoneWall, StoneWall_2 } from '@shared/components/models/walls';
+import { StoneWall, StoneWall_2, StoneWall_3 } from '@shared/components/models/walls';
 import { PlayerPose } from '@shared/components/models/player';
 import { Loader } from '@comp/menu/loader';
 
@@ -60,6 +60,10 @@ export const MenuBg = () => {
             
             <Suspense fallback={<Loader />}>
                 {build} 
+            </Suspense>
+
+            <Suspense fallback={<Loader />}>
+                <StoneWall_3 position={[-55, 0, 0]} scale={[0]}/> 
             </Suspense>
 
             <Suspense fallback = {<Loader />}>

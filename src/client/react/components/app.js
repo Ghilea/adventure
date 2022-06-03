@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Interface from '@comp/interface/Interface';
 import { CanvasLevel, CanvasMenu } from '@comp/map/canvas';
 import { menu } from '@comp/store'
@@ -9,6 +9,11 @@ import { Sound } from '@comp/menu/audio';
 export const App = () => {
 
     const storeMenu = menu(state => state);
+    const [loadingDone, setLoadingDone] = useState(false);
+
+    useEffect(() => {
+        setLoadingDone(true);
+    }, [storeMenu.loadingDone])
 
     return (
         <>  
@@ -26,7 +31,7 @@ export const App = () => {
                                         <>
                                             <CanvasMenu />
                                             {
-                                                (storeMenu.loadingDone) ? 
+                                                (loadingDone) ? 
                                                 <Menu /> : <></>
                                             }
                                             

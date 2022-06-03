@@ -3,7 +3,7 @@ import { player, enemy, combat } from '@comp/store';
 import { Read, Update } from '@shared/components/Crud';
 import { Health, Mana, Exp } from '@comp/interface/Bar';
 import { CharacterSheet } from '@comp/interface/Charactersheet';
-import { fetchURL } from '@shared/global';
+import { fetchURL } from '@shared/components/global';
 import { Chat } from '@comp/interface/chat';
 
 const Interface = () => {

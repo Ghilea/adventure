@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Read } from '@shared/components/Crud';
-import { fetchURL } from '@shared/global';
+import { fetchURL } from '@shared/components/global';
 
 export const Quest = () => {
 

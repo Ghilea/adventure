@@ -1,7 +1,7 @@
 import React from 'react';
 import { build, player, ground } from '@devComp/store';
 import { Create } from '@shared/components/Crud';
-import { fetchURL } from '@shared/global';
+import { fetchURL } from '@shared/components/global';
 
 
 export const SaveLevel = () => {

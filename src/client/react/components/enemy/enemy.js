@@ -2,7 +2,7 @@ import React, { useEffect, useState, createElement } from 'react';
 import { enemy, player, combat } from '@comp/store';
 import { Read } from '@/shared/components/Crud';
 import EnemyHealthBar from '@comp/enemy/enemyHealthBar';
-import { fetchURL } from '@shared/global';
+import { fetchURL } from '@shared/components/global';
 
 const getEnemy = () => {
 

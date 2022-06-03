@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { enemy, player } from '@comp/store'
 import { Read } from '@shared/components/Crud';
-import { fetchURL } from '@shared/global';
+import { fetchURL } from '@shared/components/global';
 
 export const Health = () => {
 

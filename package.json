@@ -42,7 +42,10 @@
         "ws": "^8.6.0",
         "pkg": "5.7.0",
         "gltf-pipeline": "3.0.4",
-        "react-full-screen": "1.1.0"
+        "react-full-screen": "1.1.0",
+        "three-stdlib": "2.10.2",
+        "mocha": "10.0.0",
+        "chai": "4.3.6"
     },
     "scripts": {
         "start": "nodemon src/server/nodeServer.mjs",
@@ -53,7 +56,8 @@
         "copy:index": "copyfiles -u 2 %npm_package_config_clientAddress%index.html %npm_package_config_output%",
         "copy": "npm-run-all --parallel copy:*",
         "webpack": "webpack",
-        "build": "npm-run-all webpack copy build:* start"
+        "build": "npm-run-all webpack copy build:* start",
+        "test": "mocha"
     },
     "nodemonConfig": {
         "watch": [

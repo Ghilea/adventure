@@ -14,6 +14,7 @@ export const Walls = ({rotation, position, type, ...props}) => {
     }))
 
     const removeWall = (e) => {
+        console.log('click', e.object.position, store.walls.pos);
         store.removeWall(e.object.position.x, e.object.position.y, e.object.position.z)
 
         const filtredItem = store.walls.filter((item) => {
