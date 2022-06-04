@@ -150,12 +150,12 @@ export const StoneWall_2 = (props) => {
 
 export const StoneWall_3 = (props) => {
   
-  const group = useRef();
+  //const group = useRef();
   const { nodes, materials  } = useGLTF("./assets/images/3d/stoneWall_3.gltf");
 
-  const [ref] = useBox(() => ({ 
+  const [group] = useBox(() => ({ 
     args: [5, 4, 1],
-    position: [1, 0, -3]
+    ...props
   }));
 
   const store = build(state => state);
@@ -173,13 +173,12 @@ export const StoneWall_3 = (props) => {
   }*/
 
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} dispose={null}>
       <group scale={[0.65, 0.65, 1]} position={[0.6, 1, 0.7]} rotation = {[-Math.PI / 2, 0, Math.PI * (180/360)]
       } >
         <group rotation={[Math.PI / 2, 0, 0]}>
           <group position = {[Math.PI / 2, 0, 0]} >
             <mesh
-              ref={ref}
               /*onClick = {removeWall}*/
               castShadow
               receiveShadow
