@@ -185,6 +185,16 @@ export const StoneWall_3 = (props) => {
               geometry={nodes.Object_4.geometry}
               material={materials.rock_wall_1}
             />
+            <mesh rotation = {
+              [-Math.PI / 2, Math.PI * (180 / 360), Math.PI * (180 / 360)]
+            }
+            position = {
+              [0.6, 1, 0.7]
+            } >
+              <meshStandardMaterial />
+              
+              <boxGeometry args = {[5, 4, 1]} />
+          </mesh>
           </group>
         </group>
       </group>
