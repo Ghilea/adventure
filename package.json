@@ -15,18 +15,18 @@
         "rooks": "5.11.2",
         "react": "^18.1.0",
         "react-dom": "^18.1.0",
-        "three": "0.140.2",
-        "@react-three/fiber": "8.0.19",
-        "@react-three/drei": "9.11.3",
+        "three": "0.141.0",
+        "@react-three/fiber": "8.0.22",
+        "@react-three/drei": "9.12.0",
         "@react-three/cannon": "6.3.0",
         "zustand": "4.0.0-rc.1"
     },
     "devDependencies": {
         "@babel/cli": "^7.17.10",
-        "@babel/core": "^7.18.0",
-        "@babel/preset-env": "^7.18.0",
+        "@babel/core": "^7.18.2",
+        "@babel/preset-env": "^7.18.2",
         "@babel/preset-react": "^7.17.12",
-        "@babel/plugin-transform-runtime": "^7.18.0",
+        "@babel/plugin-transform-runtime": "^7.18.2",
         "babel-loader": "^8.2.5",
         "body-parser": "1.20.0",
         "copyfiles": "^2.4.1",
@@ -36,16 +36,17 @@
         "mysql": "2.18.1",
         "nodemon": "^2.0.16",
         "npm-run-all": "^4.1.5",
-        "sass": "^1.52.1",
-        "webpack": "^5.72.1",
+        "sass": "^1.52.2",
+        "webpack": "^5.73.0",
         "webpack-cli": "^4.9.2",
-        "ws": "^8.6.0",
+        "ws": "^8.7.0",
         "pkg": "5.7.0",
         "gltf-pipeline": "3.0.4",
-        "react-full-screen": "1.1.0",
+        "react-full-screen": "1.1.1",
         "three-stdlib": "2.10.2",
         "mocha": "10.0.0",
-        "chai": "4.3.6"
+        "chai": "4.3.6",
+        "electron": "19.0.3"
     },
     "scripts": {
         "start": "nodemon src/server/nodeServer.mjs",
@@ -57,7 +58,8 @@
         "copy": "npm-run-all --parallel copy:*",
         "webpack": "webpack",
         "build": "npm-run-all webpack copy build:* start",
-        "test": "mocha"
+        "test": "mocha",
+        "buildApp": "electron ."
     },
     "nodemonConfig": {
         "watch": [
