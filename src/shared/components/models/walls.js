@@ -158,40 +158,35 @@ export const StoneWall_3 = (props) => {
     rotation: (props.rotation !== undefined) ? (props.rotation[1] === Math.PI * (360/360)) ? [0, Math.PI * (180/360), 0] : [0, Math.PI * (360/360), 0] : [0, 0, 0]
   }));
   
-  console.log(solid)
-
   const store = build(state => state);
 
   const removeWall = (e) => {
     console.log('click', e);
     console.log('wall', store.walls[0].pos);
-    store.removeWall(e.object.position.x, e.object.position.y, e.object.position.z)
+    store.removeWall(e.object.position.x, e.object.position.z)
 
     const filtredItem = store.walls.filter((item) => {
-      return item.pos[0] === e.object.position.x && item.pos[1] === e.object.position.y && item.pos[2] === e.object.position.z
+      return item.pos[0] === e.object.position.x && item.pos[2] === e.object.position.z
     })
     console.log(filtredItem[0])
     store.removeIndex(filtredItem[0].indexKey);
   }
-// <group scale={[0.65, 0.65, 1]} position={[0.6, 1, 0.7]}
+
   return (
-    <group  dispose = {null}
+    <group dispose = {null}
+    onClick = {removeWall}
     {...props} 
     scale = {[0.65, 1, 0.65]}
     >
-    
       <mesh 
         position = {[0.5, 1, 1]}
-        onClick = {removeWall}
         castShadow
         receiveShadow
         geometry={nodes.Object_4.geometry}
         material={materials.rock_wall_1}
       />
 
-      <mesh ref = {solid} >
-      <meshStandardMaterial color={'red'}/>
-      </mesh>
+      <mesh ref = {solid} />
   
     </group>
   );

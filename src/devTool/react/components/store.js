@@ -57,10 +57,10 @@ export const build = create(set => ({
             }
         ]        
     })),
-    removeWall: (x, y, z) => 
+    removeWall: (x, z) => 
         set((state) => ({
             walls: state.walls.filter((item) => {
-                return item.pos[0] !== x || item.pos[1] !== y || item.pos[2] !== z
+                return item.pos[0] !== x || item.pos[2] !== z
             })
         })
     )
