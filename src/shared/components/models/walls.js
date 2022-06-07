@@ -150,23 +150,19 @@ export const StoneWall_2 = (props) => {
 
 export const StoneWall_3 = (props) => {
   
-  const group = useRef();
+  console.log(props)
   const { nodes, materials  } = useGLTF("./assets/images/3d/stoneWall_3.gltf");
 
-  const [p] = useBox(() => ({
-    args: [5, 4, 1],
-    ...props
+  const [solid] = useBox(() => ({
+    args: [5, 3.5, 1],
+    position: [props.position[0] += 1.8, props.position[1] += -0.5, props.position[2] += 0.5],
+    rotation: [0, props.rotation[1], Math.PI * (360 / 360)]
   }));
 
-  const [solidRef] = useBox(() => ({
-    args: [5, 4, 1],
-    position: [0, 0, 0.7],
-    rotation: [-Math.PI / 2, 0, 0]
-  }));
 
   const store = build(state => state);
 
-  /*const removeWall = (e) => {
+  const removeWall = (e) => {
     console.log('click', e);
     console.log('wall', store.walls[0].pos);
     store.removeWall(e.object.position.x, e.object.position.y, e.object.position.z)
@@ -176,31 +172,25 @@ export const StoneWall_3 = (props) => {
     })
     console.log(filtredItem[0])
     store.removeIndex(filtredItem[0].indexKey);
-  }*/
-
+  }
+// <group scale={[0.65, 0.65, 1]} position={[0.6, 1, 0.7]}
   return (
-    <group ref = {
-      group
-    }
-    {...props}
-    dispose = {
-      null
-    }
+    <group  dispose = {null}
+    {...props} 
+    scale = {[0.65, 1, 0.65]}
     >
-      <group scale={[0.65, 0.65, 1]} position={[0.6, 1, 0.7]} rotation = {[-Math.PI / 2, 0, Math.PI * (180/360)]
-      } >
-        <group rotation={[Math.PI / 2, 0, 0]}>
-          <group position = {[Math.PI / 2, 0, 0]} >
-            <mesh
-              /*onClick = {removeWall}*/
-              castShadow
-              receiveShadow
-              geometry={nodes.Object_4.geometry}
-              material={materials.rock_wall_1}
-            />
-          </group>
-        </group>
-      </group>
+    
+      <mesh 
+        position = {[0.5, 1, 1]}
+        onClick = {removeWall}
+        castShadow
+        receiveShadow
+        geometry={nodes.Object_4.geometry}
+        material={materials.rock_wall_1}
+      />
+
+      <mesh ref = {solid}/>
+  
     </group>
   );
 }

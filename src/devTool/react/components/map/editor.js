@@ -34,7 +34,7 @@ export const MapEditor = () => {
                         [Math.floor(position.x) + 0.5, position.y + (4/2), Math.floor(position.z) + 0.5]
                     }
                     rotation = {
-                        (storeBuild.rotate) ? [0, Math.PI * (180 / 360), 0] : [0, Math.PI * (360 / 360), 0]
+                        (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
                     }
                     type = {
                         [storeBuild.texture]
