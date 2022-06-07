@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useBox } from '@react-three/cannon';
 import { build } from '@devComp/store';
@@ -155,8 +155,10 @@ export const StoneWall_3 = (props) => {
   const [solid] = useBox(() => ({
     args: [5, 3.5, 1],
     position: [props.position[0], props.position[1] -0.5, props.position[2]],
-    rotation: (props.rotation) ? (props.rotation === Math.PI * (360/360)) ? [0, Math.PI * (360/360)] : [0, Math.PI * (180/360), 0] : [0, 0, 0]
+    rotation: (props.rotation !== undefined) ? (props.rotation[1] === Math.PI * (360/360)) ? [0, Math.PI * (180/360), 0] : [0, Math.PI * (360/360), 0] : [0, 0, 0]
   }));
+  
+  console.log(solid)
 
   const store = build(state => state);
 
