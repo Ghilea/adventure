@@ -154,7 +154,7 @@ export const StoneWall_3 = (props) => {
 
   const [solid] = useBox(() => ({
     args: [5, 3.5, 1],
-    position: [props.position[0] + 1.8, props.position[1] -0.5, props.position[2] -2.5],
+    position: [props.position[0], props.position[1] -0.5, props.position[2]],
     rotation: (props.rotation) ? (props.rotation === Math.PI * (360/360)) ? [0, Math.PI * (360/360)] : [0, Math.PI * (180/360), 0] : [0, 0, 0]
   }));
 
@@ -187,7 +187,9 @@ export const StoneWall_3 = (props) => {
         material={materials.rock_wall_1}
       />
 
-      <mesh ref = {solid}/>
+      <mesh ref = {solid} >
+      <meshStandardMaterial color={'red'}/>
+      </mesh>
   
     </group>
   );
