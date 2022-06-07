@@ -63,7 +63,7 @@ export const MenuBg = () => {
             </Suspense>
 
             <Suspense fallback={<Loader />}>
-                <StoneWall_3 position={[-55, 0, 0]} rotation = {[0, 0, 0]} scale={[0]}/> 
+                <StoneWall_3 position={[-55, 0, 0]} scale={[0]}/> 
             </Suspense>
 
             <Suspense fallback = {<Loader />}>

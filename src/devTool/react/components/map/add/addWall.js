@@ -16,7 +16,6 @@ export const AddWall = ({position, rotation, type, indexKey}) => {
         <StoneWall_3
             position = { position }
             rotation = { rotation }
-            
         />
 
     )
