@@ -9,11 +9,6 @@ import { Sound } from '@comp/menu/audio';
 export const App = () => {
 
     const storeMenu = menu(state => state);
-    const [loadingDone, setLoadingDone] = useState(false);
-
-    useEffect(() => {
-        setLoadingDone(true);
-    }, [storeMenu.loadingDone])
 
     return (
         <>  
@@ -31,7 +26,7 @@ export const App = () => {
                                         <>
                                             <CanvasMenu />
                                             {
-                                                (loadingDone) ? 
+                                                (storeMenu.loadingDone) ?
                                                 <Menu /> : <></>
                                             }
                                             

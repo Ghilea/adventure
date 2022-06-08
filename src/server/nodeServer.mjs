@@ -11,6 +11,7 @@ import { getProtagonist, getAllProtagonist, createProtagonist, updateStatsProtag
 import { getAdventure } from './api/adventure.mjs';
 import { getEnemy } from './api/enemy.mjs';
 import { getLevel, createLevel } from './api/level.mjs'
+import { LoadingTip } from './api/loading.mjs';
 
 //env
 dotenv.config();
@@ -59,6 +60,10 @@ app.get('/getProtagonist', (req, res) => {
 
 app.get('/getAllProtagonist', (req, res) => {
     getAllProtagonist(con, res);
+});
+
+app.get('/loadingTip', (req, res) => {
+    LoadingTip(con, res);
 });
 
 //PUT

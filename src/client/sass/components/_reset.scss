@@ -22,6 +22,7 @@ time, mark, audio, video, button {
 	font: inherit;
 	vertical-align: baseline;
     cursor: url('../images/cursor.gif'), auto;
+	user-select: none;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 

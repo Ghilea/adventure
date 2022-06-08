@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef} from "react";
 import { Html, useProgress } from "@react-three/drei";
 import { menu } from '@comp/store';
+import { Read } from '@/shared/components/Crud';
+import { fetchURL } from '@shared/components/global';
 
 export const Loader = () => {
 
     const storeMenu = menu(state => state);
-    const { progress } = useProgress();
+    const {progress} = useProgress();
     const [message, setMessage] = useState(null);
 
     useEffect(()=>{
@@ -15,15 +17,21 @@ export const Loader = () => {
     }, [progress])
 
     useEffect(() => {
-        storeMenu.isLoadingDone(false);
 
-        const arr = [
-            'Still faster than Windows update.',
-            'Does Anyone Actually Read This?',
-            "Hitting Your Keyboard Won't Make This Faster"
-        ]
+        console.log('mess', message);
+        if(message === null) {
+            storeMenu.isLoadingDone(false);
+            
+            const url = `${fetchURL}/loadingTip`;
 
-        setMessage(arr[Math.floor(Math.random() * arr.length)])
+            Read(url)
+            .then(items => {
+                if (items.result.length > 0) {
+                    console.log(items.result[0].sentence)
+                    setMessage(items.result[0].sentence)
+                }
+            })
+        }
 
     }, [])
 

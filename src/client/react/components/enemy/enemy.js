@@ -21,7 +21,7 @@ const getEnemy = () => {
     //get and set enemy
     useEffect(() => {
 
-        let url = `${fetchURL}/getEnemy`;
+        const url = `${fetchURL}/getEnemy`;
 
         Read(url)
             .then(items => {
