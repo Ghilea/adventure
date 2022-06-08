@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { build } from '@devComp/store';
-//import { Walls } from '@devComp/map/object/walls';
-import { StoneWall, StoneWall_2, StoneWall_3 } from '@shared/components/models/walls';
+import {Wall_1} from '@shared/components/models/walls';
 
 export const AddWall = ({position, rotation, type, indexKey}) => {
 
     const store = build(state => state);
+    const [wall, setWall] = useState(null);
 
     useEffect(() => {
         store.addWall(position, rotation, type, indexKey);
+        
+        switch (type) {
+            case 'wall_1':
+                setWall(<Wall_1 position = {position} rotation = {rotation}/>)
+                break;
+        }
+
     }, [])
-//type = { type }
+
     return (
-
-        <StoneWall_3
-            position = { position }
-            rotation = { rotation }
-        />
-
+        <>
+            {wall}
+        </>
+        
     )
 }

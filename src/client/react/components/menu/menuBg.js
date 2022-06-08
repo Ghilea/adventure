@@ -33,11 +33,7 @@ export const MenuBg = () => {
 
             setBuild((state) => ([
                 ...state,
-                /*<Walls key={'wall'+index} position = {use.pos}
-                rotation = { use.rotate }
-                type = { use.type }
-                />*/
-                <StoneWall 
+                <Wall_1
                 key={'wall'+index} 
                 rotation={[0, Math.PI * (use.rotate[1]/360), 0]} 
                 scale={[1.5, 1.5, 1]}
@@ -60,10 +56,6 @@ export const MenuBg = () => {
             
             <Suspense fallback={<Loader />}>
                 {build} 
-            </Suspense>
-
-            <Suspense fallback={<Loader />}>
-                <StoneWall_3 position={[-55, 0, 0]} scale={[0]}/> 
             </Suspense>
 
             <Suspense fallback = {<Loader />}>

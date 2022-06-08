@@ -33,7 +33,7 @@ export const Level = () => {
 
                         setBuild((state) => ([
                             ...state,
-                            <StoneWall_3 key={'wall'+index} 
+                            <Wall_1 key={'wall'+index} 
                             position = {use.pos}
                             rotation = { use.rotate }
                             type = { use.type }

@@ -6,9 +6,7 @@ export const CategoryWall = () => {
     const interBtn = interfaceButtons(state => state);
 
     const textureArr = [
-        'stone',
-        'stone2',
-        'stoneWindow'        
+        'wall_1'      
     ]
 
     const buttons = textureArr.map((item, index) => {

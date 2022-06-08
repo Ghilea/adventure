@@ -17,7 +17,7 @@ export const SaveLevel = () => {
             'player': storePlayer.playerMark
         })
         
-        const url = `${fetchURL}/createLevel`;
+        /*const url = `${fetchURL}/createLevel`;
 
         Create(url, {
             content: JSON.stringify({
@@ -25,7 +25,7 @@ export const SaveLevel = () => {
                 'ground': [storeGround.x, storeGround.y, storeGround.texture],
                 'player': storePlayer.playerMark
             })
-        });
+        });*/
     }
 
     return (
