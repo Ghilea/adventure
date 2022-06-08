@@ -39,11 +39,11 @@ export const Interface = () => {
         }
         >
             <div className='categorySidePanel'>
-                <div className='miniGround'>Settings</div>
+                <div className='categoryBtn'>Settings</div>
 
-                <div className='miniWalls'>Walls</div>
+                <div className='categoryBtn'>Walls</div>
 
-                <div className='miniCharacters'>Characters</div>
+                <div className='categoryBtn'>Characters</div>
             </div>
             
             {gui}

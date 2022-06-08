@@ -16,23 +16,7 @@
     align-items: center;
     flex-direction: column;
     
-    .miniGround {
-        &:hover {
-            border-left: 0.3em double #fff;
-            border-top: 0.3em double #fff;
-            border-bottom: 0.3em double #fff;
-        }
-    }
-
-    .miniWalls {
-        &:hover {
-            border-left: 0.3em double #fff;
-            border-top: 0.3em double #fff;
-            border-bottom: 0.3em double #fff;
-        }
-    }
-
-    .miniCharacters {
+    .categoryBtn {
         &:hover {
             border-left: 0.3em double #fff;
             border-top: 0.3em double #fff;
