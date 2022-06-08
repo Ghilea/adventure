@@ -18,21 +18,17 @@ export const Loader = () => {
 
     useEffect(() => {
 
-        console.log('mess', message);
-        if(message === null) {
-            storeMenu.isLoadingDone(false);
+        storeMenu.isLoadingDone(false);
             
-            const url = `${fetchURL}/loadingTip`;
+        const url = `${fetchURL}/loadingTip`;
 
-            Read(url)
-            .then(items => {
-                if (items.result.length > 0) {
-                    console.log(items.result[0].sentence)
-                    setMessage(items.result[0].sentence)
-                }
-            })
-        }
-
+        Read(url)
+        .then(items => {
+            if (items.result.length > 0) {
+                setMessage(items.result[0].sentence)
+            }
+        })
+        
     }, [])
 
     return (
