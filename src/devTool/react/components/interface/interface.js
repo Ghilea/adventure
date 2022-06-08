@@ -38,7 +38,14 @@ export const Interface = () => {
             handleMouseClick
         }
         >
-            <div className='miniBtn'>Ground</div>
+            <div className='categorySidePanel'>
+                <div className='miniGround'>Settings</div>
+
+                <div className='miniWalls'>Walls</div>
+
+                <div className='miniCharacters'>Characters</div>
+            </div>
+            
             {gui}
             
             <SaveLevel />

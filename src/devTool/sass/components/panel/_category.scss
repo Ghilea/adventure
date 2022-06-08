@@ -1,9 +1,10 @@
-.miniBtn {
+.categorySidePanel {
     display: flex;
     position: absolute;
-    left: -3.3em;
-    width: 3em;
-    height: 3em;
+    padding: 1em 0.5em;
+    left: -5.9em;
+    gap: 1em;
+    height: fit-content;
     border-left: 0.3em double #626262;
     border-top: 0.3em double #626262;
     border-bottom: 0.3em double #626262;
@@ -11,12 +12,33 @@
     border-bottom-left-radius: 0.3em;
     background-color: rgb(56, 46, 46);
     background-image: url(../images/texture/overlay.png), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-
-    &:hover {
-        border-left: 0.3em double #fff;
-        border-top: 0.3em double #fff;
-        border-bottom: 0.3em double #fff;
+    flex-direction: column;
+    
+    .miniGround {
+        &:hover {
+            border-left: 0.3em double #fff;
+            border-top: 0.3em double #fff;
+            border-bottom: 0.3em double #fff;
+        }
     }
+
+    .miniWalls {
+        &:hover {
+            border-left: 0.3em double #fff;
+            border-top: 0.3em double #fff;
+            border-bottom: 0.3em double #fff;
+        }
+    }
+
+    .miniCharacters {
+        &:hover {
+            border-left: 0.3em double #fff;
+            border-top: 0.3em double #fff;
+            border-bottom: 0.3em double #fff;
+        }
+    }
+
 }
+
