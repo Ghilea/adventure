@@ -1,29 +1,32 @@
 .categorySidePanel {
     display: flex;
     position: absolute;
-    padding: 1em 0.5em;
-    left: -5.9em;
+    left: -5.4em;
     gap: 1em;
+    width: fit-content;
     height: fit-content;
-    border-left: 0.3em double #626262;
-    border-top: 0.3em double #626262;
-    border-bottom: 0.3em double #626262;
-    border-top-left-radius: 0.3em;
-    border-bottom-left-radius: 0.3em;
-    background-color: rgb(56, 46, 46);
-    background-image: url(../images/texture/overlay.png), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     
     .categoryBtn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 5em;
         height: 3em;
+        border-left: 0.3em double #626262;
         border-top: 0.3em double #626262;
         border-bottom: 0.3em double #626262;
+        border-top-left-radius: 0.3em;
+        border-bottom-left-radius: 0.3em;
+        background-color: rgb(56, 46, 46);
+        background-image: url(../images/texture/overlay.png), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
 
         &:hover {
             border-top: 0.3em double #fff;
             border-bottom: 0.3em double #fff;
+            border-left: 0.3em double #fff;
         }
     }
 

@@ -10,7 +10,7 @@ export const Exit = () => {
     }
 
     return (
-        <button onClick={handleExit}>Exit</button>
+        <div onClick={handleExit} className='categoryBtn'>Exit</div>
     )
 
 }

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import { SaveLevel } from '@devComp/interface/saveLevel';
-import { Exit } from '@devComp/interface/exit';
+import { SaveLevel } from '@devComp/interface/panel/saveLevel';
+import { Exit } from '@devComp/interface/panel/exit';
 import { CategoryGround } from '@devComp/interface/categoryGround';
 import { CategoryWall } from '@devComp/interface/categoryWall';
 import { CategoryPlayer } from '@devComp/interface/categoryPlayer';
@@ -44,12 +44,13 @@ export const Interface = () => {
                 <div className='categoryBtn'>Walls</div>
 
                 <div className='categoryBtn'>Characters</div>
+
+                <SaveLevel />
+                <Exit />
             </div>
             
             {gui}
             
-            <SaveLevel />
-            <Exit />
         </div>
     )
 }

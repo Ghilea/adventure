@@ -29,7 +29,7 @@ export const SaveLevel = () => {
     }
 
     return (
-        <button onClick={handleSave}>Save level</button>
+        <div onClick={handleSave} className='categoryBtn'>Save</div>
     )
 
 }
