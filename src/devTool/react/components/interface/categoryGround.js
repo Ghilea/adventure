@@ -13,19 +13,12 @@ export const CategoryGround = () => {
         storeGround.groundTexture(e.target.value)
     }
 
-    const optionArr = [
-        {
-            name: 'stone',
-        },
-        {
-            name: 'floor',
-        }
-    ];
+    const optionArr = ['stone', 'floor'];
 
     const selectOptions = optionArr.map((item, index) => {
         return (
-            <option key={'ground'+item.name+index}>
-                {item.name}
+            <option key={'ground'+item+index}>
+                {item}
             </option>
         )
     })
@@ -35,7 +28,7 @@ export const CategoryGround = () => {
             <h2>Ground</h2>
             <div className='ground'>
                 <input type='range' min={10} max={500} step={2} value={storeGround.x} onChange={handleSlider}/>
-                <select onChange={handleTexture}>
+                <select onChange={handleTexture} value={storeGround.texture}>
                     {selectOptions}
                 </select>
             </div>
