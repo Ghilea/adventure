@@ -21,7 +21,7 @@ export const Wall_1 = (props) => {
     store.removeWall(e.object.position.x, e.object.position.z)
 
     const filtredItem = store.walls.filter((item) => {
-      return item.pos[0] === e.object.position.x && item.pos[2] === e.object.position.z
+      return item.pos[0] === e.eventObject.position.x && item.pos[1] === e.eventObject.position.y && item.pos[2] === e.eventObject.position.z
     })
     console.log(filtredItem[0])
     store.removeIndex(filtredItem[0].indexKey);
