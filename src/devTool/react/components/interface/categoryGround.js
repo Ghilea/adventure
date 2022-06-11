@@ -34,7 +34,7 @@ export const CategoryGround = () => {
                 <label htmlFor='gSize'>Ground size</label>
                 <input id='gSize' type='range' min={10} max={500} step={2} value={storeGround.x} onChange={handleGroundSlider}/>
                 <label htmlFor='tSize'>Texture size</label>
-                <input id='tSize' type='range' min={10} max={500} step={2} value={storeGround.textureSizeX} onChange={handleTextureSlider}/>
+                <input id='tSize' type='range' min={(storeGround.x / 10)} max={(storeGround.x / 2)} step={1} value={storeGround.textureSizeX} onChange={handleTextureSlider}/>
                 <select onChange={handleTexture} value={storeGround.texture}>
                     {selectOptions}
                 </select>
