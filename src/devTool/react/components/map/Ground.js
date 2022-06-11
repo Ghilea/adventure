@@ -35,8 +35,8 @@ export const Ground = (props) => {
             console.log('ground', wallX);
 
             storeBuild.walls.map((item) => {
-                console.log(wallX-2 < item.pos[0]-2) && (wallX+2 > (item.pos[0])+2)
-                if ((wallX-2 < item.pos[0]-2) && (wallX+2 > (item.pos[0])+2)) {
+                console.log(wallX-5 < item.pos[0]) && (wallX+5 > (item.pos[0]))
+                if ((wallX-5 < item.pos[0]) && (wallX+5 > (item.pos[0]))) {
                     console.log('error', event);
                     storeGround.groundColor('red');
                 }else{
