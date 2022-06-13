@@ -32,12 +32,12 @@ export const Ground = (props) => {
     
         if(storeGround.square.length > 0){
             const check = storeGround.square.filter(obj => {
-                console.log(obj)
-                return (obj.x == wallX) && (obj.z == wallZ)                           
+                return (obj.x == wallX) && (obj.z == wallZ)              
             })
 
+            console.log(check)
             if (check.length > 0) {
-                storeGround.groundColor('red');
+                storeGround.groundColor('red'); 
             } else {
                 storeGround.groundColor('green');
             }

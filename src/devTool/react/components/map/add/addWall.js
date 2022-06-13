@@ -12,10 +12,8 @@ export const AddWall = ({position, rotation, type, indexKey}) => {
         store.addWall(position, rotation, type, indexKey);
         for (let i = 0; i < 5; i++) {
             if(!store.rotate) {
-                console.log('not active');
                 storeGround.addSquare((position[0] - 2) + i, position[2])
             }else{
-                console.log('active')
                 storeGround.addSquare(position[0], (position[2] - 2) + i)
             }
         }
