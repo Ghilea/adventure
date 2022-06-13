@@ -25,24 +25,22 @@ export const Ground = (props) => {
         const x = event.point.x;
         const y = event.point.y;
         const z = event.point.z;
+        const wallX = (Math.floor(x) + 0.5)
+        const wallZ = (Math.floor(z) + 0.5)
 
         storePosition.editPosition(x, y, z)
-
-        if(storeBuild.walls.length > 0){
-
-            let wallX = (Math.floor(x) + 0.5)
-            console.log('wall', storeBuild.walls[0].pos);
-            console.log('ground', wallX);
-
-            storeBuild.walls.map((item) => {
-                console.log(wallX-5 < item.pos[0]) && (wallX+5 > (item.pos[0]))
-                if ((wallX-5 < item.pos[0]) && (wallX+5 > (item.pos[0]))) {
-                    console.log('error', event);
-                    storeGround.groundColor('red');
-                }else{
-                    storeGround.groundColor('green');
-                }
+    
+        if(storeGround.square.length > 0){
+            const check = storeGround.square.filter(obj => {
+                console.log(obj)
+                return (obj.x == wallX) && (obj.z == wallZ)                           
             })
+
+            if (check.length > 0) {
+                storeGround.groundColor('red');
+            } else {
+                storeGround.groundColor('green');
+            }
             
         }
     }

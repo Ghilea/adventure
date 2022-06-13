@@ -28,7 +28,8 @@ export const MapEditor = () => {
 
                 setWall((state) => ([
                     ...state, 
-                    <AddWall key = {'wall'+index}
+                    <AddWall 
+                    key = {'wall'+index}
                     indexKey = {'wall'+index}
                     position = {
                         [Math.floor(position.x) + 0.5, position.y + (4/2), Math.floor(position.z) + 0.5]

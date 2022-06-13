@@ -78,6 +78,16 @@ export const ground = create(set => ({
     textureSizeX: 1,
     textureSizeY: 1,
     color: 'green',
+    square: [],
+    addSquare: (x, z) => set(state => ({
+        square: [
+            ...state.square,
+            {
+                x: x, 
+                z: z
+            }
+        ]
+    })),
     groundColor: (color) => set(state => ({
         ...state,
         color: color
