@@ -10,9 +10,24 @@ export const AddWall = ({position, rotation, type, indexKey}) => {
 
     useEffect(() => {
         store.addWall(position, rotation, type, indexKey);
+        
+        if (!store.rotate) {
+            //shortside
+            storeGround.addSquare360((position[0] - 3), position[2])
+            storeGround.addSquare360((position[0] - 4), position[2])
+            storeGround.addSquare360((position[0] + 3), position[2])
+            storeGround.addSquare360((position[0] + 4), position[2])
+        }
+            
         for (let i = 0; i < 5; i++) {
             if(!store.rotate) {
+                //wall
                 storeGround.addSquare((position[0] - 2) + i, position[2])
+                //longside
+                storeGround.addSquare180((position[0] - 2) + i, position[2] - 1)
+                storeGround.addSquare180((position[0] - 2) + i, position[2] - 2)
+                storeGround.addSquare180((position[0] - 2) + i, position[2] + 1)
+                storeGround.addSquare180((position[0] - 2) + i, position[2] + 2)
             }else{
                 storeGround.addSquare(position[0], (position[2] - 2) + i)
             }

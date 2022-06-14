@@ -34,11 +34,20 @@ export const Ground = (props) => {
             const check = storeGround.square.filter(obj => {
                 return (obj.x == wallX) && (obj.z == wallZ)              
             })
+            
+            const check360 = storeGround.square360.filter(obj => {
+                return (obj.x == wallX) && (obj.z == wallZ)
+            })
+            
+            const check180 = storeGround.square180.filter(obj => {
+                return (obj.x == wallX) && (obj.z == wallZ)
+            })
 
-            console.log(check)
             if (check.length > 0) {
                 storeGround.groundColor('red'); 
-            } else {
+            } else if ((!storeBuild.rotate) ? check360.length > 0 : check180.length > 0){
+                storeGround.groundColor('blue');
+            }else{
                 storeGround.groundColor('green');
             }
             

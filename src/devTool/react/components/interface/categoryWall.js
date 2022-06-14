@@ -31,8 +31,6 @@ export const CategoryWall = () => {
             interBtn.btn(true, setTexture);
             storeBuild.buildBtn(true, setTexture);
             storeBuild.changeRaySize(5, 1, false)
-            console.log('click', storeBuild.sizeX, storeBuild.sizeY, storeBuild.rotate);
-
         }
     }
 

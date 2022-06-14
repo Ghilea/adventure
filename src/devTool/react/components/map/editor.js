@@ -22,7 +22,7 @@ export const MapEditor = () => {
     const handleMouseClick = (event) => {
         event.preventDefault();
 
-        if (event.type === 'click') {
+        if (event.type === 'click' && storeGround.color === 'green') {
 
             if (storeBuild.active) {
 

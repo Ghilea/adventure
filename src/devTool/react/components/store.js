@@ -79,11 +79,31 @@ export const ground = create(set => ({
     textureSizeY: 1,
     color: 'green',
     square: [],
+    square360: [],
+    square180: [],
     addSquare: (x, z) => set(state => ({
         square: [
             ...state.square,
             {
                 x: x, 
+                z: z
+            }
+        ]
+    })),
+    addSquare360: (x, z) => set(state => ({
+        square360: [
+            ...state.square360,
+            {
+                x: x,
+                z: z
+            }
+        ]
+    })),
+    addSquare180: (x, z) => set(state => ({
+        square180: [
+            ...state.square180,
+            {
+                x: x,
                 z: z
             }
         ]
