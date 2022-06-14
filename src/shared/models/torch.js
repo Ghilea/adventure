@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
-import { Flame } from '@shared/components/models/flame';
+import { Flame } from '@shared/models/flame';
 
 export const Torch = (props) => {
     

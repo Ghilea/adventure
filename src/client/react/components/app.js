@@ -3,7 +3,7 @@ import Interface from '@comp/interface/Interface';
 import { CanvasLevel, CanvasMenu } from '@comp/map/canvas';
 import { menu } from '@comp/store'
 import { Menu } from '@comp/menu/menu';
-import { MapEditor } from '@devComp/map/editor';
+import { MapEditor } from '@devComp/editor';
 import { Sound } from '@comp/menu/audio';
 
 export const App = () => {

@@ -1,9 +1,9 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import { Ground } from '@comp/map/Ground';
-import { Torch } from '@shared/components/models/torch';
-import { Rock } from '@shared/components/models/rocks';
-import { StoneWall, StoneWall_2, StoneWall_3 } from '@shared/components/models/walls';
-import { PlayerPose } from '@shared/components/models/player';
+import { Torch } from '@shared/models/torch';
+import { Rock } from '@shared/models/rocks';
+import { StoneWall, StoneWall_2, StoneWall_3 } from '@shared/models/walls';
+import { PlayerPose } from '@shared/models/player';
 import { Loader } from '@comp/menu/loader';
 
 export const MenuBg = () => {

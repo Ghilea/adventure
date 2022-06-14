@@ -16,7 +16,7 @@ module.exports = [
             alias: {
                 '@': path.resolve(__dirname, 'src'),
                 '@comp': path.resolve(__dirname, 'src/client/react/components'),
-                '@devComp': path.resolve(__dirname, 'src/devTool/react/components'),
+                '@devComp': path.resolve(__dirname, 'src/editor/react/components'),
                 '@hooks': path.resolve(__dirname, 'src/client/react/hooks'),
                 '@shared': path.resolve(__dirname, 'src/shared'),
                 '@test': path.resolve(__dirname, 'src/test')
