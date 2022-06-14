@@ -46,7 +46,7 @@ export const Ground = (props) => {
             if (check.length > 0) {
                 storeGround.groundColor('red'); 
             } else if ((!storeBuild.rotate) ? check360.length > 0 : check180.length > 0){
-                storeGround.groundColor('blue');
+                storeGround.groundColor('red');
             }else{
                 storeGround.groundColor('green');
             }
