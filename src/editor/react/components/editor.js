@@ -3,13 +3,14 @@ import { Canvas } from '@react-three/fiber';
 import { Ground } from '@devComp/map';
 import { Physics } from '@react-three/cannon';
 import { OrbitControls } from '@react-three/drei'
-import { Interface } from '@devComp/interface/rightPanel';
+import { RightPanel, TopPanel } from '@devComp/interface/panel';
 import { build, ground, player, mousePosition} from '@devComp/store';
 import { useKey } from 'rooks';
 import { AddWall } from '@devComp/add/addWall';
 import { AddPlayer } from '@devComp/add/addPlayer';
 
 export const MapEditor = () => {
+    
     const storeBuild = build(state => state);
     const storePlayer = player(state => state);
     const storeGround = ground(state => state)
@@ -84,7 +85,8 @@ export const MapEditor = () => {
 
     return (
         <>
-            <Interface />
+            <TopPanel />
+            <RightPanel />
             <Canvas 
             onClick = {
                 handleMouseClick

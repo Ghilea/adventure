@@ -46,6 +46,20 @@ export const CharactersBtn = () => {
 
 }
 
+export const RemoveObjectBtn = () => {
+    
+    const store = interfaceButtons(state => state);
+
+    const handleClick = () => {
+        store.isRemove(true);
+    }
+
+    return (
+        <div onClick={handleClick} className='topBtn'>Remove</div>
+    )
+
+}
+
 export const ExitBtn = () => {
     
     const storeMenu = menu(state => state);

@@ -16,9 +16,14 @@ export const interfaceButtons = create(set => ({
     active: false,
     button: null,
     categoryBtn: 'ground',
+    remove: false,
     changeCategoryBtn: (value) => set(state => ({
         ...state,
         categoryBtn: value
+    })),
+    isRemove: (value) => set(state => ({
+        ...state,
+        remove: value
     })),
     btn: (active, button) => set(state => ({
         ...state,

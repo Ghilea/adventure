@@ -1,0 +1,11 @@
+{
+    "watch": [
+        "./src/**/*"
+    ],
+    "ext": "js,mjs,scss,html",
+    "ignore": [
+        "public/*",
+        "editor/*"
+    ],
+    "delay": 2500
+}

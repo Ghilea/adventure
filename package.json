@@ -60,16 +60,5 @@
         "build": "npm-run-all webpack copy build:* start",
         "test": "mocha",
         "buildApp": "electron ."
-    },
-    "nodemonConfig": {
-        "watch": [
-            "./src/*"
-        ],
-        "ext": "js,mjs,cjs,scss,html",
-        "ignore": [
-            "public/*",
-            "editor/*"
-        ],
-        "delay": 2500
     }
 }
