@@ -5,12 +5,12 @@
     z-index: 1;
     user-select: none;
     background-color: rgba(0, 0, 0, 0.502);
-    background-image: url('../images/texture/dirt.png'), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background-image: url(../images/texture/dirt.png), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     width: 70vw;
-    height: 5em;
+    height: 1em;
     box-shadow: 0 0 5px #000;
     border-left: 5px double rgba(77, 77, 77, 0.4);
     display: flex;
@@ -18,9 +18,8 @@
     flex-wrap: wrap;
     gap: 1em;
     padding: 1em;
-    justify-content: center;
     user-select: none;
-    align-content: flex-start;
+    align-content: center;
 
     .container {
         display: flex;
