@@ -1,11 +1,17 @@
 {
+    "restartable": "rs",
+    "verbose": true,
+    "env": {
+        "NODE_ENV": "development"
+    },
     "watch": [
-        "./src/**/*"
+        "./src/*"
     ],
-    "ext": "js,mjs,scss,html",
+    "ext": "js,mjs,json,scss,html",
     "ignore": [
-        "public/*",
-        "editor/*"
+        ".git",
+        "node_modules/**/node_modules",
+        "public/*"
     ],
     "delay": 2500
 }

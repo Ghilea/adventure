@@ -50,14 +50,14 @@
     },
     "scripts": {
         "start": "nodemon src/server/nodeServer.mjs",
-        "watch": "nodemon --exec \"npm run build\"",
+        "watch": "nodemon --legacy-watch --exec \"npm run build\"",
         "build:client-sass": "sass --no-source-map %npm_package_config_clientAddress%sass:%npm_package_config_output%/assets/css",
         "build:editor-sass": "sass --no-source-map %npm_package_config_editorAddress%sass:%npm_package_config_output%/assets/css/",
         "copy:assets": "copyfiles -u 2 ./src/shared/assets/**/* %npm_package_config_output%",
         "copy:index": "copyfiles -u 2 %npm_package_config_clientAddress%index.html %npm_package_config_output%",
         "copy": "npm-run-all --parallel copy:*",
         "webpack": "webpack",
-        "build": "npm-run-all webpack copy build:* start",
+        "build": "npm-run-all webpack build:* start",
         "test": "mocha",
         "buildApp": "electron ."
     }
