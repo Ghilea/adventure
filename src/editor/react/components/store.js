@@ -80,21 +80,23 @@ export const ground = create(set => ({
     square: [],
     square360: [],
     square180: [],
-    addSquare: (x, z) => set(state => ({
+    addSquare: (x, z, indexKey) => set(state => ({
         square: [
             ...state.square,
             {
                 x: x, 
-                z: z
+                z: z,
+                indexKey: indexKey
             }
         ]
     })),
-    addSquare360: (x, z) => set(state => ({
+    addSquare360: (x, z, indexKey) => set(state => ({
         square360: [
             ...state.square360,
             {
                 x: x,
-                z: z
+                z: z,
+                indexKey: indexKey
             }
         ]
     })),
@@ -103,7 +105,8 @@ export const ground = create(set => ({
             ...state.square180,
             {
                 x: x,
-                z: z
+                z: z,
+                indexKey: indexKey
             }
         ]
     })),
