@@ -21,8 +21,9 @@ export const TopPanel = () => {
             handleMouseClick
         }
         >
-           
+            <SaveLevelBtn />
             <RemoveObjectBtn />
+            <ExitBtn />
             
         </div>
     )
@@ -64,8 +65,6 @@ export const RightPanel = () => {
                 <GroundBtn />
                 <CharactersBtn />
                 <WallBtn />
-                <SaveLevelBtn />
-                <ExitBtn />
             </div>
             
             {gui}
