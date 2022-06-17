@@ -55,7 +55,9 @@ export const RemoveObjectBtn = () => {
     }
 
     return (
-        <div onClick={handleClick} className='topBtn'>Remove</div>
+        <div onClick={handleClick} className='topBtn'>
+            <img src='./assets/images/svg/eraser_icon.svg' alt='Eraser button' title='Eraser button'/>
+        </div>
     )
 
 }
@@ -69,7 +71,9 @@ export const ExitBtn = () => {
     }
 
     return (
-        <div onClick={handleExit} className='categoryBtn'>Exit</div>
+        <div onClick={handleExit} className='topBtn'>
+            <img src='./assets/images/svg/exit_icon.svg' alt='Exit button' title='Exit button' />
+        </div>
     )
 
 }
@@ -99,7 +103,9 @@ export const SaveLevelBtn = () => {
     }
 
     return (
-        <div onClick={handleSave} className='categoryBtn'>Save</div>
+        <div onClick={handleSave} className='topBtn'>
+            <img src='./assets/images/svg/save_icon.svg' alt='Save button' title='Save button'/>
+        </div>
     )
 
 }

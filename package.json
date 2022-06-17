@@ -57,7 +57,7 @@
         "copy:index": "copyfiles -u 2 %npm_package_config_clientAddress%index.html %npm_package_config_output%",
         "copy": "npm-run-all --parallel copy:*",
         "webpack": "webpack",
-        "build": "npm-run-all webpack build:* start",
+        "build": "npm-run-all webpack copy build:* start",
         "test": "mocha",
         "buildApp": "electron ."
     }
