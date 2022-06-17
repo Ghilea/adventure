@@ -9,22 +9,23 @@
     background-repeat: no-repeat;
     background-position: center;
     width: 11em;
-    height: 1em;
+    height: 2em;
     box-shadow: 0 0 5px #000;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1em;
-    padding: 1em;
     align-content: center;
     border-bottom-right-radius: 0.3em;
-    justify-content: space-evenly;
     align-items: center;
+    justify-content: space-evenly;
 
     .topBtn {
+        width: 4em;
+        height: 2em;
+        display: flex;
+        justify-content: center;
 
         &:hover{
-            opacity: 0.8;
+            background-color: rgba(0, 0, 0, 0.5);
         }
 
         img {
