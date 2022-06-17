@@ -10,6 +10,7 @@ export const AddWall = ({position, rotation, type, indexKey}) => {
 
     useEffect(() => {
         store.addWall(position, rotation, type, indexKey);
+        storeGround.groundColor('red');
         
         if (!store.rotate) {
             //shortside 360

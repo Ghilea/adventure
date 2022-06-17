@@ -3,7 +3,7 @@ import { ExitBtn, SaveLevelBtn, WallBtn, CharactersBtn, GroundBtn, RemoveObjectB
 import { CategoryGround } from '@devComp/interface/category/categoryGround';
 import { CategoryWall } from '@devComp/interface/category/categoryWall';
 import { CategoryPlayer } from '@devComp/interface/category/categoryPlayer';
-import { interfaceButtons } from '@devComp/store';
+import { interfaceButtons, build } from '@devComp/store';
 
 export const TopPanel = () => {
 
@@ -32,6 +32,7 @@ export const TopPanel = () => {
 export const RightPanel = () => {
 
     const storeInterface = interfaceButtons(state => state);
+    const storeBuild = build(state => state);
     const [gui, setGui] = useState();
 
     const handleMouseClick = (event) => {
@@ -41,7 +42,10 @@ export const RightPanel = () => {
     }
 
     useEffect(() => {
-        console.log(storeInterface.categoryBtn);
+        storeInterface.btn(false, null)
+        storeBuild.buildBtn(false, null);
+        storeBuild.changeRaySize(1, 1, false);
+
         switch (storeInterface.categoryBtn) {
             case 'ground':
                 setGui(<CategoryGround />);

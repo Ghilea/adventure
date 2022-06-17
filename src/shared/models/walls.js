@@ -15,7 +15,7 @@ export const Wall_1 = (props) => {
   
   const store = build(state => state);
 
-  const removeWall = (e) => {
+  /*const removeWall = (e) => {
     console.log('click', e);
     console.log('wall', store.walls[0].pos);
     store.removeWall(e.object.position.x, e.object.position.z)
@@ -25,11 +25,17 @@ export const Wall_1 = (props) => {
     })
     console.log(filtredItem[0])
     store.removeIndex(filtredItem[0].indexKey);
+  }*/
+
+  const handleSelect = (e) => {
+    if(!store.active){
+      console.log('selected: ', e);
+    }
   }
 
   return (
     <group dispose = {null}
-    onClick = {removeWall}
+    onClick = {handleSelect}
     {...props} 
     scale = {[0.65, 1, 0.65]}
     >
