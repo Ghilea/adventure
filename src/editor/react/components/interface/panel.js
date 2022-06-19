@@ -7,8 +7,6 @@ import { interfaceButtons, build } from '@devComp/store';
 
 export const TopPanel = () => {
 
-    const storeInterface = interfaceButtons(state => state);
-
     const handleMouseClick = (event) => {
         if (event.type === 'contextmenu') {
             event.preventDefault();
@@ -43,7 +41,7 @@ export const RightPanel = () => {
 
     useEffect(() => {
         storeInterface.btn(false, null)
-        storeBuild.buildBtn(false, null);
+        storeBuild.activeBuild([]);
         storeBuild.changeRaySize(1, 1, false);
 
         switch (storeInterface.categoryBtn) {

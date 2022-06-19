@@ -25,22 +25,22 @@ export const Ground = (props) => {
         const x = event.point.x;
         const y = event.point.y;
         const z = event.point.z;
-        const wallX = (Math.floor(x) + 0.5)
-        const wallZ = (Math.floor(z) + 0.5)
+        const centerX = (Math.floor(x) + 0.5)
+        const centerZ = (Math.floor(z) + 0.5)
 
         storePosition.editPosition(x, y, z)
     
         if(storeGround.square.length > 0){
             const check = storeGround.square.filter(obj => {
-                return (obj.x == wallX) && (obj.z == wallZ)              
+                return (obj.x == centerX) && (obj.z == centerZ) && (obj.type == 0)
             })
             
-            const check360 = storeGround.square360.filter(obj => {
-                return (obj.x == wallX) && (obj.z == wallZ)
+            const check360 = storeGround.square.filter(obj => {
+                return (obj.x == centerX) && (obj.z == centerZ) && (obj.type == 360)
             })
             
-            const check180 = storeGround.square180.filter(obj => {
-                return (obj.x == wallX) && (obj.z == wallZ)
+            const check180 = storeGround.square.filter(obj => {
+                return (obj.x == centerX) && (obj.z == centerZ) && (obj.type == 180)
             })
 
             if (check.length > 0) {

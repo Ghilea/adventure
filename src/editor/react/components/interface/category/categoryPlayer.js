@@ -1,21 +1,19 @@
 import React from "react";
-import { player, interfaceButtons, build } from '@devComp/store';
+import { interfaceButtons, build } from '@devComp/store';
 
 export const CategoryPlayer = () => {
     
-    const storePlayer = player(state => state);
     const storeBuild = build(state => state);
     const interBtn = interfaceButtons(state => state);
 
     const handleButton = (setBtn) => {
         if (interBtn.active && interBtn.button === setBtn) {
             interBtn.btn(false, null)
-            storePlayer.changePlayer(false)
             storeBuild.changeRaySize(1, 1)
+            storeBuild.activeBuild([]);
         } else {
             interBtn.btn(true, setBtn)
-            storeBuild.buildBtn(false, null)
-            storePlayer.changePlayer(true)
+            storeBuild.activeBuild('player', null);
             storeBuild.changeRaySize(1, 1)
         }
     }

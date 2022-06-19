@@ -1,5 +1,5 @@
 import React from 'react';
-import { build, player, ground, interfaceButtons } from '@devComp/store';
+import { build, ground, interfaceButtons } from '@devComp/store';
 import { menu } from '@comp/store';
 import { Create } from '@shared/components/Crud';
 import { fetchURL } from '@shared/components/global';
@@ -81,14 +81,13 @@ export const ExitBtn = () => {
 export const SaveLevelBtn = () => {
     
     const storeBuild = build(state => state);
-    const storePlayer = player(state => state);
     const storeGround = ground(state => state);
 
     const handleSave = () => {
         console.log({
-            'walls': storeBuild.walls,
+            'walls': storeBuild.object,
             'ground': [storeGround.x, storeGround.y, storeGround.texture],
-            'player': storePlayer.playerMark
+            'player': storeBuild.object
         })
         
         /*const url = `${fetchURL}/createLevel`;

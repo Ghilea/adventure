@@ -29,7 +29,7 @@ export const Wall_1 = (props) => {
 
   const handleSelect = (e) => {
     if(!store.active){
-      console.log('selected: ', e);
+      console.log('selected: ', e.object.id);
     }
   }
 

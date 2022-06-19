@@ -33,13 +33,19 @@ export const interfaceButtons = create(set => ({
 }))
 
 export const build = create(set => ({
-    active: false,
-    texture: null,
-    walls: [],
+    active: [],
+    object: [],
     sizeX: 1,
     sizeY: 1,
     rotate: false,
     removeByIndex: null,
+    activeBuild: (arr, texture) => set(state => ({
+        ...state,
+        active: [
+            arr,
+            texture
+        ]
+    })),
     removeIndex: (value) => set(state => ({
         ...state,
         removeByIndex: value
@@ -50,21 +56,29 @@ export const build = create(set => ({
         sizeY: y,
         rotate: rotate
     })),
-    buildBtn: (active, texture) => set(state => ({
-        ...state,
-        active: active,
-        texture: texture
-    })),
-    addWall: (position, rotate, type, indexKey) => set(state => ({
-        walls: [
-            ...state.walls,
+    addObject: (position, rotation, type, texture, id) => set(state => ({
+        object: [
+            ...state.object,
             {
-                pos: position, 
-                rotate: rotate,
+                position: position, 
+                rotation: rotation,
                 type: type,
-                indexKey: indexKey
+                texture: texture,
+                id: id
             }
-        ]        
+        ]          
+    })),
+    updateObject: (position, rotation, texture) => set(state => ({
+        object: [
+            ...state.object,
+            {
+                position: position,
+                rotation: rotation,
+                type: type,
+                texture: texture,
+                id: id
+            }
+        ]
     })),
     removeWall: (x, z) => 
         set((state) => ({
@@ -83,35 +97,14 @@ export const ground = create(set => ({
     textureSizeY: 1,
     color: 'green',
     square: [],
-    square360: [],
-    square180: [],
-    addSquare: (x, z, indexKey) => set(state => ({
+    addSquare: (x, z, type, id) => set(state => ({
         square: [
             ...state.square,
             {
                 x: x, 
                 z: z,
-                indexKey: indexKey
-            }
-        ]
-    })),
-    addSquare360: (x, z, indexKey) => set(state => ({
-        square360: [
-            ...state.square360,
-            {
-                x: x,
-                z: z,
-                indexKey: indexKey
-            }
-        ]
-    })),
-    addSquare180: (x, z, indexKey) => set(state => ({
-        square180: [
-            ...state.square180,
-            {
-                x: x,
-                z: z,
-                indexKey: indexKey
+                type: type,
+                id: id
             }
         ]
     })),
@@ -133,17 +126,4 @@ export const ground = create(set => ({
         ...state,
         texture: texture
     })),
-}))
-
-export const player = create(set => ({
-    active: false,
-    playerMark: 0,
-    changePlayer: (active) => set(state => ({
-        ...state,
-        active: active
-    })),
-    addPlayer: (pos) => set(state => ({
-        ...state,
-        playerMark: pos
-    }))
 }))

@@ -25,11 +25,12 @@ export const CategoryWall = () => {
     const handleWall = (setTexture) => {
         if (interBtn.active && interBtn.button === setTexture) {
             interBtn.btn(false, null)
-            storeBuild.buildBtn(false, null)
+            storeBuild.activeBuild([]);
             storeBuild.changeRaySize(1, 1)
         } else {
             interBtn.btn(true, setTexture);
-            storeBuild.buildBtn(true, setTexture);
+            storeBuild.activeBuild('wall', setTexture);
+            console.log(storeBuild.object)
             storeBuild.changeRaySize(5, 1, false)
         }
     }

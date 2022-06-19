@@ -4,7 +4,7 @@ import { Ground } from '@devComp/map';
 import { Physics } from '@react-three/cannon';
 import { OrbitControls } from '@react-three/drei'
 import { RightPanel, TopPanel } from '@devComp/interface/panel';
-import { build, ground, player, mousePosition} from '@devComp/store';
+import { build, ground, mousePosition} from '@devComp/store';
 import { useKey } from 'rooks';
 import { AddWall } from '@devComp/add/addWall';
 import { AddPlayer } from '@devComp/add/addPlayer';
@@ -12,7 +12,6 @@ import { AddPlayer } from '@devComp/add/addPlayer';
 export const MapEditor = () => {
     
     const storeBuild = build(state => state);
-    const storePlayer = player(state => state);
     const storeGround = ground(state => state)
     const position = mousePosition(state => state);
 
@@ -25,13 +24,11 @@ export const MapEditor = () => {
 
         if (event.type === 'click' && storeGround.color === 'green') {
 
-            if (storeBuild.active) {
-
+            if (storeBuild.active[0] === 'wall') {
                 setWall((state) => ([
                     ...state, 
                     <AddWall 
                     key = {'wall'+index}
-                    indexKey = {'wall'+index}
                     position = {
                         [Math.floor(position.x) + 0.5, position.y + (4/2), Math.floor(position.z) + 0.5]
                     }
@@ -39,14 +36,20 @@ export const MapEditor = () => {
                         (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
                     }
                     type = {
-                        storeBuild.texture
+                        'wall'
+                    }
+                    texture = {
+                        storeBuild.active[1]
+                    }
+                    id = {
+                        index
                     }
                     />
                 ]))
- 
-                setIndex(index + 1);
 
-            }else if (storePlayer.active) {
+                setIndex(index + 1)
+ 
+            }else if (storeBuild.active[0] === 'player') {
 
                 setPlayerMark(
                   
@@ -73,7 +76,7 @@ export const MapEditor = () => {
     }, [storeBuild.walls])
 
     const keyHandler = () => {
-        console.log(storeBuild.rotate)
+        console.log(storeBuild.object)
         if (storeBuild.rotate) {
             storeBuild.changeRaySize(storeBuild.sizeY, storeBuild.sizeX, false) 
         }else{
