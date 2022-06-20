@@ -13,9 +13,8 @@ export const WallBtn = () => {
     }
 
     return (
-        <div onClick={handleClick} className='categoryBtn'>
-            <img src='./assets/images/svg/eraser_icon.svg' alt='Eraser button' title='Eraser button'/>
-            <p>Walls</p>
+        <div onClick={handleClick} className='categoryBtn' data-tooltip='Walls'>
+            <img src='./assets/images/icons/walls.png' alt='Show walls button' />
         </div>
     )
 
@@ -30,9 +29,8 @@ export const GroundBtn = () => {
     }
 
     return (
-        <div onClick={handleClick} className='categoryBtn'>
-            <img src='./assets/images/svg/eraser_icon.svg' alt='Eraser button' title='Eraser button'/>
-            <p>Ground</p>
+        <div onClick={handleClick} className='categoryBtn' data-tooltip='Ground'>
+            <img src='./assets/images/icons/ground.png' alt='Show ground button' />
         </div>
     )
 
@@ -47,9 +45,8 @@ export const CharactersBtn = () => {
     }
 
     return (
-        <div onClick={handleClick} className='categoryBtn'>
-            <img src='./assets/images/svg/eraser_icon.svg' alt='Eraser button' title='Eraser button'/>
-            <p>Characters</p>
+        <div onClick={handleClick} className='categoryBtn' data-tooltip='Characters'>
+            <img src='./assets/images/icons/characters.png' alt='Show characters button' />
         </div>
     )
 

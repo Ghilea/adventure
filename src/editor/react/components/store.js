@@ -15,7 +15,7 @@ export const mousePosition = create(set => ({
 export const interfaceButtons = create(set => ({
     active: false,
     button: null,
-    categoryBtn: 'ground',
+    categoryBtn: null,
     remove: false,
     changeCategoryBtn: (value) => set(state => ({
         ...state,

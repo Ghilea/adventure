@@ -27,6 +27,18 @@ export const TopPanel = () => {
     )
 }
 
+export const CategorySidePanel = () => {
+
+    return (
+        <div className='categorySidePanel'>
+            <GroundBtn />
+            <CharactersBtn />
+            <WallBtn />
+        </div>
+    )
+    
+}
+
 export const RightPanel = () => {
 
     const storeInterface = interfaceButtons(state => state);
@@ -58,19 +70,16 @@ export const RightPanel = () => {
     }, [storeInterface.categoryBtn])
 
     return (
-        <div className="rightPanel" 
-        onContextMenu = {
-            handleMouseClick
-        }
-        >
-            <div className='categorySidePanel'>
-                <GroundBtn />
-                <CharactersBtn />
-                <WallBtn />
-            </div>
-            
-            {gui}
-            
-        </div>
+        <>
+            {
+                (storeInterface.categoryBtn !== null) ?
+                    <div className="rightPanel" onContextMenu = {handleMouseClick}>
+                        {gui}
+                    </div>
+                :
+                    <></>
+            }
+        
+        </>
     )
 }

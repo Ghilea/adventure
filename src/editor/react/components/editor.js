@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { Ground } from '@devComp/map';
 import { Physics } from '@react-three/cannon';
 import { OrbitControls } from '@react-three/drei'
-import { RightPanel, TopPanel } from '@devComp/interface/panel';
+import { RightPanel, TopPanel, CategorySidePanel } from '@devComp/interface/panel';
 import { build, ground, mousePosition} from '@devComp/store';
 import { useKey } from 'rooks';
 import { AddWall } from '@devComp/add/addWall';
@@ -89,6 +89,7 @@ export const MapEditor = () => {
     return (
         <>
             <TopPanel />
+            <CategorySidePanel />
             <RightPanel />
             <Canvas 
             onClick = {

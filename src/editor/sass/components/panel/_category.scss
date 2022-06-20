@@ -1,6 +1,6 @@
 .categorySidePanel {
     position: absolute;
-    right: -4em;
+    right: 0;
     top: 0;
     z-index: 1;
     background-color: rgb(54, 53, 53);
@@ -27,11 +27,30 @@
 
         &:hover{
             background-color: rgba(0, 0, 0, 0.5);
+
+            &::after {
+                position: absolute;
+                content: attr(data-tooltip);
+                width: fit-content;
+                right: 4.5em;
+                background-color: #333;
+                color: white;
+                padding: 0.6em 0.7em;
+                z-index: 3;
+                border: #fff 0.05em solid;
+                border-bottom-left-radius: 0.3em;
+                border-top-left-radius: 0.3em;
+            }
+
+            img {
+                filter: brightness(15%) invert(1)
+            }
         }
 
         img {
             width: 2em;
             height: auto;
+            filter: grayscale(100%);
         }
     }
 
