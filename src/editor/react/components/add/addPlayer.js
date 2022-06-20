@@ -28,6 +28,22 @@ export const AddPlayer = ({position}) => {
             storeGround.groundColor('red');
             storeGround.addSquare((position[0]), position[2], 0, 0);
         }
+
+        for (let i = 0; i < 5; i++) {
+            if (!store.rotate) {
+                //longside 360
+                for (let x = 1; x < 3; x++) {
+                    storeGround.addSquare((position[0] - 2) + i, position[2] - x, 180, 0)
+                    storeGround.addSquare((position[0] - 2) + i, position[2] + x, 180, 0)
+                }
+            } else {
+                //longside 180
+                for (let x = 1; x < 3; x++) {
+                    storeGround.addSquare((position[0] - x), (position[2] - 2) + i, 360, 0)
+                    storeGround.addSquare((position[0] + x), (position[2] - 2) + i, 360, 0)
+                }
+            }
+        }
         
     }, [position])
 
