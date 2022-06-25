@@ -22,31 +22,23 @@ export const Ground = (props) => {
     }))
    
     const pointerMove = (event) => {
+        storeGround.emptySquareArea()
         const x = event.point.x;
         const y = event.point.y;
         const z = event.point.z;
         const centerX = (Math.floor(x) + 0.5)
         const centerZ = (Math.floor(z) + 0.5)
 
-        storePosition.editPosition(x, y, z)
-    
+        storePosition.editPosition(x, y, z)    
+
+
         if(storeGround.square.length > 0){
             const check = storeGround.square.filter(obj => {
-                return (obj.x == centerX) && (obj.z == centerZ) && (obj.type == 0)
+                return (obj.x == centerX) && (obj.z == centerZ) || (!storeBuild.rotate) ? (obj.x >= (Math.floor(x) + 0.5 - (storeBuild.sizeX / 2))) && obj.z == centerZ && (obj.x <= (Math.floor(x) + (storeBuild.sizeX / 2))) && obj.z == centerZ : (obj.x == centerX && obj.z >= (Math.floor(z) + 0.5 - (storeBuild.sizeY / 2))) && (obj.x == centerX && obj.z <= (Math.floor(z) + (storeBuild.sizeY / 2)))
             })
             
-            const check360 = storeGround.square.filter(obj => {
-                return (obj.x == centerX) && (obj.z == centerZ) && (obj.type == 360)
-            })
-            
-            const check180 = storeGround.square.filter(obj => {
-                return (obj.x == centerX) && (obj.z == centerZ) && (obj.type == 180)
-            })
-
             if (check.length > 0) {
                 storeGround.groundColor('red'); 
-            } else if ((!storeBuild.rotate) ? check360.length > 0 : check180.length > 0){
-                storeGround.groundColor('red');
             }else{
                 storeGround.groundColor('green');
             }
@@ -55,7 +47,6 @@ export const Ground = (props) => {
     }
 
     useFrame(() => {
-       
         setHighLight.position.set(Math.floor(storePosition.x) + 0.5, storePosition.y + 0.01, Math.floor(storePosition.z) + 0.5);
     })
 
