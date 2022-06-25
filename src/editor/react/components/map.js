@@ -34,7 +34,7 @@ export const Ground = (props) => {
 
         if(storeGround.square.length > 0){
             const check = storeGround.square.filter(obj => {
-                return (obj.x == centerX) && (obj.z == centerZ) || (!storeBuild.rotate) ? (obj.x >= (Math.floor(x) + 0.5 - (storeBuild.sizeX / 2))) && obj.z == centerZ && (obj.x <= (Math.floor(x) + (storeBuild.sizeX / 2))) && obj.z == centerZ : (obj.x == centerX && obj.z >= (Math.floor(z) + 0.5 - (storeBuild.sizeY / 2))) && (obj.x == centerX && obj.z <= (Math.floor(z) + (storeBuild.sizeY / 2)))
+                return (obj.x == centerX) && (obj.z == centerZ) || (!storeBuild.rotate) ? (obj.x >= (centerX - (storeBuild.sizeX / 2))) && obj.z == centerZ && (obj.x <= (Math.floor(x) + (storeBuild.sizeX / 2))) && obj.z == centerZ : (obj.x == centerX && obj.z >= (centerZ - (storeBuild.sizeY / 2))) && (obj.x == centerX && obj.z <= (Math.floor(z) + (storeBuild.sizeY / 2)))
             })
             
             if (check.length > 0) {
