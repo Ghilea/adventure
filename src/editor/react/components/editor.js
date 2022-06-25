@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Ground } from '@devComp/map';
+import { Ground } from '@devComp/ground';
 import { Physics } from '@react-three/cannon';
 import { OrbitControls } from '@react-three/drei'
 import { RightPanel, TopPanel, CategorySidePanel } from '@devComp/interface/panel';
