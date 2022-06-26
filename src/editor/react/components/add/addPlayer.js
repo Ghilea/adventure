@@ -13,11 +13,11 @@ export const AddPlayer = ({position}) => {
         })
 
         if(check.length <= 0){
-            store.addObject(position, Math.PI * (360 / 360), 'player', null, 0);
+            store.addObject(position, Math.PI * (360 / 360), 'player', null);
         }
 
         storeGround.groundColor('red');
-        storeGround.addSquare((position[0]), position[2], 0, 0);
+        storeGround.addSquare((position[0]), position[2], 0);
         
     }, [position])
 

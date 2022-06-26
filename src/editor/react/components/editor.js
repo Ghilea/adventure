@@ -8,6 +8,7 @@ import { build, ground, mousePosition} from '@devComp/store';
 import { useKey } from 'rooks';
 import { AddWall } from '@devComp/add/addWall';
 import { AddPlayer } from '@devComp/add/addPlayer';
+import { SelectObject } from '@devComp/helper/selectObject';
 
 export const MapEditor = () => {
     
@@ -28,6 +29,7 @@ export const MapEditor = () => {
                 setWall((state) => ([
                     ...state, 
                     <AddWall 
+                    onClick = {<SelectObject />}
                     key = {'wall'+index}
                     position = {
                         [Math.floor(position.x) + 0.5, position.y + (4/2), Math.floor(position.z) + 0.5]
@@ -40,9 +42,6 @@ export const MapEditor = () => {
                     }
                     texture = {
                         storeBuild.active[1]
-                    }
-                    id = {
-                        index
                     }
                     />
                 ]))

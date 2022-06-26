@@ -39,6 +39,7 @@ export const build = create(set => ({
     sizeY: 1,
     rotate: false,
     removeByIndex: null,
+    selected: null,
     activeBuild: (arr, texture) => set(state => ({
         ...state,
         active: [
@@ -56,15 +57,14 @@ export const build = create(set => ({
         sizeY: y,
         rotate: rotate
     })),
-    addObject: (position, rotation, type, texture, id) => set(state => ({
+    addObject: (position, rotation, type, texture) => set(state => ({
         object: [
             ...state.object,
             {
                 position: position, 
                 rotation: rotation,
                 type: type,
-                texture: texture,
-                id: id
+                texture: texture
             }
         ]          
     })),
@@ -85,6 +85,12 @@ export const build = create(set => ({
             walls: state.walls.filter((item) => {
                 return item.pos[0] !== x || item.pos[2] !== z
             })
+        })
+    ),
+    selectedObject: (id) =>
+        set((state) => ({
+            ...state,
+            selected: id
         })
     )
 }))
