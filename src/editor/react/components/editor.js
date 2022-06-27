@@ -20,9 +20,15 @@ export const MapEditor = () => {
     const [playerMark, setPlayerMark] = useState(null);
     const [index, setIndex] = useState(0);
     
-    const handleMouseClick = (event) => {
-        event.preventDefault();
+    useEffect(() => {
+        if (storeBuild.active.length > 0) {
+            storeBuild.selectedObject(null)
+            console.log('reset')
+        }
+    }, [storeBuild.active])
 
+    const handleMouseClick = (event) => {
+        
         if (event.type === 'click' && storeGround.color === 'green') {
 
             if (storeBuild.active[0] === 'wall') {
