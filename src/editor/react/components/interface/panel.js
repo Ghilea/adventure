@@ -7,6 +7,8 @@ import { interfaceButtons, build } from '@devComp/store';
 
 export const TopPanel = () => {
 
+    const storeBuild = build(state => state);
+
     const handleMouseClick = (event) => {
         if (event.type === 'contextmenu') {
             event.preventDefault();
@@ -20,7 +22,15 @@ export const TopPanel = () => {
         }
         >
             <SaveLevelBtn />
-            <RemoveObjectBtn />
+
+            {
+                (storeBuild.selected !== null) ? 
+                    <RemoveObjectBtn />
+                :
+                    <></>
+            }
+            
+            
             <ExitBtn />
             
         </div>

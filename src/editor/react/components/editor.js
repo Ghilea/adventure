@@ -21,7 +21,7 @@ export const MapEditor = () => {
     const [index, setIndex] = useState(0);
     
     useEffect(() => {
-        if (storeBuild.active.length > 0) {
+        if (storeBuild.active.length > 0 && storeBuild.selected !== null) {
             storeBuild.selectedObject(null)
             console.log('reset')
         }
