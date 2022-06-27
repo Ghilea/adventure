@@ -38,7 +38,6 @@ export const build = create(set => ({
     sizeX: 1,
     sizeY: 1,
     rotate: false,
-    removeByIndex: null,
     selected: null,
     activeBuild: (arr, texture) => set(state => ({
         ...state,
@@ -46,10 +45,6 @@ export const build = create(set => ({
             arr,
             texture
         ]
-    })),
-    removeIndex: (value) => set(state => ({
-        ...state,
-        removeByIndex: value
     })),
     changeRaySize: (x, y, rotate) => set(state => ({
         ...state,
@@ -80,10 +75,10 @@ export const build = create(set => ({
             }
         ]
     })),
-    removeWall: (x, z) => 
+    removeObject: (data) => 
         set((state) => ({
-            walls: state.walls.filter((item) => {
-                return item.pos[0] !== x || item.pos[2] !== z
+            object: state.object.filter((item) => {
+                return item.position[0] !== data[0].position.x || item.position !== data[0].position.y || item.position[2] !== data[0].position.z
             })
         })
     ),

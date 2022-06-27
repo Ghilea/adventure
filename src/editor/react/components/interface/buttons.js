@@ -55,9 +55,23 @@ export const CharactersBtn = () => {
 export const RemoveObjectBtn = () => {
     
     const store = interfaceButtons(state => state);
+    const storeBuild = build(state => state);
+
+    /*const removeWall = (e) => {
+    console.log('click', e);
+    console.log('wall', store.walls[0].pos);
+    store.removeWall(e.object.position.x, e.object.position.z)
+
+    const filtredItem = store.walls.filter((item) => {
+      return item.pos[0] === e.eventObject.position.x && item.pos[1] === e.eventObject.position.y && item.pos[2] === e.eventObject.position.z
+    })
+    console.log(filtredItem[0])
+    store.removeIndex(filtredItem[0].indexKey);
+  }*/
 
     const handleClick = () => {
         store.isRemove(true);
+        storeBuild.removeObject(storeBuild.selected)
     }
 
     return (

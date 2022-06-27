@@ -15,18 +15,6 @@ export const Wall_1 = (props) => {
   
   const store = build(state => state);
 
-  /*const removeWall = (e) => {
-    console.log('click', e);
-    console.log('wall', store.walls[0].pos);
-    store.removeWall(e.object.position.x, e.object.position.z)
-
-    const filtredItem = store.walls.filter((item) => {
-      return item.pos[0] === e.eventObject.position.x && item.pos[1] === e.eventObject.position.y && item.pos[2] === e.eventObject.position.z
-    })
-    console.log(filtredItem[0])
-    store.removeIndex(filtredItem[0].indexKey);
-  }*/
-
   const handleSelect = (e) => {
     e.stopPropagation()
     const check = store.object.filter((item) => {
@@ -34,8 +22,8 @@ export const Wall_1 = (props) => {
     })
 
     if(check.length > 0 && e.object.id !== store.selected && store.selected === null){
-      console.log(check, 'found object and select it')
-      store.selectedObject(e.object.id)
+      console.log('found object and select it')
+      store.selectedObject(check)
     }
     
   }

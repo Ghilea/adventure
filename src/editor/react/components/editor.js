@@ -27,6 +27,10 @@ export const MapEditor = () => {
         }
     }, [storeBuild.active])
 
+    useEffect(() => {
+        console.log(storeBuild.object)
+    }, [storeBuild.object])
+
     const handleMouseClick = (event) => {
         
         if (event.type === 'click' && storeGround.color === 'green') {
