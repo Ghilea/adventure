@@ -21,9 +21,9 @@ export const Wall_1 = (props) => {
       return item.position[0] === e.eventObject.position.x && item.position[1] === e.eventObject.position.y && item.position[2] === e.eventObject.position.z && item.type === 'wall'
     })
 
-    if(check.length > 0 && e.object.id !== store.selected && store.selected === null){
-      console.log('found object and select it')
-      store.selectedObject(check)
+    if(check.length > 0 && (check[0].objectId !== store.selected || store.selected === null)){
+      console.log('found object and select it', check[0].objectId)
+      store.selectedObject(check[0].objectId)
     }
     
   }

@@ -18,8 +18,8 @@ export const GroundCheck = () => {
         const centerX = (Math.floor(storePosition.x) + 0.5)
         const centerZ = (Math.floor(storePosition.z) + 0.5)
 
-        if(storeGround.square.length > 0){
-            const check = storeGround.square.filter(obj => {
+        if(storeBuild.solid.length > 0){
+            const check = storeBuild.solid.filter(obj => {
                 return (obj.x == centerX) && (obj.z == centerZ) || (!storeBuild.rotate) ? (obj.x >= (centerX - (storeBuild.sizeX / 2))) && obj.z == centerZ && (obj.x <= (Math.floor(storePosition.x) + (storeBuild.sizeX / 2))) && obj.z == centerZ : (obj.x == centerX && obj.z >= (centerZ - (storeBuild.sizeY / 2))) && (obj.x == centerX && obj.z <= (Math.floor(storePosition.z) + (storeBuild.sizeY / 2)))
             })
             

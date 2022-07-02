@@ -35,10 +35,12 @@ export const interfaceButtons = create(set => ({
 export const build = create(set => ({
     active: [],
     object: [],
+    solid: [],
     sizeX: 1,
     sizeY: 1,
     rotate: false,
     selected: null,
+    remove: null,
     activeBuild: (arr, texture) => set(state => ({
         ...state,
         active: [
@@ -52,18 +54,29 @@ export const build = create(set => ({
         sizeY: y,
         rotate: rotate
     })),
-    addObject: (position, rotation, type, texture) => set(state => ({
+    addSolid: (x, z, objectId) => set(state => ({
+        solid: [
+            ...state.solid,
+            {
+                x: x,
+                z: z,
+                objectId: objectId
+            }
+        ]
+    })),
+    addObject: (position, rotation, type, texture, objectId) => set(state => ({
         object: [
             ...state.object,
             {
                 position: position, 
                 rotation: rotation,
                 type: type,
-                texture: texture
+                texture: texture,
+                objectId: objectId
             }
         ]          
     })),
-    updateObject: (position, rotation, texture) => set(state => ({
+    updateObject: (position, rotation, texture, solidX, solidZ) => set(state => ({
         object: [
             ...state.object,
             {
@@ -71,15 +84,27 @@ export const build = create(set => ({
                 rotation: rotation,
                 type: type,
                 texture: texture,
-                id: id
+                id: id,
+                solid: [
+                    ...state.solid,
+                    {
+                        x: solidX,
+                        z: solidZ
+                    }
+                ]
             }
         ]
     })),
     removeObject: (data) => 
         set((state) => ({
             object: state.object.filter((item) => {
-                return item.position[0] !== data[0].position.x || item.position !== data[0].position.y || item.position[2] !== data[0].position.z
-            })
+                return item.objectId !== data
+            }),
+            solid: state.solid.filter((item) => {
+                return item.objectId !== data
+            }),
+            remove: data,
+            selected: []
         })
     ),
     selectedObject: (id) =>
@@ -87,7 +112,14 @@ export const build = create(set => ({
             ...state,
             selected: id
         })
+    ),
+    unSelectedObject: () =>
+        set((state) => ({
+            ...state,
+            selected: []
+        })
     )
+    
 }))
 
 export const ground = create(set => ({

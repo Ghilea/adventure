@@ -6,7 +6,7 @@ import { OrbitControls } from '@react-three/drei'
 import { RightPanel, TopPanel, CategorySidePanel } from '@devComp/interface/panel';
 import { build, ground, mousePosition} from '@devComp/store';
 import { useKey } from 'rooks';
-import { AddWall } from '@devComp/add/addWall';
+import { AddObject } from '@devComp/add/addObject';
 import { AddPlayer } from '@devComp/add/addPlayer';
 import { SelectObject } from '@devComp/helper/selectObject';
 
@@ -16,7 +16,7 @@ export const MapEditor = () => {
     const storeGround = ground(state => state)
     const position = mousePosition(state => state);
 
-    const [wall, setWall] = useState([]);
+    const [obj, setObj] = useState([]);
     const [playerMark, setPlayerMark] = useState(null);
     const [index, setIndex] = useState(0);
     
@@ -36,9 +36,9 @@ export const MapEditor = () => {
         if (event.type === 'click' && storeGround.color === 'green') {
 
             if (storeBuild.active[0] === 'wall') {
-                setWall((state) => ([
+                setObj((state) => ([
                     ...state, 
-                    <AddWall 
+                    <AddObject 
                     onClick = {<SelectObject />}
                     key = {'wall'+index}
                     position = {
@@ -53,6 +53,7 @@ export const MapEditor = () => {
                     texture = {
                         storeBuild.active[1]
                     }
+                    objectId={index}
                     />
                 ]))
 
@@ -61,12 +62,10 @@ export const MapEditor = () => {
             }else if (storeBuild.active[0] === 'player') {
 
                 setPlayerMark(
-                  
-                        <AddPlayer 
-                            position = {
-                                [Math.floor(position.x) + 0.5, position.y + 0.55, Math.floor(position.z) + 0.5]
-                            } />
-                
+                    <AddPlayer 
+                    position = {
+                        [Math.floor(position.x) + 0.5, position.y + 0.55, Math.floor(position.z) + 0.5]
+                    } />
                 )
             }
         } else if (event.type === 'contextmenu') {
@@ -75,17 +74,16 @@ export const MapEditor = () => {
     }
 
     useEffect(()=> {
-        
-        const removeWall = wall.filter((item) => {
-            return item.key !== storeBuild.removeByIndex
-        })
 
-        setWall(removeWall)
+        if(storeBuild.remove !== null){
+            setObj(obj.filter((item) => {
+                return item.props.objectId !== storeBuild.remove
+            }))
+        }
 
-    }, [storeBuild.walls])
+    }, [storeBuild.remove])
 
     const keyHandler = () => {
-        console.log(storeBuild.object)
         if (storeBuild.rotate) {
             storeBuild.changeRaySize(storeBuild.sizeY, storeBuild.sizeX, false) 
         }else{
@@ -120,7 +118,7 @@ export const MapEditor = () => {
                         [0, 0, 0]
                     }
                     />
-                    {wall}
+                    {obj}
                     {playerMark}   
                 </Physics>
                 
