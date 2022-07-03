@@ -19,6 +19,7 @@
         "@react-three/fiber": "8.0.24",
         "@react-three/drei": "9.13.0",
         "@react-three/cannon": "6.3.0",
+        "@react-three/postprocessing": "2.4.2",
         "zustand": "4.0.0-rc.1"
     },
     "devDependencies": {

@@ -9,6 +9,7 @@ import { useKey } from 'rooks';
 import { AddObject } from '@devComp/add/addObject';
 import { AddPlayer } from '@devComp/add/addPlayer';
 import { SelectObject } from '@devComp/helper/selectObject';
+import { Selection, EffectComposer, Outline } from '@react-three/postprocessing';
 
 export const MapEditor = () => {
     
@@ -118,8 +119,13 @@ export const MapEditor = () => {
                         [0, 0, 0]
                     }
                     />
+                    <Selection>
+                        <EffectComposer multisampling={8} autoClear={false}>
+                        <Outline blur visibleEdgeColor="white" edgeStrength={100} width={1000} />
+                        </EffectComposer>
                     {obj}
-                    {playerMark}   
+                    {playerMark}
+                    </Selection>  
                 </Physics>
                 
             </Canvas>
