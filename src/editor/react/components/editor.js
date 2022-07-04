@@ -18,7 +18,6 @@ export const MapEditor = () => {
     const position = mousePosition(state => state);
 
     const [obj, setObj] = useState([]);
-    const [playerMark, setPlayerMark] = useState(null);
     const [index, setIndex] = useState(0);
     
     useEffect(() => {
@@ -40,7 +39,9 @@ export const MapEditor = () => {
                 setObj((state) => ([
                     ...state, 
                     <AddObject 
-                    onClick = {<SelectObject />}
+                    onClick = {
+                        <SelectObject />
+                    }
                     key = {'wall'+index}
                     position = {
                         [Math.floor(position.x) + 0.5, position.y + (4/2), Math.floor(position.z) + 0.5]
@@ -57,18 +58,37 @@ export const MapEditor = () => {
                     objectId={index}
                     />
                 ]))
-
-                setIndex(index + 1)
  
             }else if (storeBuild.active[0] === 'player') {
 
-                setPlayerMark(
+                setObj((state) => ([
+                    ...state,
                     <AddPlayer 
+                    onClick = {
+                        <SelectObject/>
+                    }
+                    key = {
+                        'player' + index
+                    }
                     position = {
                         [Math.floor(position.x) + 0.5, position.y + 0.55, Math.floor(position.z) + 0.5]
-                    } />
-                )
+                    }
+                    rotation = {
+                        (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
+                    }
+                    type = {
+                        'player'
+                    }
+                    texture = {
+                        'player'
+                    }
+                    objectId = {
+                        index
+                    }/>
+                ]))
             }
+
+            setIndex(index + 1)
         } else if (event.type === 'contextmenu') {
             event.preventDefault();
         }
@@ -124,7 +144,6 @@ export const MapEditor = () => {
                         <Outline blur visibleEdgeColor="white" edgeStrength={100} width={1000} />
                         </EffectComposer>
                     {obj}
-                    {playerMark}
                     </Selection>  
                 </Physics>
                 
