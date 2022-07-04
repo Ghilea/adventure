@@ -7,7 +7,6 @@ import { RightPanel, TopPanel, CategorySidePanel } from '@devComp/interface/pane
 import { build, ground, mousePosition} from '@devComp/store';
 import { useKey } from 'rooks';
 import { AddObject } from '@devComp/add/addObject';
-import { AddPlayer } from '@devComp/add/addPlayer';
 import { SelectObject } from '@devComp/helper/selectObject';
 import { Selection, EffectComposer, Outline } from '@react-three/postprocessing';
 
@@ -63,7 +62,7 @@ export const MapEditor = () => {
 
                 setObj((state) => ([
                     ...state,
-                    <AddPlayer 
+                    <AddObject 
                     onClick = {
                         <SelectObject/>
                     }

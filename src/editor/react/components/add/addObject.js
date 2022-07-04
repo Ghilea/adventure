@@ -8,7 +8,9 @@ export const AddObject = ({position, rotation, type, texture, objectId}) => {
     const storeGround = ground(state => state);
     const [object, setObject] = useState(null);
 
-    useEffect(() => {                              
+    useEffect(() => {   
+        
+        console.log(texture, objectId)
         switch (texture) {
             case 'wall_1':
                 setObject(<Wall_1 position = {position} rotation = {rotation}/>)
