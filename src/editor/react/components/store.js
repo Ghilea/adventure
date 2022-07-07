@@ -39,6 +39,7 @@ export const build = create(set => ({
     sizeX: 1,
     sizeY: 1,
     rotate: false,
+    selecting: null,
     selected: null,
     remove: null,
     activeBuild: (arr, texture) => set(state => ({
@@ -112,14 +113,7 @@ export const build = create(set => ({
             ...state,
             selected: id
         })
-    ),
-    unSelectedObject: () =>
-        set((state) => ({
-            ...state,
-            selected: []
-        })
-    )
-    
+    )    
 }))
 
 export const ground = create(set => ({
