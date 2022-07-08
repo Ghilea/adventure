@@ -61,6 +61,7 @@ export const RemoveObjectBtn = () => {
         store.isRemove(true);
         console.log('selected: ', storeBuild.selected)
         storeBuild.removeObject(storeBuild.selected)
+        storeBuild.selectedObject(null)
     }
 
     return (

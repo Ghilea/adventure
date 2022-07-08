@@ -11,6 +11,7 @@ export const Player = (props) => {
   const [select, setSelect] = useState(null);
 
   const handleClick = (e) => {
+    e.stopPropagation();
     const val = SelectObject(e.eventObject.position, 'player', store);
 
     setSelect(val)

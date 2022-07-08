@@ -18,6 +18,7 @@ export const Wall_1 = (props) => {
   const [select, setSelect] = useState(null);
 
   const handleClick = (e) => {
+    e.stopPropagation();
     const val = SelectObject(e.eventObject.position, 'wall', store);
     
     setSelect(val)

@@ -3,7 +3,7 @@ import { Ground } from '@comp/map/Ground';
 import { Torch } from '@shared/models/torch';
 import { Rock } from '@shared/models/rocks';
 import { StoneWall, StoneWall_2, StoneWall_3 } from '@shared/models/walls';
-import { PlayerPose } from '@shared/models/player';
+import { Player } from '@shared/models/player';
 import { Loader } from '@comp/menu/loader';
 
 export const MenuBg = () => {
@@ -65,7 +65,7 @@ export const MenuBg = () => {
             </Suspense>
 
             <Suspense fallback = {<Loader />}>
-                <PlayerPose position={[0, 1.15, -2]} scale={2.5} rotation={[0, Math.PI * (360/360), 0]}/>
+                <Player position={[0, 1.15, -2]} scale={2.5} rotation={[0, Math.PI * (360/360), 0]}/>
             </Suspense>
         </>
     )
