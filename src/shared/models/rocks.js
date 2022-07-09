@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 
-export const Rock = (props) => {
+export const Rock_1 = (props) => {
     const group = useRef();
     const { nodes, materials } = useGLTF("./assets/images/3d/rock.gltf");
 

@@ -4,6 +4,22 @@ import { menu } from '@comp/store';
 import { Create } from '@shared/components/Crud';
 import { fetchURL } from '@shared/components/global';
 
+export const ObjectsBtn = () => {
+    
+    const store = interfaceButtons(state => state);
+
+    const handleClick = () => {
+        store.changeCategoryBtn('objects');
+    }
+
+    return (
+        <div onClick={handleClick} className='categoryBtn' data-tooltip='Objects'>
+            <img src='./assets/images/icons/objects.png' alt='Show objects button' />
+        </div>
+    )
+
+}
+
 export const WallBtn = () => {
     
     const store = interfaceButtons(state => state);

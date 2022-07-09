@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import { Ground } from '@comp/map/Ground';
 import { Torch } from '@shared/models/torch';
-import { Rock } from '@shared/models/rocks';
+import { Rock_1 } from '@shared/models/rocks';
 import { StoneWall, StoneWall_2, StoneWall_3 } from '@shared/models/walls';
 import { Player } from '@shared/models/player';
 import { Loader } from '@comp/menu/loader';
@@ -61,7 +61,7 @@ export const MenuBg = () => {
             <Suspense fallback = {<Loader />}>
                 <Torch position={[0, 1.5, 3.8]} scale={[0.03, 0.03, 0.03]} rotation={[0, Math.PI * (360/360), 0]}/>
                 <Torch position={[-4.3, 1.5, -2]} scale={[0.03, 0.03, 0.03]} rotation={[0, Math.PI * (180/360), 0]}/>
-                <Rock position={[-2.5, 0.5, -2]} scale={[1, 1, 1]}/>
+                <Rock_1 position={[-2.5, 0.5, -2]} scale={[1, 1, 1]}/>
             </Suspense>
 
             <Suspense fallback = {<Loader />}>

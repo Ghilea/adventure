@@ -38,6 +38,37 @@
         }
     }
 
+    .objects {
+        height: fit-content;
+        display: flex;
+        gap: 1em;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .activeBtn {
+            box-shadow: 0 0 10px 5px rgb(119 29 1);
+        }
+
+        .objectsBtn {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.405);
+
+            &:hover {
+                box-shadow: 0 0 5px #fff;
+                cursor: pointer;
+            }
+        }
+
+        .rock_1 {
+            width: 2em;
+            height: 3em;
+            padding: 1em;
+            background-image: url('../images/texture/stone.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+       }
+    }
+
     .walls {
         height: fit-content;
         display: flex;
