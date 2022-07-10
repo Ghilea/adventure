@@ -1,7 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
+import { useBox } from '@react-three/cannon';
+import { build } from '@devComp/store';
+import { Select } from '@react-three/postprocessing';
+import { SelectObject } from '@devComp/helper/selectObject'
 
 export const Rock_1 = (props) => {
+    console.log('test')
     const group = useRef();
     const { nodes, materials } = useGLTF("./assets/images/3d/rock.gltf");
 

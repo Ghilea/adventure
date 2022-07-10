@@ -6,7 +6,7 @@ export const CategoryObjects = () => {
     const interBtn = interfaceButtons(state => state);
 
     const textureArr = [
-        'wall_1'      
+        'rock_1'      
     ]
 
     const buttons = textureArr.map((item, index) => {
@@ -29,15 +29,15 @@ export const CategoryObjects = () => {
             storeBuild.changeRaySize(1, 1)
         } else {
             interBtn.btn(true, setTexture);
-            storeBuild.activeBuild('wall', setTexture);
-            storeBuild.changeRaySize(5, 1, false)
+            storeBuild.activeBuild('object', setTexture);
+            storeBuild.changeRaySize(1, 1, false)
         }
     }
 
     return (
         <div className='container'>
             <h2>Boulders</h2>
-            <div className = 'Boulder' >
+            <div className = 'objects' >
                 {buttons}
             </div>
         </div>

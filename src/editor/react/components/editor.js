@@ -34,57 +34,85 @@ export const MapEditor = () => {
         
         if (event.type === 'click' && storeGround.color === 'green') {
 
-            if (storeBuild.active[0] === 'wall') {
-                setObj((state) => ([
-                    ...state, 
-                    <AddObject 
-                    onClick = {
-                        <SelectObject />
-                    }
-                    key = {'wall'+index}
-                    position = {
-                        [Math.floor(position.x) + 0.5, position.y + (4/2), Math.floor(position.z) + 0.5]
-                    }
-                    rotation = {
-                        (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
-                    }
-                    type = {
-                        'wall'
-                    }
-                    texture = {
-                        storeBuild.active[1]
-                    }
-                    objectId={index}
-                    />
-                ]))
- 
-            }else if (storeBuild.active[0] === 'player') {
-
-                setObj((state) => ([
-                    ...state,
-                    <AddObject 
-                    onClick = {
-                        <SelectObject/>
-                    }
-                    key = {
-                        'player' + index
-                    }
-                    position = {
-                        [Math.floor(position.x) + 0.5, position.y + 0.55, Math.floor(position.z) + 0.5]
-                    }
-                    rotation = {
-                        (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
-                    }
-                    type = {
-                        'player'
-                    }
-                    texture = {
-                        'player'
-                    }
-                    objectId = {
-                        index
-                    }/>
-                ]))
+            switch (storeBuild.active[0]) {
+                case 'wall':
+                    setObj((state) => ([
+                        ...state, 
+                        <AddObject 
+                        onClick = {
+                            <SelectObject />
+                        }
+                        key = {'wall'+index}
+                        position = {
+                            [Math.floor(position.x) + 0.5, position.y + (4/2), Math.floor(position.z) + 0.5]
+                        }
+                        rotation = {
+                            (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
+                        }
+                        type = {
+                            'wall'
+                        }
+                        texture = {
+                            storeBuild.active[1]
+                        }
+                        objectId={index}
+                        />
+                    ]))
+                    break;
+                case 'player':
+                    setObj((state) => ([
+                        ...state,
+                        <AddObject 
+                        onClick = {
+                            <SelectObject/>
+                        }
+                        key = {
+                            'player' + index
+                        }
+                        position = {
+                            [Math.floor(position.x) + 0.5, position.y + 0.55, Math.floor(position.z) + 0.5]
+                        }
+                        rotation = {
+                            (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
+                        }
+                        type = {
+                            'player'
+                        }
+                        texture = {
+                            'player'
+                        }
+                        objectId = {
+                            index
+                        }/>
+                    ]))
+                    break;
+                case 'object':
+                    setObj((state) => ([
+                        ...state,
+                        <AddObject 
+                        onClick = {
+                            <SelectObject/>
+                        }
+                        key = {
+                            'object' + index
+                        }
+                        position = {
+                            [Math.floor(position.x) + 0.5, position.y + 0.55, Math.floor(position.z) + 0.5]
+                        }
+                        rotation = {
+                            (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
+                        }
+                        type = {
+                            'object'
+                        }
+                        texture = {
+                            storeBuild.active[1]
+                        }
+                        objectId = {
+                            index
+                        }/>
+                    ]))
+                    break;
             }
 
             setIndex(index + 1)

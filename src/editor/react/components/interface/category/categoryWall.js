@@ -11,7 +11,9 @@ export const CategoryWall = () => {
 
     const buttons = textureArr.map((item, index) => {
         return (
-            <div key={item+index} className={
+            <div 
+            key={item+index} 
+            className={
                 `${item} 
                 ${
                     (interBtn.active && interBtn.button === item) ?
