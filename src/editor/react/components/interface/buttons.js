@@ -88,6 +88,23 @@ export const RemoveObjectBtn = () => {
 
 }
 
+export const SelectMap = () => {
+    
+    const store = interfaceButtons(state => state);
+    const storeBuild = build(state => state);
+
+    return (
+        <div className='selectMap'>
+            <select title='Show options'>
+                <option>Map</option>
+                <option>New map</option>
+                <option>Open map</option>
+            </select>
+        </div>
+    )
+
+}
+
 export const ExitBtn = () => {
     
     const storeMenu = menu(state => state);

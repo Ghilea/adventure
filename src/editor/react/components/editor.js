@@ -6,8 +6,7 @@ import { OrbitControls } from '@react-three/drei'
 import { RightPanel, TopPanel, CategorySidePanel } from '@devComp/interface/panel';
 import { build, ground, mousePosition} from '@devComp/store';
 import { useKey } from 'rooks';
-import { AddObject } from '@devComp/add/addObject';
-import { SelectObject } from '@devComp/helper/selectObject';
+import { SelectObject, AddObject } from '@devComp/helper/helperObject';
 import { Selection, EffectComposer, Outline } from '@react-three/postprocessing';
 
 export const MapEditor = () => {

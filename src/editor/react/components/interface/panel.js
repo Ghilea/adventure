@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { ExitBtn, SaveLevelBtn, WallBtn, CharactersBtn, GroundBtn, RemoveObjectBtn, ObjectsBtn } from '@devComp/interface/buttons';
+import { ExitBtn, SaveLevelBtn, WallBtn, CharactersBtn, GroundBtn, RemoveObjectBtn, ObjectsBtn, SelectMap } from '@devComp/interface/buttons';
 import { CategoryGround } from '@devComp/interface/category/categoryGround';
 import { CategoryWall } from '@devComp/interface/category/categoryWall';
 import { CategoryPlayer } from '@devComp/interface/category/categoryPlayer';
@@ -22,6 +22,7 @@ export const TopPanel = () => {
             handleMouseClick
         }
         >
+            <SelectMap />
             <SaveLevelBtn />
 
             {

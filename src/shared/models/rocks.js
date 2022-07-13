@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import { useBox } from '@react-three/cannon';
 import { build } from '@devComp/store';
 import { Select } from '@react-three/postprocessing';
-import { SelectObject } from '@devComp/helper/selectObject'
+import { SelectObject } from '@devComp/helper/helperObject'
 
 export const Rock_1 = (props) => {
     console.log('test')
