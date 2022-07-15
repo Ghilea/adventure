@@ -88,18 +88,17 @@ export const RemoveObjectBtn = () => {
 
 }
 
-export const SelectMap = () => {
+export const Settings = () => {
     
     const store = interfaceButtons(state => state);
-    const storeBuild = build(state => state);
+
+    const handleClick = () => {
+        store.changeCategoryBtn('settings');
+    }
 
     return (
-        <div className='selectMap'>
-            <select title='Show options'>
-                <option>Map</option>
-                <option>New map</option>
-                <option>Open map</option>
-            </select>
+        <div onClick={handleClick} className='categoryBtn settingsPanelBtn' data-tooltip='Settings'>
+            <img src='./assets/images/svg/settings.svg' alt='Show settings button' />
         </div>
     )
 
