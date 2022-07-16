@@ -4,6 +4,7 @@ import { CategoryGround } from '@devComp/interface/category/categoryGround';
 import { CategoryWall } from '@devComp/interface/category/categoryWall';
 import { CategoryPlayer } from '@devComp/interface/category/categoryPlayer';
 import { CategoryObjects } from '@devComp/interface/category/categoryObjects';
+import { CategorySettings } from '@devComp/interface/category/categorySettings';
 import { interfaceButtons, build } from '@devComp/store';
 
 export const TopPanel = () => {
@@ -81,6 +82,9 @@ export const RightPanel = () => {
                 break;
             case 'objects':
                 setGui(<CategoryObjects />)
+                break;
+            case 'settings':
+                setGui(<CategorySettings />)
         }
     }, [storeInterface.categoryBtn])
 
