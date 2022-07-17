@@ -2,7 +2,7 @@
     "name": "adventure",
     "version": "0.0.1",
     "description": "adventure",
-    "main": "public/",
+    "main": "public/electron.js",
     "author": "Ghilea",
     "config": {
         "clientAddress": "./src/client/",
@@ -34,7 +34,6 @@
         "copyfiles": "2.4.1",
         "cors": "2.8.5",
         "dotenv": "16.0.1",
-        "electron": "19.0.8",
         "express": "4.18.1",
         "gltf-pipeline": "3.0.5",
         "mocha": "10.0.0",
@@ -47,19 +46,28 @@
         "three-stdlib": "2.12.1",
         "webpack": "5.73.0",
         "webpack-cli": "4.10.0",
-        "ws": "8.8.1"
+        "ws": "8.8.1",
+        "electron": "19.0.8",
+        "electron-builder": "23.1.0",
+        "@electron/remote": "2.0.8",
+        "concurrently": "7.2.2",
+        "wait-on": "6.0.1",
+        "cross-env": "7.0.3"
     },
     "scripts": {
         "start": "nodemon src/server/nodeServer.mjs",
         "watch": "nodemon --legacy-watch --exec \"npm run build\"",
         "build:client-sass": "sass --no-source-map %npm_package_config_clientAddress%sass:%npm_package_config_output%/assets/css",
         "build:editor-sass": "sass --no-source-map %npm_package_config_editorAddress%sass:%npm_package_config_output%/assets/css/",
+        "copy:electron": "copyfiles -u 1 ./src/electron.js %npm_package_config_output%",
         "copy:assets": "copyfiles -u 2 ./src/shared/assets/**/* %npm_package_config_output%",
         "copy:index": "copyfiles -u 2 %npm_package_config_clientAddress%index.html %npm_package_config_output%",
         "copy": "npm-run-all --parallel copy:*",
         "webpack": "webpack",
         "build": "npm-run-all webpack copy build:* start",
         "test": "mocha",
-        "buildApp": "electron ."
+        "electron:serve": "concurrently -k \"cross-env BROWSER=none npm start\" \"npm:electron\"",
+        "electron:build": "",
+        "electron": "wait-on tcp:3000 && electron ."
     }
 }
