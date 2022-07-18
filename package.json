@@ -68,7 +68,6 @@
         "build": "npm-run-all webpack copy build:* start",
         "test": "mocha",
         "electron:serve": "concurrently -k \"cross-env BROWSER=none npm start\" \"npm:electron\"",
-        "electron:build": "",
         "electron": "wait-on tcp:3000 && electron ."
     }
 }
