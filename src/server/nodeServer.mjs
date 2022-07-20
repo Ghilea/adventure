@@ -10,7 +10,7 @@ import { getQuest } from './api/quest.mjs';
 import { getProtagonist, getAllProtagonist, createProtagonist, updateStatsProtagonist } from './api/protagonist.mjs';
 import { getAdventure } from './api/adventure.mjs';
 import { getEnemy } from './api/enemy.mjs';
-import { getLevel, createLevel, getAllLevels } from './api/level.mjs'
+import { getLevel, createLevel, getAllLevels, updateLevel } from './api/level.mjs'
 import { LoadingTip } from './api/loading.mjs';
 
 //env
@@ -73,6 +73,10 @@ app.get('/loadingTip', (req, res) => {
 //PUT
 app.put('/updateStats', (req, res) => {
     updateStatsProtagonist(con, req, res);
+});
+
+app.put('/updateLevel', (req, res) => {
+    updateLevel(con, req, res);
 });
 
 //POST
