@@ -5,7 +5,7 @@ import { map } from '@comp/store';
 import { Player } from '@comp/player/Player';
 import { fetchURL } from '@shared/components/global';
 import { Loader } from '@comp/menu/loader';
-import { StoneWall, StoneWall_2, StoneWall_3 } from '@shared/models/walls';
+import { Wall_1 } from '@shared/models/walls';
 
 export const Level = () => {
 

@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { Ground } from '@comp/map/Ground';
 import { Torch } from '@shared/models/torch';
 import { Rock_1 } from '@shared/models/rocks';
-import { StoneWall, StoneWall_2, StoneWall_3 } from '@shared/models/walls';
+import { Wall_1 } from '@shared/models/walls';
 import { Player } from '@shared/models/player';
 import { Loader } from '@comp/menu/loader';
 
