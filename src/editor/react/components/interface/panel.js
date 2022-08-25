@@ -6,6 +6,7 @@ import { CategoryPlayer } from '@devComp/interface/category/categoryPlayer';
 import { CategoryObjects } from '@devComp/interface/category/categoryObjects';
 import { CategorySettings } from '@devComp/interface/category/categorySettings';
 import { interfaceButtons, build } from '@devComp/store';
+import { RotateObjectBtn } from './buttons';
 
 export const TopPanel = () => {
 
@@ -27,7 +28,10 @@ export const TopPanel = () => {
 
             {
                 (storeBuild.selected !== null) ? 
-                    <RemoveObjectBtn />
+                    <>
+                        <RemoveObjectBtn />
+                        <RotateObjectBtn />
+                    </>
                 :
                     <></>
             }

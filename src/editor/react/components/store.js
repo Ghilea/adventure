@@ -33,6 +33,7 @@ export const interfaceButtons = create(set => ({
 }))
 
 export const build = create(set => ({
+    activateBuild: false,
     active: [],
     object: [],
     solid: [],
@@ -41,12 +42,20 @@ export const build = create(set => ({
     rotate: false,
     selected: null,
     remove: null,
+    resetActiveBuild: () => set(state => ({
+        ...state,
+        active: []
+    })),
     activeBuild: (arr, texture) => set(state => ({
         ...state,
         active: [
             arr,
             texture
         ]
+    })),
+    changeActivateBuild: (value) => set(state => ({
+        ...state,
+        activateBuild: value
     })),
     changeRaySize: (x, y, rotate) => set(state => ({
         ...state,
@@ -64,10 +73,11 @@ export const build = create(set => ({
             }
         ]
     })),
-    addObject: (position, rotation, type, texture, objectId) => set(state => ({
+    addObject: (canvasObject, position, rotation, type, texture, objectId) => set(state => ({
         object: [
             ...state.object,
             {
+                canvasObject: canvasObject,
                 position: position, 
                 rotation: rotation,
                 type: type,
@@ -76,25 +86,15 @@ export const build = create(set => ({
             }
         ]          
     })),
-    updateObject: (position, rotation, texture, solidX, solidZ) => set(state => ({
-        object: [
-            ...state.object,
-            {
-                position: position,
-                rotation: rotation,
-                type: type,
-                texture: texture,
-                id: id,
-                solid: [
-                    ...state.solid,
-                    {
-                        x: solidX,
-                        z: solidZ
-                    }
-                ]
-            }
-        ]
-    })),
+    updateRotationObject: (objectId, newData) => 
+        set(state => ({
+            ...state,
+            object: [{
+                ...state.object,
+                rotation: [0, newData, 0]
+            }]
+        })
+    ),
     removeObject: (data) => 
         set((state) => ({
             object: state.object.filter((item) => {

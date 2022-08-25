@@ -11,11 +11,12 @@ import { Selection, EffectComposer, Outline } from '@react-three/postprocessing'
 
 export const MapEditor = () => {
     
+    //stores
     const storeBuild = build(state => state);
-    const storeGround = ground(state => state)
+    const storeGround = ground(state => state);
     const position = mousePosition(state => state);
 
-    const [obj, setObj] = useState([]);
+    //states
     const [index, setIndex] = useState(0);
     
     useEffect(() => {
@@ -26,14 +27,47 @@ export const MapEditor = () => {
     }, [storeBuild.active])
 
     useEffect(() => {
-        console.log(storeBuild.object)
-    }, [storeBuild.object])
+        console.log('store',storeBuild.object)
+        console.log('active',storeBuild.activateBuild)
 
-    const handleMouseClick = (event) => {
+        /*setObj(obj.filter((item) => {
+            return item.props.objectId === storeBuild.object.objectId
+        }))*/
+    }, [storeBuild.activateBuild])
+
+    const clickInsideCanvas = (event) => {
         
-        if (event.type === 'click' && storeGround.color === 'green') {
+        if (event.type === 'click' && storeGround.color === 'green' && storeBuild.activateBuild) {
 
-            switch (storeBuild.active[0]) {
+            storeBuild.addObject(
+                <AddObject
+                    onClick = {<SelectObject />}
+                    key = {'wall'+index}
+                    position = {
+                        [Math.floor(position.x) + 0.5, position.y + (4/2), Math.floor(position.z) + 0.5]
+                    }
+                    rotation = {
+                        (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
+                    }
+                    type = {
+                        storeBuild.active[0]
+                    }
+                    texture = {
+                        storeBuild.active[1]
+                    }
+                    objectId = {
+                        index
+                    }
+                />, //canvasObject
+                [Math.floor(position.x) + 0.5, position.y + (4 / 2), Math.floor(position.z) + 0.5], //position
+                (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0], //rotation
+                storeBuild.active[0], //type
+                storeBuild.active[1], //texture
+                index //objectId
+            );
+
+            setIndex(index + 1)
+            /*switch (storeBuild.active[0]) {
                 case 'wall':
                     setObj((state) => ([
                         ...state, 
@@ -112,15 +146,15 @@ export const MapEditor = () => {
                         }/>
                     ]))
                     break;
-            }
+            }*/
 
-            setIndex(index + 1)
+            
         } else if (event.type === 'contextmenu') {
             event.preventDefault();
         }
     }
 
-    useEffect(()=> {
+    /*useEffect(()=> {
 
         if(storeBuild.remove !== null){
             setObj(obj.filter((item) => {
@@ -128,7 +162,7 @@ export const MapEditor = () => {
             }))
         }
 
-    }, [storeBuild.remove])
+    }, [storeBuild.remove])*/
 
     const keyHandler = () => {
         if (storeBuild.rotate) {
@@ -147,7 +181,7 @@ export const MapEditor = () => {
             <RightPanel />
             <Canvas 
             onClick = {
-                handleMouseClick
+                clickInsideCanvas
             }
             camera = {
                 {
@@ -167,9 +201,11 @@ export const MapEditor = () => {
                     />
                     <Selection>
                         <EffectComposer multisampling={8} autoClear={false}>
-                        <Outline blur visibleEdgeColor="white" edgeStrength={100} width={1000} />
+                            <Outline blur visibleEdgeColor="white" edgeStrength={100} width={1000} />
                         </EffectComposer>
-                    {obj}
+                        {storeBuild.object.map((item) => {
+                            return item.canvasObject
+                        })}
                     </Selection>  
                 </Physics>
                 

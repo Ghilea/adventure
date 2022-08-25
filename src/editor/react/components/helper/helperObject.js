@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { build, ground } from '@devComp/store';
 import { Wall_1 } from '@shared/models/walls';
 import { Player } from '@shared/models/player';
-import { Rock_1 } from '@shared/models/rocks'
+import { Rock_1 } from '@shared/models/rocks';
+import { Torch } from '@shared/models/torch';
 
 //add object
 export const AddObject = ({position, rotation, type, texture, objectId}) => {
@@ -20,14 +21,26 @@ export const AddObject = ({position, rotation, type, texture, objectId}) => {
                 setObject(<Player position = {position} rotation = {rotation}/>)
                 break;
             case 'rock_1':
-                setObject(<Rock_1 position = {position} rotation = {rotation}/>)
+                setObject( <Rock_1 position = {[
+                            position[0] - 1.35,
+                            position[1] - 1.05,
+                            position[2] + 1.22
+                        ]}
+                        rotation = {
+                            rotation
+                        }
+                        />)
                 break;
+             case 'torch':
+                setObject(<Torch position = {position} rotation = {rotation}/>)
+            break;
         }
     }, [])
 
     useEffect(() => {
         if(object !== null){
             
+            //add ground (red)
             switch (type) {
                 case 'wall':
                     for (let i = 0; i < 5; i++) {
@@ -43,7 +56,11 @@ export const AddObject = ({position, rotation, type, texture, objectId}) => {
                     break;
             }
 
-            storeBuild.addObject(position, rotation, type, texture, objectId);
+            //add object information into store
+            if(texture === 'rock_1'){
+                position = [position[0] - 1.35, position[1] -1.05, position[2] + 1.22]
+            }
+            //storeBuild.addObject(position, rotation, type, texture, objectId);
             storeGround.groundColor('red');
         }
     }, [object])
@@ -80,6 +97,7 @@ export const SelectObject = (eventObject, type, store) => {
         }
     }
 
+    console.log(check[0]);
     return check[0].objectId
 
 }

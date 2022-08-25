@@ -14,7 +14,7 @@ export const Ground = (props) => {
         ...props
     }))
        
-    const pointerMove = (event) => {        
+    const pointerMove = (event) => {
         storePosition.editPosition(
             event.point.x, 
             event.point.y, 

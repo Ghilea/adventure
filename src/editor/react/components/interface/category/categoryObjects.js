@@ -5,11 +5,28 @@ export const CategoryObjects = () => {
     const storeBuild = build(state => state);
     const interBtn = interfaceButtons(state => state);
 
-    const textureArr = [
+    const boulderTextureArr = [
         'rock_1'      
     ]
 
-    const buttons = textureArr.map((item, index) => {
+    const miscTextureArr = [
+        'torch'
+    ]
+
+    const boulderButtons = boulderTextureArr.map((item, index) => {
+        return (
+            <div key={item+index} className={
+                `${item} 
+                ${
+                    (interBtn.active && interBtn.button === item) ?
+                'activeBtn' : 'objectsBtn'
+                }`
+            } onClick={() => handleObject(item) }>
+            </div>
+        )
+    })
+
+    const miscButtons = miscTextureArr.map((item, index) => {
         return (
             <div key={item+index} className={
                 `${item} 
@@ -35,11 +52,20 @@ export const CategoryObjects = () => {
     }
 
     return (
-        <div className='container'>
-            <h2>Boulders</h2>
-            <div className = 'objects' >
-                {buttons}
+        <>
+            <div className='container'>
+                <h2>Boulders</h2>
+                <div className = 'objects' >
+                    {boulderButtons}
+                </div>
             </div>
-        </div>
+
+            <div className='container'>
+                <h2>Misc</h2>
+                <div className = 'objects' >
+                    {miscButtons}
+                </div>
+            </div>
+        </>
     )
 }

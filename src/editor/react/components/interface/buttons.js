@@ -88,6 +88,30 @@ export const RemoveObjectBtn = () => {
 
 }
 
+export const RotateObjectBtn = () => {
+    
+    const storeBuild = build(state => state);
+
+    const handleRotateLeft = () => {
+        console.log('selected: ', storeBuild.object)
+        storeBuild.updateRotationObject(storeBuild.selected, -155)
+    }
+
+    return (
+        <>
+            <div onClick={handleRotateLeft} className='topBtn'>
+                <img className='rotateLeftBtn' src='./assets/images/svg/side_rotate_icon.svg' alt='Rotate left button' title='Rotate left'/>
+                
+            </div>
+            <div onClick={handleRotateLeft} className='topBtn'>
+                <img src='./assets/images/svg/side_rotate_icon.svg' alt='Rotate right button' title='Rotate right'/>
+            </div>
+        </>
+        
+    )
+
+}
+
 export const Settings = () => {
     
     const store = interfaceButtons(state => state);
