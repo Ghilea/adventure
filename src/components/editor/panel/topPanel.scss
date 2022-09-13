@@ -1,0 +1,41 @@
+.topPanel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    background-color: rgb(54, 53, 53);
+    background-image: url('/shared/assets/images/texture/overlay.png'), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 10em;
+    height: 2.5em;
+    box-shadow: 0 0 5px #000;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    border-bottom-right-radius: 0.3em;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .topBtn {
+        width: 4em;
+        height: 2em;
+        display: flex;
+        justify-content: center;
+
+        .rotateLeftBtn {
+            transform: scaleX(-1);
+        }
+
+        &:hover{
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        img {
+            width: 1.5em;
+            height: auto;
+        }
+    }
+
+}

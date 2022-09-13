@@ -1,6 +1,6 @@
 const isProduction = false;
 
-const port = 3000;
+const port = 4000;
 const link = `http://denniskarlssondesign.com:${port}`
 const local = `http://localhost:${port}`
 

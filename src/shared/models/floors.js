@@ -1,9 +1,10 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
+import FloorAsset from '@shared/assets/images/3d/stoneFloor.gltf';
 
 export const StoneFloor = (props) => {
   const group = useRef();
-  const { nodes, materials } = useGLTF("./assets/images/3d/stoneFloor.gltf");
+  const { nodes, materials } = useGLTF(FloorAsset);
 
   return (
     <group ref={group} {...props} dispose={null}>

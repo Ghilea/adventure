@@ -1,6 +1,6 @@
 import { useLoader } from '@react-three/fiber';
 import { TextureLoader, RepeatWrapping} from 'three';
-import { ground } from '@devComp/store';
+import { ground } from '@editor/store';
 import stoneImg from '@shared/assets/images/texture/stone.jpg';
 import floorImg from '@shared/assets/images/texture/floor.jpg';
 

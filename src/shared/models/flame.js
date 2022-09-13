@@ -1,10 +1,11 @@
 import React, { useRef, useEffect, useState} from "react";
 import { useGLTF } from "@react-three/drei";
+import FlameAsset from '@shared/assets/images/3d/flame/flame.gltf';
 
 export const Flame = (props) => {
   
   const group = useRef();
-  const { nodes, materials } = useGLTF("./assets/images/3d/flame/flame.gltf");
+  const { nodes, materials } = useGLTF(FlameAsset);
 
   const [lightAnimation, setLightAnimation] = useState(2);
   const [flameAnimation, setFlameAnimation] = useState(1.5);

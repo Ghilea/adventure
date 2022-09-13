@@ -1,13 +1,14 @@
 import React, { useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useBox } from '@react-three/cannon';
-import { build } from '@devComp/store';
+import { build } from '@editor/store';
 import { Select } from '@react-three/postprocessing';
-import { SelectObject } from '@devComp/helper/helperObject'
-import { RotateObjectBtn } from '@devComp/interface/buttons';
+import { SelectObject } from '@helper/helperObject'
+import { RotateObjectBtn } from '@editor/interface/buttons';
+import RockAsset from '@shared/assets/images/3d/rock.gltf';
 
 export const Rock_1 = (props) => {
-    const { nodes, materials } = useGLTF("./assets/images/3d/rock.gltf");
+    const { nodes, materials } = useGLTF(RockAsset);
 
     const store = build(state => state);
     const [select, setSelect] = useState(null);

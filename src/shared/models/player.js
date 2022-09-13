@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useGLTF } from "@react-three/drei";
-import { build } from '@devComp/store';
+import { build } from '@editor/store';
 import { Select } from '@react-three/postprocessing';
-import { SelectObject } from '@devComp/helper/helperObject'
+import { SelectObject } from '@helper/helperObject'
+import PlayerAsset from '@shared/assets/images/3d/player.gltf';
 
 export const Player = (props) => {
-  const { nodes, materials } = useGLTF("./assets/images/3d/player.gltf");
+  const { nodes, materials } = useGLTF(PlayerAsset);
 
   const store = build(state => state);
   const [select, setSelect] = useState(null);

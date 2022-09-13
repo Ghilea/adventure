@@ -1,0 +1,33 @@
+
+.questContainer {
+    display:flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    z-index: 1;
+    gap:1em;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+
+    h1 {
+        width: auto;
+        position: relative;
+        margin: 0 0 0 0;
+        letter-spacing: 0.1rem;
+    }
+
+    .main_text {
+        max-height: 10em;
+        height: 100%;
+        max-width: 40em;
+        border: #fff 0.1em solid;
+        border-radius: 0.3em;
+        padding: 1em;
+        background-color: rgba(0, 0, 0, 0.535);
+        line-height: 1.5rem;
+        letter-spacing: 0.3rem;
+        overflow-y: auto;
+    }
+   
+}

@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { Flame } from '@shared/models/flame';
+import TorchAsset from '@shared/assets/images/3d/torch.gltf';
 
 export const Torch = (props) => {
     
     const group = useRef();
-    const {nodes, materials} = useGLTF("./assets/images/3d/torch.gltf");
+    const {nodes, materials} = useGLTF(TorchAsset);
 
     return (
         <group ref={group} {...props} dispose={null}>

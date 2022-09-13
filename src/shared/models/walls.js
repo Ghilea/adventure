@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useBox } from '@react-three/cannon';
-import { build } from '@devComp/store';
+import { build } from '@editor/store';
 import { Select } from '@react-three/postprocessing';
-import { SelectObject } from '@devComp/helper/helperObject'
+import { SelectObject } from '@helper/helperObject'
+import WallAsset from '@shared/assets/images/3d/wall.glb';
 
 export const Wall_1 = (props) => {
-  const { nodes, materials  } = useGLTF("./assets/images/3d/stoneWall_3.gltf");
+  const { nodes, materials  } = useGLTF(WallAsset);
 
   const [solid] = useBox(() => ({
     args: [5, 3.5, 1],
@@ -35,8 +36,8 @@ export const Wall_1 = (props) => {
         position = {[0.5, 1, 1]}
         castShadow
         receiveShadow
-        geometry={nodes.Object_4.geometry}
-        material={materials.rock_wall_1}
+        geometry={nodes.Side.geometry}
+        material={materials.muretdroitmat}
       />
       </Select>
 

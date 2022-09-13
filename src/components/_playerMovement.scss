@@ -1,0 +1,41 @@
+.btn {
+    z-index: 3;
+    position: absolute;
+    left: 50%;
+    bottom: 1em;
+    transform: translateX(-50%);
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 2em;
+        grid-template-areas:
+            ". Up ."
+            "Left Down Right"
+            ". Position .";
+
+        button {
+            position: relative;
+            height: 4em;
+            width: 4em;
+            background-color: rgb(56, 46, 46);
+            border: 0.1em solid #ffffff;
+            border-radius: 0.5em;
+            padding: 1em;
+            color: #fff;
+            letter-spacing: 0.1rem;
+            box-shadow: 0 0 1em 0.5em #0000005e;
+                   
+            &:hover {
+                background-color: rgb(46, 43, 43);
+                cursor: pointer;
+            } 
+
+            .displayButton {
+                display:block;
+            }
+        }
+    }
+    
+}
