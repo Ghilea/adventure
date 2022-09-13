@@ -11,21 +11,29 @@ export const Menu = () => {
 
     const storeMenu = menu(state => state);
 
-    const [openMenu, setOpenMenu] = useState(null);
+    const [openMenu, setOpenMenu] = useState({
+        active: null,
+        opened: null
+    });
 
     useEffect(() => {
         switch (storeMenu.activeMenu) {
             case 'login':
-                setOpenMenu(<ShowCharacterList />)
+                if(openMenu.active === storeMenu.activeMenu) {
+                    setOpenMenu({active: null, opened: null})
+                }else{
+                    setOpenMenu({active: storeMenu.activeMenu, opened: <ShowCharacterList />})
+                }
+                
                 break;
             case 'create':
-                setOpenMenu(<CreateProtagonist />)
+                setOpenMenu({active: storeMenu.activeMenu, opened: <CreateProtagonist />})
                 break;
             case 'options':
-                setOpenMenu(<Options />)
+                setOpenMenu({active: storeMenu.activeMenu, opened: <Options />})
                 break;
             default:
-                setOpenMenu(null)
+                setOpenMenu({active: null, opened: null})
                 break;
         }
 
@@ -54,8 +62,8 @@ export const Menu = () => {
                 
             </div>
 
-            <div className={`${(openMenu === null) ? 'hide' : 'boxMenuContainer'}`}>
-                <div className='list'>{openMenu}</div>
+            <div className={`${(openMenu.active === null) ? 'hide' : 'boxMenuContainer'}`}>
+                <div className='list'>{openMenu.opened}</div>
             </div>
                
         </>

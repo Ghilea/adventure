@@ -19,7 +19,7 @@ export const ShowCharacterList = () => {
         Read(url)
             .then(items => {
                 if (items.protagonist.length > 0) {
-                    items.protagonist.map(item => {
+                    items.protagonist.map((item, index) => {
                         setCharacterList((state) => ([
                             ...state,
                             <div onClick = {() =>
@@ -32,7 +32,7 @@ export const ShowCharacterList = () => {
                                 stop
                             }
                             key = {
-                                item.name
+                                item.name + index
                             }
                             className = 'character' >
                                 <img src={`assets/images/characters/${item.img}.png`} />
