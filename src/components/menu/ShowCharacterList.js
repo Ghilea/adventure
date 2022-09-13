@@ -4,7 +4,7 @@ import { menu, player } from '@comp/store';
 import { fetchURL } from '@shared/components/global';
 import useSound from 'use-sound';
 
-export const CharacterList = () => {
+export const ShowCharacterList = () => {
 
     const storeMenu = menu(state => state);
     const storePlayer = player(state => state);

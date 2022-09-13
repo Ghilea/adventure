@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { menu } from '@comp/store';
-import CreateWindow from '@comp/menu/createProtagonist';
-import { CharacterList } from '@comp/menu/characterList';
+import CreateProtagonist from '@comp/menu/createProtagonist';
+import { ShowCharacterList } from '@comp/menu/ShowCharacterList';
 import { Options } from '@comp/menu/options';
+import { Button } from '@helper/Button';
 import logoImg from '@shared/assets/images/svg/celtic.svg';
 import './menu.scss';
 
@@ -10,55 +11,25 @@ export const Menu = () => {
 
     const storeMenu = menu(state => state);
 
-    const handleLogin = () => {
-        if (storeMenu.login) {
-            storeMenu.isLogin(false)
-        }else{
-            storeMenu.isLogin(true);
-        } 
+    const [openMenu, setOpenMenu] = useState(null);
 
-        storeMenu.isMapEditor(false);
-        storeMenu.isCreate(false);
-        storeMenu.isOptions(false);
-    }
-
-    const handleCreate = () => {
-        if(storeMenu.create){
-            storeMenu.isCreate(false);
-        }else{
-            storeMenu.isCreate(true);
-        }
-        
-        storeMenu.isMapEditor(false);
-        storeMenu.isLogin(false);
-        storeMenu.isOptions(false);
-    }
-
-    const handleOptions = () => {
-        if(storeMenu.options){
-            storeMenu.isOptions(false);
-        }else{
-            storeMenu.isOptions(true);
-        }
-        
-        storeMenu.isMapEditor(false);
-        storeMenu.isLogin(false);
-        storeMenu.isCreate(false);
-    }
-
-    const handleMapEditor = () => {
-        if (storeMenu.mapEditor) {
-            storeMenu.isMapEditor(false);
-        } else {
-            storeMenu.isMapEditor(true);
+    useEffect(() => {
+        switch (storeMenu.activeMenu) {
+            case 'login':
+                setOpenMenu(<ShowCharacterList />)
+                break;
+            case 'create':
+                setOpenMenu(<CreateProtagonist />)
+                break;
+            case 'options':
+                setOpenMenu(<Options />)
+                break;
+            default:
+                setOpenMenu(null)
+                break;
         }
 
-        console.log(storeMenu.mapEditor)
-
-        storeMenu.isOptions(false);
-        storeMenu.isLogin(false);
-        storeMenu.isCreate(false);
-    }
+    }, [storeMenu.activeMenu])
 
     return (
         <>
@@ -72,39 +43,21 @@ export const Menu = () => {
                 </header>
                 
                 <div className='buttonList'>
-                    <button type='button' onClick = {handleLogin}>
-                        Login
-                    </button>
+                    <Button active='login'>Login</Button>
 
-                    <button type='button' onClick = {handleCreate}>
-                        Create Protagonist
-                    </button>
+                    <Button active='create'>Create Protagonist</Button>
 
-                    <button type='button' onClick = {handleOptions}>
-                        Options
-                    </button>
+                    <Button active='options'>Options</Button>
 
-                    <button type = 'button' onClick = {handleMapEditor} >
-                        Map Editor
-                    </button>
-                    
+                    <Button active='editor'>Map Editor</Button>
                 </div>
                 
             </div>
 
-            {   (storeMenu.create || storeMenu.login || storeMenu.options) ?
-                <div className='boxMenuContainer'>
-                    <div className='list'>
-                    {
-                        (storeMenu.create) ? <CreateWindow /> : 
-                        (storeMenu.login) ? <CharacterList /> :
-                        (storeMenu.options) ? <Options /> :
-                        <></>
-                    }
-                    </div>
-                </div>
-                : <></>
-            }
+            <div className={`${(openMenu === null) ? 'hide' : 'boxMenuContainer'}`}>
+                <div className='list'>{openMenu}</div>
+            </div>
+               
         </>
     )
 }

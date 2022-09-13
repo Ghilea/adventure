@@ -15,22 +15,12 @@ export const App = () => {
     const [arr, setArr] = useState([]);
 
     useEffect(()=> {
- 
-        //character not selected (login)
-        if (!storeMenu.loginSuccess) {
-
-            //<CanvasLevel />
-            //<Interface />
-
-            //mapEditor selected or not
-            if (storeMenu.mapEditor) {
-                setArr([<MapEditor />])
-            }else{
-                setArr([<CanvasMenu />]);
-            }
+        if (storeMenu.mapEditor) {
+            setArr([<MapEditor />])
+        }else{
+            setArr([<CanvasMenu />]);
         }
-
-    }, [])
+    }, [storeMenu.mapEditor])
 
     useEffect(() => {
         if(storeMenu.loginSuccess){

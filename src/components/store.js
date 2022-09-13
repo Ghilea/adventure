@@ -141,6 +141,12 @@ export const menu = create(set => ({
     loginSuccess: false,
     loadingDone: false,
     startGame: false,
+    activeMenu: null,
+    activateMenu: (value) => set (state => ({
+        ...state,
+        activeMenu: value,
+
+    })),
     isStartGame: (value) => set(state => ({
         ...state,
         startGame: value
@@ -148,22 +154,6 @@ export const menu = create(set => ({
     isLoadingDone: (value) => set(state => ({
         ...state,
         loadingDone: value
-    })),
-    isCreate: (value) => set(state => ({
-        ...state,
-        create: value
-    })),
-    isMapEditor: (value) => set(state => ({
-        ...state,
-        mapEditor: value
-    })),
-    isOptions: (value) => set(state => ({
-        ...state,
-        options: value
-    })),
-    isLogin: (value) => set(state => ({
-        ...state,
-        login: value
     })),
     isLoginSuccess: (value) => set(state => ({
         ...state,
