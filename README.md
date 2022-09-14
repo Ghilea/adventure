@@ -1,10 +1,9 @@
 # Adventure - ett DungeonCrawler-spel
-
 Ett DungeonCrawler spel som gjort i samband med skolan. Det var fokus på backend, men tänkte att visa något visuellt gör det hela mer njutbart.
 
-  * Byggd med NodeJs (Express) för server-delen. Servern hanterar APIn och på frontend-sidan används ReactJs tillsammans med dem vanliga HTML5, CSS3 (SASS) och JavaScript.
+  * Byggd med NodeJs (Express) för server-delen. Servern hanterar APIn och på frontend-sidan används ReactJs tillsammans med HTML5, CSS3 (SASS) och JavaScript.
 
-# Funktioner
+# Tillgängliga funktioner
   * Skapa en karaktär
   * Logga in med en specifik karaktär
   * "Grafikmotor" gjord med CSS
@@ -15,7 +14,7 @@ Ett DungeonCrawler spel som gjort i samband med skolan. Det var fokus på backen
   * Level-system där experience används för att bedäma när en karaktär når en ny nivå. Vi varje ny nivå får karaktären nya poäng att sätta ut till sina stats.
   * Health för att bedöma hur mycket man tål, både fiender och sin egen karaktär
 
-# Funktioner som ska in
+# Pågående funktioner
   * Vapensystem, inkl spells
   * System för att hantera loot
   * System för att använda equipment
@@ -23,4 +22,6 @@ Ett DungeonCrawler spel som gjort i samband med skolan. Det var fokus på backen
   * System för att spara och ladda progressen för spelet
 
 # Övrigt
-  * Förbättra redan existerande funktioner, speciellt "grafikmotorn"
+  * Förbättrar "grafikmotorn"
+  * Refaktoring all kod till att ge en bättre stuktur.
+  * Komponenter byggs om
