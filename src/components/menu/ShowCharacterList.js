@@ -9,47 +9,13 @@ export const ShowCharacterList = () => {
     const storeMenu = menu(state => state);
     const storePlayer = player(state => state);
 
-    const [characterList, setCharacterList] = useState([]);
+    const [data, setData] = useState(null);
 
     const [play, {stop}] = useSound('assets/sounds/btnHover.mp3');
   
     useEffect(() => {
         const url = `${fetchURL}/getAllProtagonist`;
-
-        Read(url)
-            .then(items => {
-                if (items.protagonist.length > 0) {
-                    items.protagonist.map((item, index) => {
-                        setCharacterList((state) => ([
-                            ...state,
-                            <div onClick = {() =>
-                                handleLogin(item.id)
-                            }
-                            onMouseEnter = {
-                                play
-                            }
-                            onMouseLeave = {
-                                stop
-                            }
-                            key = {
-                                item.name + index
-                            }
-                            className = 'character' >
-                                <img src={`assets/images/characters/${item.img}.png`} />
-                                <h2>
-                                    {item.name} (<span className='levelTitle'>level {item.level}</span>)
-                                </h2>
-                                <p>Hp: {item.health} / {item.maxHealth} </p>
-                                <p>
-                                    Str: {item.strength} Int: {item.intellect} Dex: {item.dexterity}
-                                </p>
-                            </div>
-                        ]))
-                    });
-
-                }
-            })
-
+        setData(Read(url));
     }, [])
     
     const handleLogin = (id) => {
@@ -60,7 +26,20 @@ export const ShowCharacterList = () => {
 
     return (    
         <>
-            {characterList}
+            {
+                data.map((item, index) => {
+                    <div className='character' onClick={handleLogin(item.id)} onMouseEnter={play} onMouseLeave={stop} key={item.name + index}>
+                       <img src={`assets/images/characters/${item.img}.png`} />
+                        <h2>
+                            {item.name} (<span className='levelTitle'>level {item.level}</span>)
+                        </h2>
+                        <p>Hp: {item.health} / {item.maxHealth} </p>
+                        <p>
+                            Str: {item.strength} Int: {item.intellect} Dex: {item.dexterity}
+                        </p>
+                    </div>
+                })
+            }
         </>    
     )
 }

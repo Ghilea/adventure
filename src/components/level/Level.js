@@ -1,10 +1,10 @@
 import React, { useEffect, useState, Suspense } from 'react';
-import { Ground } from '@comp/map/Ground';
+import { Ground } from '@comp/level/Ground';
 import { Read } from '@shared/components/Crud';
 import { map } from '@comp/store';
 import { Player } from '@comp/player/Player';
 import { fetchURL } from '@shared/components/global';
-import { Loader } from '@comp/menu/loading/loader';
+import { Loader } from '@shared/components/loading/Loader';
 import { Wall_1 } from '@shared/models/walls';
 
 export const Level = () => {
@@ -60,11 +60,7 @@ export const Level = () => {
         <>
             <Suspense fallback={<Loader />}>
                 <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
-            </Suspense>
-            <Suspense fallback = {<Loader />} >
-                {build}
-            </Suspense>
-            <Suspense fallback = {<Loader />} >
+                {build}        
                 {createPlayer}        
             </Suspense> 
         </>

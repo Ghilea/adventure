@@ -1,10 +1,10 @@
 import React, { Suspense, useEffect, useState } from 'react';
-import { Ground } from '@comp/map/Ground';
+import { Ground } from '@comp/level/Ground';
 import { Torch } from '@shared/models/torch';
 import { Rock_1 } from '@shared/models/rocks';
 import { Wall_1 } from '@shared/models/walls';
 import { Player } from '@shared/models/player';
-import { Loader } from '@comp/menu/loading/loader';
+import { Loader } from '@shared/components/loading/Loader';
 
 export const MenuBg = () => {
 
@@ -13,33 +13,24 @@ export const MenuBg = () => {
         texture: 'stone',
         size: [10, 10]
     });
+    const [wall, setWall] = useState({
+        y: -0.95
+    })
 
     useEffect(() => {
     
         const items = {
             "walls": [{
-                "pos": [0, 0, 4],
+                "pos": [0, -1, 1],
                 "rotate": [0, 360, 0]
             }, {
-                "pos": [-4.5, 0, -0.5],
+                "pos": [-4.5, -1, -1.5],
                 "rotate": [0, 180, 0]
             },{
-                "pos": [4.5, 0, -0.5],
+                "pos": [1.5, -1, -0.5],
                 "rotate": [0, -180, 0]
             }]
         }
-            
-        items.walls.map((use, index) => {
-
-            setBuild((state) => ([
-                ...state,
-                <Wall_1
-                key={'wall'+index} 
-                rotation={[0, Math.PI * (use.rotate[1]/360), 0]} 
-                scale={[1.5, 1.5, 1]}
-                position={use.pos}/>
-            ]))
-        })
 
         setGround((state) => ({
             ...state,
@@ -52,20 +43,25 @@ export const MenuBg = () => {
         <>
             <Suspense fallback={<Loader />}>
                 <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
-            </Suspense>
-            
-            <Suspense fallback={<Loader />}>
+                <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[3.2, wall.y, 1]}/>
+                <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[1.2, wall.y, 1]}/>
+                <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[-1.8, wall.y, 1]}/>
+                <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[-3.8, wall.y, 1]}/>
+
+                <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[-4.2, wall.y, -0.2]}/>
+                <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[-4.2, wall.y, -2.2]}/>
+
+                <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[2.2, wall.y, -1.2]}/>
+                <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[2.2, wall.y, -3.2]}/>
+
+                <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[-1.2, wall.y, 0.2]}/>
+
                 {build} 
-            </Suspense>
+                <Torch position={[-3.9, 0.3, -2]} scale={[1.03, 1.03, 1.03]} rotation={[0, Math.PI * (180/360), 0]}/>
 
-            <Suspense fallback = {<Loader />}>
-                <Torch position={[0, 1.5, 3.8]} scale={[0.03, 0.03, 0.03]} rotation={[0, Math.PI * (360/360), 0]}/>
-                <Torch position={[-4.3, 1.5, -2]} scale={[0.03, 0.03, 0.03]} rotation={[0, Math.PI * (180/360), 0]}/>
-                <Rock_1 position={[-2.5, 0.5, -2]} scale={[1, 1, 1]}/>
-            </Suspense>
-
-            <Suspense fallback = {<Loader />}>
-                <Player position={[0, 1.15, -2]} scale={2.5} rotation={[0, Math.PI * (360/360), 0]}/>
+                <Rock_1 position={[-4.5, -0.3, 0.5]} scale={[0.3, 0.3, 1]} />
+         
+                <Player position={[-1, 0.55, -2]} scale={2.5} rotation={[0, Math.PI * (360/360), 0]}/>
             </Suspense>
         </>
     )

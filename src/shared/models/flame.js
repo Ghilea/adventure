@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState} from "react";
 import { useGLTF } from "@react-three/drei";
 import FlameAsset from '@shared/assets/images/3d/flame/flame.gltf';
+import { PointLightShadow } from "three";
 
 export const Flame = (props) => {
   
@@ -48,7 +49,7 @@ export const Flame = (props) => {
       null
     } >
       <mesh
-   
+        castShadow
         geometry={nodes.mesh_0.geometry}
         material={nodes.mesh_0.material}
         material-color={'yellow'}
@@ -58,7 +59,8 @@ export const Flame = (props) => {
         intensity={lightAnimation}
         distance={5}
         color={'#d4c4af'}
-        position={[0, 0.5, -2]}
+        position={[0, 0.5, 0]}
+        scale={[5,5,5]}
       />
 
     </group>

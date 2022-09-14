@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const Read = async (url) => {
     const data = await fetch(url);
     return await data.json();

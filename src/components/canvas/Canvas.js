@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
-import { Level } from '@comp/map/level';
-import { MenuBg } from '@comp/menu/menuBg'
+import { Level } from '@comp/level/Level';
+import { MenuBg } from '@comp/menu/MenuBg';
+import { OrbitControls } from '@react-three/drei';
+
 /*
 <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 10]} castShadow shadow-mapSize={[2048, 2048]} />
@@ -11,7 +13,6 @@ export const CanvasLevel = () => {
 
     return (
         <Canvas shadows>
-            
             <Physics gravity={[0, -30, 0]}>
                 <Level />   
             </Physics>
@@ -26,9 +27,10 @@ export const CanvasMenu = () => {
             <Canvas shadows camera = {
                 {
                     fov: 60,
-                    position: [0, 3, -7]
+                    position: [-3.5, 1, -5.8]
                 }
             } >
+                <OrbitControls />
                 <Physics gravity={[0, -30, 0]}>
                     <MenuBg />
                 </Physics>
