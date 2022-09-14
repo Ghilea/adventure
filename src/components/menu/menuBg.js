@@ -20,20 +20,6 @@ export const MenuBg = () => {
     })
 
     useEffect(() => {
-    
-        const items = {
-            "walls": [{
-                "pos": [0, -1, 1],
-                "rotate": [0, 360, 0]
-            }, {
-                "pos": [-4.5, -1, -1.5],
-                "rotate": [0, 180, 0]
-            },{
-                "pos": [1.5, -1, -0.5],
-                "rotate": [0, -180, 0]
-            }]
-        }
-
         setGround((state) => ({
             ...state,
             texture: ground.texture,
