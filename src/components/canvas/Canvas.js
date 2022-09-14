@@ -3,9 +3,10 @@ import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import { Level } from '@comp/level/Level';
 import { MenuBg } from '@comp/menu/MenuBg';
-import { OrbitControls } from '@react-three/drei';
+//import { OrbitControls } from '@react-three/drei';
 
 /*
+<OrbitControls />
 <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 10]} castShadow shadow-mapSize={[2048, 2048]} />
 */
@@ -30,7 +31,7 @@ export const CanvasMenu = () => {
                     position: [-3.5, 1, -5.8]
                 }
             } >
-                <OrbitControls />
+                
                 <Physics gravity={[0, -30, 0]}>
                     <MenuBg />
                 </Physics>

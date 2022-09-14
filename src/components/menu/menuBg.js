@@ -4,7 +4,9 @@ import { Torch } from '@shared/models/torch';
 import { Rock_1 } from '@shared/models/rocks';
 import { Wall_1 } from '@shared/models/walls';
 import { Player } from '@shared/models/player';
+import { SwampMonster } from '@shared/models/creatures/SwampMonster';
 import { Loader } from '@shared/components/loading/Loader';
+
 
 export const MenuBg = () => {
 
@@ -55,6 +57,8 @@ export const MenuBg = () => {
                 <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[2.2, wall.y, -3.2]}/>
 
                 <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[-1.2, wall.y, 0.2]}/>
+
+                <SwampMonster rotation={[0, Math.PI * (360/360), 0]}  position={[-2.2, 0.1, -0.2]}/>
 
                 {build} 
                 <Torch position={[-3.9, 0.3, -2]} scale={[1.03, 1.03, 1.03]} rotation={[0, Math.PI * (180/360), 0]}/>
