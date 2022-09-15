@@ -1,9 +1,7 @@
 export const getProtagonist = (con, res, id) => {
     con.connect(function (err) {
         con.query(`SELECT name, experience, level, points, img, health, maxHealth, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id WHERE protagonist.id =${id}`, (err, result, fields) => {
-            res.status(200).json({
-                'protagonist': result
-            })
+            res.status(200).json(result)
         })
     })
 }
@@ -11,9 +9,7 @@ export const getProtagonist = (con, res, id) => {
 export const getAllProtagonist = (con, res) => {
     con.connect(function (err) {
         con.query(`SELECT protagonist.id, name, experience, img, level, health, maxHealth, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id`, (err, result, fields) => {
-            res.status(200).json({
-                'protagonist': result
-            })
+            res.status(200).json(result)
         })
 
     })

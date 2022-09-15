@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Html, useProgress } from "@react-three/drei";
 import { menu } from '@comp/store';
+import { Read } from '@shared/components/Crud';
 import { fetchURL } from '@shared/components/global';
-import axios from 'axios';
 import './LoadingScreen.scss';
 
 export const Loader = () => {
@@ -14,13 +14,7 @@ export const Loader = () => {
     const url = `${fetchURL}/loadingTip`;
 
     useEffect(() => {
-        
-        axios.get(url)
-        .then((response) => {
-            const getData = response.data[0].sentence;
-            setData(getData);
-        })
-        
+        Read(url).then(response => setData(response.data[0].sentence))
     }, [])
 
     useEffect(()=>{

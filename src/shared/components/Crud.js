@@ -1,8 +1,17 @@
 import axios from 'axios';
 
-export const Read = async (url) => {
+/*export const Read = async (url) => {
     const data = await fetch(url);
     return await data.json();
+}*/
+
+export const Read = async (url) => {
+    try {
+        const promise = await axios.get(url);
+        return promise
+    }catch(error) {
+        console.error('error', error)
+    }
 }
 
 export const Create = (url, data) => {
