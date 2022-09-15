@@ -3,7 +3,7 @@ import { menu } from '@comp/store';
 import CreateProtagonist from '@comp/menu/createProtagonist';
 import { ShowCharacterList } from '@comp/menu/ShowCharacterList';
 import { Options } from '@comp/menu/options';
-import { Button } from '@helper/Button';
+import { MenuButton } from '@helper/MenuButton';
 import logoImg from '@shared/assets/images/svg/celtic.svg';
 import './menu.scss';
 
@@ -11,29 +11,21 @@ export const Menu = () => {
 
     const storeMenu = menu(state => state);
 
-    const [openMenu, setOpenMenu] = useState({
-        active: null,
-        opened: null
-    });
+    const [openMenu, setOpenMenu] = useState(null);
 
     useEffect(() => {
         switch (storeMenu.activeMenu) {
             case 'login':
-                if(openMenu.active === storeMenu.activeMenu) {
-                    setOpenMenu({active: null, opened: null})
-                }else{
-                    setOpenMenu({active: storeMenu.activeMenu, opened: <ShowCharacterList />})
-                }
-                
+                setOpenMenu(<ShowCharacterList />)
                 break;
             case 'create':
-                setOpenMenu({active: storeMenu.activeMenu, opened: <CreateProtagonist />})
+                setOpenMenu(<CreateProtagonist />)
                 break;
             case 'options':
-                setOpenMenu({active: storeMenu.activeMenu, opened: <Options />})
+                setOpenMenu(<Options />)
                 break;
             default:
-                setOpenMenu({active: null, opened: null})
+                setOpenMenu(null);
                 break;
         }
 
@@ -51,19 +43,19 @@ export const Menu = () => {
                 </header>
                 
                 <div className='buttonList'>
-                    <Button active='login'>Login</Button>
+                    <MenuButton open='login'>Login</MenuButton>
 
-                    <Button active='create'>Create Protagonist</Button>
+                    <MenuButton open='create'>Create Protagonist</MenuButton>
 
-                    <Button active='options'>Options</Button>
+                    <MenuButton open='options'>Options</MenuButton>
 
-                    <Button active='editor'>Map Editor</Button>
+                    <MenuButton open='editor'>Map Editor</MenuButton>
                 </div>
                 
             </div>
 
-            <div className={`${(openMenu.active === null) ? 'hide' : 'boxMenuContainer'}`}>
-                <div className='list'>{openMenu.opened}</div>
+            <div className={`${(openMenu === null) ? 'hide' : 'boxMenuContainer'}`}>
+                <div className='list'>{openMenu}</div>
             </div>
                
         </>

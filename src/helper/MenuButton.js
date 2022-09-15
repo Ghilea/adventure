@@ -1,14 +1,12 @@
 import React from 'react';
 import { menu } from '@comp/store';
 
-export const Button = ({children, active}) => {
+export const MenuButton = ({children, open}) => {
     
-    const storeMenu = menu(state => state);
+    const store = menu(state => state);
     
     const handleButton = () => {
-        storeMenu.activateMenu(active);
-        
-        console.log(storeMenu.activeMenu)
+        store.activeMenu === open ? store.activateMenu(null) : store.activateMenu(open);
     }
 
     return (

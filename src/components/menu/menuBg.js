@@ -51,7 +51,7 @@ export const MenuBg = () => {
 
                 <Rock_1 position={[-4.5, -0.3, 0.5]} scale={[0.3, 0.3, 1]} />
          
-                <Player position={[-1, 0.55, -2]} scale={2.5} rotation={[0, Math.PI * (360/360), 0]}/>
+                <Player position={[-3.5, 0.55, -3.5]} scale={2.5} rotation={[0, Math.PI * (360/360), 0]}/>
             </Suspense>
         </>
     )
