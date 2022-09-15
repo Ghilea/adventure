@@ -5,8 +5,9 @@ import useSound from 'use-sound';
 import buttonHover from '@shared/assets/sounds/btnHover.mp3';
 import maleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_male.png';
 import femaleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_female.png'
+import './MenuShowCharacters.scss';
 
-export const ShowCharacterList = () => {
+export const MenuShowCharacters = () => {
 
     const storeMenu = menu(state => state);
     const storePlayer = player(state => state);

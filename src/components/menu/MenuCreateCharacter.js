@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Create } from '@shared/components/Crud';
 import { player, menu } from '@comp/store';
 import { Points } from '@comp/interface/Points';
+import maleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_male.png';
+import femaleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_female.png'
+import './MenuCreateCharacter.scss';
 
-const Protagonist = () => {
+export const MenuCreateCharacter = () => {
 
     const storePlayer = player(state => state);
     const storeMenu = menu(state => state);
@@ -63,7 +66,7 @@ const Protagonist = () => {
                     `button ${(character.img === 'FantasyCharacters_h_warrior_female') ?
                     'chooseAvatar' : ''} `
                 } >
-                    <img id='FantasyCharacters_h_warrior_female' src='assets/images/characters/FantasyCharacters_h_warrior_female.png'/>
+                    <img id='FantasyCharacters_h_warrior_female' src={femaleImg} />
                 </div>
 
                 <div onClick = {
@@ -73,19 +76,21 @@ const Protagonist = () => {
                     `button ${(character.img === 'FantasyCharacters_h_warrior_male') ?
                     'chooseAvatar' : ''} `
                 } >
-                    <img id='FantasyCharacters_h_warrior_male' src='assets/images/characters/FantasyCharacters_h_warrior_male.png'/>
+                    <img id='FantasyCharacters_h_warrior_male' src={maleImg}/>
                 </div>
 
             </div>
 
-            <div className='stats'>
+            <div className='statsContainer'>
+
                 <div className='showPoints'>Points: {storePlayer.points}</div>
-                <Points />
+                    
+                <div className='pointsContainer'>
+                    <Points />
+                </div>
             </div>
 
             <button type='button' onClick={handleCreate}>Create</button>
         </div>
     )
 }
-
-export default Protagonist;

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { menu } from '@comp/store';
-import CreateProtagonist from '@comp/menu/MenuCreateCharacter';
-import { ShowCharacterList } from '@comp/menu/MenuShowCharacters';
-import { Options } from '@comp/menu/MenuOptions';
+import { MenuCreateCharacter } from '@comp/menu/MenuCreateCharacter';
+import { MenuShowCharacters } from '@comp/menu/MenuShowCharacters';
+import { MenuOptions } from '@comp/menu/MenuOptions';
 import { MenuButton } from '@comp/menu/MenuButton';
 import logoImg from '@shared/assets/images/svg/celtic.svg';
-import './menu.scss';
+import './Menu.scss';
 
 export const Menu = () => {
 
@@ -16,13 +16,13 @@ export const Menu = () => {
     useEffect(() => {
         switch (storeMenu.activeMenu) {
             case 'login':
-                setOpenMenu(<ShowCharacterList />)
+                setOpenMenu(<MenuShowCharacters />)
                 break;
             case 'create':
-                setOpenMenu(<CreateProtagonist />)
+                setOpenMenu(<MenuCreateCharacter />)
                 break;
             case 'options':
-                setOpenMenu(<Options />)
+                setOpenMenu(<MenuOptions />)
                 break;
             default:
                 setOpenMenu(null);
@@ -32,8 +32,7 @@ export const Menu = () => {
     }, [storeMenu.activeMenu])
 
     return (
-        <>
-            
+        <> 
             <div className='menuContainer'>
                 
                 <header>
@@ -56,8 +55,7 @@ export const Menu = () => {
 
             <div className={`${(openMenu === null) ? 'hide' : 'boxMenuContainer'}`}>
                 <div className='list'>{openMenu}</div>
-            </div>
-               
+            </div>  
         </>
     )
 }

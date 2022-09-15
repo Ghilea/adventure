@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Options = () => {
+export const MenuOptions = () => {
 
     return (
         <div>

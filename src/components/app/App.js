@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Interface from '@comp/interface/Interface';
 import { CanvasLevel, CanvasMenu } from '@comp/canvas/Canvas';
 import { menu } from '@comp/store'
-import { Menu } from '@comp/menu/menu';
+import { Menu } from '@comp/menu/Menu';
 import { MapEditor } from '@editor/MapEditor';
 import './reset.scss';
 import './misc.scss';

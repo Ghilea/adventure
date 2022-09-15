@@ -15,7 +15,7 @@ export const Read = async (url) => {
 }
 
 export const Create = (url, data) => {
-    return fetch(url, {
+    return fetch(`http://${process.env.REACT_APP_DB_HOST}:${process.env.REACT_APP_PORT}/${url}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ export const Create = (url, data) => {
 }
 
 export const Update = (url, data) => {
-    return fetch(url, {
+    return fetch(`http://${process.env.REACT_APP_DB_HOST}:${process.env.REACT_APP_PORT}/${url}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

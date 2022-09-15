@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { player } from '@comp/store';
+import './Points.scss';
 
 export const Points = () => {
 

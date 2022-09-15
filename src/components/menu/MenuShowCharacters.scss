@@ -1,0 +1,43 @@
+.character{
+    font-family: "Astloch", cursive;
+    letter-spacing: 0.1em;
+    background-image: url('/shared/assets/images/texture/overlay.png'), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 6em;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    border: 0.6em double #626262;
+    border-radius: 0.3em;
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+
+    .levelTitle {
+        font-size: 0.85rem;
+    }
+
+    &:hover {
+        border: 0.6em double #acbac3;
+    }
+
+    h2 {
+        margin:0;
+        margin-left: 0.3em;
+    }
+
+    p {
+        margin:0;
+        margin-left: 0.5em;
+    }
+
+    img {
+        width: 20em;
+        position: absolute;
+        right: -5.5em;
+        top: -1.2em;
+        opacity: 0.6;
+    }
+}
