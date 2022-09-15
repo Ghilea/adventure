@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { enemy, player } from '@comp/store'
 import { Read } from '@shared/components/Crud';
-import { fetchURL } from '@shared/components/global';
 import './expBar.scss';
 import './healthBar.scss';
 import './manaBar.scss';
@@ -19,9 +18,8 @@ export const Health = () => {
     );
     
     useEffect(() => {
-        let url = `${fetchURL}/getProtagonist?id=${storePlayer.id}`;
 
-        Read(url)
+        Read(`getProtagonist?id=${storePlayer.id}`)
             .then(items => {
                 if (items.protagonist.length > 0) {
                     setHealth(health => ({

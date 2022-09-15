@@ -3,7 +3,6 @@ import { player, enemy, combat } from '@comp/store';
 import { Read, Update } from '@shared/components/Crud';
 import { Health, Mana, Exp } from '@comp/interface/bar/Bar';
 import { CharacterSheet } from '@comp/interface/characterSheet/CharacterSheet';
-import { fetchURL } from '@shared/components/global';
 import { Chat } from '@comp/interface/chat/Chat';
 import './interface.scss';
 
@@ -20,9 +19,7 @@ const Interface = () => {
         
     useEffect(() => {
 
-        let url = `${fetchURL}/getProtagonist?id=${storePlayer.id}`;
-
-        Read(url)
+        Read(`getProtagonist?id=${storePlayer.id}`)
             .then(items => {
 
                 if (items.protagonist.length > 0) {
@@ -48,7 +45,6 @@ const Interface = () => {
     }, [])
 
     useEffect(() => {
-        const url = `${fetchURL}/updateStats`;
 
         const data = {
             id: storePlayer.id,
@@ -65,7 +61,7 @@ const Interface = () => {
         }
 
         if (storePlayer.level > 0) {
-            Update(url, data);
+            Update('updateStats', data);
         }
             
     }, [storePlayer]);

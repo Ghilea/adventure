@@ -2,7 +2,6 @@ import React, { useEffect, useState, createElement } from 'react';
 import { enemy, player, combat } from '@comp/store';
 import { Read } from '@/shared/components/Crud';
 import EnemyHealthBar from '@comp/enemy/enemyHealthBar';
-import { fetchURL } from '@shared/components/global';
 
 const getEnemy = () => {
 
@@ -21,9 +20,7 @@ const getEnemy = () => {
     //get and set enemy
     useEffect(() => {
 
-        const url = `${fetchURL}/getEnemy`;
-
-        Read(url)
+        Read('getEnemy')
             .then(items => {
                 
                 if (items.enemy.length > 0) {

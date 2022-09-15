@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import { build, interfaceButtons } from '@editor/store';
-import { fetchURL } from '@shared/components/global';
 import { Read, Update } from '@shared/components/Crud';
 
 export const CategorySettings = () => {
@@ -14,11 +13,8 @@ export const CategorySettings = () => {
     const levelRef = useRef();
 
     useEffect(() => {
-        
-        const url = `${fetchURL}/getAllLevels`;
-
-        //data
-        Read(url)
+    
+        Read('getAllLevels')
             .then(items => {
                 if (items.levels.length > 0) {
                     items.levels.map((item, index) => {
@@ -79,16 +75,13 @@ export const CategorySettings = () => {
 
         setSelectList(newSelect)
 
-        //database
-        const url = `${fetchURL}/updateLevel`;
-
         const data = {
             id: list[selected].id,
             title: nameRef.current.value,
             level: (levelRef.current.value > 100 || levelRef.current.value < 1) ? list[selected].level : levelRef.current.value
         }
 
-        Update(url, data);
+        Update('updateLevel', data);
         
     }
 

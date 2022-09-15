@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { map } from '@comp/store';
-import { fetchSocketURL } from '@shared/components/global';
 import { useKey } from 'rooks';
 import './chat.scss';
 
@@ -12,7 +11,7 @@ export const Chat = ({name}) => {
     const inputRef = useRef(null);
 
     useEffect(()=>{
-        ws.current = new WebSocket(`ws://${fetchSocketURL}/websockets`);
+        ws.current = new WebSocket(`ws://${process.env.REACT_APP_DB_HOST}:${process.env.REACT_APP_PORT}/websockets`);
     }, [])
     
     const [chatMessage, setChatMessage]= useState([])

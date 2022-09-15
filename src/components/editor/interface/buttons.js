@@ -2,7 +2,6 @@ import React from 'react';
 import { build, ground, interfaceButtons } from '@editor/store';
 import { menu } from '@comp/store';
 import { Create } from '@shared/components/Crud';
-import { fetchURL } from '@shared/components/global';
 
 export const ObjectsBtn = () => {
     
@@ -156,7 +155,7 @@ export const SaveLevelBtn = () => {
             'player': storeBuild.object
         })
         
-        /*const url = `${fetchURL}/createLevel`;
+        /*const url = 'createLevel';
 
         Create(url, {
             content: JSON.stringify({

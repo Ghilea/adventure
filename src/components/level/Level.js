@@ -3,7 +3,6 @@ import { Ground } from '@comp/level/Ground';
 import { Read } from '@shared/components/Crud';
 import { map } from '@comp/store';
 import { Player } from '@comp/player/Player';
-import { fetchURL } from '@shared/components/global';
 import { Loader } from '@shared/components/loading/Loader';
 import { Wall_1 } from '@shared/models/walls';
 
@@ -19,10 +18,8 @@ export const Level = () => {
     });
 
     useEffect(() => {
-
-        let url = `${fetchURL}/getLevel?&id=${storeMap.level}`;
     
-        Read(url)
+        Read(`/getLevel?&id=${storeMap.level}`)
             .then(items => {
 
                 if (items.level.length > 0) {
