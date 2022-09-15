@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Read } from '@shared/components/Crud';
 import { menu, player } from '@comp/store';
-import { fetchURL } from '@shared/components/global';
 import useSound from 'use-sound';
 import buttonHover from '@shared/assets/sounds/btnHover.mp3';
 import maleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_male.png';
@@ -16,8 +15,6 @@ export const ShowCharacterList = () => {
 
     const [play, {stop}] = useSound(buttonHover);
   
-    const url = `${fetchURL}/getAllProtagonist`;
-
     const handleLogin = (id) => {
         //storeMenu.isLoadingDone(false);
         //storeMenu.isLoginSuccess(true);
@@ -25,7 +22,7 @@ export const ShowCharacterList = () => {
     }
 
     useEffect(() => {
-        Read(url).then(response => setData(
+        Read('getAllProtagonist').then(response => setData(
       
             response.data.map((item, index) => {
                 return (

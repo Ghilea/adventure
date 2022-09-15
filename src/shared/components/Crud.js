@@ -7,7 +7,7 @@ import axios from 'axios';
 
 export const Read = async (url) => {
     try {
-        const promise = await axios.get(url);
+        const promise = await axios.get(`http://${process.env.REACT_APP_DB_HOST}:${process.env.REACT_APP_PORT}/${url}`);
         return promise
     }catch(error) {
         console.error('error', error)

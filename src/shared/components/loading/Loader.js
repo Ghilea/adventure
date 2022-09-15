@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Html, useProgress } from "@react-three/drei";
 import { menu } from '@comp/store';
 import { Read } from '@shared/components/Crud';
-import { fetchURL } from '@shared/components/global';
 import './LoadingScreen.scss';
 
 export const Loader = () => {
@@ -10,11 +9,9 @@ export const Loader = () => {
     const storeMenu = menu(state => state);
     const {progress} = useProgress();
     const [data, setData] = useState(null);
-    
-    const url = `${fetchURL}/loadingTip`;
 
     useEffect(() => {
-        Read(url).then(response => setData(response.data[0].sentence))
+        Read('loadingTip').then(response => setData(response.data[0].sentence))
     }, [])
 
     useEffect(()=>{

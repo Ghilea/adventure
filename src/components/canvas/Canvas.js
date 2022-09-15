@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import { Level } from '@comp/level/Level';
-import { MenuBg } from '@comp/menu/MenuBg';
+import { MenuBg } from '@comp/menu/MenuBackground';
 //import { OrbitControls } from '@react-three/drei';
 
 /*
