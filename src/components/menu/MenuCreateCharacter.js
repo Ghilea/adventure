@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Create } from '@shared/components/Crud';
 import { player, menu } from '@comp/store';
-import { Points } from '@comp/interface/Points';
+import { Points } from '@comp/interface/points/Points';
 import maleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_male.png';
 import femaleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_female.png'
 import './MenuCreateCharacter.scss';

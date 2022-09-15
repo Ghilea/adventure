@@ -10,11 +10,11 @@ export const Read = async (url) => {
         const promise = await axios.get(`http://${process.env.REACT_APP_DB_HOST}:${process.env.REACT_APP_PORT}/${url}`);
         return promise
     }catch(error) {
-        console.error('error', error)
+        console.error('Crud-Read-Error', error)
     }
 }
 
-export const Create = (url, data) => {
+/*export const Create = (url, data) => {
     return fetch(`http://${process.env.REACT_APP_DB_HOST}:${process.env.REACT_APP_PORT}/${url}`, {
         method: 'POST',
         headers: {
@@ -24,9 +24,17 @@ export const Create = (url, data) => {
             data
         })
     });
+}*/
+
+export const Create = async (url, data) => {
+    try {
+        await axios.post(`http://${process.env.REACT_APP_DB_HOST}:${process.env.REACT_APP_PORT}/${url}`, data);
+    }catch(error){
+        console.error('Crud-Create-Error', error)
+    }
 }
 
-export const Update = (url, data) => {
+/*export const Update = (url, data) => {
     return fetch(`http://${process.env.REACT_APP_DB_HOST}:${process.env.REACT_APP_PORT}/${url}`, {
         method: 'PUT',
         headers: {
@@ -36,4 +44,12 @@ export const Update = (url, data) => {
             data
         })
     });
+}*/
+
+export const Update = async (url, data) => {
+    try {
+        await axios.put(`http://${process.env.REACT_APP_DB_HOST}:${process.env.REACT_APP_PORT}/${url}`, data);
+    } catch (error) {
+        console.error('Crud-Update-Error', error)
+    }
 }

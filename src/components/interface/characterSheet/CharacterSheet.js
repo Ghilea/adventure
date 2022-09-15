@@ -1,6 +1,6 @@
 import React from 'react';
 import { player, map } from '@comp/store'
-import { Points } from '@comp/interface/Points';
+import { Points } from '@comp/interface/points/Points';
 import { useKey } from 'rooks';
 import './characterSheet.scss';
 
