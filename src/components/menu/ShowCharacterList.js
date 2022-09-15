@@ -4,6 +4,8 @@ import { menu, player } from '@comp/store';
 import { fetchURL } from '@shared/components/global';
 import useSound from 'use-sound';
 import buttonHover from '@shared/assets/sounds/btnHover.mp3';
+import maleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_male.png';
+import femaleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_female.png'
 
 export const ShowCharacterList = () => {
 
@@ -17,9 +19,9 @@ export const ShowCharacterList = () => {
     const url = `${fetchURL}/getAllProtagonist`;
 
     const handleLogin = (id) => {
-        storeMenu.isLoadingDone(false);
-        storeMenu.isLoginSuccess(true);
-        storePlayer.setPlayerId(id);
+        //storeMenu.isLoadingDone(false);
+        //storeMenu.isLoginSuccess(true);
+        //storePlayer.setPlayerId(id);
     }
 
     useEffect(() => {
@@ -28,14 +30,10 @@ export const ShowCharacterList = () => {
             response.data.map((item, index) => {
                 return (
                     <div className='character' onClick={() => handleLogin(item.id)} onMouseEnter={() => play()} onMouseLeave={() => stop()} key={item.name + index}>
-                        <img src={`assets/images/characters/${item.img}.png`} />
-                        <h2>
-                            {item.name} (<span className='levelTitle'>level {item.level}</span>)
-                        </h2>
-                        <p>Hp: {item.health} / {item.maxHealth} </p>
-                        <p>
-                            Str: {item.strength} Int: {item.intellect} Dex: {item.dexterity}
-                        </p>
+                        <img src = {(item.gender === 'Male') ? maleImg : femaleImg} />
+                        <h2>{item.name} (<span className='levelTitle'>level {item.level}</span>)</h2>
+                        <p>Hp: {item.health} / {item.maxHealth}</p>
+                        <p>Str: {item.strength} Int: {item.intellect} Dex: {item.dexterity}</p>
                     </div>
                 );
             })
