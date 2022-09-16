@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Create } from '@shared/components/Crud';
-import { player, menu } from '@comp/store';
-import { Points } from '@comp/interface/points/Points';
+import { player } from '@comp/store';
+import { PointButton } from '@comp/interface/stats/PointButton';
 import maleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_male.png';
 import femaleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_female.png'
 import './MenuCreateCharacter.scss';
@@ -9,88 +9,79 @@ import './MenuCreateCharacter.scss';
 export const MenuCreateCharacter = () => {
 
     const storePlayer = player(state => state);
-    const storeMenu = menu(state => state);
     
     const [character, setCharacter] = useState({
         name: null,
-        img: null
+        avatar: null
     });
     
     useEffect(() => {
-        storePlayer.setPoints(5);
+        storePlayer.setAvailablePoints(25);
     }, [])
 
-    const handleInput = (event) => {
+    const selectAvatar = (e) => {
+        console.log(e.target.id)
         setCharacter({
             ...character,
-            name: event.target.value,
-        });
-        
-    }; 
-
-    const handleImg = (event) => {
-        setCharacter({
-            ...character,
-            img: event.target.id
+            avatar: e.target.id
         });
     }
 
-    const handleCreate = () => {
+    const handleCreate = (e) => {
         
-        if(character.name === null || character.img === null){
+        setCharacter({
+            ...character,
+            name: e.target.value,
+        });
+
+        if(character.name === null || character.avatar === null){
             console.log('Fyll i ett namn och välj en avatar');
         }else{
-            Create('createProtagonist', {
+            /*Create('createProtagonist', {
                 name: character.name,
                 img: character.img,
                 points: storePlayer.points,
                 str: storePlayer.str,
                 int: storePlayer.int,
                 dex: storePlayer.dex
-            });
-            storeMenu.isCreate(false);
+            });*/
         }
     }
 
     return (
         <div className='createWindow'>
     
-            <label form='name'>Name</label>
-            <input onChange={handleInput} type='text' id='name' placeholder='Din hjälte'/>
+            <label form='name'>Hero name</label>
+            <input type='text' id='name' placeholder='Name of your hero'/>
             
             <div className='avatars'>
-                <div onClick = {
-                    handleImg
-                }
-                className = {
-                    `button ${(character.img === 'FantasyCharacters_h_warrior_female') ?
-                    'chooseAvatar' : ''} `
-                } >
-                    <img id='FantasyCharacters_h_warrior_female' src={femaleImg} />
+                <div onClick = {(e) => selectAvatar(e)} className = {
+                    `${(character.avatar == 1) ? 'button chooseAvatar' : 'button'} `} >
+                    <img id={1} src={femaleImg} alt='picture of hero avatar' />
                 </div>
 
-                <div onClick = {
-                    handleImg
-                }
-                className = {
-                    `button ${(character.img === 'FantasyCharacters_h_warrior_male') ?
-                    'chooseAvatar' : ''} `
-                } >
-                    <img id='FantasyCharacters_h_warrior_male' src={maleImg}/>
+                <div onClick = {(e) => selectAvatar(e)} className = {
+                    `${(character.avatar == 2) ? 'button chooseAvatar' : 'button'} `} >
+                    <img id={2} src={maleImg} alt='picture of hero avatar' />
                 </div>
 
             </div>
 
             <div className='statsContainer'>
 
-                <div className='showPoints'>Points: {storePlayer.points}</div>
+                <div className='showPoints'>Available points: {storePlayer.coreStats.available}</div>
                     
                 <div className='pointsContainer'>
-                    <Points />
+                    <PointButton>Strength</PointButton>
+                    <PointButton>Intellect</PointButton>
+                    <PointButton>Dexterity</PointButton>
+                    <PointButton>Constitution</PointButton>
+                    <PointButton>Wisdom</PointButton>
+                    <PointButton>Charisma</PointButton>
                 </div>
             </div>
 
-            <button type='button' onClick={handleCreate}>Create</button>
+            <button type='button' onClick={(e) => handleCreate(e)}>Create</button>
         </div>
     )
 }

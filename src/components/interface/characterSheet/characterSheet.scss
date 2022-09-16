@@ -21,30 +21,6 @@
             color: #fff;
             position: absolute;
         }
-
-        .str, .int, .dex {
-            color: #fff;
-            padding: 0.2em 0.5em;
-        }
-
-        .btnSection {
-            display: flex;
-            align-items: center;
-        }
-
-        .gainBtn {
-            width: 2em;
-            height: 2em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            &:hover {
-                cursor: pointer;
-                background-color: rgba(154, 154, 154, 0.486);
-            }
-        }
-
     }
          
 }

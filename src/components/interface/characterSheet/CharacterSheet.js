@@ -1,6 +1,5 @@
 import React from 'react';
 import { player, map } from '@comp/store'
-import { Points } from '@comp/interface/points/Points';
 import { useKey } from 'rooks';
 import './characterSheet.scss';
 
@@ -32,7 +31,7 @@ export const CharacterSheet = () => {
                     <div className='points'>Poäng: {storePlayer.points}
                     </div>
                     <div className='attributes'>
-                        <Points />
+                   
                     </div>
                     <div className='dps'>Dps: {storePlayer.dps}</div>
                     

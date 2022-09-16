@@ -2,21 +2,60 @@ import create from 'zustand';
 
 export const player = create(set => ({
     id: 1,
-    hp: 1,
-    maxHp: 0,
-    mana : 0,
-    maxMana: 0,
-    dps: 0,
-    exp: 0,
-    level: 0,
-    points: 0,
-    str: 0,
-    int: 0,
-    dex: 0,
-    attack: false,
-    canAttack: true,
-    block: false,
-    movementSpeed: 6,
+    experience: {
+        level: null,
+        points: null
+    },
+    state: {
+        maxHealth: null,
+        health: null,
+        maxMana: null,
+        mana: null,
+    },
+    coreStats: {
+        available: 0,
+        strength: 0, //is how hard you hit something, how much you can carry, and how well you tend to do with strength based skill checks.
+        intellect: 0, //is how smart you are. It’s that simple really – Intelligence is usually academic intelligence – so how much you know about things.
+        dexterity: 0, //s how hard you hit something, how much you can carry, and how well you tend to do with strength based skill checks.
+        constitution: 0, //is around your actual fortitude as a player. It is the stat that has a direct effect on your hit points, as well as your resistance to poisoning, how fast you sober up, and the likes.
+        wisdom: 0, // is knowing about the world around you as well as how perceptive you are. It determines what you naturally notice.
+        charisma: 0 // is how good you are with people. It is how good you are at persuading people you are a good guy or how well you get on with NPCs.
+    },
+    secondaryStats: {
+        block: 0,
+        movementSpeed: 6,
+        meleeHit: 0,
+        spellHit: 0,
+        spellpower: 0,
+        weapons: {
+            sword: 0,
+            axe: 0,
+            dagger: 0,
+            mace: 0,
+            bow: 0,
+            crossbow: 0
+        }
+    },
+    combatChecks: {
+        acrobatics: 0, //dex
+        animalHandling: 0, //wis
+        arcana: 0, //int
+        athletics: 0, //str
+        deception: 0, //cha
+        history: 0, //int
+        insight: 0, // wis
+        intimidation: 0, //cha
+        investigation: 0, //int
+        medicine: 0, //wis,
+        nature: 0, //int
+        perception: 0, //wis
+        performance: 0, //cha
+        persuasion: 0, //cha
+        religion: 0, //int
+        sleightOfHand: 0, //dex,
+        stealth: 0, //dex
+        survival: 0 //wis
+    },
     setMovementSpeed: (speed) => set(state => ({
         ...state,
         movementSpeed: speed
@@ -61,16 +100,21 @@ export const player = create(set => ({
         points: points,
         level: level
     })),
-    setPoints: (points) => set(state => ({
+    setAvailablePoints: (points) => set(state => ({
         ...state,
-        points: points
+        coreStats: {
+            ...state.coreStats,
+            available: points
+        }
     })),
-    updatePoints: (points, str, int, dex) => set(state => ({
-        points: points,
-        str: str,
-        int: int,
-        dex: dex,
-        dps: (str + int + dex) / 2
+    updateCoreStats: (availablePoints, type, usedPoints) => set(state => ({
+        ...state,
+        coreStats: {
+            ...state.coreStats,
+            available: availablePoints,
+            [type]: usedPoints,
+        }
+        
     })) 
 }))
 

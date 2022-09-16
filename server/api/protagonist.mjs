@@ -16,9 +16,9 @@ export const getAllProtagonist = (con, res) => {
 }
     
 export const createProtagonist = (con, req, res) => {
-    con.connect(function (err) {
-        con.query(`INSERT INTO stats SET health = 50, maxHealth = 50, strength = ${req.body.data.str}, dexterity = ${req.body.data.dex}, intellect = ${req.body.data.int}, points = ${req.body.data.points}`, (err, result, fields) => {
-            con.query(`INSERT INTO protagonist SET name = '${req.body.data.name}', img = '${req.body.data.img}', stats_id = ${result.insertId}`)
+    con.connect(function (err) {       
+        con.query(`INSERT INTO stats SET health = 50, maxHealth = 50, strength = ${req.body.str}, dexterity = ${req.body.dex}, intellect = ${req.body.int}, points = ${req.body.points}`, (err, result, fields) => {
+            con.query(`INSERT INTO protagonist SET name = '${req.body.name}', img = ${req.body.img}, stats_id = ${result.insertId}`)
         })
         res.send('skapade en protagonist')
     })

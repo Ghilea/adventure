@@ -68,31 +68,6 @@
         flex-direction: row;
         justify-content: center;
         flex-wrap: wrap;
-        
-        .str, .int, .dex {
-            background-color: #fff;
-            color: #000;
-            padding: 0 0.5em;
-        }
-
-        .btnSection {
-            display: flex;
-            align-items: center;
-        }
-
-        .gainBtn {
-            width: 2em;
-            height: 2em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            &:hover {
-                cursor: pointer;
-                background-color: rgba(154, 154, 154, 0.486);
-            }
-        }
-
     }
 
     .playerShield {
