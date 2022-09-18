@@ -77,13 +77,11 @@
                 width: 100%;
                 gap: 3em;
                 color: #fff;
-                align-items: center;
-                margin-bottom: 3em;
 
                 .pointsContainer {
                     display: flex;
                     flex-wrap: wrap;
-                    gap: 2em;
+                    gap: 0.5em;
                 }
             }
         }
