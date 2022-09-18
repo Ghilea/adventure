@@ -4,9 +4,9 @@ import { CanvasLevel, CanvasMenu } from '@comp/canvas/Canvas';
 import { menu } from '@comp/store'
 import { Menu } from '@comp/menu/Menu';
 import { MapEditor } from '@editor/MapEditor';
-import './reset.scss';
-import './misc.scss';
-import './scrollbar.scss';
+import './Reset.scss';
+import './Misc.scss';
+import './Scrollbar.scss';
 
 export const App = () => {
 
