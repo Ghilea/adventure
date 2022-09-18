@@ -50,9 +50,8 @@ export const MenuCreateCharacter = () => {
 
     return (
         <div className='createWindow'>
-    
-            <label form='name'>Hero name</label>
-            <input type='text' id='name' placeholder='Name of your hero'/>
+
+            <input className='createHeroName' type='text' id='name' placeholder='Name of your hero'/>
             
             <div className='avatars'>
                 <div onClick = {(e) => selectAvatar(e)} className = {
