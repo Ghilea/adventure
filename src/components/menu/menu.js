@@ -6,12 +6,16 @@ import { MenuOptions } from '@comp/menu/MenuOptions';
 import { MenuButton } from '@comp/menu/MenuButton';
 import logoImg from '@shared/assets/images/svg/celtic.svg';
 import './Menu.scss';
+import { useSound } from 'use-sound';
+import menuMusic from '@shared/assets/music/menu.mp3';
 
 export const Menu = () => {
 
     const storeMenu = menu(state => state);
 
     const [openMenu, setOpenMenu] = useState(null);
+
+    const [play, {stop}] = useSound(menuMusic);
 
     useEffect(() => {
         switch (storeMenu.activeMenu) {
@@ -34,7 +38,7 @@ export const Menu = () => {
     return (
         <> 
             <div className='menuContainer'>
-                
+                <div className='activateSoundButton' onClick={() => {play()}}></div>
                 <header>
                     <img className='logo' src={logoImg} alt='logo'/>
 

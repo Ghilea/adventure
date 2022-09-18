@@ -19,6 +19,24 @@
     padding: 2em 1em;
     gap: 2em;
 
+    .activateSoundButton {
+        background-image: url('/shared/assets/images/svg/music_note.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        background-color: white;
+        border-radius: 50%;
+        width: 2em;
+        height: 2em;
+        position: absolute;
+        left: 0.5em;
+        top: 0.5em;
+
+        &:hover {
+            background-color: grey;
+        }
+    }
+
     header {
         width: 100%;
         display: flex;
