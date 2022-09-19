@@ -48,6 +48,13 @@ export const MenuCreateCharacter = () => {
         }
     }
 
+    /*
+        <div onClick = {(e) => selectAvatar(e)} className = {
+                    `${(character.avatar == 2) ? 'button chooseAvatar' : 'button'} `} >
+                    <img id={2} src={maleImg} alt='picture of hero avatar' />
+                </div>
+    */
+
     return (
         <div className='createWindow'>
 
@@ -58,12 +65,6 @@ export const MenuCreateCharacter = () => {
                     `${(character.avatar == 1) ? 'button chooseAvatar' : 'button'} `} >
                     <img id={1} src={femaleImg} alt='picture of hero avatar' />
                 </div>
-
-                <div onClick = {(e) => selectAvatar(e)} className = {
-                    `${(character.avatar == 2) ? 'button chooseAvatar' : 'button'} `} >
-                    <img id={2} src={maleImg} alt='picture of hero avatar' />
-                </div>
-
             </div>
 
             <div className='statsContainer'>

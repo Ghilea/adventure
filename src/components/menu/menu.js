@@ -58,7 +58,7 @@ export const Menu = () => {
             </div>
 
             <div className={`${(openMenu === null) ? 'hide' : 'boxMenuContainer'}`}>
-                <div className='list'>{openMenu}</div>
+                {openMenu}
             </div>  
         </>
     )

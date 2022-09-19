@@ -74,28 +74,14 @@
     overflow-x: hidden;
     display: flex;
     background-color: rgba(0, 0, 0, 0.502);
-    background-image: url('/shared/assets/images/texture/dirt.png'), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background-image: url('/shared/assets/images/loadingScreen.jpg'), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     position: fixed;
-    left: 29em;
-    right: 3em;
+    left: 0;
+    right: 0;
     top: 0;
     bottom: 0;
-    border-left: 5px double rgba(77, 77, 77, 0.4);
-    border-right: 5px double rgba(77, 77, 77, 0.4);
     align-items: center;
-    padding: 2em 1em;
-    gap: 2em;
-    flex-direction: column;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-
-    .list {
-        width: 100%;
-        display: flex;
-        gap: 0.5em;
-        flex-direction: column;
-    }
 }

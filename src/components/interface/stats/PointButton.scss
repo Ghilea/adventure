@@ -7,7 +7,7 @@
     padding: 1em;
     border-radius: 0.4em;
     position: relative;
-    height: 9em;
+    height: fit-content;
     width: 7em;
 
     .coreStats {
@@ -18,8 +18,8 @@
         align-items: center;
 
         .coreStatsTitle {
-            font-size: 0.7rem;
-            letter-spacing: 0.2rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.1rem;
         }
 
         .coreStatsPoints {
@@ -38,9 +38,10 @@
 
     .buttonContainer {
         display: flex;
-        gap: 0.2em;
+        gap: 1em;
         position: absolute;
-        bottom:1em;
+        right: -1em;
+        flex-direction: column;
 
         .coreStatsButton {
             display: flex;

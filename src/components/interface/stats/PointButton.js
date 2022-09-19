@@ -69,9 +69,9 @@ export const PointButton = ({children}) => {
                 </div>
 
                 <div className='buttonContainer'>
-                    <div className='coreStatsButton' onClick={() => decreaseAttribute()} disabled={stats.type === 0 ? true : false}>-</div>
-                
                     <div className='coreStatsButton' onClick={() => increaseAttribute()} disabled={storePlayer.coreStats.available === 0 ? true: false}>+</div>
+
+                    <div className='coreStatsButton' onClick={() => decreaseAttribute()} disabled={stats.type === 0 ? true : false}>-</div>
                 </div>
                 
             </div>
