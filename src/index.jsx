@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 //import { MapEditor } from '@editor/MapEditor';
 import { App } from '@comp/app/App';
 
-const container = document.querySelector('main');
+const container = document.querySelector('#root');
 const root = createRoot(container);
 
 root.render(

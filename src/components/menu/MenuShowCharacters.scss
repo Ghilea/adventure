@@ -1,7 +1,7 @@
 .character{
     font-family: "Astloch", cursive;
     letter-spacing: 0.1em;
-    background-image: url('/shared/assets/images/texture/overlay.png'), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background-image: url('@shared/assets/images/texture/overlay.png'), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

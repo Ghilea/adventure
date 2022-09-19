@@ -11,7 +11,7 @@ export const Chat = ({name}) => {
     const inputRef = useRef(null);
 
     useEffect(()=>{
-        ws.current = new WebSocket(`ws://${process.env.REACT_APP_DB_HOST}:${process.env.REACT_APP_PORT}/websockets`);
+        ws.current = new WebSocket(`ws://${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_PORT}/websockets`);
     }, [])
     
     const [chatMessage, setChatMessage]= useState([])

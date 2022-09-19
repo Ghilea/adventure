@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { ExitBtn, SaveLevelBtn, WallBtn, CharactersBtn, GroundBtn, RemoveObjectBtn, ObjectsBtn, SelectMap, Settings } from '@editor/interface/buttons';
+import { ExitBtn, SaveLevelBtn, WallBtn, CharactersBtn, GroundBtn, RemoveObjectBtn, ObjectsBtn, Settings } from '@editor/interface/buttons';
 import { CategoryGround } from '@editor/interface/category/categoryGround';
 import { CategoryWall } from '@editor/interface/category/categoryWall';
 import { CategoryPlayer } from '@editor/interface/category/categoryPlayer';

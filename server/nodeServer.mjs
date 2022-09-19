@@ -24,11 +24,11 @@ app.use(bodyParser.urlencoded({
 app.use(cors());
 
 //connection
-const HOST = process.env.REACT_APP_DB_HOST;
-const USER = process.env.REACT_APP_DB_USER;
-const PASS = process.env.REACT_APP_DB_PASS;
-const BASE = process.env.REACT_APP_DB_DATABASE;
-const PORT = process.env.REACT_APP_PORT || 3000;
+const HOST = import.meta.env.VITE_DB_HOST;
+const USER = import.meta.env.VITE_DB_USER;
+const PASS = import.meta.env.VITE_DB_PASS;
+const BASE = import.meta.env.VITE_DB_DATABASE;
+const PORT = import.meta.env.VITE_PORT || 3000;
 
 const con = mySQL.createConnection({
     host: HOST,
