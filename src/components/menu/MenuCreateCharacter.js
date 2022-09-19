@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Create } from '@shared/components/Crud';
-import { player } from '@comp/store';
+import { player, menu } from '@comp/store';
 import { PointButton } from '@comp/interface/stats/PointButton';
 import maleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_male.png';
 import femaleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_female.png'
@@ -9,6 +9,7 @@ import './MenuCreateCharacter.scss';
 export const MenuCreateCharacter = () => {
 
     const storePlayer = player(state => state);
+    const storeMenu = menu(state => state);
     
     const [character, setCharacter] = useState({
         name: null,
@@ -25,6 +26,10 @@ export const MenuCreateCharacter = () => {
             ...character,
             avatar: e.target.id
         });
+    }
+
+    const handleExit = () => {
+        storeMenu.activateMenu(null)
     }
 
     const handleCreate = (e) => {
@@ -60,16 +65,13 @@ export const MenuCreateCharacter = () => {
 
             <input className='createHeroName' type='text' id='name' placeholder='Name of your hero'/>
             
-            <div className='avatars'>
-                <div onClick = {(e) => selectAvatar(e)} className = {
-                    `${(character.avatar == 1) ? 'button chooseAvatar' : 'button'} `} >
-                    <img id={1} src={femaleImg} alt='picture of hero avatar' />
-                </div>
+            <div onClick = {(e) => selectAvatar(e)} className = {`${(character.avatar == 1) ? 'avatar chooseAvatar' : 'avatar'} `}>
+                <img id={1} src={femaleImg} alt='picture of hero avatar' />
             </div>
 
             <div className='statsContainer'>
 
-                <div className='showPoints'>Available points: {storePlayer.coreStats.available}</div>
+                <div className='showPoints'>{storePlayer.coreStats.available}</div>
                     
                 <div className='pointsContainer'>
                     <PointButton>Strength</PointButton>
@@ -81,7 +83,8 @@ export const MenuCreateCharacter = () => {
                 </div>
             </div>
 
-            <button type='button' onClick={(e) => handleCreate(e)}>Create</button>
+            <button className='createButton' type='button' onClick={(e) => handleCreate(e)}>Create</button>
+            <button className='exitButton' type='button' onClick={() => handleExit()}>Exit</button>
         </div>
     )
 }
