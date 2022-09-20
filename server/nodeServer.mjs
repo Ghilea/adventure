@@ -4,7 +4,6 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv'
 import websockets from './websocket/websocket.mjs';
-
 //api
 import { getQuest } from './api/quest.mjs';
 import { getProtagonist, getAllProtagonist, createProtagonist, updateStatsProtagonist } from './api/protagonist.mjs';
@@ -24,11 +23,11 @@ app.use(bodyParser.urlencoded({
 app.use(cors());
 
 //connection
-const HOST = import.meta.env.VITE_DB_HOST;
-const USER = import.meta.env.VITE_DB_USER;
-const PASS = import.meta.env.VITE_DB_PASS;
-const BASE = import.meta.env.VITE_DB_DATABASE;
-const PORT = import.meta.env.VITE_PORT || 3000;
+const HOST = process.env.VITE_DB_HOST;
+const USER = process.env.VITE_DB_USER;
+const PASS = process.env.VITE_DB_PASS;
+const BASE = process.env.VITE_DB_DATABASE;
+const PORT = process.env.VITE_PORT;
 
 const con = mySQL.createConnection({
     host: HOST,
