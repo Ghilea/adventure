@@ -62,25 +62,30 @@ export const MenuCreateCharacter = () => {
 
     return (
         <div className='createWindow'>
-
-            <input className='createHeroName' type='text' id='name' placeholder='Name of your hero'/>
             
             <div onClick = {(e) => selectAvatar(e)} className = {`${(character.avatar == 1) ? 'avatar chooseAvatar' : 'avatar'} `}>
                 <img id={1} src={femaleImg} alt='picture of hero avatar' />
             </div>
+            
+            <input className='createHeroName' type='text' id='name' placeholder='Name of your hero'/>
+            
+            <div className='createHeroState'>
+                <div className='createHeroStateHP'>50 / 50</div>
+            </div>
 
-            <div className='statsContainer'>
-
-                <div className='showPoints'>{storePlayer.coreStats.available}</div>
-                    
-                <div className='pointsContainer'>
-                    <PointButton>Strength</PointButton>
-                    <PointButton>Intellect</PointButton>
-                    <PointButton>Dexterity</PointButton>
-                    <PointButton>Constitution</PointButton>
-                    <PointButton>Wisdom</PointButton>
-                    <PointButton>Charisma</PointButton>
+            <div className='createHeroInformation'>
+                <div className='createHeroInformation_box1'>
+                    <div className='showPoints'>{storePlayer.coreStats.available} </div>
+                    Available points
                 </div>
+            </div>
+            
+            <div className='statsContainer'>              
+                <PointButton>Strength</PointButton>
+                <PointButton>Intellect</PointButton>
+                <PointButton>Dexterity</PointButton>
+                <PointButton>Constitution</PointButton>
+                <PointButton>Wisdom</PointButton>
             </div>
 
             <button className='createButton' type='button' onClick={(e) => handleCreate(e)}>Create</button>

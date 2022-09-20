@@ -1,7 +1,7 @@
 .createWindow {
     display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     grid-column-gap: 0.5em;
     grid-row-gap: 0.5em;
     flex-direction: column;
@@ -11,6 +11,7 @@
     height: 100vh;
     padding: 1em;
     align-items: start;
+    align-content: space-between;
 
     input {
         padding: 0.5em;
@@ -28,15 +29,45 @@
     }
 
     .createHeroName {
-        grid-area: 1 / 2 / 1 / 2;
+        grid-area: 1 / 2 / 2 / 4;
+    }
+
+    .createHeroState {
+        grid-area: 1 / 6 / 2 / 8;
+        background-color: #91919159;
+        width: 100%;
+        height: 5em;
+        border-radius: 0.4em;
+        display: flex;
+        align-items: center;
+
+        .createHeroStateHP {
+
+        }
+    }
+
+    .createHeroInformation {
+        grid-area: 2 / 5 / 6 / 8;
+        background-color: #91919159;
+        border-radius: 0.4em;
+        height: 100%;
+        display: flex;
+        padding: 1em;
+
+        .createHeroInformation_box1 {
+            display: flex;
+            gap: 1em;
+            height: fit-content;
+            align-items: center;
+        }
     }
 
     .avatar {
+        grid-area: 1 / 1 / 2 / 2;
         display:flex;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        grid-area: 1 / 1 / 1 / 1;
         padding: 0.5em;
         background-color: rgb(56, 46, 46);
         background-image: url('@shared/assets/images/texture/overlay.png'), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
@@ -62,37 +93,32 @@
     }
 
     .createButton {
-        grid-area: 6/5/6/5;
+        grid-area: 6 / 6 / 7 / 7;
     }
 
     .exitButton {
-        grid-area: 6/6/6/6;
+        grid-area: 6 / 7 / 7 / 8;
     }
 
     .statsContainer{
-        grid-area: 2 / 1 / 2 / 5;
+        grid-area: 2 / 1 / 3 / 5;
         display: flex;
+        flex-wrap: wrap;
         flex-direction: row;
         width: 100%;
         color: #fff;
         gap: 1em;
+    }
 
-        .showPoints {
-            display:flex;
-            border-radius: 50%;
-            background-color: #0000009e;
-            width: 3em;
-            height: 3em;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .pointsContainer {
-            display: flex;
-            flex-direction: row;
-            gap: 0.5em;
-            width: 100%;
-        }
+    .showPoints {
+        display:flex;
+        flex-direction: row;
+        border-radius: 50%;
+        background-color: rgb(255 255 255 / 47%);
+        width: 3em;
+        height: 3em;
+        justify-content: center;
+        align-items: center;
     }
 }
 
