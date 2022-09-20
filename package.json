@@ -45,7 +45,7 @@
         "start": "vite",
         "build": "vite build",
         "preview": "vite preview",
-        "startServer": "node server/nodeServer.mjs",
+        "startServer": "node server/server.mjs",
         "test": "mocha",
         "electron:serve": "concurrently -k \"cross-env BROWSER=none npm start\" \"npm:electron\"",
         "electron": "wait-on tcp:4000 && electron ."
