@@ -1,6 +1,8 @@
 {
     "name": "adventure",
+    "private": true,
     "version": "0.0.1",
+    "type": "module",
     "description": "adventure",
     "author": "Ghilea",
     "dependencies": {
@@ -16,7 +18,8 @@
         "three": "^0.144.0",
         "use-sound": "^4.0.1",
         "zustand": "^4.1.1",
-        "axios": "^0.27.2"
+        "axios": "^0.27.2",
+        "@tauri-apps/api": "^1.1.0"
     },
     "devDependencies": {
         "chai": "^4.3.6",
@@ -36,10 +39,11 @@
         "@tauri-apps/cli": "^1.1.1"
     },
     "scripts": {
-        "start": "vite",
+        "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
         "server": "node server/server.mjs",
-        "test": "mocha"
+        "test": "mocha",
+        "tauri": "tauri"
     }
 }
