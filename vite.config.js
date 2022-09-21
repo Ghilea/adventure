@@ -28,6 +28,8 @@ export default defineConfig({
     minify: !process.env.TAURI_DEBUG ? "esbuild" : false,
     // produce sourcemaps for debug builds
     sourcemap: !!process.env.TAURI_DEBUG,
+    // larger files
+    chunkSizeWarningLimit: 2000,
   },
   
   resolve: {
