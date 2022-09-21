@@ -10,11 +10,9 @@ export const createDatabase = (mysql) => {
     con.connect((err) => {
         con.query(`CREATE DATABASE IF NOT EXISTS ${process.env.VITE_DB_DATABASE} DEFAULT CHARACTER SET = 'utf8mb4'`, (err, result) => {
             if (err) throw err;
-            console.log('Database created');
+    
             con.query(`USE ${process.env.VITE_DB_DATABASE};`, (error, results) => {
                 if (error) throw error;
-                console.log('Database connected');
-
                 createEnemies(con);
                 createLevels(con);
                 createLoading(con);
@@ -22,6 +20,8 @@ export const createDatabase = (mysql) => {
                 createQuest(con);
                 createStats(con);
             });
+            
+            console.log('Database created');
         })
     })
 }

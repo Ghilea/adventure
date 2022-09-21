@@ -19,8 +19,6 @@ export const createEnemies = (con) => {
       con.query(data, (error, results) => {
           if (error) throw error; 
       });
-
-      console.log('Enemies created')
   });
 }
 
@@ -41,8 +39,6 @@ export const createLoading = (con) => {
       con.query(data, (error, results) => {
           if (error) throw error;
       });
-      
-      console.log('LoadingTip created');
   });   
 }
 
@@ -63,8 +59,6 @@ export const createLevels = (con) => {
       con.query(data, (error, results) => {
           if (error) throw error;
       });
-
-      console.log('Levels created');
   });
    
 }
@@ -89,8 +83,6 @@ export const createProtagonist = (con) => {
       con.query(data, (error, results) => {
           if (error) throw error;
       });
-
-      console.log('Protagonist created');
   });
 
 }
@@ -115,8 +107,6 @@ export const createQuest = (con) => {
       con.query(data, (error, results) => {
           if (error) throw error;
       });
-
-      console.log('Quest created');
   });
   
 }
@@ -150,7 +140,5 @@ export const createStats = (con) => {
       con.query(data, (error, results) => {
           if (error) throw error;
       });
-
-      console.log('Stats created');
   });    
 }
