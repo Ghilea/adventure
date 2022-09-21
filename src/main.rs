@@ -4,14 +4,13 @@
 )]
 
 #[tauri::command]
-fn sample_command() {
-  println!("Rust code invoked from JavaScript!");
+fn greet(name: &str) -> String {
+   format!("Hello, {}!", name)
 }
 
 fn main() {
   tauri::Builder::default()
-  // Commands list here 
-  .invoke_handler(tauri::generate_handler![sample_command])
-    .run(tauri::generate_context!())
-    .expect("error while running tauri application");
+  .invoke_handler(tauri::generate_handler![greet])
+  .run(tauri::generate_context!())
+  .expect("error while running tauri application");
 }
