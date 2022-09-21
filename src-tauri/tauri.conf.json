@@ -4,7 +4,7 @@
     "beforeBuildCommand": "npm run build",
     "beforeDevCommand": "npm run dev",
     "devPath": "http://localhost:1420",
-    "distDir": "src/shared/"
+    "distDir": "../dist/assets"
   },
   "package": {
     "productName": "adventure",
@@ -29,7 +29,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "adventure.tauri.dev",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
