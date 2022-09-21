@@ -1,7 +1,6 @@
 import mySQL from 'mysql';
 import express from 'express';
 import cors from 'cors';
-import bodyParser from 'body-parser';
 import dotenv from 'dotenv'
 import websockets from './websocket/websocket.mjs';
 
@@ -20,27 +19,18 @@ import { createDatabase } from './sql/createDatabase.mjs';
 dotenv.config();
 const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use(cors());
-
-//connection
-const HOST = process.env.VITE_DB_HOST;
-const USER = process.env.VITE_DB_USER;
-const PASS = process.env.VITE_DB_PASS;
-const BASE = process.env.VITE_DB_DATABASE;
-const PORT = process.env.VITE_PORT;
 
 //setup database
 createDatabase(mySQL);
 
 const con = mySQL.createConnection({
-    host: HOST,
-    user: USER,
-    password: PASS,
-    database: BASE
+    host: process.env.VITE_DB_HOST,
+    user: process.env.VITE_DB_USER,
+    password: process.env.VITE_DB_PASS,
+    database: process.env.VITE_DB_DATABASE
 })
 
 //GET
@@ -95,9 +85,11 @@ app.post('/createLevel', (req, res) => {
 });
 
 //LISTENER
+const PORT = process.env.VITE_PORT;
+
 const server = app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}!`);
-    console.log(`Link: http://${process.env.VITE_DB_HOST}:${PORT}/loadingTip`);
+    console.log(`ApiLink: http://${process.env.VITE_DB_HOST}:${PORT}/loadingTip`);
 });
 
 //WEBSOCKET
