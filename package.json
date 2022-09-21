@@ -28,35 +28,18 @@
         "pkg": "^5.8.0",
         "sass": "^1.54.9",
         "ws": "^8.8.1",
-        "electron": "^20.1.4",
-        "electron-builder": "^23.3.3",
-        "@electron/remote": "^2.0.8",
-        "electron-winstaller": "^5.0.0",
         "concurrently": "7.4.0",
         "wait-on": "6.0.1",
         "cross-env": "7.0.3",
         "@vitejs/plugin-react": "^2.1.0",
-        "vite": "^3.1.0"
+        "vite": "^3.1.0",
+        "@tauri-apps/cli": "^1.1.1"
     },
     "scripts": {
         "start": "vite",
         "build": "vite build",
         "preview": "vite preview",
         "server": "node server/server.mjs",
-        "test": "mocha",
-        "electron:serve": "concurrently -k \"cross-env BROWSER=none npm start\" \"npm:electron\"",
-        "electron": "wait-on tcp:4000 && electron ."
-    },
-    "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+        "test": "mocha"
+    }
 }
