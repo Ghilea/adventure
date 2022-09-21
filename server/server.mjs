@@ -13,6 +13,9 @@ import { getEnemy } from './api/enemy.mjs';
 import { getLevel, createLevel, getAllLevels, updateLevel } from './api/level.mjs'
 import { LoadingTip } from './api/loading.mjs';
 
+//create database
+import { createDatabase } from './sql/createDatabase.mjs';
+
 //env
 dotenv.config();
 const app = express();
@@ -29,6 +32,9 @@ const USER = process.env.VITE_DB_USER;
 const PASS = process.env.VITE_DB_PASS;
 const BASE = process.env.VITE_DB_DATABASE;
 const PORT = process.env.VITE_PORT;
+
+//setup database
+createDatabase(mySQL);
 
 const con = mySQL.createConnection({
     host: HOST,
@@ -90,7 +96,8 @@ app.post('/createLevel', (req, res) => {
 
 //LISTENER
 const server = app.listen(PORT, () => {
-    console.log(`Game listening on port ${PORT}!`);
+    console.log(`Server is listening on port ${PORT}!`);
+    console.log(`Link: http://${process.env.VITE_DB_HOST}:${PORT}/loadingTip`);
 });
 
 //WEBSOCKET
