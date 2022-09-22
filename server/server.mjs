@@ -24,7 +24,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
 //setup database
-createDatabase(mySQL);
+createDatabase();
 
 const con = mySQL.createConnection({
     host: process.env.VITE_DB_HOST,
@@ -32,6 +32,17 @@ const con = mySQL.createConnection({
     password: process.env.VITE_DB_PASS,
     database: process.env.VITE_DB_DATABASE
 })
+
+/*const knex = require('knex')({
+  client: 'mysql',
+  connection: {
+    host : process.env.VITE_DB_HOST,
+    port : 3306,
+    user : process.env.VITE_DB_USER,
+    password : process.env.VITE_DB_PASS,
+    database : process.env.VITE_DB_DATABASE
+  }
+});*/
 
 //GET
 app.get('/getAdventure', (req, res) => {
