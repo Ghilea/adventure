@@ -47,13 +47,7 @@ export const LevelsData = (knex) => {
               title:'test',
               level:1,
               content:'{\"walls\":[{\"pos\":[2.5,1.9999998319957535,4.5],\"rotate\":[0,1.5707963267948966,0],\"type\":[\"stone\"],\"indexKey\":\"wall0\"},{\"pos\":[-2.5,1.9999998319957537,4.5],\"rotate\":[0,1.5707963267948966,0],\"type\":[\"stone\"],\"indexKey\":\"wall1\"},{\"pos\":[4.5,1.9999999445270031,1.5],\"rotate\":[0,3.141592653589793,0],\"type\":[\"stone\"],\"indexKey\":\"wall2\"},{\"pos\":[-4.5,1.9999999601403091,1.5],\"rotate\":[0,3.141592653589793,0],\"type\":[\"stone\"],\"indexKey\":\"wall3\"},{\"pos\":[-4.5,2.0000001241229426,-3.5],\"rotate\":[0,3.141592653589793,0],\"type\":[\"stone\"],\"indexKey\":\"wall4\"},{\"pos\":[4.5,2.000000131707902,-3.5],\"rotate\":[0,3.141592653589793,0],\"type\":[\"stone\"],\"indexKey\":\"wall5\"},{\"pos\":[1.5,2.0000001443675077,-4.5],\"rotate\":[0,1.5707963267948966,0],\"type\":[\"stone\"],\"indexKey\":\"wall6\"},{\"pos\":[-3.5,2.000000168848589,-4.5],\"rotate\":[0,1.5707963267948966,0],\"type\":[\"stone\"],\"indexKey\":\"wall7\"},{\"pos\":[1.5,2.0000000422885487,-1.5],\"rotate\":[0,1.5707963267948966,0],\"type\":[\"stone\"],\"indexKey\":\"wall8\"},{\"pos\":[-1.5,1.9999999613216601,1.5],\"rotate\":[0,1.5707963267948966,0],\"type\":[\"stone\"],\"indexKey\":\"wall9\"}],\"ground\":[10,10,\"floor\"],\"player\":[-2.5,0.5500000775536565,-2.5]}'
-          },
-          {
-              sentence:'Does Anyone Actually Read This?'
-          },
-          {
-              sentence:'Hitting Your Keyboard Wont Make This Faster.'
-          },
+          }
       ]).into('levels')
 }
 

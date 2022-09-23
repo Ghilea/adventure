@@ -37,7 +37,7 @@ export const CreateTable = (knex) => {
       table.increments('id').primary();
       table.string('title',100).nullable();
       table.integer('level').notNullable();
-      table.string('content', 1000).notNullable();
+      table.json('content').notNullable();
     }).then(()=>{ 
         return LevelsData(knex);
     })
