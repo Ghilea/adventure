@@ -47,7 +47,6 @@ export const CreateTable = (knex) => {
   })
 
   knex.schema.hasTable('protagonist').then((exists)=>{
-    console.log(exists)
     if (exists) return
 
     knex.schema.createTable('protagonist', (table) => {
