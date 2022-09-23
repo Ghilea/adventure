@@ -3,7 +3,6 @@ import { EnemiesData, LoadingTipData, LevelsData, ProtagonistData, QuestData, St
 export const CreateTable = (knex) => {
 
   knex.schema.hasTable('enemies').then((exists)=>{
-    console.log(exists)
     if (exists) return
 
     knex.schema.createTable('enemies', (table) => {
@@ -15,10 +14,11 @@ export const CreateTable = (knex) => {
     }).then(()=>{ 
         return EnemiesData(knex);
     })
+
+    console.log('Enemies added')
   })
 
   knex.schema.hasTable('game_loading').then((exists)=>{
-    console.log(exists)
     if (exists) return
 
     knex.schema.createTable('game_loading', (table) => {
@@ -27,10 +27,11 @@ export const CreateTable = (knex) => {
     }).then(()=>{ 
         return LoadingTipData(knex);
     })
+
+    console.log('LoadingTip added')
   })
   
   knex.schema.hasTable('levels').then((exists)=>{
-    console.log(exists)
     if (exists) return
 
     knex.schema.createTable('levels', (table) => {
@@ -41,6 +42,8 @@ export const CreateTable = (knex) => {
     }).then(()=>{ 
         return LevelsData(knex);
     })
+
+    console.log('Levels added')
   })
 
   knex.schema.hasTable('protagonist').then((exists)=>{
@@ -56,10 +59,11 @@ export const CreateTable = (knex) => {
     }).then(()=>{ 
         return ProtagonistData(knex);
     })
+
+    console.log('Protagonist added');
   })
 
   knex.schema.hasTable('quest').then((exists)=>{
-    console.log(exists)
     if (exists) return
 
     knex.schema.createTable('quest', (table) => {
@@ -73,10 +77,11 @@ export const CreateTable = (knex) => {
     }).then(()=>{ 
         return QuestData(knex);
     })
+
+    console.log('Quest added')
   })
 
   knex.schema.hasTable('stats').then((exists)=>{
-    console.log(exists)
     if (exists) return
 
     knex.schema.createTable('stats', (table) => {
@@ -94,6 +99,8 @@ export const CreateTable = (knex) => {
     }).then(()=>{ 
         return StatsData(knex);
     })
+
+    console.log('Stats added')
   })
 
 }
