@@ -13,7 +13,7 @@ import { getLevel, createLevel, getAllLevels, updateLevel } from './api/level.mj
 import { LoadingTip } from './api/loading.mjs';
 
 //create database
-import { createDatabase } from './sql/createDatabase.mjs';
+import { createDatabase } from './sql/createDatabase.js';
 
 //env
 dotenv.config();
