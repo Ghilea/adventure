@@ -1,9 +1,17 @@
-export const getEnemy = (con, res) => {
-        con.connect((err) => {
-            con.query(`SELECT 
-        name, type, experience, level, img, health, maxHealth, strength, intellect, dexterity FROM enemies JOIN stats ON stats.id = stats_id ORDER BY RAND() LIMIT 1`, (err, result, fields) => {
-                res.status(200).json(result)
-            })
-
+export const getEnemy = async (knex, res) => {
+    try {
+        await knex.select('name', 'type', 'experience', 'level', 'img', 'health', 'maxHealth', 'strength', 'intellect', 'dexterity', 'constitution', 'wisdom')
+        .orderByRaw('RAND()')
+        .limit(1)
+        .join('stats', 'enemy.stats_id', 'id')
+        .from('enemies').then((query) => {
+            return res.code(200)
+            //.header('Content-Type', 'application/json; charset=utf-8')
+            .header('Access-Control-Allow-Origin', '*')
+            .send(query);
         })
+        
+    } catch (err) {
+        console.log(`Error: ${err}`)
     }
+}

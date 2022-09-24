@@ -1,7 +1,16 @@
-export const getQuest = (con, res, x, y) => {
-    con.connect((err) => {
-        con.query(`SELECT * FROM quest WHERE Xpos=${x} AND Ypos =${y}`, (err, result, fields) => {
-            res.status(200).json(result)
+export const getQuest = async (knex, res, x, y) => {
+    try {
+        await knex.select('*')
+        .where('xPos', x)
+        .andWhere('yPos', y)
+        .from('quest').then((query) => {
+            return res.code(200)
+            //.header('Content-Type', 'application/json; charset=utf-8')
+            .header('Access-Control-Allow-Origin', '*')
+            .send(query);
         })
-    })
+        
+    } catch (err) {
+        console.log(`Error: ${err}`)
+    }
 }

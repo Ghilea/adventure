@@ -1,17 +1,32 @@
-export const getLevel = (con, res, id) => {
-    con.connect((err) => {
-        con.query(`SELECT content FROM levels WHERE id = ${id}`, (err, result, fields) => {
-            res.status(200).json(result)
+export const getLevel = async (knex, res, id) => {
+    try {
+        await knex.select('content')
+        .where('id', x)
+        .from('levels').then((query) => {
+            return res.code(200)
+            //.header('Content-Type', 'application/json; charset=utf-8')
+            .header('Access-Control-Allow-Origin', '*')
+            .send(query);
         })
-    })
+        
+    } catch (err) {
+        console.log(`Error: ${err}`)
+    }
 }
 
-export const getAllLevels = (con, res) => {
-    con.connect((err) => {
-        con.query(`SELECT id, title, level, content FROM levels`, (err, result, fields) => {
-            res.status(200).json(result)
+export const getAllLevels = async (knex, res) => {
+    try {
+        await knex.select('id', 'title', 'level', 'content')
+        .from('levels').then((query) => {
+            return res.code(200)
+            //.header('Content-Type', 'application/json; charset=utf-8')
+            .header('Access-Control-Allow-Origin', '*')
+            .send(query);
         })
-    })
+        
+    } catch (err) {
+        console.log(`Error: ${err}`)
+    }
 }
 
 export const createLevel = (con, req, res) => {

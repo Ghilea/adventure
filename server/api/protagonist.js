@@ -1,18 +1,34 @@
-export const getProtagonist = (con, res, id) => {
-    con.connect(function (err) {
-        con.query(`SELECT name, experience, level, points, img, health, maxHealth, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id WHERE protagonist.id =${id}`, (err, result, fields) => {
-            res.status(200).json(result)
+export const getProtagonist = async (knex, res, id) => {
+    try {
+        await knex.select('name', 'experience', 'level', 'points', 'img', 'health', 'maxHealth', 'strength', 'intellect', 'dexterity', 'constitution', 'wisdom')
+        .join('stats', 'protagonist.stats_id', 'stats.id')
+        .where('protagonist.id', id)
+        .from('protagonist').then((query) => {
+            return res.code(200)
+            //.header('Content-Type', 'application/json; charset=utf-8')
+            .header('Access-Control-Allow-Origin', '*')
+            .send(query);
         })
-    })
+        
+    } catch (err) {
+        console.log(`Error: ${err}`)
+    }
 }
 
-export const getAllProtagonist = (con, res) => {
-    con.connect(function (err) {
-        con.query(`SELECT protagonist.id, name, experience, img, gender, level, health, maxHealth, strength, intellect, dexterity FROM protagonist JOIN stats ON stats.id = stats_id`, (err, result, fields) => {
-            res.status(200).json(result)
+export const getAllProtagonist = async (knex, res) => {
+    try {
+        await knex.select('protagonist.id', 'name', 'experience', 'level', 'gender', 'points', 'img', 'health', 'maxHealth', 'strength', 'intellect', 'dexterity', 'constitution', 'wisdom')
+        .join('stats', 'protagonist.stats_id', 'stats.id')
+        .from('protagonist').then((query) => {
+            return res.code(200)
+            //.header('Content-Type', 'application/json; charset=utf-8')
+            .header('Access-Control-Allow-Origin', '*')
+            .send(query);
         })
-
-    })
+        
+    } catch (err) {
+        console.log(`Error: ${err}`)
+    }
 }
     
 export const createProtagonist = (con, req, res) => {

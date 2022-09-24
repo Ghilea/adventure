@@ -1,18 +1,13 @@
 import Knex from 'knex';
 import Fastify from 'fastify';
-import cors from 'cors';
 import dotenv from 'dotenv'
 import websockets from './websocket/websocket.js';
 import { Api } from './Api.js';
 
-//env
 dotenv.config();
+
 const app = Fastify({ logger: false });
 
-/*app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use(cors());
-*/
 //create connection
 const knex = Knex({
     client: 'mysql',
@@ -24,6 +19,7 @@ const knex = Knex({
     }
 });
 
+//get api
 Api(app, knex);
 
 const startServer = async () => {
