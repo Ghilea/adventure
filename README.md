@@ -1,7 +1,7 @@
 # Adventure - ett DungeonCrawler-spel
 Projektet började som en inlämningsuppgift på backendkursen, där uppgiften var att använda NodeJS för att hämta data från ett Api. Jag spann vidare och började göra ett "DungeonCrawler" spel. Första versionen byggdes en 3D-värld upp i enbart CSS (kräver enormt mycket resurser från datorn). Tog en funderare och började använda ThreeJS för att få tillgång till WebGL.
 
-![alt text](https://github.com/ghilea/adventure/blob/shared/assets/images/readme/menu.png?raw=true)
+![alt text](https://github.com/Ghilea/adventure/blob/main/src/shared/assets/images/readme/menu.png?raw=true)
 
 # Server
   * Byggd med NodeJS (Fastify)
