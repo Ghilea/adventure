@@ -1,7 +1,6 @@
 import { EnemiesData, LoadingTipData, LevelsData, ProtagonistData, QuestData, StatsData } from "./createData.js";
 
 export const CreateTable = (knex) => {
-
   knex.schema.hasTable('enemies').then((exists)=>{
     if (exists) return
 
@@ -68,7 +67,7 @@ export const CreateTable = (knex) => {
     knex.schema.createTable('quest', (table) => {
       table.increments('id').primary();
       table.string('title',100).notNullable();
-      table.string('subTitle',1000).notNullable();
+      table.text('subTitle').notNullable();
       table.integer('xPos').notNullable().default(0)
       table.integer('yPos').notNullable().default(0);
       table.float('experience').notNullable().default(0);
@@ -102,4 +101,5 @@ export const CreateTable = (knex) => {
     console.log('Stats added')
   })
 
+  return true;
 }

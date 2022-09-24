@@ -26,6 +26,7 @@
         "cors": "^2.8.5",
         "dotenv": "^16.0.2",
         "express": "^4.18.1",
+        "fastify": "^4.6.0",
         "mocha": "^10.0.0",
         "mysql": "^2.18.1",
         "knex": "^2.3.0",
@@ -40,7 +41,8 @@
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
-        "server": "node server/server.mjs",
+        "createDB": "node server/createDatabase",
+        "server": "node server/server",
         "test": "mocha",
         "tauri": "tauri"
     }

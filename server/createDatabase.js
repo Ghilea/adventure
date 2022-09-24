@@ -1,7 +1,10 @@
 import Knex from 'knex';
-import { CreateTable } from './createTable.js';
+import dotenv from 'dotenv'
+import { CreateTable } from './sql/createTable.js';
 
-export const createDatabase = async() => {
+dotenv.config();
+
+const CreateDabase = async () => {
 
     const database = process.env.VITE_DB_DATABASE;
     const conn = {
@@ -16,20 +19,27 @@ export const createDatabase = async() => {
         connection: conn
     });
 
-    //drop database
-    knex.raw('DROP DATABASE IF EXISTS', database);
-    
     //create database if its not exists already
     await knex.raw('CREATE DATABASE IF NOT EXISTS ??', database);
 
     //add database
     conn.database = database;
 
-    //update knex object with know database
+    //update database connection
     knex = Knex({
         client: 'mysql',
         connection: conn
     })
 
-    CreateTable(knex);
+    const result = CreateTable(knex);
+    
+    console.log(result)
+
+    /*if(result){
+        process.exit() 
+    }*/
+
 }
+
+CreateDabase();
+
