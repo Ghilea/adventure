@@ -31,13 +31,32 @@ export const getAllProtagonist = async (knex, res) => {
     }
 }
     
-export const createProtagonist = (con, req, res) => {
-    con.connect(function (err) {       
-        con.query(`INSERT INTO stats SET health = 50, maxHealth = 50, strength = ${req.body.str}, dexterity = ${req.body.dex}, intellect = ${req.body.int}, points = ${req.body.points}`, (err, result, fields) => {
-            con.query(`INSERT INTO protagonist SET name = '${req.body.name}', img = ${req.body.img}, stats_id = ${result.insertId}`)
+export const createProtagonist = async (knex, req) => {
+    try {
+        await knex.insert({
+            health: 50, 
+            maxHealth: 50, 
+            stength: req.str,
+            intellect: req.int,
+            dexterity: req.dex,
+            constitution: req.con,
+            wisdom: req.wis,
+            charisma: req.cha,
+            points: req.points
         })
-        res.send('Protagonist added')
-    })
+        .returning('id')
+        .into('stats').then((id) => {
+            knex.insert({
+                name: req.name,
+                img: req.img,
+                stats_id: id
+            })
+            .into('protagonist')
+        })
+        
+    } catch (err) {
+        console.log(`Error: ${err}`)
+    }
 }
 
 export const updateStatsProtagonist = (con, req, res) => {

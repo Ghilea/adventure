@@ -67,7 +67,7 @@ export const Api = (app, knex) => {
 
     //post
     app.post('/createProtagonist', (req, res) => {
-        createProtagonist(knex, req, res);
+        createProtagonist(knex, req);
     });
 
     app.post('/createLevel', (req, res) => {

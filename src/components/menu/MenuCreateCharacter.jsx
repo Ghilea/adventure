@@ -13,8 +13,19 @@ export const MenuCreateCharacter = () => {
     
     const [character, setCharacter] = useState({
         name: null,
-        avatar: null
+        avatar: null,
+        stats: []
     });
+
+    useEffect(() => {
+        setCharacter((state) => ({
+            ...state,
+            stats: [
+                ...state.stats,
+
+            ]
+        }))
+    }, storePlayer)
     
     useEffect(() => {
         storePlayer.setAvailablePoints(25);
@@ -42,14 +53,17 @@ export const MenuCreateCharacter = () => {
         if(character.name === null || character.avatar === null){
             console.log('Fyll i ett namn och välj en avatar');
         }else{
-            /*Create('createProtagonist', {
+            Create('createProtagonist', {
                 name: character.name,
-                img: character.img,
-                points: storePlayer.points,
-                str: storePlayer.str,
-                int: storePlayer.int,
-                dex: storePlayer.dex
-            });*/
+                img: character.avatar,
+                points: storePlayer.coreStats.available,
+                str: storePlayer.coreStats.strength,
+                int: storePlayer.coreStats.intellect,
+                dex: storePlayer.coreStats.dexterity,
+                con: storePlayer.coreStats.constitution,
+                wis: storePlayer.coreStats.wisdom,
+                cha: storePlayer.coreStats.charisma
+            });
         }
     }
 
