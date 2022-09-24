@@ -14,6 +14,7 @@ export const MenuCreateCharacter = () => {
     const [character, setCharacter] = useState({
         name: null,
         avatar: null,
+        gender: 'male'
     });
     
     useEffect(() => {
@@ -47,6 +48,7 @@ export const MenuCreateCharacter = () => {
             Create('createProtagonist', {
                 name: character.name,
                 img: character.avatar,
+                gender: character.gender,
                 points: storePlayer.coreStats.available,
                 str: storePlayer.coreStats.strength,
                 int: storePlayer.coreStats.intellect,

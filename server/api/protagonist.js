@@ -30,7 +30,6 @@ export const getAllProtagonist = async (knex, res) => {
 }
     
 export const createProtagonist = async (knex, req) => {
-    console.log(req.body);
     try {
         await knex.insert({
             health: req.body.hp, 
