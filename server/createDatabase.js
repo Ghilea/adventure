@@ -31,14 +31,10 @@ const CreateDabase = async () => {
         connection: conn
     })
 
-    const counter = await CreateTable(knex)
-
-    if (counter <= 0) {
-        console.log('Database with example data created... Exit')
-        process.exit()
-    }
-
+    await CreateTable(knex);
 }
 
-CreateDabase()
-
+CreateDabase().then(()=>{
+        console.log('Database with example data created... Exit')
+        process.exit()
+    })

@@ -38,7 +38,7 @@ export const LoadingTipData = async (knex) => {
           {
               sentence:'Hitting Your Keyboard Wont Make This Faster.'
           },
-      ]).into('game_loading')
+      ]).into('loadingTip')
 }
 
 export const LevelsData = async (knex) => {

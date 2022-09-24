@@ -1,77 +1,72 @@
 import { EnemiesData, LoadingTipData, LevelsData, ProtagonistData, QuestData, StatsData } from "./createData.js";
 
 export const CreateTable = async (knex) => {
-  
-  let counter = 6;
 
-  await knex.schema.hasTable('enemies').then((exists)=>{
+  //enemies
+  await knex.schema.hasTable('enemies').then(async (exists)=>{
     if (exists) return
 
-    knex.schema.createTable('enemies', (table) => {
+    await knex.schema.createTable('enemies', (table) => {
       table.increments('id').primary();
       table.string('name',255).notNullable();
       table.string('type',255).notNullable();
       table.string('img',255).notNullable();
       table.integer('stats_id').notNullable();
-    }).then(()=>{ 
-        return EnemiesData(knex);
+    }).then(async ()=>{
+      await EnemiesData(knex);
+      console.log('Enemies added')
     })
-
-    counter--;
-    console.log('Enemies added')
   })
 
-  await knex.schema.hasTable('game_loading').then((exists)=>{
+  //loadingTip
+  await knex.schema.hasTable('loadingTip').then(async (exists)=>{
     if (exists) return
 
-    knex.schema.createTable('game_loading', (table) => {
+    await knex.schema.createTable('loadingTip', (table) => {
       table.increments('id').primary();
       table.string('sentence',100).notNullable();
-    }).then(()=>{ 
-        return LoadingTipData(knex);
+    }).then(async ()=>{ 
+        await LoadingTipData(knex);
+        console.log('LoadingTip added')
     })
-
-    counter--;
-    console.log('LoadingTip added')
   })
   
-  await knex.schema.hasTable('levels').then((exists)=>{
+  //levels
+  await knex.schema.hasTable('levels').then(async (exists)=>{
     if (exists) return
 
-    knex.schema.createTable('levels', (table) => {
+    await knex.schema.createTable('levels', (table) => {
       table.increments('id').primary();
       table.string('title',100).nullable();
       table.integer('level').notNullable();
       table.json('content').notNullable();
-    }).then(()=>{ 
-        return LevelsData(knex);
+    }).then(async ()=>{ 
+        await LevelsData(knex);
+        console.log('Levels added')
     })
-
-    counter--;
-    console.log('Levels added')
   })
 
-  await knex.schema.hasTable('protagonist').then((exists)=>{
+  //protagonist
+  await knex.schema.hasTable('protagonist').then(async (exists)=>{
     if (exists) return
 
-    knex.schema.createTable('protagonist', (table) => {
+    await knex.schema.createTable('protagonist', (table) => {
       table.increments('id').primary();
       table.string('name',255).notNullable();
       table.integer('img').notNullable();
       table.enu('gender', ['male', 'female']).notNullable().default('male')
       table.integer('stats_id').notNullable();
-    }).then(()=>{ 
-        return ProtagonistData(knex);
-    })
-
-    counter--;
-    console.log('Protagonist added');
+    }).then(async ()=>{ 
+        await ProtagonistData(knex);
+        console.log('Protagonist added');
+    }) 
   })
 
-  await knex.schema.hasTable('quest').then((exists)=>{
+  //quest
+  await knex.schema.hasTable('quest').then(async (exists)=>{
     if (exists) return
 
-    knex.schema.createTable('quest', (table) => {
+    await knex.schema.createTable('quest', (table) => {
       table.increments('id').primary();
       table.string('title',100).notNullable();
       table.text('subTitle').notNullable();
@@ -79,18 +74,17 @@ export const CreateTable = async (knex) => {
       table.integer('yPos').notNullable().default(0);
       table.float('experience').notNullable().default(0);
       table.boolean('done').notNullable().default(false);
-    }).then(()=>{ 
-        return QuestData(knex);
+    }).then(async ()=>{ 
+        await QuestData(knex);
+        console.log('Quest added')
     })
-
-    counter--;
-    console.log('Quest added')
   })
 
-  await knex.schema.hasTable('stats').then((exists)=>{
+  //stats
+  await knex.schema.hasTable('stats').then(async (exists)=>{
     if (exists) return
 
-    knex.schema.createTable('stats', (table) => {
+    await knex.schema.createTable('stats', (table) => {
       table.increments('id').primary();
       table.integer('level').notNullable().default(1);
       table.decimal('health', 8, 2).notNullable().default(10.00);
@@ -103,14 +97,10 @@ export const CreateTable = async (knex) => {
       table.integer('charisma').notNullable().default(0);
       table.float('experience').notNullable().default(0);
       table.integer('points').notNullable().default(0);
-    }).then(()=>{ 
-        return StatsData(knex);
+    }).then(async ()=>{ 
+        await StatsData(knex);
+        console.log('Stats added')
     })
-
-    counter--;
-    console.log('Stats added')
   })
-
-  return counter;
 
 }
