@@ -2,6 +2,7 @@ import create from 'zustand';
 
 export const player = create(set => ({
     id: 1,
+    gender: null,
     experience: {
         level: null,
         points: null

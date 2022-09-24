@@ -1,5 +1,6 @@
 import Knex from 'knex';
 import Fastify from 'fastify';
+import cors from '@fastify/cors';
 import dotenv from 'dotenv'
 import websockets from './websocket/websocket.js';
 import { Api } from './Api.js';
@@ -7,6 +8,8 @@ import { Api } from './Api.js';
 dotenv.config();
 
 const app = Fastify({ logger: false });
+
+await app.register(cors, {})
 
 //create connection
 const knex = Knex({

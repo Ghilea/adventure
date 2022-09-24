@@ -14,28 +14,16 @@ export const MenuCreateCharacter = () => {
     const [character, setCharacter] = useState({
         name: null,
         avatar: null,
-        stats: []
     });
-
-    useEffect(() => {
-        setCharacter((state) => ({
-            ...state,
-            stats: [
-                ...state.stats,
-
-            ]
-        }))
-    }, storePlayer)
     
     useEffect(() => {
         storePlayer.setAvailablePoints(25);
     }, [])
 
     const selectAvatar = (e) => {
-        console.log(e.target.id)
         setCharacter({
             ...character,
-            avatar: e.target.id
+            avatar: 1
         });
     }
 
@@ -43,12 +31,15 @@ export const MenuCreateCharacter = () => {
         storeMenu.activateMenu(null)
     }
 
-    const handleCreate = (e) => {
-        
+    const handleName = (e) => {
+        console.log(e.target.value);
         setCharacter({
             ...character,
             name: e.target.value,
         });
+    }
+
+    const handleCreate = (e) => {
 
         if(character.name === null || character.avatar === null){
             console.log('Fyll i ett namn och välj en avatar');
@@ -67,21 +58,14 @@ export const MenuCreateCharacter = () => {
         }
     }
 
-    /*
-        <div onClick = {(e) => selectAvatar(e)} className = {
-                    `${(character.avatar == 2) ? 'button chooseAvatar' : 'button'} `} >
-                    <img id={2} src={maleImg} alt='picture of hero avatar' />
-                </div>
-    */
-
     return (
         <div className='createWindow'>
             
             <div onClick = {(e) => selectAvatar(e)} className = {`${(character.avatar == 1) ? 'avatar chooseAvatar' : 'avatar'} `}>
-                <img id={1} src={femaleImg} alt='picture of hero avatar' />
+                <img src={femaleImg} alt='picture of hero avatar' />
             </div>
             
-            <input className='createHeroName' type='text' id='name' placeholder='Name of your hero'/>
+            <input className='createHeroName' onChange={(e) => handleName(e)} type='text' id='name' placeholder='Name of your hero'/>
             
             <div className='createHeroState'>
                 <div className='createHeroStateHP'>50 / 50</div>
@@ -100,6 +84,7 @@ export const MenuCreateCharacter = () => {
                 <PointButton>Dexterity</PointButton>
                 <PointButton>Constitution</PointButton>
                 <PointButton>Wisdom</PointButton>
+                <PointButton>Charisma</PointButton>
             </div>
 
             <button className='createButton' type='button' onClick={(e) => handleCreate(e)}>Create</button>

@@ -53,7 +53,7 @@ export const Api = (app, knex) => {
     });
 
     app.get('/loadingTip', (req, res) => {
-        return LoadingTip(knex, res);
+        LoadingTip(knex, res);
     });
 
     //put

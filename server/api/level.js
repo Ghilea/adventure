@@ -5,7 +5,6 @@ export const getLevel = async (knex, res, id) => {
         .from('levels').then((query) => {
             return res.code(200)
             //.header('Content-Type', 'application/json; charset=utf-8')
-            .header('Access-Control-Allow-Origin', '*')
             .send(query);
         })
         
@@ -20,7 +19,6 @@ export const getAllLevels = async (knex, res) => {
         .from('levels').then((query) => {
             return res.code(200)
             //.header('Content-Type', 'application/json; charset=utf-8')
-            .header('Access-Control-Allow-Origin', '*')
             .send(query);
         })
         

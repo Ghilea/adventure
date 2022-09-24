@@ -6,7 +6,6 @@ export const getProtagonist = async (knex, res, id) => {
         .from('protagonist').then((query) => {
             return res.code(200)
             //.header('Content-Type', 'application/json; charset=utf-8')
-            .header('Access-Control-Allow-Origin', '*')
             .send(query);
         })
         
@@ -22,7 +21,6 @@ export const getAllProtagonist = async (knex, res) => {
         .from('protagonist').then((query) => {
             return res.code(200)
             //.header('Content-Type', 'application/json; charset=utf-8')
-            .header('Access-Control-Allow-Origin', '*')
             .send(query);
         })
         
@@ -32,23 +30,26 @@ export const getAllProtagonist = async (knex, res) => {
 }
     
 export const createProtagonist = async (knex, req) => {
+    console.log(req.body);
     try {
         await knex.insert({
-            health: 50, 
-            maxHealth: 50, 
-            stength: req.str,
-            intellect: req.int,
-            dexterity: req.dex,
-            constitution: req.con,
-            wisdom: req.wis,
-            charisma: req.cha,
-            points: req.points
+            health: req.body.hp, 
+            maxHealth: req.body.maxHp, 
+            strength: req.body.str,
+            intellect: req.body.int,
+            dexterity: req.body.dex,
+            constitution: req.body.con,
+            wisdom: req.body.wis,
+            charisma: req.body.cha,
+            points: req.body.points
         })
         .returning('id')
-        .into('stats').then((id) => {
-            knex.insert({
-                name: req.name,
-                img: req.img,
+        .into('stats').then(async (id) => {
+            console.log('id', id)
+            await knex.insert({
+                name: req.body.name,
+                img: req.body.img,
+                gender: req.body.gender,
                 stats_id: id
             })
             .into('protagonist')

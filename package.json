@@ -23,9 +23,9 @@
     },
     "devDependencies": {
         "chai": "^4.3.6",
-        "cors": "^2.8.5",
         "dotenv": "^16.0.2",
         "fastify": "^4.6.0",
+        "@fastify/cors": "^8.1.0",
         "mocha": "^10.0.0",
         "mysql": "^2.18.1",
         "knex": "^2.3.0",

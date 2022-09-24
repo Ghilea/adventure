@@ -7,7 +7,6 @@ export const getEnemy = async (knex, res) => {
         .from('enemies').then((query) => {
             return res.code(200)
             //.header('Content-Type', 'application/json; charset=utf-8')
-            .header('Access-Control-Allow-Origin', '*')
             .send(query);
         })
         
