@@ -1,10 +1,10 @@
-import React from "react";
+import { ExitButton } from '@comp/menu/button/ExitButton';
 
 export const MenuOptions = () => {
 
     return (
-        <div>
-
-        </div>
+        <>
+            <ExitButton>Exit</ExitButton>
+        </>
     )
 }

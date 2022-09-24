@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Read } from '@shared/components/Crud';
 import { menu, player } from '@comp/store';
+import { ExitButton } from '@comp/menu/button/ExitButton';
 import useSound from 'use-sound';
 import buttonHover from '@shared/assets/sounds/btnHover.mp3';
 import maleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_male.png';
@@ -42,6 +43,7 @@ export const MenuShowCharacters = () => {
     return (    
         <>
             {data}
+            <ExitButton>Exit</ExitButton>
         </>    
     )
 }

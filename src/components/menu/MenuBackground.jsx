@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Ground } from '@comp/level/Ground';
 import { Torch } from '@shared/models/torch';
 import { Rock_1 } from '@shared/models/rocks';

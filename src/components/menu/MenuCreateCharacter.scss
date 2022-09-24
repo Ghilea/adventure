@@ -2,8 +2,8 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(6, 1fr);
-    grid-column-gap: 0.5em;
-    grid-row-gap: 0.5em;
+    grid-column-gap: 1em;
+    grid-row-gap: 2em;
     flex-direction: column;
     position: relative;
     width: calc(1200px - 8em);
@@ -17,19 +17,24 @@
         padding: 0.5em;
         max-width: 25em;
         width: 100%;
-        background-color: rgb(56, 46, 46);
-        background-image: url('@shared/assets/images/texture/overlay.png'), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        border: 0.4em double #626262;
+        /* background-color: rgb(56, 46, 46); */
+        background-color: transparent;
+        /* background-image: url(/src/shared/assets/images/texture/overlay.png), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%); */
+        /* background-size: cover; */
+        /* background-repeat: no-repeat; */
+        /* background-position: center; */
+        border: none;
+        border-bottom: 0.4em double #626262;
         border-radius: 0.5em;
         color: #fff;
         letter-spacing: 0.1rem;
     }
 
     .createHeroName {
-        grid-area: 1 / 2 / 2 / 4;
+        grid-area: 1/2/2/4;
+        display: flex;
+        height: 100%;
+        align-items: center;
     }
 
     .createHeroState {
@@ -62,46 +67,49 @@
         }
     }
 
-    .avatar {
+    .avatarContainer {
         grid-area: 1 / 1 / 2 / 2;
-        display:flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        display: flex;
         justify-content: center;
-        padding: 0.5em;
-        background-color: rgb(56, 46, 46);
-        background-image: url('@shared/assets/images/texture/overlay.png'), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        border: 0.4em double #626262;
-        border-radius: 50%;
-        color: #fff;
-        letter-spacing: 0.1rem;
-        position: relative;
-        width: 5em;
-        height: 5em;
-        overflow: hidden;
-        
-        &:hover {  
-            border: 0.4em double #acbac3;
-        }
 
-        img {
-            width: 13em;
+        .avatar {
+            display:flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 0.5em;
+            background-color: rgb(56, 46, 46);
+            background-image: url('@shared/assets/images/texture/overlay.png'), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 0.4em double #626262;
+            border-radius: 50%;
+            color: #fff;
+            letter-spacing: 0.1rem;
+            position: relative;
+            width: 6em;
+            height: 6em;
+            overflow: hidden;
+            
+            &:hover {  
+                border: 0.4em double #acbac3;
+            }
+
+            img {
+                width: 13em;
+            }
         }
     }
 
-    .createButton {
-        grid-area: 6 / 6 / 7 / 7;
-    }
-
-    .exitButton {
-        grid-area: 6 / 7 / 7 / 8;
+    .buttonContainer {
+        grid-area: 6/6/7/8;
+        display: flex;
+        gap: 1em;
     }
 
     .statsContainer{
-        grid-area: 2 / 1 / 3 / 5;
+        grid-area: 2/1/3/3;
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;

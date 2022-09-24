@@ -1,4 +1,3 @@
-import React from 'react';
 import { menu } from '@comp/store';
 
 export const MenuButton = ({children, open}) => {

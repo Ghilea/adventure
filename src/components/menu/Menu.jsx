@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { menu } from '@comp/store';
 import { MenuCreateCharacter } from '@comp/menu/MenuCreateCharacter';
 import { MenuShowCharacters } from '@comp/menu/MenuShowCharacters';
 import { MenuOptions } from '@comp/menu/MenuOptions';
-import { MenuButton } from '@comp/menu/MenuButton';
+import { MenuButton } from '@comp/menu/button/MenuButton';
 import logoImg from '@shared/assets/images/svg/celtic.svg';
 import './Menu.scss';
 import { useSound } from 'use-sound';
