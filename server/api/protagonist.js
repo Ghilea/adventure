@@ -43,9 +43,7 @@ export const createProtagonist = async (knex, req) => {
             charisma: req.body.cha,
             points: req.body.points
         })
-        .returning('id')
         .into('stats').then(async (id) => {
-            console.log('id', id)
             await knex.insert({
                 name: req.body.name,
                 img: req.body.img,
