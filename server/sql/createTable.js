@@ -1,7 +1,10 @@
 import { EnemiesData, LoadingTipData, LevelsData, ProtagonistData, QuestData, StatsData } from "./createData.js";
 
-export const CreateTable = (knex) => {
-  knex.schema.hasTable('enemies').then((exists)=>{
+export const CreateTable = async (knex) => {
+  
+  let counter = 6;
+
+  await knex.schema.hasTable('enemies').then((exists)=>{
     if (exists) return
 
     knex.schema.createTable('enemies', (table) => {
@@ -14,10 +17,11 @@ export const CreateTable = (knex) => {
         return EnemiesData(knex);
     })
 
+    counter--;
     console.log('Enemies added')
   })
 
-  knex.schema.hasTable('game_loading').then((exists)=>{
+  await knex.schema.hasTable('game_loading').then((exists)=>{
     if (exists) return
 
     knex.schema.createTable('game_loading', (table) => {
@@ -27,10 +31,11 @@ export const CreateTable = (knex) => {
         return LoadingTipData(knex);
     })
 
+    counter--;
     console.log('LoadingTip added')
   })
   
-  knex.schema.hasTable('levels').then((exists)=>{
+  await knex.schema.hasTable('levels').then((exists)=>{
     if (exists) return
 
     knex.schema.createTable('levels', (table) => {
@@ -42,10 +47,11 @@ export const CreateTable = (knex) => {
         return LevelsData(knex);
     })
 
+    counter--;
     console.log('Levels added')
   })
 
-  knex.schema.hasTable('protagonist').then((exists)=>{
+  await knex.schema.hasTable('protagonist').then((exists)=>{
     if (exists) return
 
     knex.schema.createTable('protagonist', (table) => {
@@ -58,10 +64,11 @@ export const CreateTable = (knex) => {
         return ProtagonistData(knex);
     })
 
+    counter--;
     console.log('Protagonist added');
   })
 
-  knex.schema.hasTable('quest').then((exists)=>{
+  await knex.schema.hasTable('quest').then((exists)=>{
     if (exists) return
 
     knex.schema.createTable('quest', (table) => {
@@ -76,10 +83,11 @@ export const CreateTable = (knex) => {
         return QuestData(knex);
     })
 
+    counter--;
     console.log('Quest added')
   })
 
-  knex.schema.hasTable('stats').then((exists)=>{
+  await knex.schema.hasTable('stats').then((exists)=>{
     if (exists) return
 
     knex.schema.createTable('stats', (table) => {
@@ -92,14 +100,17 @@ export const CreateTable = (knex) => {
       table.integer('dexterity').notNullable().default(0);
       table.integer('constitution').notNullable().default(0);
       table.integer('wisdom').notNullable().default(0);
+      table.integer('charisma').notNullable().default(0);
       table.float('experience').notNullable().default(0);
       table.integer('points').notNullable().default(0);
     }).then(()=>{ 
         return StatsData(knex);
     })
 
+    counter--;
     console.log('Stats added')
   })
 
-  return true;
+  return counter;
+
 }

@@ -1,5 +1,5 @@
-export const EnemiesData = (knex) => {
-    return knex.insert([
+export const EnemiesData = async (knex) => {
+    return await knex.insert([
           {
               name:'Troll overlord', 
               type:'Troll', 
@@ -27,8 +27,8 @@ export const EnemiesData = (knex) => {
       ]).into('enemies')
 }
 
-export const LoadingTipData = (knex) => {
-    return knex.insert([
+export const LoadingTipData = async (knex) => {
+    return await knex.insert([
           {
               sentence:'Still faster than Windows update.'
           },
@@ -41,8 +41,8 @@ export const LoadingTipData = (knex) => {
       ]).into('game_loading')
 }
 
-export const LevelsData = (knex) => {
-    return knex.insert([
+export const LevelsData = async (knex) => {
+    return await knex.insert([
           {
               title:'test',
               level:1,
@@ -51,8 +51,8 @@ export const LevelsData = (knex) => {
       ]).into('levels')
 }
 
-export const ProtagonistData = (knex) => {
-    return knex.insert([
+export const ProtagonistData = async (knex) => {
+    return await knex.insert([
           {
               name:'DennisK', 
               img:1, 
@@ -74,8 +74,8 @@ export const ProtagonistData = (knex) => {
       ]).into('protagonist')
 }
 
-export const QuestData = (knex) => {
-    return knex.insert([
+export const QuestData = async (knex) => {
+    return await knex.insert([
           {
               title: 'The Darkness...',
               subTitle: 'Children are missing... Search for them.',
@@ -87,8 +87,8 @@ export const QuestData = (knex) => {
       ]).into('quest')
 }
 
-export const StatsData = (knex) => {
-    return knex.insert([
+export const StatsData = async (knex) => {
+    return await knex.insert([
           {
               level: 15,
               health: 68.50,
@@ -98,6 +98,7 @@ export const StatsData = (knex) => {
               dexterity: 2,
               constitution: 2,
               wisdom: 0,
+              charisma: 0,
               experience: 186,
               points: 0
           },
