@@ -10,7 +10,7 @@
     margin: 0 auto;
     height: 100vh;
     padding: 1em;
-    align-items: start;
+    align-items: center;
     align-content: space-between;
 
     .createTitle {
@@ -101,9 +101,11 @@
     }
 
     .avatarContainer {
-        grid-area: 1 / 1 / 2 / 2;
+        grid-area: 1/1/2/2;
         display: flex;
         justify-content: center;
+        height: 100%;
+        align-items: center;
 
         .avatar {
             display:flex;
