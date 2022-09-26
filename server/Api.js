@@ -1,76 +1,95 @@
+import Knex from 'knex';
 import { getQuest } from './api/quest.js';
 import { getProtagonist, getAllProtagonist, createProtagonist, updateStatsProtagonist } from './api/protagonist.js';
 import { getEnemy } from './api/enemy.js';
 import { getLevel, createLevel, getAllLevels, updateLevel } from './api/level.js'
 import { LoadingTip } from './api/loading.js';
 
-export const Api = (app, knex) => {
+export const FetchApi = (app) => {
 
-     //get
-    app.get('/', () => {
+    try {
+        //create connection
+        const knex = Knex({
+            client: 'mysql',
+            connection: {
+                host: process.env.VITE_DB_HOST,
+                user: process.env.VITE_DB_USER,
+                password: process.env.VITE_DB_PASS,
+                database: process.env.VITE_DB_DATABASE
+            }
+        });
 
-        return `
-        | Api links [Get] |
+        //get
+        app.get('/', () => {
 
-        Get levels by id: /getLevel?id=[id]
+            return `
+            | Api links [Get] |
 
-        Get all levels: /getAllLevels
+            Get levels by id: /getLevel?id=[id]
 
-        Get quest by position of player: /getLevel?xPos=[coord]&yPos=[coord]
+            Get all levels: /getAllLevels
 
-        Get enemy: /getEnemy
-                
-        Get loadingTip: /loadingTip,
-        
-        Get protagonist by id: /getProtagonist?id=[id]
+            Get quest by position of player: /getLevel?xPos=[coord]&yPos=[coord]
 
-        Get all protagonist: /getAllProtagonist
-        `
-    })
+            Get enemy: /getEnemy
+                    
+            Get loadingTip: /loadingTip,
+            
+            Get protagonist by id: /getProtagonist?id=[id]
 
-    app.get('/getLevel', (req, res) => {
-        getLevel(knex, res, req.query.id);
-    });
+            Get all protagonist: /getAllProtagonist
+            `
+        })
 
-    app.get('/getAllLevels', (req, res) => {
-        getAllLevels(knex, res);
-    });
+        app.get('/getLevel', (req, res) => {
+            getLevel(knex, res, req.query.id);
+        });
 
-    app.get('/getQuest', (req, res) => {
-        getQuest(knex, res, req.query.x, req.query.y);
-    });
+        app.get('/getAllLevels', (req, res) => {
+            getAllLevels(knex, res);
+        });
 
-    app.get('/getEnemy', (req, res) => {
-        getEnemy(knex, res);
-    });
+        app.get('/getQuest', (req, res) => {
+            getQuest(knex, res, req.query.x, req.query.y);
+        });
 
-    app.get('/getProtagonist', (req, res) => {
-        getProtagonist(knex, res, req.query.id);
-    });
+        app.get('/getEnemy', (req, res) => {
+            getEnemy(knex, res);
+        });
 
-    app.get('/getAllProtagonist', (req, res) => {
-        getAllProtagonist(knex, res);
-    });
+        app.get('/getProtagonist', (req, res) => {
+            getProtagonist(knex, res, req.query.id);
+        });
 
-    app.get('/loadingTip', (req, res) => {
-        LoadingTip(knex, res);
-    });
+        app.get('/getAllProtagonist', (req, res) => {
+            getAllProtagonist(knex, res);
+        });
 
-    //put
-    app.put('/updateStats', (req, res) => {
-        updateStatsProtagonist(knex, req, res);
-    });
+        app.get('/loadingTip', (req, res) => {
+            LoadingTip(knex, res);
+        });
 
-    app.put('/updateLevel', (req, res) => {
-        updateLevel(knex, req, res);
-    });
+        //put
+        app.put('/updateStats', (req, res) => {
+            updateStatsProtagonist(knex, req, res);
+        });
 
-    //post
-    app.post('/createProtagonist', (req, res) => {
-        createProtagonist(knex, req);
-    });
+        app.put('/updateLevel', (req, res) => {
+            updateLevel(knex, req, res);
+        });
 
-    app.post('/createLevel', (req, res) => {
-        createLevel(knex, req, res);
-    });
+        //post
+        app.post('/createProtagonist', (req, res) => {
+            createProtagonist(knex, req);
+        });
+
+        app.post('/createLevel', (req, res) => {
+            createLevel(knex, req, res);
+        });
+
+    } catch (err) {
+        console.error(`Error: ${err}`);
+        process.exit(1);
+    }
+
 }
