@@ -55,11 +55,11 @@
     },
     "windows": [
       {
-        "fullscreen": false,
-        "height": 600,
-        "resizable": true,
+        "fullscreen": true,
+        "height": 1080,
+        "resizable": false,
         "title": "Adventure",
-        "width": 800
+        "width": 1920
       }
     ]
   }
