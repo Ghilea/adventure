@@ -3,6 +3,7 @@ import { Create } from '@shared/components/Crud';
 import { player, menu } from '@comp/store';
 import { PointButton } from '@comp/interface/stats/PointButton';
 import { ExitButton } from '@comp/menu/button/ExitButton';
+import { MessageBox } from '@comp/misc/MessageBox';
 import maleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_male.png';
 import femaleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_female.png'
 import './MenuCreateCharacter.scss';
@@ -40,7 +41,8 @@ export const MenuCreateCharacter = () => {
     const handleCreate = (e) => {
 
         if(character.name === null || character.avatar === null){
-            console.log('Fyll i ett namn och välj en avatar');
+            <MessageBox>Your protagonist need to have a name and a avatar!</MessageBox>;
+            console.log('test');
         }else{
             Create('createProtagonist', {
                 name: character.name,

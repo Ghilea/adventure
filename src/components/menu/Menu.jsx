@@ -40,6 +40,11 @@ export const Menu = () => {
             case 'options':
                 setOpenMenu(<MenuOptions />)
                 break;
+            case 'exit':
+                window.opener = null;
+                window.open("", "_self");
+                window.close();
+                break;
             default:
                 setOpenMenu(null);
                 break;
@@ -64,6 +69,8 @@ export const Menu = () => {
                     <MenuButton open='options'>Options</MenuButton>
 
                     <MenuButton open='editor'>Map Editor</MenuButton>
+
+                    <MenuButton open='exit'>Exit Game</MenuButton>
                 </div>
                 
             </div>
