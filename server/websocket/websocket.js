@@ -1,40 +1,60 @@
-import {WebSocketServer} from 'ws'
-
-const Socket = (server) => {
-    const wss = new WebSocketServer({
-        noServer: true,
-        path: '/websockets'
-    });
-    const clients = new Map();
-
-    server.on('upgrade', (request, socket, head) => {
-        wss.handleUpgrade(request, socket, head, (WebSocketServer) => {
-            wss.emit('connection', WebSocketServer, request);
-            console.log('New client connection');
-            clients.set(WebSocketServer);
-        })
+export const Websockets = (app) => {
+    
+    app.addHook('preValidation', async (request, reply) => {
+        if(request.routerPath === '/ws' && !request.query.username){
+            reply.code(403).send('Connection rejected')
+        }
     })
 
-    wss.on('connection', (websocketConnection, connectionRequest) => {
-        //const [_path, params] = connectionRequest?.url?.split('?');
-        //const connectionParams = new URLSearchParams(params);
-        //console.log(connectionParams);
+    app.get('/ws', { websocket: true }, (connection, req) => {
+       
+        const ClientBroadcast = (message) => {
+            for(let client of app.websocketServer.clients) {
+                client.send(JSON.stringify(message));
+            }
+        }
 
-        websocketConnection.on('message', message => {
-            
-            const parsedMessage = JSON.parse(message);
-            console.log(parsedMessage);
-            
-            [...clients.keys()].forEach((client) => {
-                client.send(JSON.stringify({
-                    message: parsedMessage
-                }))
-            })
-            
+        const ServerBroadcast = (message) => {
+            for(let server of app.websocketServer.clients) {
+                console.log(JSON.stringify(message));
+            }
+        }
+
+        //new user
+        console.log(`client connected ${req.query.username}`)
+        
+        /*ClientBroadcast({
+            sender: '__server',
+            message: `${req.query.username} joined`
+        });*/
+        
+
+        //user leave
+         connection.socket.on('close', () => {
+            console.log('Client disconnected')
+            /*ClientBroadcast({
+                sender: '__server',
+                message: `${req.query.username} left`
+            });*/
         })
-    })
 
-    return wss;
+        //broadcast incoming message
+        connection.socket.on('message', (message) => {
+            message = JSON.parse(message.toString());
+            ClientBroadcast({
+                sender: req.query.username,
+                ...message
+            });
+        });
+
+        //send
+        connection.socket.send(`Hello ${req.query.username}!`)
+
+        //client message
+        connection.socket.on('message', message => {
+            console.log(`Client message: ${message}`)
+            //connection.socket.send(`Client message: ${message}`)
+        })
+
+    })
 }
-
-export default Socket;
