@@ -75,13 +75,17 @@ export const MenuCreateCharacter = () => {
             </div>
 
             <div className='createHeroInformation'>
-                <div className='createHeroInformation_box1'>
-                    <div className='showPoints'>{storePlayer.coreStats.available} </div>
-                    Available points
-                </div>
+                <h2 className='createTitle'>Available points</h2>
+                <textarea spellCheck={false} placeholder='It´s optimal to write your protagonist story here...'></textarea>
             </div>
             
-            <div className='statsContainer'>              
+            <div className='statsContainer'>
+                <div className='statsBox'>
+                    <h2 className='statsTitle'>Available points</h2>
+                    <div className='showPoints'>{storePlayer.coreStats.available}</div>
+                </div>
+                
+                         
                 <PointButton>Strength</PointButton>
                 <PointButton>Intellect</PointButton>
                 <PointButton>Dexterity</PointButton>

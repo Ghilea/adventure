@@ -6,12 +6,16 @@
     grid-row-gap: 2em;
     flex-direction: column;
     position: relative;
-    width: calc(1200px - 8em);
+    width: calc(100vw - 8em);
     margin: 0 auto;
     height: 100vh;
     padding: 1em;
     align-items: start;
     align-content: space-between;
+
+    .createTitle {
+        font-size: 1.5rem;
+    }
 
     input {
         padding: 0.5em;
@@ -58,12 +62,41 @@
         height: 100%;
         display: flex;
         padding: 1em;
+        flex-direction: column;
+        gap: 1em;
 
-        .createHeroInformation_box1 {
-            display: flex;
-            gap: 1em;
-            height: fit-content;
-            align-items: center;
+        textarea {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            background-color: transparent;
+            resize: none;
+            border: none;
+            color: white;
+            letter-spacing: 0.1em;
+            line-height: 20pt;
+            background:
+                /*top left */
+                    linear-gradient(to right, rgb(255, 255, 255) 4px, transparent 4px) 0 0,
+                    linear-gradient(to bottom, rgb(255, 255, 255) 4px, transparent 4px) 0 0,
+                /* bottom left */
+                    /*linear-gradient(to right, rgb(255, 255, 255) 4px, transparent 4px) 0 100%,
+                    linear-gradient(to top, rgb(255, 255, 255) 4px, transparent 4px) 0 100%,*/
+                /* top right */
+                    /*linear-gradient(to left, rgb(255, 255, 255) 4px, transparent 4px) 100% 0,
+                    linear-gradient(to bottom, rgb(255, 255, 255) 4px, transparent 4px) 100% 0,*/
+                /* bottom right */
+                    linear-gradient(to left, rgb(255, 255, 255) 4px, transparent 4px) 100% 100%,
+                    linear-gradient(to top, rgb(255, 255, 255) 4px, transparent 4px) 100% 100%;
+            
+            background-repeat: no-repeat;
+            background-size: 3em 3em;
+            padding: 1em 2em;
+
+            &::placeholder {
+                    color: rgb(255, 255, 255);
+                    opacity: 0.8;
+                }
         }
     }
 
@@ -109,25 +142,41 @@
     }
 
     .statsContainer{
-        grid-area: 2/1/3/3;
+        grid-area: 2/1/3/5;
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
         width: 100%;
         color: #fff;
         gap: 1em;
+        justify-content: space-evenly;
+
+        .statsBox {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2em;
+
+            .statsTitle {
+                font-size: 1.5rem;
+            }
+            
+            .showPoints {
+                display: flex;
+                flex-direction: row;
+                border-radius: 50%;
+                background-color: rgba(10, 10, 10, 0.47);
+                width: 4em;
+                height: 4em;
+                justify-content: center;
+                align-items: center;
+                box-shadow: 0 0 7em #fff;
+                border: 0.2em double #fff;
+            }
+        }
     }
 
-    .showPoints {
-        display:flex;
-        flex-direction: row;
-        border-radius: 50%;
-        background-color: rgb(255 255 255 / 47%);
-        width: 3em;
-        height: 3em;
-        justify-content: center;
-        align-items: center;
-    }
+    
 }
 
 .chooseAvatar {

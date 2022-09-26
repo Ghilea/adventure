@@ -1,23 +1,15 @@
 .menuContainer {
-    background-color: rgba(0, 0, 0, 0.502);
-    background-image: url('@shared/assets/images/texture/dirt.png'), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     position: fixed;
-    left: 3em;
-    right: 3em;
-    top: 0;
-    bottom: 0;
-    max-width: 25em;
+    left: 30vw;
+    top: 50vh;
     display: flex;
-    border-left: 5px double rgba(77, 77, 77, 0.4);
-    border-right: 5px double rgba(77, 77, 77, 0.4);
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 2em 1em;
     gap: 2em;
+    width: 50vw;
+    height: 35vh;
+    margin: -25vh 0 0 -20vw;
+    justify-content: center;
+    align-items: center;
 
     .activateSoundButton {
         background-image: url('@shared/assets/images/svg/music_note.svg');
@@ -65,6 +57,7 @@
         flex-direction: column;
         width: 100%;
         flex-wrap: wrap;
+        align-items: center;
     }
 
 }
