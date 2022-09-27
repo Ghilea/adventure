@@ -77,7 +77,7 @@ export const MenuCreateCharacter = () => {
             </div>
 
             <div className='createHeroInformation'>
-                <h2 className='createTitle'>Available points</h2>
+                <h2 className='createTitle'>Background story</h2>
                 <textarea spellCheck={false} placeholder='It´s optimal to write your protagonist story here...'></textarea>
             </div>
             
