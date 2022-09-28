@@ -17,7 +17,8 @@
         "rooks": "^7.4.0",
         "zustand": "^4.1.1",
         "axios": "^0.27.2",
-        "@tauri-apps/api": "^1.1.0"
+        "@tauri-apps/api": "^1.1.0",
+        "use-sound": "^4.0.1"
     },
     "devDependencies": {
         "chai": "^4.3.6",

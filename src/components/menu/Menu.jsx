@@ -14,21 +14,6 @@ export const Menu = () => {
 
     const [openMenu, setOpenMenu] = useState(null);
 
-    const [audio, SetAudio] = useState(new Audio(menuMusic));
-
-    const Playit = () => {
-        audio.volume = 0.25;
-        audio.loop = true;
-        audio.play();
-    };
-    const Stopit = () => {
-
-        audio.pause();
-    };
-    useEffect(() => {
-        Playit()
-    }, []);
-
     useEffect(() => {
         switch (storeMenu.activeMenu) {
             case 'login':

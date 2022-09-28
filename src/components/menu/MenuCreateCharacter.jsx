@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Create } from '@shared/components/Crud';
-import { player, menu } from '@comp/store';
+import { player, menu, message } from '@comp/store';
 import { PointButton } from '@comp/interface/stats/PointButton';
 import { ExitButton } from '@comp/menu/button/ExitButton';
 import { MessageBox } from '@comp/misc/MessageBox';
@@ -12,6 +12,7 @@ export const MenuCreateCharacter = () => {
 
     const storePlayer = player(state => state);
     const storeMenu = menu(state => state);
+    const storeMessage = message(state => state);
     
     const [character, setCharacter] = useState({
         name: null,
@@ -41,7 +42,7 @@ export const MenuCreateCharacter = () => {
     const handleCreate = (e) => {
 
         if(character.name === null || character.avatar === null){
-            <MessageBox>Your protagonist need to have a name and a avatar!</MessageBox>;
+            storeMessage.setMessage(true)
             console.log('test');
         }else{
             Create('createProtagonist', {
@@ -60,48 +61,52 @@ export const MenuCreateCharacter = () => {
     }
 
     return (
-        <div className='createWindow'>
-            
-            <div className='avatarContainer'>
-                <div onClick={(e) => selectAvatar(e)} className={`${(character.avatar == 1) ? 'avatar chooseAvatar' : 'avatar'} `}>
-                    <img src={femaleImg} alt='picture of hero avatar' />
+        <>
+            <div className='createWindow'>
+                
+                <div className='avatarContainer'>
+                    <div onClick={(e) => selectAvatar(e)} className={`${(character.avatar == 1) ? 'avatar chooseAvatar' : 'avatar'} `}>
+                        <img src={femaleImg} alt='picture of hero avatar' />
+                    </div>
                 </div>
-            </div>
 
-            <div className='createHeroName'>
-                <input onChange={(e) => handleName(e)} type='text' id='name' placeholder='Name of your hero' />
-            </div>
-            
-            <div className='createHeroState'>
-                <div className='createHeroStateHP'>50 / 50</div>
-            </div>
-
-            <div className='createHeroInformation'>
-                <h2 className='createTitle'>Background story</h2>
-                <textarea spellCheck={false} placeholder='It´s optimal to write your protagonist story here...'></textarea>
-            </div>
-            
-            <div className='statsContainer'>
-                <div className='statsBox'>
-                    <h2 className='statsTitle'>Available points</h2>
-                    <div className='showPoints'>{storePlayer.coreStats.available}</div>
+                <div className='createHeroName'>
+                    <input onChange={(e) => handleName(e)} type='text' id='name' placeholder='Name of your hero' />
                 </div>
                 
-                         
-                <PointButton>Strength</PointButton>
-                <PointButton>Intellect</PointButton>
-                <PointButton>Dexterity</PointButton>
-                <PointButton>Constitution</PointButton>
-                <PointButton>Wisdom</PointButton>
-                <PointButton>Charisma</PointButton>
+                <div className='createHeroState'>
+                    <div className='createHeroStateHP'>50 / 50</div>
+                </div>
+
+                <div className='createHeroInformation'>
+                    <h2 className='createTitle'>Background story</h2>
+                    <textarea spellCheck={false} placeholder='It´s optimal to write your protagonist story here...'></textarea>
+                </div>
+                
+                <div className='statsContainer'>
+                    <div className='statsBox'>
+                        <h2 className='statsTitle'>Available points</h2>
+                        <div className='showPoints'>{storePlayer.coreStats.available}</div>
+                    </div>
+                    
+                            
+                    <PointButton>Strength</PointButton>
+                    <PointButton>Intellect</PointButton>
+                    <PointButton>Dexterity</PointButton>
+                    <PointButton>Constitution</PointButton>
+                    <PointButton>Wisdom</PointButton>
+                    <PointButton>Charisma</PointButton>
+                </div>
+
+                <div className='buttonContainer'>
+                    <button type='button' onClick={(e) => handleCreate(e)}>Create</button>
+
+                    <ExitButton>Exit</ExitButton>
+                </div>
+
             </div>
-
-            <div className='buttonContainer'>
-                <button type='button' onClick={(e) => handleCreate(e)}>Create</button>
-
-                <ExitButton>Exit</ExitButton>
-            </div>
-
-        </div>
+            <MessageBox>Your protagonist need to have a name and a avatar!</MessageBox>
+        </>
+       
     )
 }

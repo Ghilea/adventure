@@ -1,5 +1,12 @@
 import create from 'zustand';
 
+export const message = create(set => ({
+    visible: false,
+    setMessage: (value) => set(state => ({
+        visible: value,
+    }))
+}))
+
 export const player = create(set => ({
     id: 1,
     gender: null,
@@ -180,13 +187,33 @@ export const enemy = create(set => ({
 
 export const menu = create(set => ({
     create: false,
-    options: false,
+    options: {
+        sound: {
+            enable: true,
+            volume: 0.8,
+            },
+        music: {
+            enable: true,
+            volume: 0.5,
+            loop: true
+        }
+    },
     mapEditor: false,
     login: false,
     loginSuccess: false,
     loadingDone: false,
     startGame: false,
     activeMenu: null,
+    changeOptions: (type, type2, value) => set (state => ({
+        ...state,
+        options: {
+            ...state.options,
+            [type]: {
+                ...state.options[type],
+                [type2] : value
+            }
+        }
+    })),
     activateMenu: (value) => set (state => ({
         ...state,
         activeMenu: value,
