@@ -1,33 +1,6 @@
 import { useEffect, useState } from "react"
 import { menu } from '@comp/store';
 
-/*export const Music = (src) => {
-
-    const store = menu(state => state);
-
-    const [audio, SetAudio] = useState(new Audio(src));
-    
-    const play = () => {
-        audio.volume = store.options.music.volume;
-        audio.loop = store.options.music.loop;
-        audio.play();
-    };
-    const stop = () => {
-
-        audio.pause();
-    };
-    useEffect(() => {
-        if(store.options.music.enable){
-            play();
-        }else{
-            stop();
-        }
-        
-    }, [store.options.music]);
-
-    return {play, stop}
-}*/
-
 const useAudio = ({src, type}) => {
 
     const store = menu(state => state);
@@ -75,7 +48,11 @@ const useAudio = ({src, type}) => {
         }
     }
 
-    return [play, stop]
+    const change = (src) => {
+        setAudio(new Audio(src))
+    }
+
+    return [play, stop, change]
 }
 
 export default useAudio;

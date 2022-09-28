@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import useAudio from '@comp/misc/sound';
 import { menu } from '@comp/store';
 import { MenuCreateCharacter } from '@comp/menu/MenuCreateCharacter';
 import { MenuShowCharacters } from '@comp/menu/MenuShowCharacters';
@@ -13,6 +14,15 @@ export const Menu = () => {
     const storeMenu = menu(state => state);
 
     const [openMenu, setOpenMenu] = useState(null);
+
+    const [play] = useAudio({
+        src: menuMusic,
+        type: 'music'
+    });
+
+    useEffect(() => {
+        play();
+    }, [])
 
     useEffect(() => {
         switch (storeMenu.activeMenu) {
