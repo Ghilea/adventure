@@ -15,10 +15,7 @@ export const Menu = () => {
 
     const [openMenu, setOpenMenu] = useState(null);
 
-    const [play] = useAudio({
-        src: menuMusic,
-        type: 'music'
-    });
+    const [play] = useAudio(menuMusic);
 
     useEffect(() => {
         play();

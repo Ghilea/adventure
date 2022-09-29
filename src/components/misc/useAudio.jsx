@@ -1,59 +1,48 @@
 import { useEffect, useState } from "react"
-import { menu } from '@comp/store';
 
-const useAudio = async ({src, type}) => {
+const useAudio = (src, props) => {
 
-    const store = menu(state => state);
+    const [sound, setSound] = useState(null);
 
-    const [audio, setAudio] = useState(new Audio(src));
-
-    const [options, setOptions] = useState({
-        enabled: null,
-        volume: null,
-        loop: null
-    });
+    const [options, setOptions] = useState([]);
 
     useEffect(() => {
-
-        switch (type) {
-            case 'sound':
+        
+        if(props !== undefined){
+            Object.keys(props).map((item, index) => {
                 setOptions(state => ({
                     ...state,
-                    volume: store.options.sound.volume
+                    [item]: props[item]
                 }))
-                break;
-            case 'music':
-                setOptions(state => ({
-                    ...state,
-                    volume: store.options.music.volume,
-                    loop: store.options.music.loop
-                }))
-                break;
+            })
         }
+        
     }, [])
 
-    const play = async () => {
+    const play = () => {
         
-        audio.volume = options.volume;
-        if(options.loop !== null){
-            audio.loop = options.loop;
-        }
-        console.log(audio.play())
-        await audio.play();
+        const audio = new Audio(src);
+
+        setSound(audio);
+
+        if(options.volume !== undefined) audio.volume = options.volume;
+        if(options.loop !== undefined) audio.loop = options.loop;
+       
+        audio.play();
     };
 
     const stop = () => {
-        if (!audio.paused) {
-            audio.pause();
-            audio.currentTime = 0;
-        }
+        /*if (!sound.paused) {
+            sound.pause();
+            sound.currentTime = 0;
+        }*/
     }
 
-    const change = (src) => {
+    /*const change = (src) => {
         setAudio(new Audio(src))
-    }
+    }*/
 
-    return [play, stop, change]
+    return [play, {stop}]
 }
 
 export default useAudio;

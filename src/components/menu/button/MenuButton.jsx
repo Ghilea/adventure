@@ -7,9 +7,8 @@ export const MenuButton = ({children, open}) => {
     
     const store = menu(state => state);
     
-    const [play, stop] = useAudio({
-        src: soundEffect,
-        type: 'sound' 
+    const [play, {stop}] = useAudio(soundEffect, {
+        volume: 0.5,
     });
 
     const handleButton = () => {
@@ -17,6 +16,6 @@ export const MenuButton = ({children, open}) => {
     }
 
     return (
-        <button type='button' onMouseEnter={() => play()} onMouseLeave={() => stop()} onClick={handleButton}>{children}</button>
+        <button type='button' onMouseEnter={() => play()} onClick={handleButton}>{children}</button>
     )
 }
