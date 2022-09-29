@@ -42,7 +42,11 @@ export const MenuCreateCharacter = () => {
     const handleCreate = (e) => {
 
         if(character.name === null || character.avatar === null){
-            setOpen(true)
+            setOpen(true);
+
+            setTimeout(() => {
+                setOpen(false)
+            }, 2000);
         }else{
             Create('createProtagonist', {
                 name: character.name,
@@ -105,7 +109,7 @@ export const MenuCreateCharacter = () => {
 
             </div>
 
-            <Modal open={open}>Your protagonist need to have a name and a avatar!</Modal>
+            <Modal open={open} title='Check your condition'>Your protagonist need to have a name and a avatar!</Modal>
         </>
        
     )

@@ -17,11 +17,24 @@ dialog[open]:not(:modal):before {
 dialog {
     padding: 1em;
     gap: 1em;
-    background: #fff;
+    background: rgba(0, 0, 0, 0.326);
+    border: 0.4em double #fff;
+    border-radius: 0.5em;
+    color: white;
+
+    h2 {
+        font-size: 1.5rem;
+        letter-spacing: 0.05em;
+    }
+
+    p {
+        font-size: 1.1rem;
+        letter-spacing: 0.1em;
+    }
 }
 
 dialog::backdrop {
-    background: hsl(0 0% 10% / 0.5);
+    background: hsl(0 0% 10% / 0.8);
 }
 
 dialog[open] {
