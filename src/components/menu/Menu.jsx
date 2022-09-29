@@ -15,7 +15,9 @@ export const Menu = () => {
 
     const [openMenu, setOpenMenu] = useState(null);
 
-    const [play] = useAudio(menuMusic);
+    const [play] = useAudio(menuMusic, {
+        volume: 0.4
+    });
 
     useEffect(() => {
         play();

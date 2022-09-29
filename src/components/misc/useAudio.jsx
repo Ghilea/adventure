@@ -2,14 +2,14 @@ import { useEffect, useState } from "react"
 
 const useAudio = (src, props) => {
 
-    const [sound, setSound] = useState(null);
+    const [sound, setSound] = useState(new Audio(src));
 
     const [options, setOptions] = useState([]);
 
     useEffect(() => {
-        
+
         if(props !== undefined){
-            Object.keys(props).map((item, index) => {
+            Object.keys(props).map((item) => {
                 setOptions(state => ({
                     ...state,
                     [item]: props[item]
@@ -19,28 +19,22 @@ const useAudio = (src, props) => {
         
     }, [])
 
+    useEffect(() => {
+        if (options.volume !== undefined) sound.volume = options.volume;
+        if (options.loop !== undefined) sound.loop = options.loop;
+    },[options])
+
     const play = () => {
-        
-        const audio = new Audio(src);
-
-        setSound(audio);
-
-        if(options.volume !== undefined) audio.volume = options.volume;
-        if(options.loop !== undefined) audio.loop = options.loop;
-       
-        audio.play();
+        sound.currentTime = 0;
+        sound.play();
     };
 
     const stop = () => {
-        /*if (!sound.paused) {
-            sound.pause();
+        if (!sound.paused) {
             sound.currentTime = 0;
-        }*/
+            sound.pause();
+        }
     }
-
-    /*const change = (src) => {
-        setAudio(new Audio(src))
-    }*/
 
     return [play, {stop}]
 }
