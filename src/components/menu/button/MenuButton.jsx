@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useAudio from '@comp/misc/sound';
+import useAudio from '@comp/misc/useAudio';
 import { menu } from '@comp/store';
 import soundEffect from '@shared/assets/sounds/button.mp3';
 

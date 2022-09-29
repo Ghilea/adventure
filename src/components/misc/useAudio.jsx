@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { menu } from '@comp/store';
 
-const useAudio = ({src, type}) => {
+const useAudio = async ({src, type}) => {
 
     const store = menu(state => state);
 
@@ -32,13 +32,14 @@ const useAudio = ({src, type}) => {
         }
     }, [])
 
-    const play = () => {
+    const play = async () => {
         
         audio.volume = options.volume;
         if(options.loop !== null){
             audio.loop = options.loop;
         }
-        audio.play();
+        console.log(audio.play())
+        await audio.play();
     };
 
     const stop = () => {

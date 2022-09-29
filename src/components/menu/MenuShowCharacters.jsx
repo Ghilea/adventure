@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Read } from '@shared/components/Crud';
 import { menu, player } from '@comp/store';
 import { ExitButton } from '@comp/menu/button/ExitButton';
-import useSound from 'use-sound';
+import useAudio from '@comp/misc/useAudio';
 import buttonHover from '@shared/assets/sounds/btnHover.mp3';
 import maleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_male.png';
 import femaleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_female.png'
@@ -15,8 +15,12 @@ export const MenuShowCharacters = () => {
 
     const [data, setData] = useState([]);
 
-    const [play, {stop}] = useSound(buttonHover);
+    const [play, stop] = useAudio({
+        src: buttonHover,
+        type: 'sound'
+    })
   
+    
     const handleLogin = (id) => {
         //storeMenu.isLoadingDone(false);
         //storeMenu.isLoginSuccess(true);

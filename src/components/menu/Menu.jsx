@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useAudio from '@comp/misc/sound';
+import useAudio from '@comp/misc/useAudio';
 import { menu } from '@comp/store';
 import { MenuCreateCharacter } from '@comp/menu/MenuCreateCharacter';
 import { MenuShowCharacters } from '@comp/menu/MenuShowCharacters';
