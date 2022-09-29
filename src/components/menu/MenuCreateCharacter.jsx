@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Create } from '@shared/components/Crud';
-import { player, menu, message } from '@comp/store';
+import { player } from '@comp/store';
 import { PointButton } from '@comp/interface/stats/PointButton';
 import { ExitButton } from '@comp/menu/button/ExitButton';
-import { MessageBox } from '@comp/misc/MessageBox';
+import { Modal } from '@comp/misc/Modal';
 import maleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_male.png';
 import femaleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_female.png'
 import './MenuCreateCharacter.scss';
@@ -11,14 +11,14 @@ import './MenuCreateCharacter.scss';
 export const MenuCreateCharacter = () => {
 
     const storePlayer = player(state => state);
-    const storeMenu = menu(state => state);
-    const storeMessage = message(state => state);
-    
+ 
     const [character, setCharacter] = useState({
         name: null,
         avatar: null,
         gender: 'male'
     });
+
+    const [open, setOpen] = useState(false);
     
     useEffect(() => {
         storePlayer.setAvailablePoints(25);
@@ -42,8 +42,7 @@ export const MenuCreateCharacter = () => {
     const handleCreate = (e) => {
 
         if(character.name === null || character.avatar === null){
-            storeMessage.setMessage(true)
-            console.log('test');
+            setOpen(true)
         }else{
             Create('createProtagonist', {
                 name: character.name,
@@ -105,7 +104,8 @@ export const MenuCreateCharacter = () => {
                 </div>
 
             </div>
-            <MessageBox>Your protagonist need to have a name and a avatar!</MessageBox>
+
+            <Modal open={open}>Your protagonist need to have a name and a avatar!</Modal>
         </>
        
     )

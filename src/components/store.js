@@ -1,12 +1,5 @@
 import create from 'zustand';
 
-export const message = create(set => ({
-    visible: false,
-    setMessage: (value) => set(state => ({
-        visible: value,
-    }))
-}))
-
 export const player = create(set => ({
     id: 1,
     gender: null,
