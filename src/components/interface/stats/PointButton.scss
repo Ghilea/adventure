@@ -3,26 +3,26 @@
     align-items: center;
     flex-direction: column;
     gap: 1em;
-    background-color: #91919159;
+    background-color: #000000ba;
     padding: 1em;
     border-radius: 0.4em;
     position: relative;
-    height: 9em;
-    width: 6em;
+    height: fit-content;
+    width: 8em;
 
-    .coreStats {
+    .ability {
         display:flex;
         flex-direction: column;
         gap:0.5em;
         color: #fff;
         align-items: center;
 
-        .coreStatsTitle {
+        .abilityTitle {
             font-size: 0.75rem;
             letter-spacing: 0.1rem;
         }
 
-        .coreStatsPoints {
+        .abilityPoints {
             display: flex;
             justify-content: center;
             font-size: 1.5rem;
@@ -30,6 +30,22 @@
             padding: 0.5em;
             width: 2em;
             height: 2em;
+            background-color: #91919159;
+            border-bottom-left-radius: 0.4em;
+            border-top-right-radius: 0.4em;
+        }
+
+        .abilityModifier {
+            display: flex;
+            justify-content: center;
+            font-size: 1.5rem;
+            align-items: center;
+            padding: 0.5em;
+            width: 2em;
+            height: 2em;
+            border-radius: 50%;
+            background-color: #91919159;
+            border: 0.2em double #fff;
         }
     }
 
@@ -38,7 +54,7 @@
         gap: 1em;
         flex-direction: row;
 
-        .coreStatsButton {
+        .abilityButton {
             display: flex;
             width: 2em;
             height: 2em;

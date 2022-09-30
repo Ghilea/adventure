@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import './Modal.scss';
 
 export const Modal = ({children, open, title}) => {

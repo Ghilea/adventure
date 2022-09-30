@@ -5,76 +5,41 @@ import './PointButton.scss';
 export const PointButton = ({children}) => {
 
     const storePlayer = player(state => state);
-
-    const [stats, setStats] = useState({
-        name: null,
-        type: null
-    });
-
-    useEffect(() => {
-        switch (children) {
-            case 'Strength':
-                setStats({
-                    name: 'strength',
-                    type: storePlayer.coreStats.strength
-                });             
-                break;
-            case 'Intellect':
-                setStats({
-                    name: 'intellect',
-                    type: storePlayer.coreStats.intellect
-                });
-                break;
-            case 'Dexterity':
-                setStats({
-                    name: 'dexterity',
-                    type: storePlayer.coreStats.dexterity
-                });
-                break;
-            case 'Constitution':
-                setStats({
-                    name: 'constitution',
-                    type: storePlayer.coreStats.constitution
-                });
-                break;
-            case 'Wisdom':
-                setStats({
-                    name: 'wisdom',
-                    type: storePlayer.coreStats.wisdom
-                });
-                break;
-            case 'Charisma':
-                setStats({
-                    name: 'charisma',
-                    type: storePlayer.coreStats.charisma
-                });
-                break;
-        }
-    }, [storePlayer.coreStats])
     
+    const available = storePlayer.ability.available;
+    const type = children.toLowerCase();
+    const storeType = storePlayer.ability[type].points;
+    const storeModifier = storePlayer.ability[type].modifier;
+
     const increaseAttribute = () => {
-        storePlayer.updateCoreStats(storePlayer.coreStats.available - 1, stats.name, stats.type + 1);
+        if (available > 0) {
+            storePlayer.updateAbility(available - 1, type, storeType + 1);
+        }
     }
 
     const decreaseAttribute = () => {
-        storePlayer.updateCoreStats(storePlayer.coreStats.available + 1, stats.name, stats.type - 1);
+        if (storeType > 0){
+            storePlayer.updateAbility(available + 1, type, storeType - 1);
+        }  
     }
 
     return (
-        <>
-            <div className='btnSection'>
-                <div className='coreStats'>
-                    <p className='coreStatsTitle'>{children}</p> 
-                    <p className='coreStatsPoints'>{stats.type}</p>
-                </div>
-
-                <div className='buttonContainer'>
-                    <div className='coreStatsButton' onClick={() => decreaseAttribute()} disabled={stats.type === 0 ? true : false}>-</div>
-
-                    <div className='coreStatsButton' onClick={() => increaseAttribute()} disabled={storePlayer.coreStats.available === 0 ? true: false}>+</div>
-                </div>
-                
+        <div className='btnSection'>
+            <div className='ability'>
+                <p className='abilityTitle'>Modifier</p>
+                <p className='abilityModifier'>{storeModifier}</p>
             </div>
-        </>
+            <div className='ability'>
+                <p className='abilityTitle'>{children}</p> 
+                <p className='abilityPoints'>{storeType}</p>
+            </div>
+
+            <div className='buttonContainer'>
+                <div className='abilityButton' onClick={decreaseAttribute} disabled={storeType == 0 ? true : false}>-</div>
+
+                <div className='abilityButton' onClick={increaseAttribute} disabled={available == 0 ? true: false}>+</div>
+            </div>
+            
+        </div>
     )
 }

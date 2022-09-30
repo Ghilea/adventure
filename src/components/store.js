@@ -13,14 +13,32 @@ export const player = create(set => ({
         maxMana: null,
         mana: null,
     },
-    coreStats: {
+    ability: {
         available: 0,
-        strength: 0, //is how hard you hit something, how much you can carry, and how well you tend to do with strength based skill checks.
-        intellect: 0, //is how smart you are. It’s that simple really – Intelligence is usually academic intelligence – so how much you know about things.
-        dexterity: 0, //s how hard you hit something, how much you can carry, and how well you tend to do with strength based skill checks.
-        constitution: 0, //is around your actual fortitude as a player. It is the stat that has a direct effect on your hit points, as well as your resistance to poisoning, how fast you sober up, and the likes.
-        wisdom: 0, // is knowing about the world around you as well as how perceptive you are. It determines what you naturally notice.
-        charisma: 0 // is how good you are with people. It is how good you are at persuading people you are a good guy or how well you get on with NPCs.
+        strength: {
+            points: 0,
+            modifier: -5 
+        }, //is how hard you hit something, how much you can carry, and how well you tend to do with strength based skill checks.
+        intellect: {
+            points: 0,
+            modifier: -5
+        }, //is how smart you are. It’s that simple really – Intelligence is usually academic intelligence – so how much you know about things.
+        dexterity: {
+            points: 0,
+            modifier: -5
+        }, //determines speed. It is how fast you are, as well as how successful you are with ranged attacks.
+        constitution: {
+            points: 0,
+            modifier: -5
+        }, //is around your actual fortitude as a player. It is the stat that has a direct effect on your hit points, as well as your resistance to poisoning, how fast you sober up, and the likes.
+        wisdom: {
+            points: 0,
+            modifier: -5
+        }, // is knowing about the world around you as well as how perceptive you are. It determines what you naturally notice.
+        charisma: {
+            points: 0,
+            modifier: -5
+        } // is how good you are with people. It is how good you are at persuading people you are a good guy or how well you get on with NPCs.
     },
     secondaryStats: {
         block: 0,
@@ -103,17 +121,21 @@ export const player = create(set => ({
     })),
     setAvailablePoints: (points) => set(state => ({
         ...state,
-        coreStats: {
-            ...state.coreStats,
+        ability: {
+            ...state.ability,
             available: points
         }
     })),
-    updateCoreStats: (availablePoints, type, usedPoints) => set(state => ({
+    updateAbility: (available, type, points, modifier) => set(state => ({
         ...state,
-        coreStats: {
-            ...state.coreStats,
-            available: availablePoints,
-            [type]: usedPoints,
+        ability: {
+            ...state.ability,
+            available: available,
+            [type]: {
+                ...state.ability[type],
+                points: points,
+                modifier: modifier
+            },
         }
         
     })) 

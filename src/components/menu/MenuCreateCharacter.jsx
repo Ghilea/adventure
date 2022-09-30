@@ -18,7 +18,11 @@ export const MenuCreateCharacter = () => {
         gender: 'male'
     });
 
-    const [open, setOpen] = useState(false);
+    const [modal, setModal] = useState({
+        open: false,
+        title: null,
+        message: null
+    });
     
     useEffect(() => {
         storePlayer.setAvailablePoints(25);
@@ -42,23 +46,31 @@ export const MenuCreateCharacter = () => {
     const handleCreate = (e) => {
 
         if(character.name === null || character.avatar === null){
-            setOpen(true);
+            setModal((state) => ({
+                ...state,
+                open: true,
+                title: 'Check your condition',
+                message: 'Your protagonist need to have a name and a avatar!'
+            }));
 
             setTimeout(() => {
-                setOpen(false)
+                setModal((state) => ({
+                    ...state,
+                    open: false
+                }))
             }, 2000);
         }else{
             Create('createProtagonist', {
                 name: character.name,
                 img: character.avatar,
                 gender: character.gender,
-                points: storePlayer.coreStats.available,
-                str: storePlayer.coreStats.strength,
-                int: storePlayer.coreStats.intellect,
-                dex: storePlayer.coreStats.dexterity,
-                con: storePlayer.coreStats.constitution,
-                wis: storePlayer.coreStats.wisdom,
-                cha: storePlayer.coreStats.charisma
+                points: storePlayer.ability.available,
+                str: storePlayer.ability.strength,
+                int: storePlayer.ability.intellect,
+                dex: storePlayer.ability.dexterity,
+                con: storePlayer.ability.constitution,
+                wis: storePlayer.ability.wisdom,
+                cha: storePlayer.ability.charisma
             });
         }
     }
@@ -86,13 +98,12 @@ export const MenuCreateCharacter = () => {
                     <textarea spellCheck={false} placeholder='It´s optimal to write your protagonist story here...'></textarea>
                 </div>
                 
-                <div className='statsContainer'>
-                    <div className='statsBox'>
-                        <h2 className='statsTitle'>Available points</h2>
-                        <div className='showPoints'>{storePlayer.coreStats.available}</div>
-                    </div>
-                    
-                            
+                <div className='abilityAvailable'>
+                    <h2 className='statsTitle'>Available points</h2>
+                    <div className='showPoints'>{storePlayer.ability.available}</div>
+                </div>
+
+                <div className='statsContainer'>      
                     <PointButton>Strength</PointButton>
                     <PointButton>Intellect</PointButton>
                     <PointButton>Dexterity</PointButton>
@@ -109,7 +120,7 @@ export const MenuCreateCharacter = () => {
 
             </div>
 
-            <Modal open={open} title='Check your condition'>Your protagonist need to have a name and a avatar!</Modal>
+            <Modal open={modal.open} title={modal.title}>{modal.message}</Modal>
         </>
        
     )
