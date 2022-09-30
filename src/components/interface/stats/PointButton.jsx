@@ -4,8 +4,6 @@ import './PointButton.scss';
 
 export const PointButton = ({children}) => {
 
-    const storeTypeRef = useRef()
-
     const storePlayer = player(state => state);
     
     const available = storePlayer.ability.available;
@@ -14,29 +12,26 @@ export const PointButton = ({children}) => {
 
     const storeModifier = storePlayer.ability[type].modifier;
 
-    storeTypeRef.current = storeType
-
-
     function increaseAttribute () {
-        console.log(storeTypeRef.current, storeType)
+        console.log(storeModifier, storeType)
         if (available > 0) {
-            storePlayer.updateAbility(available - 1, type, storeTypeRef.current + 1);
+            storePlayer.updateAbility(available - 1, type, storeType + 1);
         }
 
-       
-        storePlayer.updateModifier(type, modifierCalc());
-        console.log(storePlayer.ability[type].modifier)
+        storePlayer.updateModifier(type, modifierCalc(1));
     }
 
     function decreaseAttribute () {
-        if (storeTypeRef.current > 0){
-            storePlayer.updateAbility(available + 1, type, storeTypeRef.current - 1);
+        if (storeType > 0){
+            storePlayer.updateAbility(available + 1, type, storeType - 1);
+
+            storePlayer.updateModifier(type, modifierCalc(-1));
         } 
 
-        storePlayer.updateModifier(type, modifierCalc());
+        
     }
 
-    function modifierCalc() {
+    function modifierCalc(num) {
         /* 
             Ability of 2 or 3: -4
             Ability of 4 or 5: -3
@@ -48,7 +43,7 @@ export const PointButton = ({children}) => {
             Ability of 16 or 17: +3
             Ability of 18 or 19: +4
         */     
-        return (Math.round((storeTypeRef.current / 2) - 5.5))
+        return (Math.round(((storeType + num )/ 2) - 5.5))
     }
 
     return (
