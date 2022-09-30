@@ -58,7 +58,7 @@
     }
 
     .createHeroInformation {
-        grid-column: 5 / span 3;
+        grid-column: 6 / span 3;
         grid-row: 2 / span 4;
         background-color: #91919159;
         border-radius: 0.4em;
@@ -176,14 +176,14 @@
 
     .statsContainer{
         grid-column: 1 / span 2;
-        grid-row: 3 / span 3;
+        grid-row: 3 / span 4;
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
         width: 100%;
         color: #fff;
         gap: 1em;
-        justify-content: space-evenly;
+        justify-content: center;
     }
 
 }

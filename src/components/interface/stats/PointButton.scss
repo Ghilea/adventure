@@ -4,11 +4,16 @@
     flex-direction: column;
     gap: 1em;
     background-color: #000000ba;
+    background-image: url('@shared/assets/images/texture/overlay.png'), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 0.4em double #626262;
     padding: 1em;
     border-radius: 0.4em;
     position: relative;
     height: fit-content;
-    width: 8em;
+    width: fit-content;
 
     .ability {
         display:flex;
@@ -49,7 +54,7 @@
         }
     }
 
-    .buttonContainer {
+    .abilityButtonContainer {
         display: flex;
         gap: 1em;
         flex-direction: row;

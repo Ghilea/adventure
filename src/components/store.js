@@ -126,19 +126,27 @@ export const player = create(set => ({
             available: points
         }
     })),
-    updateAbility: (available, type, points, modifier) => set(state => ({
+    updateAbility: (available, type, points) => set(state => ({
         ...state,
         ability: {
             ...state.ability,
             available: available,
             [type]: {
                 ...state.ability[type],
-                points: points,
+                points: points
+            },
+        }
+    })),
+    updateModifier: (type, modifier) => set(state => ({
+        ...state,
+        ability: {
+            ...state.ability,
+            [type]: {
+                ...state.ability[type],
                 modifier: modifier
             },
         }
-        
-    })) 
+    }))
 }))
 
 export const map = create(set => ({
