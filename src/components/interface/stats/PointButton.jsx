@@ -17,33 +17,14 @@ export const PointButton = ({children}) => {
         if (available > 0) {
             storePlayer.updateAbility(available - 1, type, storeType + 1);
         }
-
-        storePlayer.updateModifier(type, modifierCalc(1));
     }
 
     function decreaseAttribute () {
         if (storeType > 0){
             storePlayer.updateAbility(available + 1, type, storeType - 1);
-
-            storePlayer.updateModifier(type, modifierCalc(-1));
         } 
 
         
-    }
-
-    function modifierCalc(num) {
-        /* 
-            Ability of 2 or 3: -4
-            Ability of 4 or 5: -3
-            Ability of 6 or 7: -2
-            Ability of 8 or 9: -1
-            Ability of 10 or 11: +0
-            Ability of 12 or 13: +1
-            Ability of 14 or 15: +2
-            Ability of 16 or 17: +3
-            Ability of 18 or 19: +4
-        */     
-        return (Math.round(((storeType + num )/ 2) - 5.5))
     }
 
     return (

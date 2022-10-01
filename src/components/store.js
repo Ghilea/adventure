@@ -133,17 +133,8 @@ export const player = create(set => ({
             available: available,
             [type]: {
                 ...state.ability[type],
-                points: points
-            },
-        }
-    })),
-    updateModifier: (type, modifier) => set(state => ({
-        ...state,
-        ability: {
-            ...state.ability,
-            [type]: {
-                ...state.ability[type],
-                modifier: modifier
+                points: points,
+                modifier: Math.round((points / 2) - 5.5)
             },
         }
     }))
