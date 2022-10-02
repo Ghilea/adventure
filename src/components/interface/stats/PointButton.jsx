@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { player } from '@comp/store';
 import './PointButton.scss';
 
@@ -15,24 +15,20 @@ export const PointButton = ({children}) => {
     });
 
     const available = store.ability.available;
-    
     const points = abilities[children].points;
     const modifier = abilities[children].modifier;
 
     const updateAbility = (points) => {
 
-        setAbilities((state) => ({
-            ...state,
+        setAbilities(() => ({
             [children]: {
-                    points: points,
-                    modifier: Math.round((points / 2) - 5.5)
-                }
+                points: points,
+                modifier: Math.round((points / 2) - 5.5)
+            }
         }))
     }
 
-    console.log(available, points, modifier)
     const increaseAttribute = () => {
-        console.log(modifier, points)
         if (available > 0) {
             store.updateAvailable(available - 1)
             updateAbility(points + 1);
