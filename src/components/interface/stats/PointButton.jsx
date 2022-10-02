@@ -4,44 +4,63 @@ import './PointButton.scss';
 
 export const PointButton = ({children}) => {
 
-    const storePlayer = player(state => state);
+    const store = player(state => state);
+    const [abilities, setAbilities] = useState({
+        Strength: {points: 0, modifier: -5},
+        Intellect: {points: 0, modifier: -5},
+        Dexterity: {points: 0, modifier: -5},
+        Constitution: {points: 0, modifier: -5},
+        Wisdom: {points: 0, modifier: -5},
+        Charisma: {points: 0, modifier: -5}
+    });
+
+    const available = store.ability.available;
     
-    const available = storePlayer.ability.available;
-    const type = children.toLowerCase();
-    const storeType = storePlayer.ability[type].points;
+    const points = abilities[children].points;
+    const modifier = abilities[children].modifier;
 
-    const storeModifier = storePlayer.ability[type].modifier;
+    const updateAbility = (points) => {
 
-    function increaseAttribute () {
-        console.log(storeModifier, storeType)
+        setAbilities((state) => ({
+            ...state,
+            [children]: {
+                    points: points,
+                    modifier: Math.round((points / 2) - 5.5)
+                }
+        }))
+    }
+
+    console.log(available, points, modifier)
+    const increaseAttribute = () => {
+        console.log(modifier, points)
         if (available > 0) {
-            storePlayer.updateAbility(available - 1, type, storeType + 1);
+            store.updateAvailable(available - 1)
+            updateAbility(points + 1);
         }
     }
 
-    function decreaseAttribute () {
-        if (storeType > 0){
-            storePlayer.updateAbility(available + 1, type, storeType - 1);
-        } 
-
-        
+    const decreaseAttribute = () => {
+        if (points > 0){
+            store.updateAvailable(available + 1)
+            updateAbility(points - 1);
+        }      
     }
 
     return (
         <div className='btnSection'>
             <div className='ability'>
                 <p className='abilityTitle'>Modifier</p>
-                <p className='abilityModifier'>{storeModifier}</p>
+                <p className='abilityModifier'>{modifier}</p>
             </div>
             <div className='ability'>
                 <p className='abilityTitle'>{children}</p> 
-                <p className='abilityPoints'>{storeType}</p>
+                <p className='abilityPoints'>{points}</p>
             </div>
 
             <div className='abilityButtonContainer'>
-                <div className='abilityButton' onClick={decreaseAttribute} disabled={storeType == 0 ? true : false}>-</div>
+                <div className='abilityButton' onClick={decreaseAttribute} disabled={points <= 0 ? true : false}>-</div>
 
-                <div className='abilityButton' onClick={increaseAttribute} disabled={available == 0 ? true: false}>+</div>
+                <div className='abilityButton' onClick={increaseAttribute} disabled={available <= 0 ? true: false}>+</div>
             </div>
             
         </div>

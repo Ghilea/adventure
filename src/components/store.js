@@ -126,6 +126,12 @@ export const player = create(set => ({
             available: points
         }
     })),
+    updateAvailable: (available) => set(state => ({
+        ...state,
+        ability: {
+            available: available
+        }
+    })),
     updateAbility: (available, type, points) => set(state => ({
         ...state,
         ability: {
