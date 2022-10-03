@@ -22,9 +22,9 @@ export const MenuShowCharacters = () => {
   
     
     const handleLogin = (id) => {
-        //storeMenu.isLoadingDone(false);
-        //storeMenu.isLoginSuccess(true);
-        //storePlayer.setPlayerId(id);
+        storeMenu.isLoadingDone(false);
+        storeMenu.isLoginSuccess(true);
+        storePlayer.setPlayerId(id);
     }
 
     useEffect(() => {
