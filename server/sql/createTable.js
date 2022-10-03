@@ -53,7 +53,7 @@ export const CreateTable = async (knex) => {
     await knex.schema.createTable('protagonist', (table) => {
       table.increments('id').primary();
       table.string('name',255).notNullable();
-      table.integer('img').notNullable();
+      table.integer('img');
       table.enu('gender', ['male', 'female']).notNullable().default('male')
       table.integer('stats_id').notNullable();
     }).then(async ()=>{ 
@@ -89,6 +89,8 @@ export const CreateTable = async (knex) => {
       table.integer('level').notNullable().default(1);
       table.decimal('health', 8, 2).notNullable().default(10.00);
       table.float('maxHealth').notNullable().default(10)
+      table.decimal('mana', 8, 2).notNullable().default(10.00);
+      table.float('maxMana').notNullable().default(10)
       table.integer('strength').notNullable().default(0);
       table.integer('intellect').notNullable().default(0);
       table.integer('dexterity').notNullable().default(0);
@@ -96,7 +98,7 @@ export const CreateTable = async (knex) => {
       table.integer('wisdom').notNullable().default(0);
       table.integer('charisma').notNullable().default(0);
       table.float('experience').notNullable().default(0);
-      table.integer('points').notNullable().default(0);
+      table.integer('available').notNullable().default(0);
     }).then(async ()=>{ 
         await StatsData(knex);
         console.log('Stats added')

@@ -100,7 +100,7 @@ export const StatsData = async (knex) => {
               wisdom: 0,
               charisma: 0,
               experience: 186,
-              points: 0
+              available: 0
           },
       ]).into('stats')
 }

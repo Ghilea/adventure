@@ -6,6 +6,8 @@ import { CharacterSheet } from '@comp/interface/characterSheet/CharacterSheet';
 import { Chat } from '@comp/interface/chat/Chat';
 import sword from '@shared/assets/images/gui/sword.png';
 import shield from '@shared/assets/images/gui/shield.png';
+import femaleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_female.png';
+import maleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_male.png';
 import './interface.scss';
 
 const Interface = () => {
@@ -23,11 +25,10 @@ const Interface = () => {
 
         Read(`getProtagonist?id=${storePlayer.id}`)
             .then(response => {
-                console.log(response.data[0].img)
                 setState(set => ({
                     ...set,
                     name: response.data[0].name,
-                    img: `assets/images/characters/${response.data[0].img}.png`                      
+                    img: (response.data[0].img) ? femaleImg : maleImg                   
                 }));
 
                 storePlayer.setPlayer(
@@ -50,15 +51,24 @@ const Interface = () => {
         const data = {
             id: storePlayer.id,
             attribute: {
-                str: storePlayer.str,
-                int: storePlayer.int,
-                dex: storePlayer.dex
+                strength: storePlayer.ability.strength.points,
+                intellect: storePlayer.ability.intellect.points,
+                dexterity: storePlayer.ability.dexterity.points,
+                constitution: storePlayer.ability.constitution.points,
+                wisdom: storePlayer.ability.wisdom.points,
+                charisma: storePlayer.ability.charisma.points,
+                available: storePlayer.ability.available
             },
-            exp: storePlayer.exp,
-            level: storePlayer.level,
-            hp: storePlayer.hp,
-            maxHp: storePlayer.maxHp,
-            points: storePlayer.points,
+            experience: {
+                level: storePlayer.level,
+                points: storePlayer.points
+            }, 
+            state: {
+                health: storePlayer.health,
+                maxHealth: storePlayer.maxHealth,
+                mana: storePlayer.mana,
+                maxMana: storePlayer.maxMana
+            }
         }
 
         if (storePlayer.level > 0) {

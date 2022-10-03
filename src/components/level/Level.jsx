@@ -20,11 +20,35 @@ export const Level = () => {
     useEffect(() => {
     
         Read(`/getLevel?&id=${storeMap.level}`)
-            .then(items => {
+            .then(response => {
 
-                if (items.level.length > 0) {
+                console.log(response)
+                
+                response.level[0].content.walls.map((use, index) => {
 
-                    const parsed = JSON.parse(items.level[0].content)
+                    setBuild((state) => ([
+                        ...state,
+                        <Wall_1 key={'wall' + index}
+                            position={use.pos}
+                            rotation={use.rotate}
+                            type={use.type}
+                        />
+                    ]))
+                })
+
+                setCreateplayer(() => (
+                    <Player position={response.level[0].content.player} />
+                ))
+
+                setGround((state) => ({
+                    ...state,
+                    texture: response.level[0].content.ground[2],
+                    size: [response.level[0].content.ground[0], parsed.ground[1]]
+                }))
+
+                //storeMap.setPlayerPosition(response.level[0].content.player);
+
+                    /*const parsed = JSON.parse(response.level[0].content)
 
                     parsed.walls.map((use, index) => {
 
@@ -48,8 +72,8 @@ export const Level = () => {
                         size: [parsed.ground[0], parsed.ground[1]]
                     }))
 
-                    storeMap.setPlayerPosition(parsed.player);
-                }   
+                    storeMap.setPlayerPosition(parsed.player);*/
+                
             })
     }, [])
 
