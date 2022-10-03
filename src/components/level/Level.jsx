@@ -22,9 +22,9 @@ export const Level = () => {
         Read(`getLevel?id=${storeMap.level}`)
             .then(response => {
 
-                console.log(JSON.parse(response.data[0].content))
-
                 const parsed = JSON.parse(response.data[0].content)
+
+                storeMap.setPlayerPosition(parsed.player);
                 
                 parsed.walls.map((use, index) => {
 
@@ -47,6 +47,8 @@ export const Level = () => {
                     texture: parsed.ground[2],
                     size: [parsed.ground[0], parsed.ground[1]]
                 }))
+
+                storeMap.setPlayerPosition(parsed.player);
 
                 //storeMap.setPlayerPosition(response.level[0].content.player);
 

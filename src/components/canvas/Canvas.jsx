@@ -13,9 +13,9 @@ import { MenuBg } from '@comp/menu/MenuBackground';
 export const CanvasLevel = () => {
 
     return (
-        <Canvas shadows>
+        <Canvas shadows><ambientLight intensity={0.5} />
             <Physics gravity={[0, -30, 0]}>
-                <Level />   
+                <Level />
             </Physics>
         </Canvas> 
     )
