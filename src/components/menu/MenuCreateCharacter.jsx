@@ -23,10 +23,8 @@ export const MenuCreateCharacter = () => {
         title: null,
         message: null
     });
-    
-    useEffect(() => {
-        storePlayer.setAvailablePoints(25);
-    }, [])
+
+    const [available, setAvailable] = useState(5);
 
     const selectAvatar = (e) => {
         setCharacter({
@@ -75,6 +73,14 @@ export const MenuCreateCharacter = () => {
         }
     }
 
+    const availableData = (availableData) => {
+        setAvailable(available + availableData)
+    }
+
+    const abilityData = (abilityData, modifierData) => {
+        console.log(abilityData, modifierData)
+    }
+
     return (
         <>
             <div className='createWindow'>
@@ -100,16 +106,16 @@ export const MenuCreateCharacter = () => {
                 
                 <div className='abilityAvailable'>
                     <h2 className='statsTitle'>Available points</h2>
-                    <div className='showPoints'>{storePlayer.ability.available}</div>
+                    <div className='showPoints'>{available}</div>
                 </div>
 
                 <div className='statsContainer'>      
-                    <PointButton>Strength</PointButton>
-                    <PointButton>Intellect</PointButton>
-                    <PointButton>Dexterity</PointButton>
-                    <PointButton>Constitution</PointButton>
-                    <PointButton>Wisdom</PointButton>
-                    <PointButton>Charisma</PointButton>
+                    <PointButton available={available} availableFunc={availableData} abilityFunc={abilityData}>Strength</PointButton>
+                    <PointButton available={available} availableFunc={availableData} abilityFunc={abilityData}>Intellect</PointButton>
+                    <PointButton available={available} availableFunc={availableData} abilityFunc={abilityData}>Dexterity</PointButton>
+                    <PointButton available={available} availableFunc={availableData} abilityFunc={abilityData}>Constitution</PointButton>
+                    <PointButton available={available} availableFunc={availableData} abilityFunc={abilityData}>Wisdom</PointButton>
+                    <PointButton available={available} availableFunc={availableData} abilityFunc={abilityData}>Charisma</PointButton>
                 </div>
 
                 <div className='buttonContainer'>

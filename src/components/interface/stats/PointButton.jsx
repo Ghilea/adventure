@@ -1,44 +1,31 @@
-import React, { useState } from 'react';
-import { player } from '@comp/store';
+import React, { useEffect, useState } from 'react';
 import './PointButton.scss';
 
-export const PointButton = ({children}) => {
+export const PointButton = ({available, availableFunc, abilityFunc, children} ) => {
 
-    const store = player(state => state);
-    const [abilities, setAbilities] = useState({
-        Strength: {points: 0, modifier: -5},
-        Intellect: {points: 0, modifier: -5},
-        Dexterity: {points: 0, modifier: -5},
-        Constitution: {points: 0, modifier: -5},
-        Wisdom: {points: 0, modifier: -5},
-        Charisma: {points: 0, modifier: -5}
-    });
+    const [abilityPoints, setAbilityPoints] = useState(0);
+    const [modifier, setModifier] = useState(-5);
+ 
+    useEffect(() => {
+        setModifier(Math.round(((abilityPoints) / 2) - 5.5));
+        abilityFunc(abilityPoints, modifier)
+    }, [abilityPoints])
 
-    const available = store.ability.available;
-    const points = abilities[children].points;
-    const modifier = abilities[children].modifier;
-
-    const updateAbility = (points) => {
-
-        setAbilities(() => ({
-            [children]: {
-                points: points,
-                modifier: Math.round((points / 2) - 5.5)
-            }
-        }))
-    }
+    useEffect(() => {
+        
+    }, [modifier])
 
     const increaseAttribute = () => {
         if (available > 0) {
-            store.updateAvailable(available - 1)
-            updateAbility(points + 1);
+            setAbilityPoints(abilityPoints + 1);
+            availableFunc(-1);
         }
     }
 
     const decreaseAttribute = () => {
-        if (points > 0){
-            store.updateAvailable(available + 1)
-            updateAbility(points - 1);
+        if (abilityPoints > 0){
+            setAbilityPoints(abilityPoints - 1);
+            availableFunc(1);
         }      
     }
 
@@ -50,11 +37,11 @@ export const PointButton = ({children}) => {
             </div>
             <div className='ability'>
                 <p className='abilityTitle'>{children}</p> 
-                <p className='abilityPoints'>{points}</p>
+                <p className='abilityPoints'>{abilityPoints}</p>
             </div>
 
             <div className='abilityButtonContainer'>
-                <div className='abilityButton' onClick={decreaseAttribute} disabled={points <= 0 ? true : false}>-</div>
+                <div className='abilityButton' onClick={decreaseAttribute} disabled={abilityPoints <= 0 ? true : false}>-</div>
 
                 <div className='abilityButton' onClick={increaseAttribute} disabled={available <= 0 ? true: false}>+</div>
             </div>
