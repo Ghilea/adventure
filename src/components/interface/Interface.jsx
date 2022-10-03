@@ -4,6 +4,8 @@ import { Read, Update } from '@shared/components/Crud';
 import { Health, Mana, Exp } from '@comp/interface/bar/Bar';
 import { CharacterSheet } from '@comp/interface/characterSheet/CharacterSheet';
 import { Chat } from '@comp/interface/chat/Chat';
+import sword from '@shared/assets/images/gui/sword.png';
+import shield from '@shared/assets/images/gui/shield.png';
 import './interface.scss';
 
 const Interface = () => {
@@ -20,27 +22,26 @@ const Interface = () => {
     useEffect(() => {
 
         Read(`getProtagonist?id=${storePlayer.id}`)
-            .then(items => {
+            .then(response => {
+                console.log(response.data[0].img)
+                setState(set => ({
+                    ...set,
+                    name: response.data[0].name,
+                    img: `assets/images/characters/${response.data[0].img}.png`                      
+                }));
 
-                if (items.protagonist.length > 0) {
-                    setState(set => ({
-                        ...set,
-                        name: items.protagonist[0].name,
-                        img: `assets/images/characters/${items.protagonist[0].img}.png`                      
-                    }));
-
-                    storePlayer.setPlayer(
-                        items.protagonist[0].level,
-                        items.protagonist[0].health,
-                        items.protagonist[0].maxHealth,
-                        (items.protagonist[0].strength + items.protagonist[0].intellect + items.protagonist[0].dexterity) / 2,
-                        items.protagonist[0].experience,
-                        items.protagonist[0].intellect,
-                        items.protagonist[0].dexterity,
-                        items.protagonist[0].strength,
-                        items.protagonist[0].points
-                    );
-                } 
+                storePlayer.setPlayer(
+                    response.data[0].level,
+                    response.data[0].health,
+                    response.data[0].maxHealth,
+                    (response.data[0].strength + response.data[0].intellect + response.data[0].dexterity) / 2,
+                    response.data[0].experience,
+                    response.data[0].intellect,
+                    response.data[0].dexterity,
+                    response.data[0].strength,
+                    response.data[0].points
+                );
+                
             })
     }, [])
 
@@ -147,11 +148,11 @@ const Interface = () => {
                 <CharacterSheet />
     
                 <div key={'playerShield'} className={`playerShield ${(storePlayer.block) ? 'block' : ''}`}>
-                    <img src='assets/images/gui/shield.png'/>
+                    <img src={shield}/>
                 </div>
 
                 <div key={'playerWeapon'} className={`playerWeapon ${(storePlayer.attack) ? 'swing' : ''}`}>
-                    <img src='assets/images/gui/sword.png'/>
+                    <img src={sword}/>
                 </div>
                 
                 <Chat name={set.name}/> 

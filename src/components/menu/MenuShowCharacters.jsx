@@ -15,11 +15,7 @@ export const MenuShowCharacters = () => {
 
     const [data, setData] = useState([]);
 
-    const [play, stop] = useAudio({
-        src: buttonHover,
-        type: 'sound'
-    })
-  
+    const [play] = useAudio(buttonHover)
     
     const handleLogin = (id) => {
         storeMenu.isLoadingDone(false);
@@ -32,7 +28,7 @@ export const MenuShowCharacters = () => {
       
             response.data.map((item, index) => {
                 return (
-                    <div className='character' onClick={() => handleLogin(item.id)} onMouseEnter={() => play()} onMouseLeave={() => stop()} key={item.name + index}>
+                    <div className='character' onClick={() => handleLogin(item.id)} onMouseEnter={() => play()} key={item.name + index}>
                         <img src = {(item.gender === 'Male') ? maleImg : femaleImg} />
                         <h2>{item.name} (<span className='levelTitle'>level {item.level}</span>)</h2>
                         <p>Hp: {item.health} / {item.maxHealth}</p>

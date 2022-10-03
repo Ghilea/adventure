@@ -18,17 +18,10 @@ export const Health = () => {
     );
     
     useEffect(() => {
-
-        Read(`getProtagonist?id=${storePlayer.id}`)
-            .then(items => {
-                if (items.protagonist.length > 0) {
-                    setHealth(health => ({
-                        ...health,
-                            bar: (items.protagonist[0].health / items.protagonist[0].maxHealth) * 100 + '%'
-                    }))
-                }
-            })
-
+        Read(`getProtagonist?id=${storePlayer.id}`).then(response => setHealth(set => ({
+            ...set,
+            bar: (response.data[0].health / response.data[0].maxHealth) * 100 + '%'
+        })))
     }, [])
 
     useEffect(() => {
