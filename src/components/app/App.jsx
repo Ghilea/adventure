@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Interface from '@comp/interface/Interface';
 import { CanvasLevel, CanvasMenu } from '@comp/canvas/Canvas';
 import { menu } from '@comp/store'
-import { Menu } from '@comp/menu/Menu';
 import { MapEditor } from '@editor/MapEditor';
 import './Reset.scss';
 import './Misc.scss';
@@ -12,34 +11,32 @@ export const App = () => {
 
     const storeMenu = menu(state => state);
 
-    const [arr, setArr] = useState([]);
-
-    useEffect(()=> {
-        if (storeMenu.mapEditor) {
-            setArr([<MapEditor />])
-        }else{
-            setArr([<CanvasMenu />]);
-        }
-    }, [storeMenu.mapEditor])
+    const [content, setContent] = useState([]);
 
     useEffect(() => {
-        if(storeMenu.loginSuccess){
-            setArr([<CanvasLevel />])
-            setArr(prevState => [...prevState, <Interface />])
+        switch (storeMenu.activeContent) {
+            case 'editor':
+                setContent([<MapEditor />])
+                break;
+            case 'menu':
+                setContent([<CanvasMenu />]);
+                break;
+            case 'login':
+                setContent([<CanvasLevel />, <Interface />])
+                break;
         }
-    }, [storeMenu.loginSuccess])
+    }, [storeMenu.activeContent])
 
     useEffect(() => {
         if (storeMenu.loadingDone){
-            setArr(prevState => [...prevState, <Menu />])
+            storeMenu.activateContent('menu')
         }  
     }, [storeMenu.loadingDone])
 
-    console.log(arr);
     return (
         <>
             {
-                arr.map((item, index) => {
+                content.map((item, index) => {
                     return <React.Fragment key={item+index}>{item}</React.Fragment>;
                 })
             }

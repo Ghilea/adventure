@@ -7,7 +7,6 @@ import { Player } from '@shared/models/player';
 import { SwampMonster } from '@shared/models/creatures/SwampMonster';
 import { Loader } from '@shared/components/loading/Loader';
 
-
 export const MenuBg = () => {
 
     const [build, setBuild] = useState([]);

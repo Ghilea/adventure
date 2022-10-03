@@ -39,6 +39,9 @@ export const Menu = () => {
                 window.open("", "_self");
                 window.close();
                 break;
+            case 'editor':
+                storeMenu.activateContent('editor');
+                break;
             default:
                 setOpenMenu(null);
                 break;

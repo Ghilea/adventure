@@ -218,11 +218,10 @@ export const menu = create(set => ({
             loop: true
         }
     },
-    mapEditor: false,
     login: false,
-    loginSuccess: false,
     loadingDone: false,
     startGame: false,
+    activeContent: null,
     activeMenu: null,
     changeOptions: (type, type2, value) => set (state => ({
         ...state,
@@ -233,6 +232,11 @@ export const menu = create(set => ({
                 [type2] : value
             }
         }
+    })),
+    activateContent: (value) => set (state => ({
+        ...state,
+        activeContent: value,
+
     })),
     activateMenu: (value) => set (state => ({
         ...state,

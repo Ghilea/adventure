@@ -18,8 +18,8 @@ export const MenuShowCharacters = () => {
     const [play] = useAudio(buttonHover)
     
     const handleLogin = (id) => {
-        storeMenu.isLoadingDone(false);
-        storeMenu.isLoginSuccess(true);
+        storeMenu.activateContent('login')
+        //storeMenu.isLoadingDone(false);
         storePlayer.setPlayerId(id);
     }
 
