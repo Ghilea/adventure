@@ -19,12 +19,14 @@ export const Level = () => {
 
     useEffect(() => {
     
-        Read(`/getLevel?&id=${storeMap.level}`)
+        Read(`getLevel?id=${storeMap.level}`)
             .then(response => {
 
-                console.log(response)
+                console.log(JSON.parse(response.data[0].content))
+
+                const parsed = JSON.parse(response.data[0].content)
                 
-                response.level[0].content.walls.map((use, index) => {
+                parsed.walls.map((use, index) => {
 
                     setBuild((state) => ([
                         ...state,
@@ -37,13 +39,13 @@ export const Level = () => {
                 })
 
                 setCreateplayer(() => (
-                    <Player position={response.level[0].content.player} />
+                    <Player position={parsed.player} />
                 ))
 
                 setGround((state) => ({
                     ...state,
-                    texture: response.level[0].content.ground[2],
-                    size: [response.level[0].content.ground[0], parsed.ground[1]]
+                    texture: parsed.ground[2],
+                    size: [parsed.ground[0], parsed.ground[1]]
                 }))
 
                 //storeMap.setPlayerPosition(response.level[0].content.player);

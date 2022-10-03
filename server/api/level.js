@@ -1,7 +1,7 @@
 export const getLevel = async (knex, res, id) => {
     try {
         await knex.select('content')
-        .where('id', x)
+        .where('id', id)
         .from('levels').then((query) => {
             return res.code(200)
             //.header('Content-Type', 'application/json; charset=utf-8')
