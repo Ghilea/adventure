@@ -1,80 +1,57 @@
-import { useEffect, useState } from 'react';
-import useAudio from '@comp/misc/useAudio';
-import { menu } from '@comp/store';
-import { MenuCreateCharacter } from '@comp/menu/MenuCreateCharacter';
-import { MenuShowCharacters } from '@comp/menu/MenuShowCharacters';
-import { MenuOptions } from '@comp/menu/MenuOptions';
-import { MenuButton } from '@comp/menu/button/MenuButton';
-import logoImg from '@shared/assets/images/svg/celtic.svg';
-import './Menu.scss';
-import menuMusic from '@shared/assets/music/menu.mp3';
+import { Suspense, useEffect, useState } from 'react';
+import { Ground } from '@comp/level/Ground';
+import { Torch } from '@shared/models/torch';
+import { Rock_1 } from '@shared/models/rocks';
+import { Wall_1 } from '@shared/models/walls';
+import { Player } from '@shared/models/player';
+import { SwampMonster } from '@shared/models/creatures/SwampMonster';
+import { Loader } from '@comp/system/loading/Loader';
 
-export const Menu = () => {
+export const Menu = ({func}) => {
 
-    const storeMenu = menu(state => state);
-
-    const [openMenu, setOpenMenu] = useState(null);
-
-    const [play] = useAudio(menuMusic, {
-        volume: 0.4
+    const [build, setBuild] = useState([]);
+    const [ground, setGround] = useState({
+        texture: 'stone',
+        size: [10, 10]
     });
+    const [wall, setWall] = useState({
+        y: -0.95
+    })
 
     useEffect(() => {
-        play();
+        setGround((state) => ({
+            ...state,
+            texture: ground.texture,
+            size: ground.size
+        }))
     }, [])
 
-    useEffect(() => {
-        switch (storeMenu.activeMenu) {
-            case 'login':
-                setOpenMenu(<MenuShowCharacters />)
-                break;
-            case 'create':
-                setOpenMenu(<MenuCreateCharacter />)
-                break;
-            case 'options':
-                setOpenMenu(<MenuOptions />)
-                break;
-            case 'exit':
-                window.opener = null;
-                window.open("", "_self");
-                window.close();
-                break;
-            case 'editor':
-                storeMenu.activateContent('editor');
-                break;
-            default:
-                setOpenMenu(null);
-                break;
-        }
-
-    }, [storeMenu.activeMenu])
-
     return (
-        <> 
-            <div className='menuContainer'>
-                <header>
-                    <img className='logo' src={logoImg} alt='logo'/>
+        <>
+            <Suspense fallback={<Loader menuFunc={func}/>}>
+                <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
+                <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[3.2, wall.y, 1]}/>
+                <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[1.2, wall.y, 1]}/>
+                <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[-1.8, wall.y, 1]}/>
+                <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[-3.8, wall.y, 1]}/>
 
-                    <h1>Adventure</h1> 
-                </header>
-                
-                <div className='buttonList'>
-                    <MenuButton open='login'>Login</MenuButton>
+                <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[-4.2, wall.y, -0.2]}/>
+                <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[-4.2, wall.y, -2.2]}/>
 
-                    <MenuButton open='create'>Create Protagonist</MenuButton>
+                <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[2.2, wall.y, -1.2]}/>
+                <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[2.2, wall.y, -3.2]}/>
 
-                    <MenuButton open='options'>Options</MenuButton>
+                <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[-1.2, wall.y, 0.2]}/>
 
-                    <MenuButton open='editor'>Map Editor</MenuButton>
+                <SwampMonster rotation={[0, Math.PI * (360/360), 0]}  position={[-2.2, 0.1, -0.2]}/>
 
-                    <MenuButton open='exit'>Exit Game</MenuButton>
-                </div>
-                
-            </div>
+                {build} 
+                <Torch position={[-3.9, 0.3, -2]} scale={[1.03, 1.03, 1.03]} rotation={[0, Math.PI * (180/360), 0]}/>
 
-            <div className={`${(openMenu === null) ? 'hide' : 'boxMenuContainer'}`}>
-                {openMenu}
-            </div>  
+                <Rock_1 position={[-4.5, -0.3, 0.5]} scale={[0.3, 0.3, 1]} />
+         
+                <Player position={[-3.5, 0.55, -3.5]} scale={2.5} rotation={[0, Math.PI * (360/360), 0]}/>
+            </Suspense>
         </>
     )
 }

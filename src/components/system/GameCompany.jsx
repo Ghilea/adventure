@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
 import './GameCompany.scss';
 
-const GameCompany = () => {
+const GameCompany = ({children, timer, func}) => {
 
-    const [company, setCompany] = useState([]);
+    const [fade, setFade] = useState(false);
     
     useEffect(() => {
-        setCompany([{
-            name: 'testName',
-            show: 'testShow',
-            timer: 10
-        }])
+        setTimeout(() => {
+            setFade(true)
+        }, timer)
     }, [])
 
+    useEffect(() => {
+        if(fade){
+            func(fade)
+        }
+    }, [fade])
+
     return (
-        <>
-            {company.map((item, index) => {
-                return <div key={item + index} className={`gameCompany ${setTimeout(() => {'companyFadeOut'}, 2000) }`}>
-                    <p>{item.name}</p>
-                </div>
-            })}
-        </>
+        <div className='gameCompany'>
+            <p className={`${fade ? 'companyFadeOut' : 'companyFadeIn'}`}>{children}</p>
+        </div>
     )
 }
 

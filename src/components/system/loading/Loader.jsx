@@ -4,7 +4,7 @@ import { menu } from '@comp/store';
 import { Read } from '@shared/components/Crud';
 import './LoadingScreen.scss';
 
-export const Loader = () => {
+export const Loader = ({ menuFunc }) => {
 
     const storeMenu = menu(state => state);
     const {progress} = useProgress();
@@ -16,7 +16,7 @@ export const Loader = () => {
 
     useEffect(()=>{
         if(progress >= 100){
-            storeMenu.isLoadingDone(true);
+            menuFunc(true);
         }
     }, [progress])
 
