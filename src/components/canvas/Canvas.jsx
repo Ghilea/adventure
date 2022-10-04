@@ -4,6 +4,7 @@ import { Physics } from '@react-three/cannon';
 import { Level } from '@comp/level/Level';
 import { MenuBg } from '@comp/menu/MenuBackground';
 import { Menu } from '@comp/menu/Menu';
+import { menu } from '@comp/store'
 //import { OrbitControls } from '@react-three/drei';
 
 /*
@@ -16,33 +17,27 @@ import { Menu } from '@comp/menu/Menu';
 renderer.dispose()
 renderer.forceContextLoss()
 */
-export const CanvasLevel = () => {
+export const Content = () => {
 
+    const storeMenu = menu(state => state);
+    useEffect(() => {
+        storeMenu.activateContent('menu')
+    }, [])
+    /*useEffect(() => {
+        if (storeMenu.loadingDone) {
+            storeMenu.activateContent('menu')
+        }
+    }, [storeMenu.loadingDone])
+*/
     return (
-        <Canvas shadows><ambientLight intensity={0.5} />
+        <Canvas shadows camera={(storeMenu.activeContent === 'menu') ? {
+            fov: 60,
+            position: [-3.5, 1, -5.8]
+        } : <></>}>
+            <ambientLight intensity={0.5} />
             <Physics gravity={[0, -30, 0]}>
-                <Level />
+                {(storeMenu.activeContent === 'menu') ? <><MenuBg /><Menu /></> : (storeMenu.activeContent === 'login') ? <Level /> : <></>}
             </Physics>
         </Canvas> 
-    )
-}
-
-export const CanvasMenu = () => {
-
-    return (
-        <>
-            <Canvas shadows camera = {
-                {
-                    fov: 60,
-                    position: [-3.5, 1, -5.8]
-                }
-            } >
-                
-                <Physics gravity={[0, -30, 0]}>
-                    <MenuBg />
-                </Physics>
-            </Canvas>
-            <Menu />
-        </>
     )
 }
