@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Astloch:wght@400;700&display=swap');
 
+@import './styles/reset.scss';
+@import './styles/scrollbar.scss';
+
 body {
     user-select: none;
     color: white;
@@ -7,7 +10,7 @@ body {
     overflow: hidden;
     height: 100vh;
     position: relative;
-    margin:0;
+    margin: 0;
 }
 
 #root {
@@ -26,7 +29,7 @@ h1 {
         z-index: -1;
         margin: 0 auto;
     }
-    
+
     p {
         transform: translate(0, -3.7em);
     }
@@ -41,19 +44,19 @@ h1 {
     }
 }
 
-.hide{
-    display:none !important;
+.hide {
+    display: none !important;
 }
 
 .gainBtn:disabled {
-   cursor: no-drop !important;
+    cursor: no-drop !important;
 }
 
 .fadeOut {
     animation: fadeOut 2.5s ease-in-out forwards;
 
     @keyframes fadeOut {
-        to{
+        to {
             opacity: 0;
         }
     }
@@ -72,31 +75,32 @@ h1 {
     bottom: 2em;
 
     img {
-        width:100%;
+        width: 100%;
     }
 }
 
-.overlay-black{
-        position: fixed;
-        top: 0; 
-        left: 0;
-        height: 100vh;
-        width: 100vw;
-        z-index:1;
-        background-color:black;
-        z-index: 3;
-        animation: fadeIn 0.5s ease-in forwards;
+.overlay-black {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    background-color: black;
+    z-index: 3;
+    animation: fadeIn 0.5s ease-in forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from {
         opacity: 0;
     }
 
-    @keyframes fadeIn {
-        from{
-            opacity: 0;
-        }
-        to{
-            opacity: 1;
-        }
+    to {
+        opacity: 1;
     }
+}
 
 button {
     max-width: 22em;
@@ -114,7 +118,7 @@ button {
 
     &:hover {
         border: 0.4em double #acbac3;
-    } 
+    }
 }
 
 canvas {
