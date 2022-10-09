@@ -8,15 +8,15 @@
     "dependencies": {
         "three": "^0.145.0",
         "@react-three/cannon": "^6.4.0",
-        "@react-three/drei": "^9.32.6",
-        "@react-three/fiber": "^8.8.7",
+        "@react-three/drei": "^9.34.3",
+        "@react-three/fiber": "^8.8.9",
         "@react-three/postprocessing": "^2.6.2",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-router-dom": "^6.4.1",
+        "react-router-dom": "^6.4.2",
         "rooks": "^7.4.0",
         "zustand": "^4.1.1",
-        "axios": "^0.27.2",
+        "axios": "^1.1.2",
         "@tauri-apps/api": "^1.1.0"
     },
     "devDependencies": {
@@ -24,13 +24,13 @@
         "dotenv": "^16.0.3",
         "fastify": "^4.7.0",
         "@fastify/cors": "^8.1.0",
-        "@fastify/websocket": "^7.0.1",
+        "@fastify/websocket": "^7.1.0",
         "mocha": "^10.0.0",
         "mysql": "^2.18.1",
         "knex": "^2.3.0",
         "pkg": "^5.8.0",
         "sass": "^1.55.0",
-        "vite": "^3.1.4",
+        "vite": "^3.1.6",
         "@vitejs/plugin-react": "^2.1.0",
         "@tauri-apps/cli": "^1.1.1"
     },
@@ -39,8 +39,16 @@
         "build": "vite build",
         "preview": "vite preview",
         "createDB": "node server/createDatabase",
-        "server": "node server/server",
+        "server": "node server",
         "test": "mocha",
         "tauri": "tauri"
+    },
+    "pkg": {
+        "scripts": "server/**/*.js",
+        "assets": "src/assets/**/*",
+        "targets": [
+            "node14-linux-arm64"
+        ],
+        "outputPath": "dist"
     }
 }

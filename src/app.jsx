@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
 import GameCompany from '@comp/system/GameCompany';
 import Content from '@comp/canvas/content';
-import './reset.scss';
-import './misc.scss';
-import './scrollbar.scss';
 
 export const App = () => {
     
