@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { PointerLockControls as PointerLockControlsImpl } from '@react-three/drei';
 import { extend, useThree } from '@react-three/fiber';
 import { map, player, enemy, combat } from '@store/store';

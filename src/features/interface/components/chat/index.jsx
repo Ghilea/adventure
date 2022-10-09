@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { map } from '@comp/store';
+import { useState, useEffect, useRef } from 'react';
+import { map } from '@store/store';
 import { useKey } from 'rooks';
-import './chat.scss';
+import './index.scss';
 
-export const Chat = ({name}) => {
+const Index = ({name}) => {
 
     const storeMap = map(state => state);
 
@@ -80,3 +80,5 @@ export const Chat = ({name}) => {
         </>
     )
 }
+
+export default Index

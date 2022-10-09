@@ -1,9 +1,9 @@
 import React from 'react';
-import { player, map } from '@comp/store'
+import { player, map } from '@store/store'
 import { useKey } from 'rooks';
-import './characterSheet.scss';
+import './index.scss';
 
-export const CharacterSheet = () => {
+const Index = () => {
 
     const storePlayer = player(state => state);
     const storeMap = map(state => state);
@@ -41,3 +41,5 @@ export const CharacterSheet = () => {
         </>
     )
 }
+
+export default Index

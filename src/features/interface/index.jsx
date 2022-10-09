@@ -1,9 +1,9 @@
 import React, { useState, useEffect, createElement } from 'react';
-import { player, enemy, combat } from '@comp/store';
+import { player, enemy, combat } from '@store/store';
 import { Read, Update } from '@comp/crud';
-import { Health, Mana, Exp } from '@comp/interface/bar/Bar';
-import { CharacterSheet } from '@comp/interface/characterSheet/CharacterSheet';
-import { Chat } from '@comp/interface/chat/Chat';
+import { Health, Mana, Exp } from './components/bar/Bar';
+import CharacterSheet from './components/characterSheet';
+import Chat from './components/chat';
 import sword from '@assets/images/gui/sword.png';
 import shield from '@assets/images/gui/shield.png';
 import femaleImg from '@assets/images/characters/FantasyCharacters_h_warrior_female.png';

@@ -32,6 +32,7 @@ export const useKeyboardControls = () => {
         }
 
         if(e.type === 'keyup' && actionByKey(e.code)){
+            console.log(e.code)
             setMovement((state) => ({
                 ...state,
                 [actionByKey(e.code)]: false

@@ -7,6 +7,7 @@ import { map } from '@store/store';
 import Player from '@comp/player/player';
 import Loader from '@comp/loading/Loader';
 import { Wall_1 } from '@models/objects/walls';
+import Interface from '@features/interface'
 import './index.scss';
 
 const Index = () => {
@@ -24,7 +25,7 @@ const Index = () => {
     
         Read(`getLevel?id=${storeMap.level}`)
             .then(response => {
-
+                console.log(response)
                 const parsed = JSON.parse(response.data[0].content)
 
                 storeMap.setPlayerPosition(parsed.player);
@@ -33,7 +34,7 @@ const Index = () => {
 
                     setBuild((state) => ([
                         ...state,
-                        <Wall_1 key={'level' + storeMap.level + 'wall' + index}
+                        <Wall_1 key={'wall' + index}
                             position={use.pos}
                             rotation={use.rotate}
                             type={use.type}
@@ -87,6 +88,8 @@ const Index = () => {
     return (
         <>
             <Canvas shadows >
+                <ambientLight intensity={0.5} />
+                <directionalLight position={[10, 10, 10]} castShadow shadow-mapSize={[2048, 2048]} />
                 <Physics gravity={[0, -30, 0]}>
 
                     <Suspense fallback={<Loader />}>
@@ -97,7 +100,9 @@ const Index = () => {
 
                 </Physics>
             </Canvas>
+            <Interface />
         </>
+        
     )
 }
 

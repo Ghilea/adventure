@@ -7,7 +7,7 @@ const container = document.querySelector('#root');
 const root = createRoot(container);
 
 root.render(
-    <StrictMode>
+ 
         <App />
-    </StrictMode>
+ 
 );

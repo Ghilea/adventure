@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useAudio from '@hooks/useAudio';
 import { MenuButton } from './MenuButton';
 import logoImg from '@assets/images/svg/celtic.svg';
@@ -10,8 +10,11 @@ export const MenuBar = () => {
         volume: 0.4
     });
 
+    const [active, setActive] = useState(false);
+
     useEffect(() => {
-        if(!play){
+        if(!active){
+            setActive(true)
             play();
         }
         
