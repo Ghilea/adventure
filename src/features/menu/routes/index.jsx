@@ -1,4 +1,5 @@
 import { Suspense, useEffect, useState } from 'react';
+import { useProgress } from "@react-three/drei";
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import { MenuBar } from '../components/MenuBar';
@@ -13,7 +14,16 @@ import './index.scss';
 
 const Index = () => {
 
-    const [loadingDone, setLoadingDone] = useState(false);
+    const { progress } = useProgress();
+    const [menu, setMenu] = useState();
+
+    useEffect(() => {
+        console.log(progress)
+        if (progress >= 100) {
+            console.log('100')
+            setMenu(<MenuBar />)
+        }
+    }, [progress])
 
     const [build, setBuild] = useState([]);
     const [ground, setGround] = useState({
@@ -34,6 +44,7 @@ const Index = () => {
 
     return (
         <>
+
             <Canvas shadows camera={{
                 fov: 60,
                 position: [-3.5, 1, -5.8]
@@ -41,7 +52,7 @@ const Index = () => {
 
                 <Physics gravity={[0, -30, 0]}>
                 
-                    <Suspense fallback={<Loader menuFunc={setLoadingDone}/>}>
+                    <Suspense fallback={<Loader />}>
                         <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
                         <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[3.2, wall.y, 1]}/>
                         <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[1.2, wall.y, 1]}/>
@@ -69,7 +80,7 @@ const Index = () => {
                 </Physics>
             </Canvas>
 
-            {loadingDone ? <MenuBar /> : <></>}
+            {menu}          
         </>
     )
 }

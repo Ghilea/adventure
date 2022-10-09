@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Html, useProgress } from "@react-three/drei";
-import { Read } from '@comp/Crud';
+import { Read } from '@comp/crud';
 import './index.scss';
 
-const Loader = ({ menuFunc }) => {
+const Loader = () => {
 
     const {progress} = useProgress();
     const [data, setData] = useState(null);
@@ -14,7 +14,7 @@ const Loader = ({ menuFunc }) => {
 
     useEffect(()=>{
         if(progress >= 100){
-            menuFunc(true);
+           //menuFunc(true);
         }
     }, [progress])
 

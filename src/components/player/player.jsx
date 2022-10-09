@@ -3,12 +3,11 @@ import { useSphere } from '@react-three/cannon';
 import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeyboardControls } from '@hooks/useKeyboardControls';
-import { CameraMovement } from '@comp/player/cameraMovement';
-import { player } from '@comp/store';
-import { map } from '@comp/store';
+import CameraMovement from '@comp/player/cameraMovement';
+import { player, map } from '@store/store';
 import './index.scss';
 
-export const Index = ({position, ...props}) => {
+const Index = ({position, ...props}) => {
 
     const storePlayer = player(state => state);
     const storeMap = map(state => state);

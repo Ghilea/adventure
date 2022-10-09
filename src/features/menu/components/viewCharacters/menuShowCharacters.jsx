@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Read } from '@comp/crud';
 import { menu, player } from '@store/store';
 import { ExitButton } from '../button/ExitButton';
@@ -9,6 +10,8 @@ import femaleImg from '@assets/images/characters/FantasyCharacters_h_warrior_fem
 import './MenuShowCharacters.scss';
 
 export const MenuShowCharacters = () => {
+
+    const navigate = useNavigate();
 
     const storeMenu = menu(state => state);
     const storePlayer = player(state => state);
@@ -21,6 +24,7 @@ export const MenuShowCharacters = () => {
         storeMenu.activateContent('login')
         //storeMenu.isLoadingDone(false);
         storePlayer.setPlayerId(id);
+        navigate('/level');
     }
 
     useEffect(() => {

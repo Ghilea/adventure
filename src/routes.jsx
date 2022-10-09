@@ -6,6 +6,7 @@ import Layout from '@comp/layout'
 import Editor from './features/editor/routes/';
 import System from './features/system/routes/';
 import Menu from './features/menu/routes/';
+import Level from './features/level/routes/';
 
 const routes = () => {
   return (
@@ -13,6 +14,7 @@ const routes = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<System />}></Route>
+          <Route path="/level" element={<Level />}></Route>
           <Route path="/menu" element={<Menu />}></Route>
           <Route path="/editor" element={<Editor />}></Route>
         </Route>
