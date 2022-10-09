@@ -1,11 +1,11 @@
 import { Suspense, useEffect, useState } from 'react';
-import { Ground } from '@features/level/Ground';
+import Ground from '@features/level/components/ground';
 import { Torch } from '@models/objects/torch';
 import { Rock_1 } from '@models/objects/rocks';
 import { Wall_1 } from '@models/objects/walls';
 import { Player } from '@models/creatures/player';
 import { SwampMonster } from '@models/creatures/SwampMonster';
-import { Loader } from '@comp/system/loading/Loader';
+import Loader from '@comp/loading/Loader';
 import './index.scss';
 
 const Index = ({func}) => {

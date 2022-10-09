@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Html, useProgress } from "@react-three/drei";
-import { menu } from '@comp/store';
-import { Read } from '@shared/components/Crud';
-import './loader.scss';
+import { Read } from '@comp/Crud';
+import './index.scss';
 
-export const Loader = ({ menuFunc }) => {
+const Loader = ({ menuFunc }) => {
 
-    const storeMenu = menu(state => state);
     const {progress} = useProgress();
     const [data, setData] = useState(null);
 
@@ -28,3 +26,5 @@ export const Loader = ({ menuFunc }) => {
         </Html>
     )
 }
+
+export default Loader
