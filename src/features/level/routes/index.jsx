@@ -1,10 +1,10 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import { Ground } from '@comp/level/Ground';
-import { Read } from '@shared/components/Crud';
+import { Read } from '@comp/crud';
 import { map } from '@comp/store';
 import { Player } from '@comp/player/Player';
 import { Loader } from '@comp/system/loading/Loader';
-import { Wall_1 } from '@shared/models/walls';
+import { Wall_1 } from '@models/walls';
 import '.index.scss';
 
 const Index = () => {

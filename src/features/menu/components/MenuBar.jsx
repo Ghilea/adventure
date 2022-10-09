@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
-import useAudio from '@comp/misc/useAudio';
-import { menu } from '@comp/store';
-import { MenuCreateCharacter } from '@comp/menu/MenuCreateCharacter';
-import { MenuShowCharacters } from '@comp/menu/MenuShowCharacters';
-import { MenuOptions } from '@comp/menu/MenuOptions';
-import { MenuButton } from '@comp/menu/button/MenuButton';
-import logoImg from '@shared/assets/images/svg/celtic.svg';
-import './Menu.scss';
-import menuMusic from '@shared/assets/music/menu.mp3';
+import { useNavigate } from 'react-router-dom';
+import useAudio from '@hooks/useAudio';
+import { menu } from '@store/store';
+import { MenuCreateCharacter } from './createCharacters/menuCreateCharacter';
+import { MenuShowCharacters } from './viewCharacters/menuShowCharacters';
+import { MenuOptions } from './options/MenuOptions';
+import { MenuButton } from './button/MenuButton';
+import logoImg from '@assets/images/svg/celtic.svg';
+import menuMusic from '@assets/music/menu.mp3';
 
 export const MenuBar = () => {
+
+    const navigate = useNavigate();
 
     const storeMenu = menu(state => state);
 
@@ -40,7 +42,8 @@ export const MenuBar = () => {
                 window.close();
                 break;
             case 'editor':
-                storeMenu.activateContent('editor');
+                //storeMenu.activateContent('editor');
+                navigate('/editor');
                 break;
             default:
                 setOpenMenu(null);

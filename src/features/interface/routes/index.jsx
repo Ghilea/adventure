@@ -1,13 +1,13 @@
 import React, { useState, useEffect, createElement } from 'react';
 import { player, enemy, combat } from '@comp/store';
-import { Read, Update } from '@shared/components/Crud';
+import { Read, Update } from '@comp/crud';
 import { Health, Mana, Exp } from '@comp/interface/bar/Bar';
 import { CharacterSheet } from '@comp/interface/characterSheet/CharacterSheet';
 import { Chat } from '@comp/interface/chat/Chat';
-import sword from '@shared/assets/images/gui/sword.png';
-import shield from '@shared/assets/images/gui/shield.png';
-import femaleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_female.png';
-import maleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_male.png';
+import sword from '@assets/images/gui/sword.png';
+import shield from '@assets/images/gui/shield.png';
+import femaleImg from '@assets/images/characters/FantasyCharacters_h_warrior_female.png';
+import maleImg from '@assets/images/characters/FantasyCharacters_h_warrior_male.png';
 import './index.scss';
 
 const Index = () => {

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Read } from '@shared/components/Crud';
-import { menu, player } from '@comp/store';
-import { ExitButton } from '@comp/menu/button/ExitButton';
-import useAudio from '@comp/misc/useAudio';
-import buttonHover from '@shared/assets/sounds/btnHover.mp3';
-import maleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_male.png';
-import femaleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_female.png'
+import { Read } from '@comp/crud';
+import { menu, player } from '@store/store';
+import { ExitButton } from '../button/ExitButton';
+import useAudio from '@hooks/useAudio';
+import buttonHover from '@assets/sounds/btnHover.mp3';
+import maleImg from '@assets/images/characters/FantasyCharacters_h_warrior_male.png';
+import femaleImg from '@assets/images/characters/FantasyCharacters_h_warrior_female.png'
 import './MenuShowCharacters.scss';
 
 export const MenuShowCharacters = () => {

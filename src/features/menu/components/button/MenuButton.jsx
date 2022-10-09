@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import useAudio from '@comp/misc/useAudio';
-import { menu } from '@comp/store';
-import soundEffect from '@shared/assets/sounds/button.mp3';
+import useAudio from '@hooks/useAudio';
+import { menu } from '@store/store';
+import soundEffect from '@assets/sounds/button.mp3';
 
 export const MenuButton = ({children, open}) => {
     

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { enemy, player } from '@comp/store'
-import { Read } from '@shared/components/Crud';
+import { enemy, player } from '@store/store'
+import { Read } from '@comp/crud';
 import './expBar.scss';
 import './healthBar.scss';
 import './manaBar.scss';

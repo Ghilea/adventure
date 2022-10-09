@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
 
 .startGame {
-    background-image: url('@shared/assets/images/loadingScreen.jpg');
+    background-image: url('@assets/images/loadingScreen.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -16,7 +16,7 @@
 }
 
 .loadingScreen {
-    background-image: url('@shared/assets/images/loadingScreen.jpg');
+    background-image: url('@assets/images/loadingScreen.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

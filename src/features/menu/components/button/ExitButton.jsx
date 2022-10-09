@@ -1,6 +1,6 @@
-import { menu } from '@comp/store';
-import useAudio from '@comp/misc/useAudio';
-import buttonHover from '@shared/assets/sounds/btnHover.mp3';
+import { menu } from '@store/store';
+import useAudio from '@hooks/useAudio';
+import buttonHover from '@assets/sounds/btnHover.mp3';
 
 export const ExitButton = ({children}) => {
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useBox } from '@react-three/cannon';
-import * as texture from '@shared/components/textures';
+import * as texture from '@comp/textures';
 
 export const Walls = ({position, rotation, type, ...props}) => {
 

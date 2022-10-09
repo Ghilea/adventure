@@ -1,4 +1,4 @@
-import { ExitButton } from '@comp/menu/button/ExitButton';
+import { ExitButton } from '../button/ExitButton';
 
 export const MenuOptions = () => {
 

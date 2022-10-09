@@ -12,7 +12,7 @@
     align-items: center;
 
     .activateSoundButton {
-        background-image: url('@shared/assets/images/svg/music_note.svg');
+        background-image: url('@assets/images/svg/music_note.svg');
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -67,7 +67,7 @@
     overflow-x: hidden;
     display: flex;
     background-color: rgba(0, 0, 0, 0.502);
-    background-image: url('@shared/assets/images/backgrounds/menu.jpg'), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background-image: url('@assets/images/backgrounds/menu.jpg'), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Create } from '@shared/components/Crud';
-import { player } from '@comp/store';
-import { PointButton } from '@comp/interface/stats/PointButton';
-import { ExitButton } from '@comp/menu/button/ExitButton';
-import { Modal } from '@comp/misc/Modal';
-import maleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_male.png';
-import femaleImg from '@shared/assets/images/characters/FantasyCharacters_h_warrior_female.png'
+import { Create } from '@comp/crud';
+import { player } from '@store/store';
+import { PointButton } from '@features/interface/components/stats/PointButton';
+import { ExitButton } from '../button/ExitButton';
+import Modal from '@comp/modal';
+import maleImg from '@assets/images/characters/FantasyCharacters_h_warrior_male.png';
+import femaleImg from '@assets/images/characters/FantasyCharacters_h_warrior_female.png'
 import './MenuCreateCharacter.scss';
 
 export const MenuCreateCharacter = () => {

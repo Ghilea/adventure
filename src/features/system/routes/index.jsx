@@ -17,7 +17,7 @@ const Index = ({children = 'test', timer = 1500}) => {
   useEffect(() => {
     if(!fade) {
       setTimeout(() => {
-        navigate('/editor');
+        navigate('/menu');
       }, timer)
     }
   }, [fade])

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Read } from '@shared/components/Crud';
+import { Read } from '@comp/crud';
 import './index.scss';
 
 const Index = () => {

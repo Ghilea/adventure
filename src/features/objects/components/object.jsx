@@ -1,6 +1,6 @@
 import React from 'react';
 import { useBox } from '@react-three/cannon';
-import * as texture from '@shared/components/objectTextures';
+import * as texture from '@comp/objectTextures';
 
 export const Object = ({position, size, objectTexture, light, mass, rotation, distance, ...props}) => {
   
