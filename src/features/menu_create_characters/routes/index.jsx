@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { Create } from '@comp/crud';
 import { player } from '@store/store';
 import { PointButton } from '@features/interface/components/stats/PointButton';
-import { ExitButton } from '../button/ExitButton';
+import ExitButton from '@comp/button/ExitButton';
 import Modal from '@comp/modal';
 import maleImg from '@assets/images/characters/FantasyCharacters_h_warrior_male.png';
 import femaleImg from '@assets/images/characters/FantasyCharacters_h_warrior_female.png'
-import './MenuCreateCharacter.scss';
+import './index.scss';
 
-export const MenuCreateCharacter = () => {
+const Index = () => {
 
     const storePlayer = player(state => state);
  
@@ -82,7 +82,7 @@ export const MenuCreateCharacter = () => {
     }
 
     return (
-        <>
+        <div className='boxMenuContainer'>
             <div className='createWindow'>
                 
                 <div className='avatarContainer'>
@@ -127,7 +127,9 @@ export const MenuCreateCharacter = () => {
             </div>
 
             <Modal open={modal.open} title={modal.title}>{modal.message}</Modal>
-        </>
+        </div>
        
     )
 }
+
+export default Index

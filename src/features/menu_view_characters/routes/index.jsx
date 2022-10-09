@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Read } from '@comp/crud';
 import { menu, player } from '@store/store';
-import { ExitButton } from '../button/ExitButton';
+import ExitButton from '@comp/button/ExitButton';
 import useAudio from '@hooks/useAudio';
 import buttonHover from '@assets/sounds/btnHover.mp3';
 import maleImg from '@assets/images/characters/FantasyCharacters_h_warrior_male.png';
 import femaleImg from '@assets/images/characters/FantasyCharacters_h_warrior_female.png'
-import './MenuShowCharacters.scss';
+import './index.scss';
 
-export const MenuShowCharacters = () => {
+const Index = () => {
 
     const navigate = useNavigate();
 
@@ -45,9 +45,11 @@ export const MenuShowCharacters = () => {
     }, [])
 
     return (    
-        <>
+        <div className='boxMenuContainer'>
             {data}
             <ExitButton>Exit</ExitButton>
-        </>    
+        </div>    
     )
 }
+
+export default Index
