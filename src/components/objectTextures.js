@@ -1,9 +1,9 @@
 import { useLoader } from '@react-three/fiber';
 import { TextureLoader} from 'three';
 
-import woodImg from '@shared/assets/images/texture/wood.jpg';
+import woodImg from '@assets/images/texture/wood.jpg';
 
-import wood2Img from '@shared/assets/images/texture/wood2.jpg';
+import wood2Img from '@assets/images/texture/wood2.jpg';
 
 export const wood = () => {
     

@@ -5,10 +5,11 @@ import { CategoryWall } from '@editor/interface/category/categoryWall';
 import { CategoryPlayer } from '@editor/interface/category/categoryPlayer';
 import { CategoryObjects } from '@editor/interface/category/categoryObjects';
 import { CategorySettings } from '@editor/interface/category/categorySettings';
-import { interfaceButtons, build } from '@editor/store';
+import { interfaceButtons, build } from '@store/editor';
 import { RotateObjectBtn } from '../interface/buttons';
 import './rightPanel.scss';
 import './topPanel.scss';
+import './categoryPanel.scss';
 
 export const TopPanel = () => {
 

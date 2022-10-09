@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useBox } from '@react-three/cannon';
-import { build } from '@editor/store';
+import { build } from '@store/editor';
 import { Select } from '@react-three/postprocessing';
 import { SelectObject } from '@helper/helperObject'
-import asset from '@shared/assets/images/3d/creatures/swamp_monster.glb';
+import asset from '@assets/images/3d/creatures/swamp_monster.glb';
 
 export const SwampMonster = (props) => {
   const { nodes, materials  } = useGLTF(asset);

@@ -1,9 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from './components/layout';
+import Layout from '@comp/layout'
+
 // Routes
 import Editor from './features/editor/routes/';
-import System from './features/system/routes';
+import System from './features/system/routes/';
+import Menu from './features/menu/routes/';
 
 const routes = () => {
   return (
@@ -11,6 +13,7 @@ const routes = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<System />}></Route>
+          <Route path="/menu" element={<Menu />}></Route>
           <Route path="/editor" element={<Editor />}></Route>
         </Route>
       </Routes>

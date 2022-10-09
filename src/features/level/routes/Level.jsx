@@ -5,8 +5,9 @@ import { map } from '@comp/store';
 import { Player } from '@comp/player/Player';
 import { Loader } from '@comp/system/loading/Loader';
 import { Wall_1 } from '@shared/models/walls';
+import '.index.scss';
 
-export const Level = () => {
+const Index = () => {
 
     const storeMap = map(state => state);
 
@@ -91,3 +92,5 @@ export const Level = () => {
         </>
     )
 }
+
+export default Index

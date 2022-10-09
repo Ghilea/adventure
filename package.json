@@ -39,7 +39,7 @@
         "build": "vite build",
         "preview": "vite preview",
         "createDB": "node server/createDatabase",
-        "server": "node server",
+        "server": "node server/",
         "test": "mocha",
         "tauri": "tauri"
     },

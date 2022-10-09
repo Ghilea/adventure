@@ -4,7 +4,7 @@
     top: 0;
     z-index: 2;
     background-color: rgb(54, 53, 53);
-    background-image: url(../images/texture/overlay.png), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background-image: url('@assets/images/texture/overlay.png'), linear-gradient(0deg, rgba(21, 11, 11, 0.8) 0%, rgb(55, 54, 54) 50%, rgba(0, 0, 0, 0.8) 100%);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -23,7 +23,7 @@
         justify-content: space-evenly;
         flex-direction: column;
 
-        &:hover{
+        &:hover {
             background-color: rgba(0, 0, 0, 0.5);
 
             &::after {
@@ -50,13 +50,12 @@
             height: auto;
             filter: grayscale(100%);
         }
-        
+
     }
 
     .settingsPanelBtn {
         position: absolute;
         bottom: 0;
     }
-    
-}
 
+}

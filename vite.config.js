@@ -34,12 +34,15 @@ export default defineConfig({
   resolve: {
     alias: {
     '@': fileURLToPath(new URL('./src', import.meta.url)),
+    '@assets': fileURLToPath(new URL( './src/assets', import.meta.url)),
     '@comp': fileURLToPath(new URL( './src/components', import.meta.url)),
-    '@editor': fileURLToPath(new URL( './src/components/editor', import.meta.url)),
-    '@helper': fileURLToPath(new URL( './src/helper', import.meta.url)),
-    '@hooks': fileURLToPath(new URL( './src/hooks', import.meta.url)),
-    '@shared': fileURLToPath(new URL( './src/shared', import.meta.url)),
-    '@test': fileURLToPath(new URL( './src/test', import.meta.url))
+    '@features': fileURLToPath(new URL( './src/features', import.meta.url)),
+    '@models': fileURLToPath(new URL( './src/models', import.meta.url)),
+    '@editor': fileURLToPath(new URL( './src/features/editor/components', import.meta.url)),
+    '@helper': fileURLToPath(new URL( './src/features/helper', import.meta.url)),
+    '@hooks': fileURLToPath(new URL( './src/features/hooks', import.meta.url)),
+    '@test': fileURLToPath(new URL( './src/test', import.meta.url)),
+    '@store': fileURLToPath(new URL( './src/store', import.meta.url))
     }
   },
   assetsInclude: [

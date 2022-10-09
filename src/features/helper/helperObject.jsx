@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { build, ground } from '@editor/store';
-import { Wall_1 } from '@shared/models/walls';
-import { Player } from '@shared/models/player';
-import { Rock_1 } from '@shared/models/rocks';
-import { Torch } from '@shared/models/torch';
+import { build, ground } from '@store/editor';
+import { Wall_1 } from '@models/objects/walls';
+import { Player } from '@models/creatures/player';
+import { Rock_1 } from '@models/objects/rocks';
+import { Torch } from '@models/objects/torch';
 
 //add object
 export const AddObject = ({position, rotation, type, texture, objectId}) => {

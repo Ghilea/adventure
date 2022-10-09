@@ -1,25 +1,30 @@
-import { useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './index.scss';
 
-const Index = () => {
+const Index = ({children = 'test', timer = 1500}) => {
 
-  const [fade, setFade] = useState(false);
+  const navigate = useNavigate();
+
+  const [fade, setFade] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-      setFade(true)
+      setFade(false)
     }, timer)
   }, [])
 
   useEffect(() => {
-    if (fade) {
-      func(fade)
+    if(!fade) {
+      setTimeout(() => {
+        navigate('/editor');
+      }, timer)
     }
   }, [fade])
 
   return (
-    <div className='gameCompany'>
-      <p className={`${fade ? 'companyFadeOut' : 'companyFadeIn'}`}>{children}</p>
+    <div className='company-intro'>
+      <p className={`${fade ? 'fadeIn' : 'fadeOut'}`}>{children}</p>
     </div>
   )
 

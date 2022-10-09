@@ -1,8 +1,8 @@
 import React from 'react';
 import { usePlane } from '@react-three/cannon';
-import * as texture from '@shared/components/textures';
-import { ground, mousePosition } from '@editor/store';
-import { GroundCheck } from '@helper/groundCheck';
+import * as texture from '@comp/textures';
+import { ground, mousePosition } from '@store/editor';
+import GroundCheck from '@helper/groundCheck';
 
 export const Ground = (props) => {
     const storeGround = ground(state => state);

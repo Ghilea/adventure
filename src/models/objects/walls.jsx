@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useBox } from '@react-three/cannon';
-import { build } from '@editor/store';
+import { build } from '@store/editor';
 import { Select } from '@react-three/postprocessing';
 import { SelectObject } from '@helper/helperObject'
-import WallAsset from '@shared/assets/images/3d/wall.glb';
+import WallAsset from '@assets/images/3d/wall.glb';
 
 export const Wall_1 = (props) => {
   const { nodes, materials  } = useGLTF(WallAsset);

@@ -1,10 +1,10 @@
 import { Suspense, useEffect, useState } from 'react';
-import { Ground } from '@comp/level/Ground';
-import { Torch } from '@shared/models/torch';
-import { Rock_1 } from '@shared/models/rocks';
-import { Wall_1 } from '@shared/models/walls';
-import { Player } from '@shared/models/player';
-import { SwampMonster } from '@shared/models/creatures/SwampMonster';
+import { Ground } from '@features/level/Ground';
+import { Torch } from '@models/objects/torch';
+import { Rock_1 } from '@models/objects/rocks';
+import { Wall_1 } from '@models/objects/walls';
+import { Player } from '@models/creatures/player';
+import { SwampMonster } from '@models/creatures/SwampMonster';
 import { Loader } from '@comp/system/loading/Loader';
 import './index.scss';
 

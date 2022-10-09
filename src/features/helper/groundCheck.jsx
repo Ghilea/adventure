@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { usePlane } from '@react-three/cannon';
 import { useFrame } from '@react-three/fiber';
-import { ground, build, mousePosition } from '@editor/store';
+import { ground, build, mousePosition } from '@store/editor';
 
-export const GroundCheck = () => {
+const GroundCheck = () => {
     const storeGround = ground(state => state);
     const storeBuild = build(state => state);
     const storePosition = mousePosition(state => state);
@@ -45,3 +45,5 @@ export const GroundCheck = () => {
     )
 
 }
+
+export default GroundCheck

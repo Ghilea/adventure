@@ -1,5 +1,5 @@
 import React from "react";
-import { interfaceButtons, build } from '@editor/store';
+import { interfaceButtons, build } from '@store/editor';
 
 export const CategoryPlayer = () => {
     

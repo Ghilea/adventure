@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ground } from '@editor/store';
+import { ground } from '@store/editor';
 
 export const CategoryGround = () => {
     

@@ -1,7 +1,19 @@
 import React from 'react';
-import { build, ground, interfaceButtons } from '@editor/store';
-import { menu } from '@comp/store';
-import { Create } from '@shared/components/Crud';
+import { useNavigate } from 'react-router-dom';
+import { build, ground, interfaceButtons } from '@store/editor';
+import { menu } from '@store/store';
+import { Create } from '@comp/crud';
+
+//images
+import saveButton from '@assets/images/svg/save_icon.svg';
+import exitButton from '@assets/images/svg/exit_icon.svg';
+import wallButton from '@assets/images/icons/walls.png';
+import groundButton from '@assets/images/icons/ground.png';
+import objectButton from '@assets/images/icons/objects.png';
+import characterButton from '@assets/images/icons/characters.png';
+import eraserButton from '@assets/images/svg/eraser_icon.svg';
+import rotateButton from '@assets/images/svg/side_rotate_icon.svg';
+import settingsButton from '@assets/images/svg/settings.svg';
 
 export const ObjectsBtn = () => {
     
@@ -13,7 +25,7 @@ export const ObjectsBtn = () => {
 
     return (
         <div onClick={handleClick} className='categoryBtn' data-tooltip='Objects'>
-            <img src='./assets/images/icons/objects.png' alt='Show objects button' />
+            <img src={objectButton} alt='Show objects button' />
         </div>
     )
 
@@ -29,7 +41,7 @@ export const WallBtn = () => {
 
     return (
         <div onClick={handleClick} className='categoryBtn' data-tooltip='Walls'>
-            <img src='./assets/images/icons/walls.png' alt='Show walls button' />
+            <img src={wallButton} alt='Show walls button' />
         </div>
     )
 
@@ -45,7 +57,7 @@ export const GroundBtn = () => {
 
     return (
         <div onClick={handleClick} className='categoryBtn' data-tooltip='Ground'>
-            <img src='./assets/images/icons/ground.png' alt='Show ground button' />
+            <img src={groundButton} alt='Show ground button' />
         </div>
     )
 
@@ -61,7 +73,7 @@ export const CharactersBtn = () => {
 
     return (
         <div onClick={handleClick} className='categoryBtn' data-tooltip='Characters'>
-            <img src='./assets/images/icons/characters.png' alt='Show characters button' />
+            <img src={characterButton} alt='Show characters button' />
         </div>
     )
 
@@ -81,7 +93,7 @@ export const RemoveObjectBtn = () => {
 
     return (
         <div onClick={handleClick} className='topBtn'>
-            <img src='./assets/images/svg/eraser_icon.svg' alt='Eraser button' title='Eraser button'/>
+            <img src={eraserButton} alt='Eraser button' title='Eraser button'/>
         </div>
     )
 
@@ -99,11 +111,11 @@ export const RotateObjectBtn = () => {
     return (
         <>
             <div onClick={handleRotateLeft} className='topBtn'>
-                <img className='rotateLeftBtn' src='./assets/images/svg/side_rotate_icon.svg' alt='Rotate left button' title='Rotate left'/>
+                <img className='rotateLeftBtn' src={rotateButton} alt='Rotate left button' title='Rotate left'/>
                 
             </div>
             <div onClick={handleRotateLeft} className='topBtn'>
-                <img src='./assets/images/svg/side_rotate_icon.svg' alt='Rotate right button' title='Rotate right'/>
+                <img src={rotateButton} alt='Rotate right button' title='Rotate right'/>
             </div>
         </>
         
@@ -121,7 +133,7 @@ export const Settings = () => {
 
     return (
         <div onClick={handleClick} className='categoryBtn settingsPanelBtn' data-tooltip='Settings'>
-            <img src='./assets/images/svg/settings.svg' alt='Show settings button' />
+            <img src={settingsButton} alt='Show settings button' />
         </div>
     )
 
@@ -129,15 +141,16 @@ export const Settings = () => {
 
 export const ExitBtn = () => {
     
-    const storeMenu = menu(state => state);
+    const navigate = useNavigate();
+    //const storeMenu = menu(state => state);
 
     const handleExit = () => {
-        storeMenu.isMapEditor(false);
+        navigate('/menu');
     }
 
     return (
         <div onClick={handleExit} className='topBtn'>
-            <img src='./assets/images/svg/exit_icon.svg' alt='Exit button' title='Exit button' />
+            <img src={exitButton} alt='Exit button' title='Exit button' />
         </div>
     )
 
@@ -168,7 +181,7 @@ export const SaveLevelBtn = () => {
 
     return (
         <div onClick={handleSave} className='topBtn'>
-            <img src='./assets/images/svg/save_icon.svg' alt='Save button' title='Save button'/>
+            <img src={saveButton} alt='Save button' title='Save button'/>
         </div>
     )
 

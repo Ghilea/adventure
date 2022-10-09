@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useGLTF } from "@react-three/drei";
-import { build } from '@editor/store';
+import { build } from '@store/editor';
 import { Select } from '@react-three/postprocessing';
 import { SelectObject } from '@helper/helperObject'
-import PlayerAsset from '@shared/assets/images/3d/player.gltf';
+import PlayerAsset from '@assets/images/3d/player.gltf';
 
 export const Player = (props) => {
   const { nodes, materials } = useGLTF(PlayerAsset);

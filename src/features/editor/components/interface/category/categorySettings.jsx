@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import { build, interfaceButtons } from '@editor/store';
-import { Read, Update } from '@shared/components/Crud';
+import { build, interfaceButtons } from '@store/editor';
+import { Read, Update } from '@comp/crud';
 
 export const CategorySettings = () => {
     const storeBuild = build(state => state);

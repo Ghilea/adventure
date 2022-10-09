@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState} from "react";
 import { useGLTF } from "@react-three/drei";
-import FlameAsset from '@shared/assets/images/3d/flame/flame.gltf';
+import FlameAsset from '@assets/images/3d/flame/flame.gltf';
 
 export const Flame = (props) => {
   
