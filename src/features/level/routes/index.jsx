@@ -25,7 +25,7 @@ const Index = () => {
     
         Read(`getLevel?id=${storeMap.level}`)
             .then(response => {
-                console.log(response)
+                
                 const parsed = JSON.parse(response.data[0].content)
 
                 storeMap.setPlayerPosition(parsed.player);
@@ -85,6 +85,7 @@ const Index = () => {
             })
     }, [])
 
+    console.log('player', createPlayer)
     return (
         <>
             <Canvas shadows >

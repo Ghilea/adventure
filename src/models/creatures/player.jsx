@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { build } from '@store/editor';
 import { Select } from '@react-three/postprocessing';
