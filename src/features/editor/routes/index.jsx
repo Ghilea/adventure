@@ -36,13 +36,15 @@ const Index = () => {
     }, [storeBuild.activateBuild])
 
     const clickInsideCanvas = (event) => {
+
+        console.log('click inside canvas', event.type, storeGround.color, storeBuild.activateBuild)
         
         if (event.type === 'click' && storeGround.color === 'green' && storeBuild.activateBuild) {
 
             storeBuild.addObject(
                 <AddObject
                     onClick = {<SelectObject />}
-                    key = {'wall'+index}
+                    key={storeBuild.active[1]+index}
                     position = {
                         [Math.floor(position.x) + 0.5, position.y + (4/2), Math.floor(position.z) + 0.5]
                     }

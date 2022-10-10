@@ -7,7 +7,7 @@ import CameraMovement from '@comp/player/cameraMovement';
 import { player, map } from '@store/store';
 import './index.scss';
 
-const Index = ({position, ...props}) => {
+const Index = ({position}) => {
 
     const storePlayer = player(state => state);
     const storeMap = map(state => state);
@@ -24,7 +24,7 @@ const Index = ({position, ...props}) => {
     const [ref, api] = useSphere(() => ({
         mass: 1,
         position,
-        ...props
+        type: 'Dynamic'
     }))
 
     const velocity = useRef([0, 0, 0]);
@@ -38,29 +38,45 @@ const Index = ({position, ...props}) => {
     useFrame(() => {
         camera.position.copy(ref.current.position);
       
-        const direction = new Vector3();
-        const frontVector = new Vector3(0, 0, ((moveBackward && !storeMap.chatInput) ? 1 : 0) - ((moveForward && !storeMap.chatInput) ? 1 : 0));
-        const sideVector = new Vector3(((moveLeft && !storeMap.chatInput) ? 1 : 0) - ((moveRight && !storeMap.chatInput) ? 1 : 0), 0, 0);
+        let frontVector = new Vector3(0, 0, 0);
+        let sideVector = new Vector3(0, 0, 0);
+        let direction = new Vector3(0, 0, 0);
+    
+        //chat closed
+        if (!storeMap.chatInput){
+            frontVector.set(0, 0,
+                ((moveBackward) ? 1 : 0) -
+                ((moveForward) ? 1 : 0)
+            );
+
+            sideVector.set(
+                ((moveLeft) ? 1 : 0) -
+                ((moveRight) ? 1 : 0),
+                0, 0);
+        }
         
         direction
         .subVectors(frontVector, sideVector)
         .normalize()
-        .multiplyScalar(storePlayer.movementSpeed)
+        .multiplyScalar(storePlayer.secondaryStats.movementSpeed)
         .applyEuler(camera.rotation);
         
         api.velocity.set(direction.x, velocity.current[1], direction.z);
 
+        //update players "body"
         ref.current.getWorldPosition(ref.current.position)
-
+        
+        //jump
         if (jump && !storeMap.chatInput && Math.abs(velocity.current[1].toFixed(2)) <= 0.00) {
             api.velocity.set(velocity.current[0], 8, velocity.current[2]);  
         }
+
     });
 
     return (
         <>
             <CameraMovement />
-            <mesh ref={ref} castShadow receiveShadow >
+            <mesh ref={ref} >
                 <pointLight
                 intensity={2}
                 distance={5.5}

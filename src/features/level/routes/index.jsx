@@ -8,6 +8,7 @@ import Player from '@comp/player/player';
 import Loader from '@comp/loading/Loader';
 import { Wall_1 } from '@models/objects/walls';
 import Interface from '@features/interface'
+import { Torch } from '@models/objects/torch';
 import './index.scss';
 
 const Index = () => {
@@ -28,8 +29,8 @@ const Index = () => {
                 
                 const parsed = JSON.parse(response.data[0].content)
 
-                storeMap.setPlayerPosition(parsed.player);
-                
+                //storeMap.setPlayerPosition(parsed.player);
+
                 parsed.walls.map((use, index) => {
 
                     setBuild((state) => ([
@@ -89,14 +90,15 @@ const Index = () => {
     return (
         <>
             <Canvas shadows >
-                <ambientLight intensity={0.5} />
-                <directionalLight position={[10, 10, 10]} castShadow shadow-mapSize={[2048, 2048]} />
+                <ambientLight intensity={1} />
+                
                 <Physics gravity={[0, -30, 0]}>
 
                     <Suspense fallback={<Loader />}>
                         <Ground position={[0, 0, 0]} groundTexture={ground.texture} size={ground.size} />
                         {build}
                         {createPlayer}
+                        <Torch position={[-3.9, 0.3, -2]} scale={[1.03, 1.03, 1.03]} rotation={[0, Math.PI * (180 / 360), 0]} />
                     </Suspense>
 
                 </Physics>

@@ -9,12 +9,15 @@ export const CategoryPlayer = () => {
     const handleButton = (setBtn) => {
         if (interBtn.active && interBtn.button === setBtn) {
             interBtn.btn(false, null)
-            storeBuild.changeRaySize(1, 1)
-            storeBuild.activeBuild([]);
+            storeBuild.resetActiveBuild();
+            storeBuild.changeRaySize(1, 1)  
+            storeBuild.changeActivateBuild(false);
         } else {
+            
             interBtn.btn(true, setBtn)
-            storeBuild.activeBuild('player', null);
+            storeBuild.activeBuild('player', 'player');
             storeBuild.changeRaySize(1, 1)
+            storeBuild.changeActivateBuild(true);
         }
     }
 

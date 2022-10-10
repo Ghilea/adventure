@@ -42,12 +42,14 @@ export const CategoryObjects = () => {
     const handleObject = (setTexture) => {
         if (interBtn.active && interBtn.button === setTexture) {
             interBtn.btn(false, null)
-            storeBuild.activeBuild([]);
+            storeBuild.resetActiveBuild();
             storeBuild.changeRaySize(1, 1)
+            storeBuild.changeActivateBuild(false);
         } else {
             interBtn.btn(true, setTexture);
             storeBuild.activeBuild('object', setTexture);
             storeBuild.changeRaySize(1, 1, false)
+            storeBuild.changeActivateBuild(true);
         }
     }
 
