@@ -21,15 +21,7 @@ export const AddObject = ({position, rotation, type, texture, objectId}) => {
                 setObject(<Player position = {position} rotation = {rotation}/>)
                 break;
             case 'rock_1':
-                setObject( <Rock_1 position = {[
-                            position[0] - 1.35,
-                            position[1] - 1.05,
-                            position[2] + 1.22
-                        ]}
-                        rotation = {
-                            rotation
-                        }
-                        />)
+                setObject( <Rock_1 position = {[position[0], position[1], position[2]]} rotation = {rotation} />)
                 break;
              case 'torch':
                 setObject(<Torch position = {position} rotation = {rotation}/>)

@@ -31,7 +31,7 @@ const Index = () => {
         size: [10, 10]
     });
     const [wall, setWall] = useState({
-        y: -0.95
+        y: 2.4
     })
 
     useEffect(() => {
@@ -51,7 +51,7 @@ const Index = () => {
             }}>
 
                 <Physics gravity={[0, -30, 0]}>
-                
+                   
                     <Suspense fallback={<Loader />}>
                         <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
                         <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[3.2, wall.y, 1]}/>
@@ -70,11 +70,11 @@ const Index = () => {
                         <SwampMonster rotation={[0, Math.PI * (360/360), 0]}  position={[-2.2, 0.1, -0.2]}/>
 
                         {build} 
-                        <Torch position={[-3.9, 0.3, -2]} scale={[1.03, 1.03, 1.03]} rotation={[0, Math.PI * (180/360), 0]}/>
+                        <Torch position={[-3.35, 2, -2]} scale={[1.03, 1.03, 1.03]} rotation={[0, Math.PI * (180/360), 0]}/>
 
                         <Rock_1 position={[-4.5, -0.3, 0.5]} scale={[0.3, 0.3, 1]} />
                 
-                        <Player position={[-3.5, 0.55, -3.5]} scale={2.5} rotation={[0, Math.PI * (360/360), 0]}/>
+                        <Player position={[-2.7, 0.5, -3.5]} />
                     </Suspense>
 
                 </Physics>

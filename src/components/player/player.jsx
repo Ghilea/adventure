@@ -68,7 +68,7 @@ const Index = ({position}) => {
         
         //jump
         if (jump && !storeMap.chatInput && Math.abs(velocity.current[1].toFixed(2)) <= 0.00) {
-            api.velocity.set(velocity.current[0], 8, velocity.current[2]);  
+            api.velocity.set(velocity.current[0], 6, velocity.current[2]);  
         }
 
     });

@@ -21,12 +21,13 @@ export const Rock_1 = (props) => {
     }
 
     return (
-        <group {...props} dispose={null} rotation={[-Math.PI / 2, 0, 0]}
+        <group {...props} dispose={null} rotation={[-Math.PI / 0.75, -Math.PI / 1, -Math.PI / 1]}
         onClick = { handleClick } >
 
             <Select enabled={(select === store.selected && store.selected !== null && select !== null) ? true : false}>
 
                 <mesh
+                    position={[-1.45, -2, -2]}
                     castShadow
                     receiveShadow
                     geometry={nodes.Object_3.geometry}

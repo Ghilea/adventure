@@ -10,7 +10,7 @@ export const Torch = (props) => {
 
     return (
         <group ref={group} {...props} dispose={null}>
-            <group position={[0, 0, -0.3]} scale={[0.03, 0.03, 0.03]} rotation={[-Math.PI / 2, 0, 0]}>
+            <group position={[0, -1.5, -0.3]} scale={[0.03, 0.03, 0.03]} rotation={[-Math.PI / 2, 0, 0]}>
                 <group rotation={[Math.PI / 2, 0, 0]}>
                     <group position={[-291.22, 0, 0]}>
                         <mesh

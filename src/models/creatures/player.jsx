@@ -5,7 +5,7 @@ import { Select } from '@react-three/postprocessing';
 import { SelectObject } from '@helper/helperObject'
 import PlayerAsset from '@assets/images/3d/player.gltf';
 
-export const Player = (props) => {
+export const Player = ({ position }, props) => {
   const { nodes, materials } = useGLTF(PlayerAsset);
 
   const store = build(state => state);
@@ -19,7 +19,7 @@ export const Player = (props) => {
   }
 
   return (
-    <group {...props} dispose={null} scale={0.03} rotation={[Math.PI / 2, -0.25, 0]} 
+    <group {...props} dispose={null} scale={0.03} rotation={[Math.PI / 2, -0.25, 0]} position={[position[0], 0.55, position[2]]}
     onClick = {
       handleClick
     } >

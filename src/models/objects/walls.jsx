@@ -29,11 +29,11 @@ export const Wall_1 = (props) => {
     <group dispose = {null}
     onClick = {handleClick}
     {...props} 
-    scale = {[0.65, 1, 0.65]}
+    scale = {[1.25, 1.5, 1.6]}
     >
       <Select enabled={(select === store.selected && store.selected !== null && select !== null) ? true : false}>
       <mesh 
-        position = {[0.5, 1, 1]}
+        position = {[0, -1.3, 0]}
         castShadow
         receiveShadow
         geometry={nodes.Side.geometry}

@@ -43,12 +43,13 @@ export const CategoryObjects = () => {
         if (interBtn.active && interBtn.button === setTexture) {
             interBtn.btn(false, null)
             storeBuild.resetActiveBuild();
-            storeBuild.changeRaySize(1, 1)
+            storeBuild.changeRaySize(setTexture === 'rock' ? 2 : 1, setTexture === 'rock' ? 2 : 1)
             storeBuild.changeActivateBuild(false);
         } else {
+            console.log(setTexture)
             interBtn.btn(true, setTexture);
             storeBuild.activeBuild('object', setTexture);
-            storeBuild.changeRaySize(1, 1, false)
+            storeBuild.changeRaySize(setTexture === 'rock' ? 2 : 1, setTexture === 'rock' ? 2 : 1, false)
             storeBuild.changeActivateBuild(true);
         }
     }
