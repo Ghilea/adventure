@@ -1,7 +1,7 @@
 # Adventure - Dungeon Crawler with DND rules
 The project started as an assignment in the backend course, where the assignment was to use NodeJS to retrieve data from an Api. I branched out and started making a simple "DungeonCrawler" game. The very first version of the game were built in 3D with use of only CSS (requires a huge amount of resources from the computer). 
 
-![alt text](https://github.com/Ghilea/adventure/blob/main/src/shared/assets/images/readme/menu.png?raw=true)
+![alt text](https://github.com/Ghilea/adventure/blob/main/src/assets/images/readme/menu.png?raw=true)
 
 # Guide to run project
 
