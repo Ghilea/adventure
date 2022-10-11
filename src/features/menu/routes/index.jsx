@@ -2,7 +2,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { useProgress } from "@react-three/drei";
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
-import { MenuBar } from '../components/MenuBar';
+import MenuBar from '../components/MenuBar';
 import Ground from '@features/level/components/ground';
 import { Torch } from '@models/objects/torch';
 import { Rock_1 } from '@models/objects/rocks';
@@ -10,12 +10,24 @@ import { Wall_1 } from '@models/objects/walls';
 import { Player } from '@models/creatures/player';
 import { SwampMonster } from '@models/creatures/SwampMonster';
 import Loader from '@comp/loading/Loader';
+import menuMusic from '@assets/music/menu.mp3';
+import useAudio from '@hooks/useAudio';
 import './index.scss';
 
 const Index = () => {
 
+    const [play, { stop }] = useAudio(menuMusic, {
+        volume: 0.4,
+        loop: true
+    });
     const { progress } = useProgress();
     const [menu, setMenu] = useState();
+    const [build, setBuild] = useState([]);
+    const [ground, setGround] = useState({
+        texture: 'stone',
+        size: [10, 10]
+    });
+    const wall = 2.4
 
     useEffect(() => {
         console.log(progress)
@@ -25,16 +37,9 @@ const Index = () => {
         }
     }, [progress])
 
-    const [build, setBuild] = useState([]);
-    const [ground, setGround] = useState({
-        texture: 'stone',
-        size: [10, 10]
-    });
-    const [wall, setWall] = useState({
-        y: 2.4
-    })
-
     useEffect(() => {
+        console.log(stop());
+        play();
         setGround((state) => ({
             ...state,
             texture: ground.texture,
@@ -54,18 +59,18 @@ const Index = () => {
                    
                     <Suspense fallback={<Loader />}>
                         <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
-                        <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[3.2, wall.y, 1]}/>
-                        <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[1.2, wall.y, 1]}/>
-                        <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[-1.8, wall.y, 1]}/>
-                        <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[-3.8, wall.y, 1]}/>
+                        <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[3.2, wall, 1]}/>
+                        <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[1.2, wall, 1]}/>
+                        <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[-1.8, wall, 1]}/>
+                        <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[-3.8, wall, 1]}/>
 
-                        <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[-4.2, wall.y, -0.2]}/>
-                        <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[-4.2, wall.y, -2.2]}/>
+                        <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[-4.2, wall, -0.2]}/>
+                        <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[-4.2, wall, -2.2]}/>
 
-                        <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[2.2, wall.y, -1.2]}/>
-                        <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[2.2, wall.y, -3.2]}/>
+                        <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[2.2, wall, -1.2]}/>
+                        <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[2.2, wall, -3.2]}/>
 
-                        <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[-1.2, wall.y, 0.2]}/>
+                        <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[-1.2, wall, 0.2]}/>
 
                         <SwampMonster rotation={[0, Math.PI * (360/360), 0]}  position={[-2.2, 0.1, -0.2]}/>
 

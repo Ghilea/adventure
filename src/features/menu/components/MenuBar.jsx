@@ -1,24 +1,8 @@
-import { useEffect, useState } from 'react';
-import useAudio from '@hooks/useAudio';
+import React from 'react';
 import { MenuButton } from './MenuButton';
 import logoImg from '@assets/images/svg/celtic.svg';
-import menuMusic from '@assets/music/menu.mp3';
 
-export const MenuBar = () => {
-
-    const [play] = useAudio(menuMusic, {
-        volume: 0.4
-    });
-
-    const [active, setActive] = useState(false);
-
-    useEffect(() => {
-        if(!active){
-            setActive(true)
-            play();
-        }
-        
-    }, [])
+const MenuBar = () => {
 
     return (
         <div className='menuContainer'>
@@ -44,3 +28,5 @@ export const MenuBar = () => {
         </div>
     )
 }
+
+export default MenuBar
