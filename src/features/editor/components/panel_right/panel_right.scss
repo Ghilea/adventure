@@ -1,4 +1,4 @@
-.categorySidePanel {
+.menuSidePanel {
     position: absolute;
     right: 0;
     top: 0;
@@ -30,7 +30,7 @@
                 position: absolute;
                 content: attr(data-tooltip);
                 width: fit-content;
-                right: 4.5em;
+                right: 4em;
                 background-color: #333;
                 color: white;
                 padding: 0.6em 0.7em;

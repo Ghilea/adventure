@@ -1,21 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { build, ground, interfaceButtons } from '@store/editor';
-import { menu } from '@store/store';
 import { Create } from '@comp/crud';
 
-//images
-import saveButton from '@assets/images/svg/save_icon.svg';
-import exitButton from '@assets/images/svg/exit_icon.svg';
-import wallButton from '@assets/images/icons/walls.png';
-import groundButton from '@assets/images/icons/ground.png';
-import objectButton from '@assets/images/icons/objects.png';
-import characterButton from '@assets/images/icons/characters.png';
-import eraserButton from '@assets/images/svg/eraser_icon.svg';
-import rotateButton from '@assets/images/svg/side_rotate_icon.svg';
-import settingsButton from '@assets/images/svg/settings.svg';
+const Button = ({type, img, className, onClick}) => {
 
-export const ObjectsBtn = () => {
+    return (
+        <button className={className} onClick={onClick} data-tooltip={type}>
+            <img  src={img} alt={`Show ${type} button`} />
+        </button>
+    )
+}
+
+export default Button
+
+/* export const ObjectsBtn = () => {
     
     const store = interfaceButtons(state => state);
 
@@ -29,55 +27,8 @@ export const ObjectsBtn = () => {
         </div>
     )
 
-}
+} */
 
-export const WallBtn = () => {
-    
-    const store = interfaceButtons(state => state);
-
-    const handleClick = () => {
-        store.changeCategoryBtn('walls');
-    }
-
-    return (
-        <div onClick={handleClick} className='categoryBtn' data-tooltip='Walls'>
-            <img src={wallButton} alt='Show walls button' />
-        </div>
-    )
-
-}
-
-export const GroundBtn = () => {
-    
-    const store = interfaceButtons(state => state);
-
-    const handleClick = () => {
-        store.changeCategoryBtn('ground');
-    }
-
-    return (
-        <div onClick={handleClick} className='categoryBtn' data-tooltip='Ground'>
-            <img src={groundButton} alt='Show ground button' />
-        </div>
-    )
-
-}
-
-export const CharactersBtn = () => {
-    
-    const store = interfaceButtons(state => state);
-
-    const handleClick = () => {
-        store.changeCategoryBtn('characters');
-    }
-
-    return (
-        <div onClick={handleClick} className='categoryBtn' data-tooltip='Characters'>
-            <img src={characterButton} alt='Show characters button' />
-        </div>
-    )
-
-}
 
 export const RemoveObjectBtn = () => {
     
@@ -119,22 +70,6 @@ export const RotateObjectBtn = () => {
             </div>
         </>
         
-    )
-
-}
-
-export const Settings = () => {
-    
-    const store = interfaceButtons(state => state);
-
-    const handleClick = () => {
-        store.changeCategoryBtn('settings');
-    }
-
-    return (
-        <div onClick={handleClick} className='categoryBtn settingsPanelBtn' data-tooltip='Settings'>
-            <img src={settingsButton} alt='Show settings button' />
-        </div>
     )
 
 }

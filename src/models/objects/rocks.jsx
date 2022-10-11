@@ -4,7 +4,6 @@ import { useBox } from '@react-three/cannon';
 import { build } from '@store/editor';
 import { Select } from '@react-three/postprocessing';
 import { SelectObject } from '@helper/helperObject'
-import { RotateObjectBtn } from '@editor/interface/buttons';
 import RockAsset from '@assets/images/3d/rock.gltf';
 
 export const Rock_1 = (props) => {

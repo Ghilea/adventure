@@ -1,17 +1,5 @@
 import create from 'zustand';
 
-export const mousePosition = create(set => ({
-    x: 0,
-    y: 0,
-    z: 0,
-    editPosition: (x, y, z) => set(state => ({
-        ...state,
-        x: x,
-        y: y,
-        z: z
-    }))
-}))
-
 export const interfaceButtons = create(set => ({
     active: false,
     button: null,

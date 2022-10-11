@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { Ground } from '@editor/ground';
-import { Physics } from '@react-three/cannon';
-import { OrbitControls } from '@react-three/drei'
-import { RightPanel, TopPanel, CategorySidePanel } from '@editor/panel/Panel';
-import { build, ground, mousePosition} from '@store/editor';
-import { useKey } from 'rooks';
+import Canvas from '@editor/editor_canvas';
+import TopPanel from '@editor/panel_top/panel_top';
+import RightPanel from '@editor/panel_right/panel_right';
+import { build } from '@store/editor';
 import { SelectObject, AddObject } from '@helper/helperObject';
-import { Selection, EffectComposer, Outline } from '@react-three/postprocessing';
+import Hotkeys from '@editor/hotkeys';
+import * as texture from '@comp/textures';
 
 const Index = () => {
     
     //stores
     const storeBuild = build(state => state);
-    const storeGround = ground(state => state);
-    const position = mousePosition(state => state);
+    
+    const [mousePosition, setMousePosition] = useState({x: 0,y: 0,z: 0});
+    const [groundTexture, setGroundTexture] = useState(texture.stone());
+    
+    <Hotkeys />
 
     //states
     const [index, setIndex] = useState(0);
@@ -35,18 +36,18 @@ const Index = () => {
         }))*/
     }, [storeBuild.activateBuild])
 
-    const clickInsideCanvas = (event) => {
+    const handleClick = (event) => {
 
-        console.log('click inside canvas', event.type, storeGround.color, storeBuild.activateBuild)
+        console.log(mousePosition);
         
-        if (event.type === 'click' && storeGround.color === 'green' && storeBuild.activateBuild) {
+        if (event.type === 'click' && storeBuild.activateBuild) {
 
             storeBuild.addObject(
                 <AddObject
                     onClick = {<SelectObject />}
                     key={storeBuild.active[1]+index}
                     position = {
-                        [Math.floor(position.x) + 0.5, position.y + (4/2), Math.floor(position.z) + 0.5]
+                        [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5]
                     }
                     rotation = {
                         (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
@@ -61,7 +62,7 @@ const Index = () => {
                         index
                     }
                 />, //canvasObject
-                [Math.floor(position.x) + 0.5, position.y + (4 / 2), Math.floor(position.z) + 0.5], //position
+                [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5], //position
                 (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0], //rotation
                 storeBuild.active[0], //type
                 storeBuild.active[1], //texture
@@ -69,91 +70,9 @@ const Index = () => {
             );
 
             setIndex(index + 1)
-            /*switch (storeBuild.active[0]) {
-                case 'wall':
-                    setObj((state) => ([
-                        ...state, 
-                        <AddObject 
-                        onClick = {
-                            <SelectObject />
-                        }
-                        key = {'wall'+index}
-                        position = {
-                            [Math.floor(position.x) + 0.5, position.y + (4/2), Math.floor(position.z) + 0.5]
-                        }
-                        rotation = {
-                            (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
-                        }
-                        type = {
-                            'wall'
-                        }
-                        texture = {
-                            storeBuild.active[1]
-                        }
-                        objectId={index}
-                        />
-                    ]))
-                    break;
-                case 'player':
-                    setObj((state) => ([
-                        ...state,
-                        <AddObject 
-                        onClick = {
-                            <SelectObject/>
-                        }
-                        key = {
-                            'player' + index
-                        }
-                        position = {
-                            [Math.floor(position.x) + 0.5, position.y + 0.55, Math.floor(position.z) + 0.5]
-                        }
-                        rotation = {
-                            (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
-                        }
-                        type = {
-                            'player'
-                        }
-                        texture = {
-                            'player'
-                        }
-                        objectId = {
-                            index
-                        }/>
-                    ]))
-                    break;
-                case 'object':
-                    setObj((state) => ([
-                        ...state,
-                        <AddObject 
-                        onClick = {
-                            <SelectObject/>
-                        }
-                        key = {
-                            'object' + index
-                        }
-                        position = {
-                            [Math.floor(position.x) + 0.5, position.y + 0.55, Math.floor(position.z) + 0.5]
-                        }
-                        rotation = {
-                            (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
-                        }
-                        type = {
-                            'object'
-                        }
-                        texture = {
-                            storeBuild.active[1]
-                        }
-                        objectId = {
-                            index
-                        }/>
-                    ]))
-                    break;
-            }*/
-
+         
             
-        } else if (event.type === 'contextmenu') {
-            event.preventDefault();
-        }
+        } 
     }
 
     /*useEffect(()=> {
@@ -166,52 +85,18 @@ const Index = () => {
 
     }, [storeBuild.remove])*/
 
-    const keyHandler = () => {
-        if (storeBuild.rotate) {
-            storeBuild.changeRaySize(storeBuild.sizeY, storeBuild.sizeX, false) 
-        }else{
-            storeBuild.changeRaySize(storeBuild.sizeY, storeBuild.sizeX, true)
-        }
-    }
-
-    useKey(['Control'], keyHandler);
+    
 
     return (
         <>
             <TopPanel />
-            <CategorySidePanel />
             <RightPanel />
             <Canvas 
-            onClick = {
-                clickInsideCanvas
-            }
-            camera = {
-                {
-                    fov: 45,
-                    position: [0, 2, -10]
-                }
-            } >
-                <OrbitControls />
-                <ambientLight intensity={1} />
-                <Physics gravity = {
-                    [0, -30, 0]
-                } >
-                    <gridHelper args={[storeGround.x, storeGround.y]}/>
-                    <Ground position = {
-                        [0, 0, 0]
-                    }
-                    />
-                    <Selection>
-                        <EffectComposer multisampling={8} autoClear={false}>
-                            <Outline blur visibleEdgeColor="white" edgeStrength={100} width={1000} />
-                        </EffectComposer>
-                        {storeBuild.object.map((item) => {
-                            return item.canvasObject
-                        })}
-                    </Selection>  
-                </Physics>
-                
-            </Canvas>
+                onClick={handleClick} 
+                mousePosition={mousePosition} 
+                setMousePosition={setMousePosition} 
+                grid={[10, 10]}
+                groundTexture={groundTexture} />
         </>    
     )
 }

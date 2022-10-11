@@ -8,7 +8,9 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    width: 10em;
+    min-width: 10em;
+    width: 100%;
+    max-width: 15em;
     height: 2.5em;
     box-shadow: 0 0 5px #000;
     display: flex;
@@ -19,10 +21,11 @@
     justify-content: space-evenly;
 
     .topBtn {
-        width: 4em;
-        height: 2em;
+        width: 100%;
+        height: 100%;
         display: flex;
         justify-content: center;
+        align-items: center;
 
         .rotateLeftBtn {
             transform: scaleX(-1);
