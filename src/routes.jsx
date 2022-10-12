@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from '@comp/layout'
 
@@ -12,6 +12,9 @@ import MenuOptions from './features/menu_options/routes/';
 import Level from './features/level/routes/';
 
 const routes = () => {
+  useEffect(() => {
+    window.open('', "_self", "");
+  }, []);
   return (
     <BrowserRouter>
       <Routes>

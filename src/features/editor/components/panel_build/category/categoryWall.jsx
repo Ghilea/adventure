@@ -1,7 +1,8 @@
 import React from "react";
 import { build, interfaceButtons } from '@store/editor';
+import '../panel_build.scss';
 
-export const CategoryWall = () => {
+const CategoryWall = () => {
     const storeBuild = build(state => state);
     const interBtn = interfaceButtons(state => state);
 
@@ -39,11 +40,15 @@ export const CategoryWall = () => {
     }
 
     return (
-        <div className='container'>
-            <h2>Walls</h2>
-            <div className = 'walls' >
-                {buttons}
+        <div className='buildPanel'>
+            <div className='container'>
+                <h2>Walls</h2>
+                <div className='walls' >
+                    {buttons}
+                </div>
             </div>
         </div>
     )
 }
+
+export default CategoryWall

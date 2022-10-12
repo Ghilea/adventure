@@ -1,7 +1,8 @@
 import React from "react";
 import { interfaceButtons, build } from '@store/editor';
+import '../panel_build.scss';
 
-export const CategoryPlayer = () => {
+const CategoryCreatures = () => {
     
     const storeBuild = build(state => state);
     const interBtn = interfaceButtons(state => state);
@@ -22,18 +23,21 @@ export const CategoryPlayer = () => {
     }
 
     return (
-        <div className='container'>
-            <h2>Player</h2>
-            <div className='player'>
-                <div className={
-                `img
-                ${
-                    (interBtn.active && interBtn.button === 'player') ?
-                'activeBtn' : 'playerBtn'
-                }`
-                } onClick={() => handleButton('player') }>
+        <div className='buildPanel'>
+            <div className='container'>
+                <h2>Player</h2>
+                <div className='player'>
+                    <div className={
+                        `img
+                ${(interBtn.active && interBtn.button === 'player') ?
+                            'activeBtn' : 'playerBtn'
+                        }`
+                    } onClick={() => handleButton('player')}>
+                    </div>
                 </div>
             </div>
         </div>
     )
 }
+
+export default CategoryCreatures

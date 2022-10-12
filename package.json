@@ -32,7 +32,8 @@
         "sass": "^1.55.0",
         "vite": "^3.1.6",
         "@vitejs/plugin-react": "^2.1.0",
-        "@tauri-apps/cli": "^1.1.1"
+        "@tauri-apps/cli": "^1.1.1",
+        "concurrently": "^7.4.0"
     },
     "scripts": {
         "dev": "vite",
@@ -41,7 +42,8 @@
         "createDB": "node server/createDatabase",
         "server": "node server/",
         "test": "mocha",
-        "tauri": "tauri"
+        "tauri": "tauri",
+        "start": "concurrently \"npm run server\" \"npm run dev\""
     },
     "pkg": {
         "scripts": "server/**/*.js",

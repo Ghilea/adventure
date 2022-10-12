@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { CategoryObjects } from "@editor/interface/category/categoryObjects";
 import './panel_build.scss';
 
 const Category = ({type, texture, blockSize}) => {
 
+    console.log(type)
     //const [objectSize, setObjectSize] = useState();
     const [active, setActive] = useState(false)
 
@@ -27,11 +29,11 @@ const Category = ({type, texture, blockSize}) => {
     }) {showTexture}
  */
     return (
-        <div className={`${type.open ? 'buildPanel' : 'disable'}`}>
+        <div className='buildPanel'>
             
             <div className='container'>
-                <h2>{type.title}</h2>
-                <div className={type.class} >
+                <h2>{type}</h2>
+                <div className={type} >
                    
                 </div>
             </div>

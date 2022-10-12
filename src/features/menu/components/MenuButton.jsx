@@ -1,16 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import useAudio from '@hooks/useAudio';
-import soundEffect from '@assets/sounds/button.mp3';
+import Button from '@comp/button/buttons';
 
 export const MenuButton = ({children, open}) => {
     
     const navigate = useNavigate();
-    
-    const [play] = useAudio(soundEffect, {
-        volume: 0.5,
-    });
 
-    const handleButton = () => {
+    const handleButton = (e) => {
         switch (open) {
             case 'view':
                 navigate('/view-character');
@@ -24,7 +19,10 @@ export const MenuButton = ({children, open}) => {
             case 'exit':
                 window.opener = null;
                 window.open("", "_self");
-                window.close();
+                setTimeout(() => {
+                    window.close();
+                },1000)
+                
                 break;
             case 'editor':
                 navigate('/editor');
@@ -33,11 +31,9 @@ export const MenuButton = ({children, open}) => {
     }
 
     return (
-        <button 
-        type='button' 
-        onMouseEnter={() => play()} 
-        onClick={handleButton}>
-            {children}
-        </button>
+        <Button 
+            className='button'
+            onClick={handleButton}>{children}
+        </Button>  
     )
 }

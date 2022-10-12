@@ -1,5 +1,16 @@
 import create from 'zustand';
 
+export const cache = create(set => ({
+    cache: ['9'],
+    setCache: (newCache) => set(state => ({
+        cache: [...state.cache, newCache]
+    })),
+    emptyCache: () => set(state => ({
+        ...state,
+        cache: []
+    })),
+}))
+
 export const player = create(set => ({
     id: 1,
     gender: null,

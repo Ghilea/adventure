@@ -25,8 +25,8 @@ const useAudio = (src, props) => {
     },[options])
 
     const play = () => {
-        sound.currentTime = 0;
-        sound.play();
+            sound.currentTime = 0;
+            sound.play();        
     };
 
     const stop = () => {

@@ -20,6 +20,7 @@ const Index = () => {
         volume: 0.4,
         loop: true
     });
+    
     const { progress } = useProgress();
     const [menu, setMenu] = useState();
     const [build, setBuild] = useState([]);

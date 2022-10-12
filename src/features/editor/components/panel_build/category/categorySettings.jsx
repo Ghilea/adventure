@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { build, interfaceButtons } from '@store/editor';
 import { Read, Update } from '@comp/crud';
+import '../panel_build.scss';
 
-export const CategorySettings = () => {
+const CategorySettings = () => {
     const storeBuild = build(state => state);
     const interBtn = interfaceButtons(state => state);
     
@@ -86,23 +87,27 @@ export const CategorySettings = () => {
     }
 
     return (
-        <div className='container'>
-            <h2>Settings</h2>
-            <div className = 'settings'>
-                <select onChange={handleChange}>
-                    {selectList}
-                </select>
+        <div className='buildPanel'>
+            <div className='container'>
+                <h2>Settings</h2>
+                <div className='settings'>
+                    <select onChange={handleChange}>
+                        {selectList}
+                    </select>
 
-                <div className="settingsName">
-                    <label htmlFor='name'>Name</label>
-                    <input ref={nameRef} id='name' type='text' defaultValue={(list.length > 0) ? list[selected].title : ''} onChange={handleUpdate}/>
-                </div>
+                    <div className="settingsName">
+                        <label htmlFor='name'>Name</label>
+                        <input ref={nameRef} id='name' type='text' defaultValue={(list.length > 0) ? list[selected].title : ''} onChange={handleUpdate} />
+                    </div>
 
-                <div className="settingsName">
-                    <label htmlFor='level'>Level (1-100)</label>
-                    <input ref={levelRef} id='level' type='number' min='1' max='100' defaultValue={(list.length > 0) ? list[selected].level : ''} onChange={handleUpdate}/>
+                    <div className="settingsName">
+                        <label htmlFor='level'>Level (1-100)</label>
+                        <input ref={levelRef} id='level' type='number' min='1' max='100' defaultValue={(list.length > 0) ? list[selected].level : ''} onChange={handleUpdate} />
+                    </div>
                 </div>
             </div>
         </div>
     )
 }
+
+export default CategorySettings

@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Create } from '@comp/crud';
 import { player } from '@store/store';
 import { PointButton } from '@features/interface/components/stats/PointButton';
-import ExitButton from '@comp/button/ExitButton';
 import Modal from '@comp/modal';
+import Button from '@comp/button/buttons';
 import maleImg from '@assets/images/characters/FantasyCharacters_h_warrior_male.png';
 import femaleImg from '@assets/images/characters/FantasyCharacters_h_warrior_female.png'
 import './index.scss';
 
 const Index = () => {
+
+    const navigate = useNavigate();
 
     const storePlayer = player(state => state);
  
@@ -39,6 +42,10 @@ const Index = () => {
             ...character,
             name: e.target.value,
         });
+    }
+
+    const handleExit = () => {
+        navigate('/menu');
     }
 
     const handleCreate = (e) => {
@@ -121,7 +128,9 @@ const Index = () => {
                 <div className='buttonContainer'>
                     <button type='button' onClick={(e) => handleCreate(e)}>Create</button>
 
-                    <ExitButton>Exit</ExitButton>
+                    <Button
+                        className='button'
+                        onClick={() => handleExit()}>Exit</Button>
                 </div>
 
             </div>
