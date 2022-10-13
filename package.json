@@ -36,7 +36,7 @@
         "concurrently": "^7.4.0"
     },
     "scripts": {
-        "dev": "concurrently vite \"npm run server\"",
+        "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
         "createDB": "node server/createDatabase",
