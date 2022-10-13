@@ -6,7 +6,9 @@ import CategoryObjects from '@editor/panel_build/category/categoryObjects';
 import CategoryCreatures from '@editor/panel_build/category/categoryCreatures';
 import CategorySettings from '@editor/panel_build/category/categorySettings';
 import CategoryWall from '@editor/panel_build/category/categoryWall';
+import Category from '../panel_build/panel_build';
 import './panel_right.scss';
+import './panel_build.scss';
 
 //images
 import img_wall from '@assets/images/icons/walls.png';
@@ -15,11 +17,11 @@ import img_object from '@assets/images/icons/objects.png';
 import img_character from '@assets/images/icons/characters.png';
 import img_setting from '@assets/images/svg/settings.svg';
 
-const RightPanel = () => {
+const RightPanel = ({setGroundColor}) => {
 
     const [openBuildPanel, setOpenBuildPanel] = useState({
         type: null,
-        content: null
+        content: []
     });
     const [mouseRight] = disable();
 
@@ -43,12 +45,23 @@ const RightPanel = () => {
         if ('object' !== openBuildPanel.type) {
             setOpenBuildPanel({
                 type: 'object',
-                content: <CategoryObjects />
+                content: [
+                    {
+                        title: 'Boulders',
+                        className: 'objects',
+                        object: ['rock_1']
+                    },
+                    {
+                        title: 'Misc',
+                        className: 'objects',
+                        object: ['torch']
+                    }
+                ]
             })
         } else {
             setOpenBuildPanel({
                 type: null,
-                content: null
+                content: []
             })
         }
     }
@@ -136,7 +149,15 @@ const RightPanel = () => {
                      />
             </div>
             
-            {openBuildPanel.content}
+            <div className='buildPanel'>
+                {openBuildPanel.content.map((item, index) => {
+                return <Category 
+                key={item.title + index}
+                title={item.title} 
+                className={item.className} 
+                object={item.object}/>
+            })}
+            </div>
         </>
         
     )

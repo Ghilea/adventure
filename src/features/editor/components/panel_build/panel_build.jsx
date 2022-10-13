@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { CategoryObjects } from "@editor/interface/category/categoryObjects";
-import './panel_build.scss';
 
-const Category = ({type, texture, blockSize}) => {
+const Category = ({
+    title, 
+    className, 
+    object=[], 
+    blockSize
+}) => {
 
-    console.log(type)
-    //const [objectSize, setObjectSize] = useState();
+    const [objectSize, setObjectSize] = useState();
     const [active, setActive] = useState(false)
 
     const handleClick = () => {
@@ -18,7 +20,7 @@ const Category = ({type, texture, blockSize}) => {
         }
     }
 
-    /* const showTexture = texture.map((item, index) => {
+    const content = object.map((item, index) => {
         return (
             <div
                 key={item + index}
@@ -26,19 +28,19 @@ const Category = ({type, texture, blockSize}) => {
                 onClick={handleClick}>
             </div>
         )
-    }) {showTexture}
- */
+    })
+ 
     return (
-        <div className='buildPanel'>
+        
             
             <div className='container'>
-                <h2>{type}</h2>
-                <div className={type} >
-                   
+                <h2>{title}</h2>
+                <div className={className} >
+                   {content}
                 </div>
             </div>
 
-        </div>
+        
     )
 }
 

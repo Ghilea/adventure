@@ -53,6 +53,7 @@ export const AddObject = ({position, rotation, type, texture, objectId}) => {
                 position = [position[0] - 1.35, position[1] -1.05, position[2] + 1.22]
             }
             //storeBuild.addObject(position, rotation, type, texture, objectId);
+            
             storeGround.groundColor('red');
         }
     }, [object])

@@ -14,6 +14,7 @@ const Index = () => {
     
     const [mousePosition, setMousePosition] = useState({x: 0,y: 0,z: 0});
     const [groundTexture, setGroundTexture] = useState(texture.stone());
+    const [groundColor, setGroundColor] = useState('blue');
     const [canAddObjects, setCanAddObjects] = useState(false);
     
     <Hotkeys />
@@ -30,7 +31,7 @@ const Index = () => {
 
     const handleClick = (event) => {
         
-        if (event.type === 'click' && canAddObjects) {
+        if (event.type === 'click') {
 
             console.log(mousePosition);
 
@@ -82,7 +83,7 @@ const Index = () => {
     return (
         <>
             <TopPanel />
-            <RightPanel />
+            <RightPanel setGroundColor={setGroundColor}/>
             <Canvas 
                 onClick={handleClick} 
                 mousePosition={mousePosition} 
