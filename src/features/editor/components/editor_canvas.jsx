@@ -6,7 +6,7 @@ import { OrbitControls } from '@react-three/drei'
 import SelectObject from '@editor/select_canvas_object';
 import disable from '@hooks/disable-click';
 
-const EditorCanvas = ({onClick, grid, mousePosition, setMousePosition, groundTexture}) => {
+const EditorCanvas = ({ onClick, grid, mousePosition, setMousePosition, groundTexture, setCanAddObjects }) => {
 
     const [mouseRight] = disable();
 
@@ -29,7 +29,8 @@ const EditorCanvas = ({onClick, grid, mousePosition, setMousePosition, groundTex
                 args={[grid[0], grid[1]]}/>
 
                 <Ground 
-                    mousePosition={mousePosition} 
+                    mousePosition={mousePosition}
+                    setCanAddObjects={setCanAddObjects}
                     setMousePosition={setMousePosition} 
                     args={[grid[0], grid[1]]}
                     groundTexture={groundTexture} />

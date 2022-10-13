@@ -14,6 +14,7 @@ const Index = () => {
     
     const [mousePosition, setMousePosition] = useState({x: 0,y: 0,z: 0});
     const [groundTexture, setGroundTexture] = useState(texture.stone());
+    const [canAddObjects, setCanAddObjects] = useState(false);
     
     <Hotkeys />
 
@@ -27,20 +28,11 @@ const Index = () => {
         }
     }, [storeBuild.active])
 
-    useEffect(() => {
-        console.log('store',storeBuild.object)
-        console.log('active',storeBuild.activateBuild)
-
-        /*setObj(obj.filter((item) => {
-            return item.props.objectId === storeBuild.object.objectId
-        }))*/
-    }, [storeBuild.activateBuild])
-
     const handleClick = (event) => {
-
-        console.log(mousePosition);
         
-        if (event.type === 'click' && storeBuild.activateBuild) {
+        if (event.type === 'click' && canAddObjects) {
+
+            console.log(mousePosition);
 
             storeBuild.addObject(
                 <AddObject
@@ -96,7 +88,8 @@ const Index = () => {
                 mousePosition={mousePosition} 
                 setMousePosition={setMousePosition} 
                 grid={[10, 10]}
-                groundTexture={groundTexture} />
+                groundTexture={groundTexture}
+                setCanAddObjects={setCanAddObjects}/>
         </>    
     )
 }
