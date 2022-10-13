@@ -14,10 +14,6 @@
     "allowlist": {
       "window":{
         "close": true
-      },
-      "dialog": {
-        "open": true,
-        "confirm": true
       }
     },
     "bundle": {

@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Button from '@comp/button/buttons';
 import { appWindow } from "@tauri-apps/api/window";
-import { confirm } from '@tauri-apps/api/dialog';
 
 export const MenuButton = ({children, open}) => {
     
@@ -19,14 +18,7 @@ export const MenuButton = ({children, open}) => {
                 navigate('/view-options');
                 break;
             case 'exit':
-                const confirmed = await confirm('Are you sure?');
-
-                if (!confirmed) {
-                    // user did not confirm closing the window; let's prevent it
-                    event.preventDefault();
-                }else{
-                    appWindow.close()
-                }
+                appWindow.close()
                 break;
             case 'editor':
                 navigate('/editor');
