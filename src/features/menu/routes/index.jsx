@@ -17,7 +17,7 @@ import './index.scss';
 const Index = () => {
 
     const [play, { stop }] = useAudio(menuMusic, {
-        volume: 0.4,
+        volume: 0.1,
         loop: true
     });
     
@@ -39,7 +39,6 @@ const Index = () => {
     }, [progress])
 
     useEffect(() => {
-        console.log(stop());
         play();
         setGround((state) => ({
             ...state,
