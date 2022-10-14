@@ -71,7 +71,13 @@ const RightPanel = ({setGroundColor}) => {
         if ('wall' !== openBuildPanel.type) {
             setOpenBuildPanel({
                 type: 'wall',
-                content: <CategoryWall />
+                content: [
+                    {
+                        title: 'Walls',
+                        className: 'walls',
+                        object: ['wall_1']
+                    }
+                ]
             })
         } else {
             setOpenBuildPanel({
@@ -101,7 +107,13 @@ const RightPanel = ({setGroundColor}) => {
         if ('creature' !== openBuildPanel.type) {
             setOpenBuildPanel({
                 type: 'creature',
-                content: <CategoryCreatures />
+                content: [
+                    {
+                        title: 'Player',
+                        className: 'player',
+                        object: ['player']
+                    }
+                ]
             })
         } else {
             setOpenBuildPanel({
