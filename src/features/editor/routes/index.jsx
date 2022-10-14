@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Canvas from '@editor/editor_canvas';
 import TopPanel from '@editor/panel_top/panel_top';
-import RightPanel from '@editor/panel_right/panel_right';
+import RightPanel from '@editor/panel_right';
 import { build } from '@store/editor';
 import { SelectObject, AddObject } from '@helper/helperObject';
 import Hotkeys from '@editor/hotkeys';

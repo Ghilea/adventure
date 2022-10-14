@@ -1,13 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Button from '@comp/button/buttons';
 import disable from '@hooks/disable-click';
-import CategoryGround from '@editor/panel_build/category/categoryGround';
-import CategoryObjects from '@editor/panel_build/category/categoryObjects';
-import CategoryCreatures from '@editor/panel_build/category/categoryCreatures';
-import CategorySettings from '@editor/panel_build/category/categorySettings';
-import CategoryWall from '@editor/panel_build/category/categoryWall';
+import CategoryGround from '@editor/panel_build/category/categoryGround'
 import Category from '../panel_build/panel_build';
-import './panel_right.scss';
+import './index.scss';
 import './panel_build.scss';
 
 //images
@@ -66,11 +62,21 @@ const RightPanel = ({setGroundColor}) => {
         }
     }
 
-    const handleWalls = () => {
+    const handleClick = (e) => {
 
-        if ('wall' !== openBuildPanel.type) {
+        const target = e.target.attributes.category.value;
+        
+        switch (target) {
+            case 'wall':
+                
+                break;
+        
+            default:
+                break;
+        }
+        if (target !== openBuildPanel.type) {
             setOpenBuildPanel({
-                type: 'wall',
+                type: target,
                 content: [
                     {
                         title: 'Walls',
@@ -136,21 +142,21 @@ const RightPanel = ({setGroundColor}) => {
                     type='creature' 
                     img={img_character} 
                     className='categoryBtn'
-                    onClick={handleCreatures}
+                    onClick={handleClick}
                      />
                 
                 <Button 
                     type='wall' 
                     img={img_wall} 
                     className='categoryBtn'
-                    onClick={handleWalls}
+                    onClick={handleClick}
                      />
                 
                 <Button 
                     type='object'
                     img={img_object} 
                     className='categoryBtn'
-                    onClick={handleObjects}
+                    onClick={handleClick}
                     />
                 
                 <Button
