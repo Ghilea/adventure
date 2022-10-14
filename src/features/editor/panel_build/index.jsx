@@ -33,16 +33,12 @@ const Category = ({
     })
  
     return (
-        
-            
-            <div className='container'>
-                <h2>{title}</h2>
-                <div className={className} >
-                   {content}
-                </div>
+        <div className='container'>
+            <h2>{title}</h2>
+            <div className={className} >
+                {content}
             </div>
-
-        
+        </div>
     )
 }
 

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '@comp/button/buttons';
 import disable from '@hooks/disable-click';
 import { build, ground, interfaceButtons } from '@store/editor'
-import './panel_top.scss';
+import './index.scss';
 
 //images
 import img_save from '@assets/images/svg/save_icon.svg';

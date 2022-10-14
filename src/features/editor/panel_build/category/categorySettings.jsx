@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { build, interfaceButtons } from '@store/editor';
 import { Read, Update } from '@comp/crud';
-import '../panel_build.scss';
 
 const CategorySettings = () => {
     const storeBuild = build(state => state);

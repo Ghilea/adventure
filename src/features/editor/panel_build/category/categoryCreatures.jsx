@@ -1,6 +1,5 @@
 import React from "react";
 import { interfaceButtons, build } from '@store/editor';
-import '../panel_build.scss';
 
 const CategoryCreatures = () => {
     

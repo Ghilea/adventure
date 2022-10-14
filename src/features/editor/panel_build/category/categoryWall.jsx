@@ -1,6 +1,5 @@
 import React from "react";
 import { build, interfaceButtons } from '@store/editor';
-import '../panel_build.scss';
 
 const CategoryWall = () => {
     const storeBuild = build(state => state);

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { ground } from '@store/editor';
-import '../panel_build.scss';
 
 const CategoryGround = () => {
     
