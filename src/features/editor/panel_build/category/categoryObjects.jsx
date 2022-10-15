@@ -1,72 +1,21 @@
 import React from "react";
-import { build, interfaceButtons } from '@store/editor';
+import BuildButton from '@editor/build_button';
 
 const CategoryObjects = () => {
-    const storeBuild = build(state => state);
-    const interBtn = interfaceButtons(state => state);
-
-    const boulderTextureArr = [
-        'rock_1'      
-    ]
-
-    const miscTextureArr = [
-        'torch'
-    ]
-
-    const boulderButtons = boulderTextureArr.map((item, index) => {
-        return (
-            <div key={item+index} className={
-                `${item} 
-                ${
-                    (interBtn.active && interBtn.button === item) ?
-                'activeBtn' : 'objectsBtn'
-                }`
-            } onClick={() => handleObject(item) }>
-            </div>
-        )
-    })
-
-    const miscButtons = miscTextureArr.map((item, index) => {
-        return (
-            <div key={item+index} className={
-                `${item} 
-                ${
-                    (interBtn.active && interBtn.button === item) ?
-                'activeBtn' : 'objectsBtn'
-                }`
-            } onClick={() => handleObject(item) }>
-            </div>
-        )
-    })
-
-    const handleObject = (setTexture) => {
-        if (interBtn.active && interBtn.button === setTexture) {
-            interBtn.btn(false, null)
-            storeBuild.resetActiveBuild();
-            storeBuild.changeRaySize(setTexture === 'rock' ? 2 : 1, setTexture === 'rock' ? 2 : 1)
-            storeBuild.changeActivateBuild(false);
-        } else {
-            console.log(setTexture)
-            interBtn.btn(true, setTexture);
-            storeBuild.activeBuild('object', setTexture);
-            storeBuild.changeRaySize(setTexture === 'rock' ? 2 : 1, setTexture === 'rock' ? 2 : 1, false)
-            storeBuild.changeActivateBuild(true);
-        }
-    }
-
+  
     return (
         <div className='buildPanel'>
             <div className='container'>
                 <h2>Boulders</h2>
-                <div className = 'objects' >
-                    {boulderButtons}
+                <div className= 'buildPanelButton' >
+                    <BuildButton type='rock_1' />
                 </div>
             </div>
 
             <div className='container'>
                 <h2>Misc</h2>
-                <div className = 'objects' >
-                    {miscButtons}
+                <div className= 'buildPanelButton' >
+                    <BuildButton type='torch' />
                 </div>
             </div>
         </div>

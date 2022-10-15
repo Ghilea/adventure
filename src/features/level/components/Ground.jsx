@@ -1,6 +1,6 @@
 import React from 'react';
 import { usePlane } from '@react-three/cannon';
-import * as texture from '@comp/textures';
+//import * as texture from '@comp/textures';
 
 const Ground = ({position, groundTexture, size, ...props}) => {
     
@@ -15,9 +15,7 @@ const Ground = ({position, groundTexture, size, ...props}) => {
         <>
         <mesh ref={ref} receiveShadow>
             <planeGeometry args = {size} />
-            <meshStandardMaterial map={
-                (groundTexture == 'stone') ? texture.stone(): (groundTexture == 'floor') ? texture.floor() : ''
-            } />
+            <meshStandardMaterial />
         </mesh>
         </>
     )

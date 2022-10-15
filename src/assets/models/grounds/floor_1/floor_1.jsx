@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import FloorAsset from './stoneFloor.gltf';
+import FloorAsset from './floor_1.gltf';
 
 export const StoneFloor = (props) => {
   const group = useRef();

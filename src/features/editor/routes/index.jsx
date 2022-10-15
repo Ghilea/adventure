@@ -5,7 +5,7 @@ import RightPanel from '../panel_right';
 import { build } from '@store/editor';
 import { SelectObject, AddObject } from '@editor/helperObject';
 import Hotkeys from '@editor/hotkeys';
-import * as texture from '@comp/textures';
+//import * as texture from '@comp/textures';
 
 const Index = () => {
     
@@ -16,7 +16,7 @@ const Index = () => {
     const [canAddObjects, setCanAddObjects] = useState(false);
     const [settings, setSettings] = useState({
         groundColor: 'white',
-        groundTexture: texture.stone()
+        groundTexture: ''//texture.stone()
     });
     const [addedObjects, setAddedObjects] = useState();
     

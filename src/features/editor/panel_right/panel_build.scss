@@ -78,138 +78,40 @@
             
     }
 
-    .objects {
+    .buildPanelButton {
+        width: fit-content;
         height: fit-content;
         display: flex;
         gap: 1em;
         flex-direction: row;
         flex-wrap: wrap;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.405);
 
-        .activeBtn {
-            box-shadow: 0 0 10px 5px rgb(119 29 1);
-        }
-
-        .objectsBtn {
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.405);
-
-            &:hover {
-                box-shadow: 0 0 5px #fff;
-                cursor: pointer;
-            }
-        }
-
-        .rock_1 {
-            width: 2em;
-            height: 3em;
-            padding: 1em;
-            background-image: url('@assets/images/icons/panel/rock_1.png');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-       }
-
-       .torch {
-            width: 2em;
-            height: 3em;
-            padding: 1em;
-            background-image: url('@assets/images/icons/panel/torch.png');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-       }
-    }
-
-    .walls {
-        height: fit-content;
-        display: flex;
-        gap: 1em;
-        flex-direction: row;
-        flex-wrap: wrap;
-
-        .activeBtn {
-            box-shadow: 0 0 10px 5px rgb(119 29 1);
-        }
-
-        .wallBtn {
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.405);
+        button {
+            width: 2.5em;
+            height: 4em;
+            background-color: #0006;
+            border-radius: 0.4em;
 
             &:hover {
                 box-shadow: 0 0 5px #fff;
-                cursor: pointer;
             }
-        }
 
-        .wall_1 {
-            width: 2em;
-            height: 3em;
-            padding: 1em;
-            background-image: url('@assets/images/texture/stone.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-        }
-
-         .wall_2 {
-            width: 2em;
-            height: 3em;
-            padding: 1em;
-            background-image: url('@assets/images/texture/stone2.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .wall_3 {
-            width: 2em;
-            height: 3em;
-            padding: 1em;
-            background-image: url('@assets/images/texture/stone_window.png');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-        }
-    }
-
-    .ground {
-        height: fit-content;
-        display: flex;
-        gap: 1em;
-        flex-direction: column;
-        flex-wrap: wrap;
-    }
-
-    .player {
-        height: fit-content;
-        display: flex;
-        gap: 1em;
-        flex-direction: row;
-        flex-wrap: wrap;
-
-        .activeBtn {
-            box-shadow: 0 0 10px 5px rgb(119 29 1);
-        }
-
-        .playerBtn {
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.405);
-
-            &:hover {
-                box-shadow: 0 0 5px #fff;
-                cursor: pointer;
+            img {
+                width: 100%;
+                padding: 0.2em;
+                object-fit: cover;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
             }
+            
         }
 
-        .img {
-            width: 2em;
-            height: 3em;
-            padding: 1em;
-            background-image: url('@assets/images/characters/FantasyCharacters_h_warrior_female_bg.png');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
+        .active {
+            background-color: rgba(135, 116, 116, 0.4);
         }
-
     }
-
 }
 
 .hide {
