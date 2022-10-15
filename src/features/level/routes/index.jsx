@@ -6,9 +6,9 @@ import { Read } from '@comp/crud';
 import { map } from '@store/store';
 import Player from '@comp/player/player';
 import Loader from '@comp/loading/Loader';
-import { Wall_1 } from '@models/objects/walls';
+import { Wall_1 } from '@models/objects/walls/walls';
 import Interface from '@features/interface'
-import { Torch } from '@models/objects/torch';
+import { Torch } from '@models/objects/torch/torch';
 import './index.scss';
 
 const Index = () => {
