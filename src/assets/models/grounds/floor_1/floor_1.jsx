@@ -1,39 +1,30 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import FloorAsset from './floor_1.gltf';
+import FloorAsset from './floor_1.glb';
 
-export const StoneFloor = (props) => {
+const Floor_1 = (props) => {
   const group = useRef();
+
   const { nodes, materials } = useGLTF(FloorAsset);
 
   return (
-    <group ref={group} {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, 0]}>
+    <group ref={group} {...props} scale={[0.0625, 0.1, 0.062]} dispose={null}>
+      <group position={[0, -19.77, 0]} rotation={[-Math.PI / 2, 0, Math.PI * (0/360)]}>
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Object_5.geometry}
-          material={materials.cobblecobble3}
+          geometry={nodes.ground_0.geometry}
+          material={materials.ground}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Object_4.geometry}
-          material={materials.cobblecobble2}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_3.geometry}
-          material={materials.cobblecobble1}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_2.geometry}
-          material={materials.cobblecobble}
+          geometry={nodes.ground_0_1.geometry}
+          material={materials.ground}
         />
       </group>
     </group>
   );
 }
+
+export default Floor_1

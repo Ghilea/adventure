@@ -4,6 +4,7 @@ import { Wall_1 } from '@models/objects/walls/walls';
 import { Player } from '@models/creatures/player/player';
 import { Rock_1 } from '@models/objects/rocks/rocks';
 import { Torch } from '@models/objects/torch/torch';
+import Floor_1 from '@models/grounds/floor_1/floor_1';
 
 //add object
 export const AddObject = ({position, rotation, type, texture, objectId}) => {
@@ -11,9 +12,11 @@ export const AddObject = ({position, rotation, type, texture, objectId}) => {
     const storeGround = ground(state => state);
     const [object, setObject] = useState(null);
 
-    useEffect(() => {   
+    useEffect(() => {  
+        
+        console.log(type, texture)
 
-        switch (texture) {
+        switch (type) {
             case 'wall_1':
                 setObject(<Wall_1 position = {position} rotation = {rotation}/>)
                 break;
@@ -21,11 +24,14 @@ export const AddObject = ({position, rotation, type, texture, objectId}) => {
                 setObject(<Player position = {position} rotation = {rotation}/>)
                 break;
             case 'rock_1':
-                setObject( <Rock_1 position = {[position[0], position[1], position[2]]} rotation = {rotation} />)
+                setObject( <Rock_1 position = {position} rotation = {rotation} />)
                 break;
              case 'torch':
                 setObject(<Torch position = {position} rotation = {rotation}/>)
-            break;
+                break;
+            case 'floor_1':
+                setObject(<Floor_1 position={position} rotation={rotation} />)
+                break;
         }
     }, [])
 

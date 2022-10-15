@@ -1,33 +1,20 @@
 import create from 'zustand';
 
-export const interfaceButtons = create(set => ({
-    active: false,
-    button: null,
-    categoryBtn: null,
-    remove: false,
-    changeCategoryBtn: (value) => set(state => ({
-        ...state,
-        categoryBtn: value
-    })),
-    isRemove: (value) => set(state => ({
-        ...state,
-        remove: value
-    })),
-    btn: (active, button) => set(state => ({
-        ...state,
-        active: active,
-        button: button
-    }))
-}))
-
 export const build = create(set => ({
-    activateBuild: false,
+    isBuild: {
+        active: false,
+        type: '',
+        category: '', 
+        objectSize: {
+            x: 1,
+            z: 1,
+            y: 0,
+            rotate: 0
+        }
+    },
     active: [],
     object: [],
     solid: [],
-    sizeX: 1,
-    sizeY: 1,
-    rotate: false,
     selected: null,
     remove: null,
     resetActiveBuild: () => set(state => ({
@@ -41,15 +28,21 @@ export const build = create(set => ({
             texture
         ]
     })),
-    changeActivateBuild: (value) => set(state => ({
+    buildState: (value, type = '', category = '', objectSize = [0,0,0,0]) => set(state => ({
         ...state,
-        activateBuild: value
-    })),
-    changeRaySize: (x, y, rotate) => set(state => ({
-        ...state,
-        sizeX: x,
-        sizeY: y,
-        rotate: rotate
+        isBuild: {
+            ...state.isBuild,
+            active: value, 
+            type: type,
+            category: category,
+            objectSize: {
+                ...state.isBuild.objectSize,
+                x: objectSize[0],
+                z: objectSize[1],
+                y: objectSize[2],
+                rotate: objectSize[3]
+            }
+        }
     })),
     addSolid: (x, z, objectId) => set(state => ({
         solid: [

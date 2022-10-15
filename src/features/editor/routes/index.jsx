@@ -11,13 +11,9 @@ const Index = () => {
     
     //stores
     const storeBuild = build(state => state);
-    
+
     const [mousePosition, setMousePosition] = useState({x: 0,y: 0,z: 0});
     const [canAddObjects, setCanAddObjects] = useState(false);
-    const [settings, setSettings] = useState({
-        groundColor: 'white',
-        groundTexture: ''//texture.stone()
-    });
     const [addedObjects, setAddedObjects] = useState();
     
     <Hotkeys />
@@ -33,25 +29,25 @@ const Index = () => {
 
     const handleClick = (event) => {
         
-        if (event.type === 'click') {
+        if (event.type === 'click' && storeBuild.isBuild.active) {
 
-            console.log(mousePosition);
+            console.log(mousePosition, storeBuild.isBuild);
 
             storeBuild.addObject(
                 <AddObject
                     onClick = {<SelectObject />}
-                    key={storeBuild.active[1]+index}
+                    key={storeBuild.isBuild.type+index}
                     position = {
                         [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5]
                     }
                     rotation = {
-                        (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
+                        (storeBuild.isBuild.objectSize.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
                     }
                     type = {
-                        storeBuild.active[0]
+                        storeBuild.isBuild.type
                     }
                     texture = {
-                        storeBuild.active[1]
+                        storeBuild.isBuild.category
                     }
                     objectId = {
                         index
@@ -59,8 +55,8 @@ const Index = () => {
                 />, //canvasObject
                 [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5], //position
                 (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0], //rotation
-                storeBuild.active[0], //type
-                storeBuild.active[1], //texture
+                storeBuild.isBuild.type, //type
+                storeBuild.isBuild.category, //texture
                 index //objectId
             );
 
@@ -80,8 +76,6 @@ const Index = () => {
 
     }, [storeBuild.remove])*/
 
-    
-
     return (
         <>
             <TopPanel />
@@ -91,7 +85,6 @@ const Index = () => {
                 mousePosition={mousePosition} 
                 setMousePosition={setMousePosition} 
                 grid={[10, 10]}
-                groundTexture={settings.groundTexture}
                 setCanAddObjects={setCanAddObjects}/>
         </>    
     )

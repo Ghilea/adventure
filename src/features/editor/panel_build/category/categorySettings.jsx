@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
-import { build, interfaceButtons } from '@store/editor';
+import { build } from '@store/editor';
 import { Read, Update } from '@comp/crud';
 
 const CategorySettings = () => {
     const storeBuild = build(state => state);
-    const interBtn = interfaceButtons(state => state);
     
     const [selectList, setSelectList] = useState([]);
     const [list, setList] = useState([]);

@@ -2,7 +2,7 @@ import React from 'react';
 import { usePlane } from '@react-three/cannon';
 import GroundCheck from '@editor/groundCheck';
 
-export const Ground = ({ mousePosition, setMousePosition, groundTexture, args, setCanAddObjects }) => {
+export const Ground = ({ mousePosition, setMousePosition, args, setCanAddObjects }) => {
 
     const [ref] = usePlane(() => ({
         rotation: [-Math.PI / 2, 0, 0],
@@ -21,7 +21,7 @@ export const Ground = ({ mousePosition, setMousePosition, groundTexture, args, s
         <>
         <mesh ref={ref} onPointerMove={pointerMove}>
             <planeGeometry attach='geometry' args={args} />
-                <meshStandardMaterial attach='material' map={groundTexture} />
+                <meshStandardMaterial attach='material' opacity={0} transparent={true} />
         </mesh>
             <GroundCheck mousePosition={mousePosition} setCanAddObjects={setCanAddObjects}/>
         </>

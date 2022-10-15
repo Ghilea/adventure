@@ -1,5 +1,5 @@
 import React from "react";
-import { interfaceButtons, build } from '@store/editor';
+import { build } from '@store/editor';
 import BuildButton from '@editor/build_button';
 
 const CategoryCreatures = () => {

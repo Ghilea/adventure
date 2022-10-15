@@ -4,12 +4,13 @@ import { useFrame } from '@react-three/fiber';
 import { build } from '@store/editor';
 
 const GroundCheck = ({ mousePosition, setCanAddObjects }) => {
+    
     const storeBuild = build(state => state);
 
-    const [groundColor, setGroundColor] = useState('white');
+    const [groundColor, setGroundColor] = useState('');
 
     const [highLight, setHighLight] = usePlane(() => ({
-        args: [storeBuild.sizeX, storeBuild.sizeY],
+        args: [storeBuild.isBuild.objectSize.x, storeBuild.isBuild.objectSize.z],
         position: [0.5, 0.01, 0.5],
         rotation: [-Math.PI / 2, 0, 0],
     }))
@@ -21,7 +22,7 @@ const GroundCheck = ({ mousePosition, setCanAddObjects }) => {
         console.log('solid', storeBuild.solid);
         if(storeBuild.solid.length > 0){
             const check = storeBuild.solid.filter(obj => {
-                return (obj.x == centerX) && (obj.z == centerZ) || (!storeBuild.rotate) ? (obj.x >= (centerX - (storeBuild.sizeX / 2))) && obj.z == centerZ && (obj.x <= (Math.floor(mousePosition.x) + (storeBuild.sizeX / 2))) && obj.z == centerZ : (obj.x == centerX && obj.z >= (centerZ - (storeBuild.sizeY / 2))) && (obj.x == centerX && obj.z <= (Math.floor(mousePosition.z) + (storeBuild.sizeY / 2)))
+                return (obj.x == centerX) && (obj.z == centerZ) || (!storeBuild.isBuild.objectSize.rotate) ? (obj.x >= (centerX - (storeBuild.isBuild.objectSize.x / 2))) && obj.z == centerZ && (obj.x <= (Math.floor(mousePosition.x) + (storeBuild.isBuild.objectSize.x / 2))) && obj.z == centerZ : (obj.x == centerX && obj.z >= (centerZ - (storeBuild.isBuild.objectSize.z / 2))) && (obj.x == centerX && obj.z <= (Math.floor(mousePosition.z) + (storeBuild.isBuild.objectSize.z / 2)))
             })
             
             console.log(check)
@@ -38,16 +39,27 @@ const GroundCheck = ({ mousePosition, setCanAddObjects }) => {
     }, [mousePosition])
 
     useEffect(() => {
+        console.log(storeBuild.isBuild.active)
+        if (storeBuild.isBuild.active){
+            setGroundColor('green')
+        }else{
+            setGroundColor('')
+        }
+        
+    }, [storeBuild.isBuild.active])
+
+    useEffect(() => {
         console.log('color:', groundColor);
     }, [groundColor])
+
     useFrame(() => {mousePosition
         setHighLight.position.set(Math.floor(mousePosition.x) + 0.5, mousePosition.y + 0.01, Math.floor(mousePosition.z) + 0.5);
     })
-
+ 
     return (
         <mesh ref = {highLight}>
-            <planeGeometry attach='geometry' args = {[storeBuild.sizeX, storeBuild.sizeY]}/>
-            <meshStandardMaterial attach='material' color={groundColor} />
+            <planeGeometry attach='geometry' args={[storeBuild.isBuild.objectSize.x, storeBuild.isBuild.objectSize.z]}/>
+            <meshStandardMaterial attach='material' color={groundColor} transparent={true} opacity={groundColor === '' ? 0 : 1}/>
         </mesh>
     )
 

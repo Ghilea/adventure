@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@comp/button/buttons';
 import disable from '@hooks/disable-click';
-import { build, ground, interfaceButtons } from '@store/editor'
+import { build, ground } from '@store/editor'
 import './index.scss';
 
 //images
@@ -20,7 +20,6 @@ const TopPanel = ({selected = false}) => {
     
     const storeBuild = build(state => state);
     const storeGround = ground(state => state);
-    const store = interfaceButtons(state => state);
 
     const handleExit = () => {
         navigate('/menu');
@@ -46,7 +45,7 @@ const TopPanel = ({selected = false}) => {
     }
 
     const handleRemove = () => {
-        store.isRemove(true);
+        //store.isRemove(true);
         console.log('selected: ', storeBuild.selected)
         storeBuild.removeObject(storeBuild.selected)
         storeBuild.selectedObject(null)

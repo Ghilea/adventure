@@ -29,7 +29,7 @@ const CategoryGround = () => {
             <div className='container'>
                 <h2>Grounds</h2>
                 <div className='buildPanelButton' >
-                    <BuildButton type='ground' />
+                    <BuildButton type='floor_1' />
                 </div>
             </div>
         </div>

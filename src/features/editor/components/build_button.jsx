@@ -1,5 +1,5 @@
-import React from 'react'
-import { interfaceButtons, build } from '@store/editor';
+import { useState } from 'react'
+import { build } from '@store/editor';
 import img_btn from "@assets/images/icons/panel/rock_1.png";
 
 const BuildButton = ({
@@ -9,32 +9,29 @@ const BuildButton = ({
     img = img_btn,
     className,
     imgClassName,
-    size = [1, 1]
+    size = [1, 1, 0, 0],
+    category,
+    rotate
 }) => {
 
     const storeBuild = build(state => state);
-    const interBtn = interfaceButtons(state => state);
 
     const handleClick = () => {
-        if (interBtn.active && interBtn.button === type) {
-            console.log('inactive', type);
-            interBtn.btn(false, null)
-            storeBuild.resetActiveBuild();
-            storeBuild.changeRaySize(1, 1)
-            storeBuild.changeActivateBuild(false);
+        if (storeBuild.isBuild.active && storeBuild.isBuild.type === type) {
+            console.log('inactive')
+            //build button not active
+            storeBuild.buildState(false);
         } else {
-            console.log('active', type)
-            interBtn.btn(true, type);
-            storeBuild.activeBuild('category', type);
-            storeBuild.changeRaySize(size[1], size[2], false)
-            storeBuild.changeActivateBuild(true);
+            console.log('active')
+            //build button active and what type is set
+            storeBuild.buildState(true, type, category, [size[0], size[1], size[2], rotate]);
         }
     }
 
   return (
       <button
           type='button'
-          className={`${className || ''} ${interBtn.active && interBtn.button === type ? 'active' : ''}`}
+          className={`${className || ''} ${storeBuild.isBuild.active && storeBuild.isBuild.type === type ? 'active' : ''}`}
           onClick={handleClick}
           data-tooltip={type}
           category={type}>
