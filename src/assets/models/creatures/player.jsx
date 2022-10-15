@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { build } from '@store/editor';
 import { Select } from '@react-three/postprocessing';
-import { SelectObject } from '@helper/helperObject'
+import { SelectObject } from '@editor/helperObject'
 import PlayerAsset from '@assets/images/3d/player.gltf';
 
 export const Player = ({ position }, props) => {

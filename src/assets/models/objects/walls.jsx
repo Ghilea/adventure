@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import { useBox } from '@react-three/cannon';
 import { build } from '@store/editor';
 import { Select } from '@react-three/postprocessing';
-import { SelectObject } from '@helper/helperObject'
+import { SelectObject } from '@editor/helperObject'
 import WallAsset from '@assets/images/3d/wall.glb';
 
 export const Wall_1 = (props) => {

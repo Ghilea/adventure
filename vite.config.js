@@ -37,9 +37,8 @@ export default defineConfig({
     '@assets': fileURLToPath(new URL( './src/assets', import.meta.url)),
     '@comp': fileURLToPath(new URL( './src/components', import.meta.url)),
     '@features': fileURLToPath(new URL( './src/features', import.meta.url)),
-    '@models': fileURLToPath(new URL( './src/models', import.meta.url)),
+    '@models': fileURLToPath(new URL( './src/assets/models', import.meta.url)),
     '@editor': fileURLToPath(new URL( './src/features/editor/components', import.meta.url)),
-    '@helper': fileURLToPath(new URL( './src/features/helper', import.meta.url)),
     '@hooks': fileURLToPath(new URL( './src/hooks', import.meta.url)),
     '@test': fileURLToPath(new URL( './src/test', import.meta.url)),
     '@store': fileURLToPath(new URL( './src/store', import.meta.url))

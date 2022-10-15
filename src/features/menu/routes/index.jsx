@@ -2,7 +2,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { useProgress } from "@react-three/drei";
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
-import MenuBar from '../components/MenuBar';
+import Menu from '../components/Menu';
 import Ground from '@features/level/components/ground';
 import { Torch } from '@models/objects/torch';
 import { Rock_1 } from '@models/objects/rocks';
@@ -17,35 +17,30 @@ import './index.scss';
 const Index = () => {
 
     const [play, { stop }] = useAudio(menuMusic, {
-        volume: 0.1,
+        volume: 0.3,
         loop: true
     });
     
     const { progress } = useProgress();
     const [menu, setMenu] = useState();
-    const [build, setBuild] = useState([]);
     const [ground, setGround] = useState({
         texture: 'stone',
         size: [10, 10]
     });
+    
     const wall = 2.4
 
     useEffect(() => {
-        console.log(progress)
+        if (progress <= 0) {
+            console.log('play')
+            play();
+        }
+        
         if (progress >= 100) {
             console.log('100')
-            setMenu(<MenuBar />)
+            setMenu(<Menu />)
         }
     }, [progress])
-
-    useEffect(() => {
-        play();
-        setGround((state) => ({
-            ...state,
-            texture: ground.texture,
-            size: ground.size
-        }))
-    }, [])
 
     return (
         <>
@@ -74,7 +69,6 @@ const Index = () => {
 
                         <SwampMonster rotation={[0, Math.PI * (360/360), 0]}  position={[-2.2, 0.1, -0.2]}/>
 
-                        {build} 
                         <Torch position={[-3.35, 2, -2]} scale={[1.03, 1.03, 1.03]} rotation={[0, Math.PI * (180/360), 0]}/>
 
                         <Rock_1 position={[-4.5, -0.3, 0.5]} scale={[0.3, 0.3, 1]} />

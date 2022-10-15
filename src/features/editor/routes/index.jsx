@@ -3,7 +3,7 @@ import Canvas from '@editor/editor_canvas';
 import TopPanel from '../panel_top';
 import RightPanel from '../panel_right';
 import { build } from '@store/editor';
-import { SelectObject, AddObject } from '@helper/helperObject';
+import { SelectObject, AddObject } from '@editor/helperObject';
 import Hotkeys from '@editor/hotkeys';
 import * as texture from '@comp/textures';
 
