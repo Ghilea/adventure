@@ -14,27 +14,27 @@ const CategorySettings = () => {
     useEffect(() => {
     
         Read('getAllLevels')
-            .then(items => {
-                if (items.levels.length > 0) {
-                    items.levels.map((item, index) => {
-                        
-                        setSelectList((state) => ([
-                            ...state,
-                            <option key = {item.title + index}>
-                                {item.title} 
-                            </option>
-                        ]))
-                        setList((state) => [
-                            ...state,
-                            {
-                                id: item.id,
-                                title: item.title,
-                                level: item.level
-                            }
-                        ])
-                    });
+            .then(response => {
+                
+                response.data.map((item, index) => {
+                    
+                    setSelectList((state) => ([
+                        ...state,
+                        <option key = {item.title + index}>
+                            {item.title} 
+                        </option>
+                    ]))
+                    setList((state) => [
+                        ...state,
+                        {
+                            id: item.id,
+                            title: item.title,
+                            level: item.level,
+                            content: JSON.parse(item.content)
+                        }
+                    ])
+                });
 
-                }
             })
             
     }, [])
@@ -81,8 +81,17 @@ const CategorySettings = () => {
         }
 
         Update('updateLevel', data);
-        
+     
     }
+
+    useEffect(() => {
+        if(list.length > 0){
+            console.log(list)
+            storeBuild.setLevel(list[selected].content)
+        }
+        
+    }, [list])
+    
 
     return (
         <div className='buildPanel'>

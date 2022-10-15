@@ -37,7 +37,6 @@ const GroundCheck = ({ mousePosition, setCanAddObjects }) => {
     }, [mousePosition])
 
     useEffect(() => {
-        console.log(storeBuild.isBuild.active)
         if (storeBuild.isBuild.active){
             setGroundColor('green')
         }else{
@@ -45,10 +44,6 @@ const GroundCheck = ({ mousePosition, setCanAddObjects }) => {
         }
         
     }, [storeBuild.isBuild.active])
-
-    useEffect(() => {
-        console.log('color:', groundColor);
-    }, [groundColor])
 
     useFrame(() => {mousePosition
         setHighLight.position.set(Math.floor(mousePosition.x) + 0.5, mousePosition.y + 0.01, Math.floor(mousePosition.z) + 0.5);

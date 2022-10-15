@@ -12,11 +12,16 @@ export const build = create(set => ({
             rotate: 0
         }
     },
+    level: null,
     active: [],
     object: [],
     solid: [],
     selected: null,
     remove: null,
+    setLevel: (level) => set(state => ({
+        ...state,
+        level: level
+    })),
     resetActiveBuild: () => set(state => ({
         ...state,
         active: []

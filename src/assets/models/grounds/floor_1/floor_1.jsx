@@ -9,7 +9,7 @@ const Floor_1 = (props) => {
 
   return (
     <group ref={group} {...props} scale={[0.0625, 0.1, 0.062]} dispose={null}>
-      <group position={[0, -19.77, 0]} rotation={[-Math.PI / 2, 0, Math.PI * (0/360)]}>
+      <group position={[0, -20.22, 0]} rotation={[-Math.PI / 2, 0, Math.PI * (0/360)]}>
         <mesh
           castShadow
           receiveShadow
