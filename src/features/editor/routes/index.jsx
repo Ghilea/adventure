@@ -46,7 +46,7 @@ const Index = () => {
                     type = {
                         storeBuild.isBuild.type
                     }
-                    texture = {
+                    category = {
                         storeBuild.isBuild.category
                     }
                     objectId = {
@@ -56,7 +56,7 @@ const Index = () => {
                 [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5], //position
                 (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0], //rotation
                 storeBuild.isBuild.type, //type
-                storeBuild.isBuild.category, //texture
+                storeBuild.isBuild.category, //category
                 index //objectId
             );
 

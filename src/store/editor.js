@@ -54,7 +54,7 @@ export const build = create(set => ({
             }
         ]
     })),
-    addObject: (canvasObject, position, rotation, type, texture, objectId) => set(state => ({
+    addObject: (canvasObject, position, rotation, type, category, objectId) => set(state => ({
         object: [
             ...state.object,
             {
@@ -62,7 +62,7 @@ export const build = create(set => ({
                 position: position, 
                 rotation: rotation,
                 type: type,
-                texture: texture,
+                category: category,
                 objectId: objectId
             }
         ]          

@@ -7,14 +7,14 @@ import { Torch } from '@models/objects/torch/torch';
 import Floor_1 from '@models/grounds/floor_1/floor_1';
 
 //add object
-export const AddObject = ({position, rotation, type, texture, objectId}) => {
+export const AddObject = ({position, rotation, type, category, objectId}) => {
     const storeBuild = build(state => state);
     const storeGround = ground(state => state);
     const [object, setObject] = useState(null);
 
     useEffect(() => {  
         
-        console.log(type, texture)
+        console.log(type, category)
 
         switch (type) {
             case 'wall_1':
@@ -49,15 +49,18 @@ export const AddObject = ({position, rotation, type, texture, objectId}) => {
                         }
                     }
                     break;
+                case 'floor_1':
+                    
+                    break;
                 default:
                     storeBuild.addSolid(position[0], position[2], objectId)
                     break;
             }
 
             //add object information into store
-            if(texture === 'rock_1'){
+            /*if(texture === 'rock_1'){
                 position = [position[0] - 1.35, position[1] -1.05, position[2] + 1.22]
-            }
+            }*/
             //storeBuild.addObject(position, rotation, type, texture, objectId);
             
             storeGround.groundColor('red');
@@ -75,8 +78,9 @@ export const AddObject = ({position, rotation, type, texture, objectId}) => {
 export const SelectObject = (eventObject, type, store) => {
 
     const check = store.object.filter((item) => {
-        return item.position[0] === eventObject.x && item.position[1] === eventObject.y && item.position[2] === eventObject.z && item.type === type
+        return item.position[0] === eventObject.x && item.position[1] === eventObject.y && item.position[2] === eventObject.z && item.category === type
     })
+
 
     if (check.length > 0) {
 
@@ -96,7 +100,6 @@ export const SelectObject = (eventObject, type, store) => {
         }
     }
 
-    console.log(check[0]);
     return check[0].objectId
 
 }

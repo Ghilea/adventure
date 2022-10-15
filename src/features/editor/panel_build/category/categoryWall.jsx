@@ -9,7 +9,7 @@ const CategoryWall = () => {
             <div className='container'>
                 <h2>Walls</h2>
                 <div className='buildPanelButton' >
-                    <BuildButton type='wall_1' size={[5, 1, 0]} rotate={0} category='walls'/>
+                    <BuildButton type='wall_1' size={[5, 1, 0]} rotate={0} category='wall'/>
                 </div>
             </div>
         </div>

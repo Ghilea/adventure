@@ -19,13 +19,11 @@ const GroundCheck = ({ mousePosition, setCanAddObjects }) => {
         const centerX = (Math.floor(mousePosition.x) + 0.5)
         const centerZ = (Math.floor(mousePosition.z) + 0.5)
 
-        console.log('solid', storeBuild.solid);
         if(storeBuild.solid.length > 0){
             const check = storeBuild.solid.filter(obj => {
                 return (obj.x == centerX) && (obj.z == centerZ) || (!storeBuild.isBuild.objectSize.rotate) ? (obj.x >= (centerX - (storeBuild.isBuild.objectSize.x / 2))) && obj.z == centerZ && (obj.x <= (Math.floor(mousePosition.x) + (storeBuild.isBuild.objectSize.x / 2))) && obj.z == centerZ : (obj.x == centerX && obj.z >= (centerZ - (storeBuild.isBuild.objectSize.z / 2))) && (obj.x == centerX && obj.z <= (Math.floor(mousePosition.z) + (storeBuild.isBuild.objectSize.z / 2)))
             })
             
-            console.log(check)
             if (check.length > 0) {
                 setGroundColor('red');
                 setCanAddObjects(false)

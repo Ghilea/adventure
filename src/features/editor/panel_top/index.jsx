@@ -11,7 +11,7 @@ import img_exit from '@assets/images/svg/exit_icon.svg';
 import img_remove from '@assets/images/svg/eraser_icon.svg';
 import img_rotate from '@assets/images/svg/side_rotate_icon.svg';
 
-const TopPanel = ({selected = false}) => {
+const TopPanel = () => {
 
     const navigate = useNavigate();
 
@@ -57,7 +57,8 @@ const TopPanel = ({selected = false}) => {
     }
 
     useEffect(() => {
-        if(selected) {
+        console.log(storeBuild.selected)
+        if (storeBuild.selected !== null) {
             setShowButtons(
                 <>
                     <Button 
@@ -83,7 +84,7 @@ const TopPanel = ({selected = false}) => {
         }else{
             setShowButtons()
         }
-    }, [selected])
+    }, [storeBuild.selected])
 
     return (
         <div 
