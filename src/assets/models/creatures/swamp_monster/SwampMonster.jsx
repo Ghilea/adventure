@@ -4,7 +4,7 @@ import { useBox } from '@react-three/cannon';
 import { build } from '@store/editor';
 import { Select } from '@react-three/postprocessing';
 import { SelectObject } from '@editor/helperObject'
-import asset from '@assets/images/3d/creatures/swamp_monster.glb';
+import asset from './swamp_monster.glb';
 
 export const SwampMonster = (props) => {
   const { nodes, materials  } = useGLTF(asset);

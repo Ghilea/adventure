@@ -4,7 +4,7 @@ import { useBox } from '@react-three/cannon';
 import { build } from '@store/editor';
 import { Select } from '@react-three/postprocessing';
 import { SelectObject } from '@editor/helperObject'
-import RockAsset from '@assets/images/3d/rock.gltf';
+import RockAsset from './rock.gltf';
 
 export const Rock_1 = (props) => {
     const { nodes, materials } = useGLTF(RockAsset);

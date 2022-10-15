@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { Flame } from '@models/misc/flames/flame';
-import TorchAsset from '@assets/images/3d/torch.gltf';
+import TorchAsset from './torch.gltf';
 
 export const Torch = (props) => {
     

@@ -4,7 +4,7 @@ import { useBox } from '@react-three/cannon';
 import { build } from '@store/editor';
 import { Select } from '@react-three/postprocessing';
 import { SelectObject } from '@editor/helperObject'
-import WallAsset from '@assets/images/3d/wall.glb';
+import WallAsset from './wall.glb';
 
 export const Wall_1 = (props) => {
   const { nodes, materials  } = useGLTF(WallAsset);
