@@ -48,7 +48,6 @@ const GroundCheck = () => {
     }, [isBuild.active])
 
     useFrame(() => {
-        mousePosition,
         setHighLight.position.set(Math.floor(mousePosition.x) + 0.5, mousePosition.y + 0.01, Math.floor(mousePosition.z) + 0.5);
     })
  
