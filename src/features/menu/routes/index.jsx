@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState, useRef } from 'react';
 import { useProgress } from "@react-three/drei";
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
@@ -10,17 +10,21 @@ import { Wall_1 } from '@models/objects/walls/walls';
 import { Player } from '@models/creatures/player/player';
 import { SwampMonster } from '@models/creatures/swamp_monster/SwampMonster';
 import Loader from '@comp/loading/Loader';
-import menuMusic from '@assets/music/menu.mp3';
+import menuMusic from '@assets/music/menu.mp3'; 
 import useSound from 'use-sound';
+import { Howl, Howler } from 'howler';
 import './index.scss';
 
 const Index = () => {
 
-    const [play] = useSound(menuMusic, {
-        volume: 0.3,
+    const [play] = useSound(menuMusic); 
+
+    const musicRef = useRef(new Howl({
+        src: [menuMusic],
+        volume: 0.4,
         loop: true
-    });
-    
+    })); 
+     
     const { progress } = useProgress();
     const [menu, setMenu] = useState();
     const [groundSize] = useState([10, 10]);
@@ -29,7 +33,8 @@ const Index = () => {
 
     useEffect(() => {
         if (progress <= 0) {
-            play();
+
+            musicRef.current.play();
         }
         
         if (progress >= 100) {
