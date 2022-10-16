@@ -3,21 +3,28 @@ import { Canvas } from '@react-three/fiber';
 import { Ground } from '@editor/ground';
 import { Physics } from '@react-three/cannon';
 import { OrbitControls } from '@react-three/drei'
-import SelectObject from '@editor/select_canvas_object';
+import SelectObj from '@editor/select_canvas_object';
 import disable from '@hooks/disable-click';
 import { build } from '@store/editor';
 import { Wall_1 } from '@models/objects/walls/walls';
 import Player from '@comp/player/player';
+import Hotkeys from '@editor/hotkeys';
+import { SelectObject, AddObject } from '@editor/helperObject';
 
-const EditorCanvas = ({ onClick, setCanAddObjects }) => {
+const EditorCanvas = ({ onClick }) => {
 
     const level = build(state => state.level);
     const groundSize = build(state => state.mapSettings.groundSize);
+    const isBuild = build(state => state.isBuild);
+    const mousePosition = build(state => state.mousePosition);
 
     const [mouseRight] = disable();
     
     const [content, setContent] = useState([]);
 
+    const [index, setIndex] = useState(0);
+
+    <Hotkeys />
     /* useEffect(() => {
 
         if (level !== null) {
@@ -42,29 +49,63 @@ const EditorCanvas = ({ onClick, setCanAddObjects }) => {
 
     }, [level]) */
 
+    const handleClick = (event) => {
+
+        if (event.type === 'click' && isBuild.active) {
+
+            storeBuild.addObject(
+                <AddObject
+                    onClick={<SelectObject />}
+                    key={isBuild.type + index}
+                    position={
+                        [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5]
+                    }
+                    rotation={
+                        (isBuild.objectSize.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
+                    }
+                    type={
+                        isBuild.type
+                    }
+                    category={
+                        isBuild.category
+                    }
+                    objectId={
+                        index
+                    }
+                />, //canvasObject
+                [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5], //position
+                (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0], //rotation
+                isBuild.type, //type
+                isBuild.category, //category
+                index //objectId
+            );
+
+            setIndex(index + 1)
+
+        }
+    }
+
     return (
         <Canvas 
-        onClick = {onClick}
-        onContextMenu = {mouseRight}
-        camera = {
-            {
-                fov: 45,
-                position: [0, 2, -10]
-            }
-        } >
+            onClick={handleClick}
+            onContextMenu = {mouseRight}
+            camera = {
+                {
+                    fov: 45,
+                    position: [0, 2, -10]
+                }
+            } >
             <OrbitControls />
             <ambientLight intensity={1} />
             
             <Physics gravity = {[0, -30, 0]} >
 
                 <gridHelper 
-                    args={[groundSize, groundSize]}/>
+                    args={[groundSize]}/>
 
-                <Ground 
-                    setCanAddObjects={setCanAddObjects}
-                    args={[groundSize, groundSize]}/>
+                <Ground />
 
-                <SelectObject />
+                <SelectObj />
             </Physics>
             
         </Canvas>

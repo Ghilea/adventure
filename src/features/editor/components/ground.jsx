@@ -3,9 +3,10 @@ import { usePlane } from '@react-three/cannon';
 import GroundCheck from '@editor/groundCheck';
 import { build } from '@store/editor';
 
-export const Ground = ({ args, setCanAddObjects }) => {
+export const Ground = () => {
 
     const store = build(state => state);
+    const groundSize = build(state => state.mapSettings.groundSize);
     
     const [ref] = usePlane(() => ({
         rotation: [-Math.PI / 2, 0, 0],
@@ -19,10 +20,10 @@ export const Ground = ({ args, setCanAddObjects }) => {
     return (
         <>
         <mesh ref={ref} onPointerMove={pointerMove}>
-            <planeGeometry attach='geometry' args={args} />
+                <planeGeometry attach='geometry' args={[groundSize]} />
                 <meshStandardMaterial attach='material' opacity={0} transparent={true} />
         </mesh>
-            <GroundCheck setCanAddObjects={setCanAddObjects}/>
+            <GroundCheck />
         </>
     )
 
