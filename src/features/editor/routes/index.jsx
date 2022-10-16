@@ -12,16 +12,8 @@ const Index = () => {
     //stores
     const storeBuild = build(state => state);
 
-    const [mousePosition, setMousePosition] = useState({x: 0,y: 0,z: 0});
+    const [mousePosition, setMousePosition] = useState({x: 0, y: 0, z: 0});
     const [canAddObjects, setCanAddObjects] = useState(false);
-    const [addedObjects, setAddedObjects] = useState();
-    const [map, setMap] = useState({
-        id: null,
-        groundSize: [10, 10],
-        title: '',
-        level: 0,
-        content: ''
-    });
     const [index, setIndex] = useState(0);
 
     <Hotkeys />
@@ -88,13 +80,10 @@ const Index = () => {
 
     return (
         <>
-            <TopPanel map={map}/>
-            <RightPanel setMap={setMap}/>
+            <TopPanel />
+            <RightPanel />
             <Canvas 
                 onClick={handleClick} 
-                mousePosition={mousePosition} 
-                setMousePosition={setMousePosition} 
-                grid={map.groundSize}
                 setCanAddObjects={setCanAddObjects}/>
         </>    
     )

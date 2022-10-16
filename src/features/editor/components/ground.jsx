@@ -1,20 +1,19 @@
 import React from 'react';
 import { usePlane } from '@react-three/cannon';
 import GroundCheck from '@editor/groundCheck';
+import { build } from '@store/editor';
 
-export const Ground = ({ mousePosition, setMousePosition, args, setCanAddObjects }) => {
+export const Ground = ({ args, setCanAddObjects }) => {
 
+    const store = build(state => state);
+    
     const [ref] = usePlane(() => ({
         rotation: [-Math.PI / 2, 0, 0],
         position: [0,0,0]
     }))
        
-    const pointerMove = (event) => {
-        setMousePosition({
-            x: event.point.x,
-            y: event.point.y,
-            z: event.point.z
-        })
+    const pointerMove = (e) => {
+        //store.setMousePosition(e.point.x, e.point.y, e.point.z)
     }
 
     return (
@@ -23,7 +22,7 @@ export const Ground = ({ mousePosition, setMousePosition, args, setCanAddObjects
             <planeGeometry attach='geometry' args={args} />
                 <meshStandardMaterial attach='material' opacity={0} transparent={true} />
         </mesh>
-            <GroundCheck mousePosition={mousePosition} setCanAddObjects={setCanAddObjects}/>
+            <GroundCheck setCanAddObjects={setCanAddObjects}/>
         </>
     )
 

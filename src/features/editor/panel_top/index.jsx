@@ -12,7 +12,7 @@ import img_exit from '@assets/images/svg/exit_icon.svg';
 import img_remove from '@assets/images/svg/eraser_icon.svg';
 import img_rotate from '@assets/images/svg/side_rotate_icon.svg';
 
-const TopPanel = ({ map }) => {
+const TopPanel = () => {
 
     const navigate = useNavigate();
 
@@ -28,33 +28,33 @@ const TopPanel = ({ map }) => {
     const handleSave = () => {
 
         console.log({
-            'id': map.id,
-            'ground': map.groundSize,
-            'content': map.content,
-            'level': map.level,
-            'title': map.title
+            'id': storeBuild.isBuild.mapSettings.id,
+            'ground': storeBuild.isBuild.mapSettings.groundSize,
+            'content': storeBuild.isBuild.mapSettings.content,
+            'level': storeBuild.isBuild.mapSettings.order,
+            'title': storeBuild.isBuild.mapSettings.title
         })
 
-        if(map.id === null) {
+        if (storeBuild.isBuild.mapSettings.id === null) {
             
             Create('createLevel', {
-                level: map.level,
-                title: map.title,
+                level: storeBuild.isBuild.mapSettings.order,
+                title: storeBuild.isBuild.mapSettings.title,
                 content: JSON.stringify({
-                    'ground': map.groundSize,
-                    'content': map.content
+                    'ground': storeBuild.isBuild.mapSettings.groundSize,
+                    'content': storeBuild.isBuild.mapSettings.content
                 })
             });
 
         }else{
             
             Update('updateLevel', {
-                id: map.id,
-                level: map.level,
-                title: map.title,
+                id: storeBuild.isBuild.mapSettings.id,
+                level: storeBuild.isBuild.mapSettings.order,
+                title: storeBuild.isBuild.mapSettings.title,
                 content: JSON.stringify({
-                    'ground': map.groundSize,
-                    'content': map.content
+                    'ground': storeBuild.isBuild.mapSettings.groundSize,
+                    'content': storeBuild.isBuild.mapSettings.content
                 })
             })
         }
@@ -69,7 +69,7 @@ const TopPanel = ({ map }) => {
     }
 
     const handleRotate = () => {
-        console.log('selected: ', map.content)
+        console.log('selected: ', storeBuild.isBuild.mapSettings.content)
         storeBuild.updateRotationObject(storeBuild.selected, -155)
     }
 

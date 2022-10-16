@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Read, Update } from '@comp/crud';
+import { build } from "@store/editor";
 
-const LevelSetting = ({setMap}) => {
+const LevelSetting = () => {
     
+    const storeBuild = build(state => state);
+
     const [selectList, setSelectList] = useState([]);
     const [list, setList] = useState([]);
     const nameRef = useRef();
@@ -63,21 +66,18 @@ const LevelSetting = ({setMap}) => {
     }
 
     const handleInputChange = () => {
-        setMap((state) => ({
-            ...state,
-            level: levelRef.current.value,
-            title: nameRef.current.value,
-        }))
+        storeBuild.setMapSettings({
+            order: levelRef.current.value, 
+            title: nameRef.current.value
+        })
     }
 
     useEffect(() => {
         if(list.length > 0){
-            setMap((state) => ({
-                ...state,
+            storeBuild.setMapSettings({
                 id: list[0].id
-            }))
+            })
         }
-        
     }, [list])  
 
     return (

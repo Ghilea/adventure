@@ -9,23 +9,22 @@ import { build } from '@store/editor';
 import { Wall_1 } from '@models/objects/walls/walls';
 import Player from '@comp/player/player';
 
-const EditorCanvas = ({ onClick, grid, mousePosition, setMousePosition, setCanAddObjects }) => {
+const EditorCanvas = ({ onClick, setCanAddObjects }) => {
 
-    const storeBuild = build(state => state);
+    const level = build(state => state.level);
+    const groundSize = build(state => state.mapSettings.groundSize);
 
     const [mouseRight] = disable();
     
-    const [wall, setWall] = useState([]);
-    const [createPlayer, setCreateplayer] = useState();
+    const [content, setContent] = useState([]);
 
-    useEffect(() => {
+    /* useEffect(() => {
 
-        if (storeBuild.level !== null) {
-            console.log(storeBuild.level)
+        if (level !== null) {
 
-             storeBuild.level.walls.map((use, index) => {
+            level.walls.map((use, index) => {
 
-                setWall((state) => ([
+                setContent((state) => ([
                     ...state,
                     <Wall_1 key={'wall' + index}
                         position={use.pos}
@@ -36,12 +35,12 @@ const EditorCanvas = ({ onClick, grid, mousePosition, setMousePosition, setCanAd
             })  
 
             setCreateplayer(() => (
-                <Player position={storeBuild.level.player} />
+                <Player position={level.player} />
             )) 
         }
         
 
-    }, [storeBuild.level])
+    }, [level]) */
 
     return (
         <Canvas 
@@ -59,15 +58,11 @@ const EditorCanvas = ({ onClick, grid, mousePosition, setMousePosition, setCanAd
             <Physics gravity = {[0, -30, 0]} >
 
                 <gridHelper 
-                args={[grid[0], grid[1]]}/>
+                    args={[groundSize, groundSize]}/>
 
                 <Ground 
-                    mousePosition={mousePosition}
                     setCanAddObjects={setCanAddObjects}
-                    setMousePosition={setMousePosition} 
-                    args={[grid[0], grid[1]]} />
-
-                    {wall}
+                    args={[groundSize, groundSize]}/>
 
                 <SelectObject />
             </Physics>

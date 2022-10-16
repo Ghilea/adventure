@@ -12,12 +12,55 @@ export const build = create(set => ({
             rotate: 0
         }
     },
+    mousePosition: {
+        x: 0,
+        y: 0,
+        z: 0
+    },
+    mapSettings: {
+        id: null,
+        level: 'New level',
+        title: '',
+        order: 0,
+        content: [],
+        groundSize: 10
+    },
     level: null,
     active: [],
     object: [],
     solid: [],
     selected: null,
     remove: null,
+    setMousePosition: (x, y, z) => set(state => ({
+        ...state,
+        mousePosition: {
+            ...state.mousePosition,
+            x: x,
+            y: y,
+            z: z
+        }
+    })),
+    setGroundSize: (size) => set(state => ({
+        ...state,
+        mapSettings: {
+            ...state.mapSettings,
+            groundSize: size
+        }
+    })),
+    setMapSettings: ({title, order, level, id, content}) => set(state => ({
+        ...state,
+        isBuild: {
+            ...state.isBuild,
+            mapSettings: {
+                ...state.isBuild.mapSettings,
+                id: id,
+                level: level || build.isBuild.mapSettings.level,
+                title: title, 
+                order: order,
+                content: content,
+            }
+        }
+    })),
     setLevel: (level) => set(state => ({
         ...state,
         object: level
@@ -104,9 +147,6 @@ export const build = create(set => ({
 export const ground = create(set => ({
     x: 10,
     y: 10,
-    texture: 'stone',
-    textureSizeX: 1,
-    textureSizeY: 1,
     color: 'green',
     square: [],
     addSquare: (x, z, type, id) => set(state => ({
@@ -128,14 +168,5 @@ export const ground = create(set => ({
         ...state,
         x: x,
         y: y
-    })),
-    changeTextureSize: (x, y) => set(state => ({
-        ...state,
-        textureSizeX: x,
-        textureSizeY: y
-    })),
-    groundTexture: (texture) => set(state => ({
-        ...state,
-        texture: texture
     })),
 }))

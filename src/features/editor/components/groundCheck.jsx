@@ -3,9 +3,10 @@ import { usePlane } from '@react-three/cannon';
 import { useFrame } from '@react-three/fiber';
 import { build } from '@store/editor';
 
-const GroundCheck = ({ mousePosition, setCanAddObjects }) => {
+const GroundCheck = ({ setCanAddObjects }) => {
     
     const storeBuild = build(state => state);
+    const mousePosition = build(state => state.mousePosition);
 
     const [groundColor, setGroundColor] = useState('');
 
@@ -16,6 +17,7 @@ const GroundCheck = ({ mousePosition, setCanAddObjects }) => {
     }))
    
     useEffect(() => {
+        console.log(mousePosition)
         const centerX = (Math.floor(mousePosition.x) + 0.5)
         const centerZ = (Math.floor(mousePosition.z) + 0.5)
 

@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import BuildButton from '@editor/build_button';
 import LevelSetting from "./level_setting";
+import { build } from "@store/editor";
 
-const CategoryGround = ({ setMap }) => {
+const CategoryGround = () => {
 
-    const [size, setSize] = useState(10);
+    const store = build(state => state);
+    const groundSize = build(state => state.mapSettings.groundSize);
 
-    const handleGroundSlider = (e) => {
-        setMap((state) => ({
-            ...state,
-            groundSize: [e.target.value, e.target.value]
-        }))
-        setSize(e.target.value)
+    const groundSizeRef = useRef(null);
+
+    const handleGroundSlider = () => {
+        store.setGroundSize(groundSizeRef.current.value)
     }
 
     return (
         <div className='buildPanel'>
             <div className='container'>
                 <h2>Level</h2>
-                <LevelSetting setMap={setMap}/>
+                <LevelSetting />
 
                 <div className='ground'>
-                    <label htmlFor='gSize'>Ground size [{size}]</label>
-                    <input id='gSize' type='range' min={10} max={250} step={2} value={size} onChange={handleGroundSlider} />
+                    <label htmlFor='gSize'>Ground size [{groundSize}]</label>
+                    <input ref={groundSizeRef} id='gSize' type='range' min={10} max={100} step={5} defaultValue={groundSize} onChange={handleGroundSlider} />
                 </div>
             </div>
             
