@@ -20,7 +20,7 @@ export const build = create(set => ({
     remove: null,
     setLevel: (level) => set(state => ({
         ...state,
-        level: level
+        object: level
     })),
     resetActiveBuild: () => set(state => ({
         ...state,

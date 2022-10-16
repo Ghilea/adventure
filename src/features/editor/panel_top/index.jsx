@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@comp/button/buttons';
 import disable from '@hooks/disable-click';
-import { build, ground } from '@store/editor'
+import { build } from '@store/editor'
+import { Create } from '@comp/crud';
 import './index.scss';
 
 //images
@@ -11,7 +12,7 @@ import img_exit from '@assets/images/svg/exit_icon.svg';
 import img_remove from '@assets/images/svg/eraser_icon.svg';
 import img_rotate from '@assets/images/svg/side_rotate_icon.svg';
 
-const TopPanel = () => {
+const TopPanel = ({ map }) => {
 
     const navigate = useNavigate();
 
@@ -19,7 +20,6 @@ const TopPanel = () => {
     const [mouseRight] = disable();
     
     const storeBuild = build(state => state);
-    const storeGround = ground(state => state);
 
     const handleExit = () => {
         navigate('/menu');
@@ -28,20 +28,18 @@ const TopPanel = () => {
     const handleSave = () => {
 
         console.log({
-            'walls': storeBuild.object,
-            'ground': [storeGround.x, storeGround.y, storeGround.texture],
-            'player': storeBuild.object
+            'ground': map.groundSize,
+            'object': storeBuild.object
         })
 
-        /*const url = 'createLevel';
-
-        Create(url, {
+        Create('createLevel', {
             content: JSON.stringify({
-                'walls': storeBuild.walls,
-                'ground': [storeGround.x, storeGround.y, storeGround.texture],
-                'player': storePlayer.playerMark
-            })
-        });*/
+                'ground': map.groundSize,
+                'object': storeBuild.object
+            }),
+            level: map.level,
+            title: map.title
+        });
     }
 
     const handleRemove = () => {

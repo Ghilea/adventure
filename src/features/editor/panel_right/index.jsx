@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Button from '@comp/button/buttons';
 import disable from '@hooks/disable-click';
-import CategoryGround from '../panel_build/category/categoryGround';
+import CategoryGround from '../panel_build/category/ground/categoryGround';
 import CategoryCreatures from '../panel_build/category/categoryCreatures';
 import CategoryObjects from '../panel_build/category/categoryObjects';
 import CategorySettings from '../panel_build/category/categorySettings';
@@ -16,7 +16,7 @@ import img_object from '@assets/images/icons/objects.png';
 import img_character from '@assets/images/icons/characters.png';
 import img_setting from '@assets/images/svg/settings.svg';
 
-const RightPanel = ({ setGroundSize }) => {
+const RightPanel = ({ setMap }) => {
 
     const [openBuildPanel, setOpenBuildPanel] = useState({
         type: null,
@@ -40,7 +40,7 @@ const RightPanel = ({ setGroundSize }) => {
             case 'ground':
                 setOpenBuildPanel({
                     type: 'ground',
-                    content: <CategoryGround setGroundSize={setGroundSize}/>
+                    content: <CategoryGround setMap={setMap}/>
                 })
                 break;
             case 'object':

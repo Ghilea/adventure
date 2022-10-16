@@ -1,11 +1,9 @@
 export const getLevel = async (knex, res, id) => {
     try {
-        await knex.select('content')
+        await knex.select('title', 'level', 'content')
         .where('id', id)
         .from('levels').then((query) => {
-            return res.code(200)
-            //.header('Content-Type', 'application/json; charset=utf-8')
-            .send(query);
+            return res.code(200).send(query);
         })
         
     } catch (err) {
@@ -17,9 +15,7 @@ export const getAllLevels = async (knex, res) => {
     try {
         await knex.select('id', 'title', 'level', 'content')
         .from('levels').then((query) => {
-            return res.code(200)
-            //.header('Content-Type', 'application/json; charset=utf-8')
-            .send(query);
+            return res.code(200).send(query);
         })
         
     } catch (err) {
@@ -27,11 +23,18 @@ export const getAllLevels = async (knex, res) => {
     }
 }
 
-export const createLevel = (con, req, res) => {
-    con.connect((err) => {
-        con.query(`INSERT INTO levels SET content = '${req.body.data.content}'`)
-        res.send('New level added')
-    })
+export const createLevel = async (knex, req, res) => {
+    try {
+        await knex.insert({
+            content: req.body.content,
+            level: req.body.level,
+            title: req.body.title
+        })
+        .into('levels')
+        
+    } catch (err) {
+        console.log(`Error: ${err}`)
+    }
 }
 
 export const updateLevel = (con, req, res) => {
