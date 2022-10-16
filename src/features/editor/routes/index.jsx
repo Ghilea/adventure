@@ -15,11 +15,11 @@ const Index = () => {
     const [mousePosition, setMousePosition] = useState({x: 0,y: 0,z: 0});
     const [canAddObjects, setCanAddObjects] = useState(false);
     const [addedObjects, setAddedObjects] = useState();
-    
-    <Hotkeys />
-    
+    const [groundSize, setGroundSize] = useState([10, 10]);
     const [index, setIndex] = useState(0);
-    
+
+    <Hotkeys />
+        
     useEffect(() => {
         if (storeBuild.active.length > 0 && storeBuild.selected !== null) {
             storeBuild.selectedObject(null)
@@ -79,12 +79,12 @@ const Index = () => {
     return (
         <>
             <TopPanel />
-            <RightPanel />
+            <RightPanel setGroundSize={setGroundSize}/>
             <Canvas 
                 onClick={handleClick} 
                 mousePosition={mousePosition} 
                 setMousePosition={setMousePosition} 
-                grid={[10, 10]}
+                grid={groundSize}
                 setCanAddObjects={setCanAddObjects}/>
         </>    
     )

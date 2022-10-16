@@ -16,7 +16,7 @@ import img_object from '@assets/images/icons/objects.png';
 import img_character from '@assets/images/icons/characters.png';
 import img_setting from '@assets/images/svg/settings.svg';
 
-const RightPanel = () => {
+const RightPanel = ({ setGroundSize }) => {
 
     const [openBuildPanel, setOpenBuildPanel] = useState({
         type: null,
@@ -40,7 +40,7 @@ const RightPanel = () => {
             case 'ground':
                 setOpenBuildPanel({
                     type: 'ground',
-                    content: <CategoryGround />
+                    content: <CategoryGround setGroundSize={setGroundSize}/>
                 })
                 break;
             case 'object':

@@ -1,29 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { ground } from '@store/editor';
 import BuildButton from '@editor/build_button';
 
-const CategoryGround = () => {
-    
-    const storeGround = ground(state => state);
+const CategoryGround = ({ setGroundSize }) => {
+
+    const [size, setSize] = useState(10);
 
     const handleGroundSlider = (e) => {
-        storeGround.groundSize(e.target.value, e.target.value)
-        storeGround.changeTextureSize(e.target.value / 10, e.target.value / 10)
+        setGroundSize([e.target.value, e.target.value])
+        setSize(e.target.value)
+        //storeGround.changeTextureSize(e.target.value / 10, e.target.value / 10)
     }
 
-    const handleTextureSlider = (e) => {
+    /* const handleTextureSlider = (e) => {
         storeGround.changeTextureSize(e.target.value, e.target.value)
-    }
+    } */
+
+    /*
+    <label htmlFor='tSize'>Texture size [{storeGround.textureSizeX}]</label>
+                    <input id='tSize' type='range' min={(storeGround.x / 10)} max={(storeGround.x / 2)} value={storeGround.textureSizeX} onChange={handleTextureSlider} />
+    */
 
     return (
         <div className='buildPanel'>
             <div className='container'>
                 <h2>Map size</h2>
                 <div className='ground'>
-                    <label htmlFor='gSize'>Ground size [{storeGround.x}]</label>
-                    <input id='gSize' type='range' min={10} max={500} step={2} value={storeGround.x} onChange={handleGroundSlider} />
-                    <label htmlFor='tSize'>Texture size [{storeGround.textureSizeX}]</label>
-                    <input id='tSize' type='range' min={(storeGround.x / 10)} max={(storeGround.x / 2)} value={storeGround.textureSizeX} onChange={handleTextureSlider} />
+                    <label htmlFor='gSize'>Ground size [{size}]</label>
+                    <input id='gSize' type='range' min={10} max={250} step={2} value={size} onChange={handleGroundSlider} />
                 </div>
             </div>
             <div className='container'>

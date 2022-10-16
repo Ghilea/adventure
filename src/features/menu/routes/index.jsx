@@ -3,7 +3,7 @@ import { useProgress } from "@react-three/drei";
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import Menu from '../components/Menu';
-import Ground from '@features/level/components/ground';
+import Ground from '@comp/ground';
 import { Torch } from '@models/objects/torch/torch';
 import { Rock_1 } from '@models/objects/rocks/rocks';
 import { Wall_1 } from '@models/objects/walls/walls';
@@ -23,21 +23,16 @@ const Index = () => {
     
     const { progress } = useProgress();
     const [menu, setMenu] = useState();
-    const [ground, setGround] = useState({
-        texture: 'stone',
-        size: [10, 10]
-    });
+    const [groundSize] = useState([10, 10]);
     
     const wall = 2.4
 
     useEffect(() => {
         if (progress <= 0) {
-            console.log('play')
             play();
         }
         
         if (progress >= 100) {
-            console.log('100')
             setMenu(<Menu />)
         }
     }, [progress])
@@ -53,7 +48,7 @@ const Index = () => {
                 <Physics gravity={[0, -30, 0]}>
                    
                     <Suspense fallback={<Loader />}>
-                        <Ground position = {[0, 0, 0]} groundTexture={ground.texture} size={ground.size}/>
+                        <Ground position = {[0, 0, 0]} size={groundSize}/>
                         <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[3.2, wall, 1]}/>
                         <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[1.2, wall, 1]}/>
                         <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[-1.8, wall, 1]}/>

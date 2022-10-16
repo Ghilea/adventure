@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
-import Ground from '../components/ground';
+import Ground from '@comp/ground';
 import { Read } from '@comp/crud';
 import { map } from '@store/store';
 import Player from '@comp/player/player';
@@ -17,10 +17,7 @@ const Index = () => {
 
     const [build, setBuild] = useState([]);
     const [createPlayer, setCreateplayer] = useState();
-    const [ground, setGround] = useState({
-        texture: 'stone',
-        size: [10, 10]
-    });
+    const [groundSize, setGroundSize] = useState([10, 10]);
 
     useEffect(() => {
     
@@ -47,10 +44,9 @@ const Index = () => {
                     <Player position={parsed.player} />
                 ))
 
-                setGround((state) => ({
+                setGroundSize((state) => ({
                     ...state,
-                    texture: parsed.ground[2],
-                    size: [parsed.ground[0], parsed.ground[1]]
+                    size: [parsed.groundSize[0], parsed.groundSize[1]]
                 }))
 
                 storeMap.setPlayerPosition(parsed.player);
@@ -95,7 +91,7 @@ const Index = () => {
                 <Physics gravity={[0, -30, 0]}>
 
                     <Suspense fallback={<Loader />}>
-                        <Ground position={[0, 0, 0]} groundTexture={ground.texture} size={ground.size} />
+                        <Ground position={[0, 0, 0]} size={groundSize} />
                         {build}
                         {createPlayer}
                         <Torch position={[-3.9, 0.3, -2]} scale={[1.03, 1.03, 1.03]} rotation={[0, Math.PI * (180 / 360), 0]} />

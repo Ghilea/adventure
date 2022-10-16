@@ -1,8 +1,7 @@
 import React from 'react';
 import { usePlane } from '@react-three/cannon';
-//import * as texture from '@comp/textures';
 
-const Ground = ({position, groundTexture, size, ...props}) => {
+const Ground = ({position, size, ...props}) => {
     
     const [ref] = usePlane(() => ({
         args: size,
