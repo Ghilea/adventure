@@ -1,6 +1,6 @@
 export const getLevel = async (knex, res, id) => {
     try {
-        await knex.select('id', 'title', 'level', 'content')
+        await knex.select('id', 'title', 'order', 'content')
         .where('id', id)
         .from('levels').then((query) => {
             return res.code(200).send(query);
@@ -13,7 +13,7 @@ export const getLevel = async (knex, res, id) => {
 
 export const getAllLevels = async (knex, res) => {
     try {
-        await knex.select('id', 'title', 'level', 'content')
+        await knex.select('id', 'title', 'order', 'content')
         .from('levels').then((query) => {
             return res.code(200).send(query);
         })
@@ -27,7 +27,7 @@ export const createLevel = async (knex, req, res) => {
     try {
         await knex.insert({
             content: req.body.content,
-            level: req.body.level || 0,
+            order: req.body.level,
             title: req.body.title
         })
         .into('levels')
@@ -41,7 +41,7 @@ export const updateLevel = async (knex, req, res) => {
     try {
         await knex.update({
             content: req.body.content,
-            level: req.body.level,
+            order: req.body.level,
             title: req.body.title
         })
         .where({'id': req.body.id})

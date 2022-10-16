@@ -8,7 +8,7 @@ const CategoryGround = () => {
     const store = build(state => state);
     const groundSize = build(state => state.mapSettings.groundSize);
 
-    const groundSizeRef = useRef(null);
+    const groundSizeRef = useRef();
 
     const handleGroundSlider = () => {
         store.setGroundSize(groundSizeRef.current.value)
@@ -21,8 +21,8 @@ const CategoryGround = () => {
                 <LevelSetting />
 
                 <div className='ground'>
-                    <label htmlFor='gSize'>Ground size [{groundSize}]</label>
-                    <input ref={groundSizeRef} id='gSize' type='range' min={10} max={100} step={5} defaultValue={groundSize} onChange={handleGroundSlider} />
+                    <label htmlFor='gSize'>Ground size [{groundSize || 10}]</label>
+                    <input ref={groundSizeRef} id='gSize' type='range' min={10} max={100} step={5} value={groundSize || 10} onChange={handleGroundSlider} />
                 </div>
             </div>
             

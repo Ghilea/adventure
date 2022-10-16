@@ -45,8 +45,8 @@ export const LevelsData = async (knex) => {
     return await knex.insert([
           {
               title:'test',
-              level:1,
-              content:'{\"ground\":[10,10],\"object\":[{\"canvasObject\":{\"key\":\"wall_10\",\"ref\":null,\"props\":{\"onClick\":{\"key\":null,\"ref\":null,\"props\":{},\"_owner\":null,\"_store\":{}},\"position\":[2.5,2.0000000068713737,-0.5],\"rotation\":[0,1.5707963267948966,0],\"type\":\"wall_1\",\"category\":\"wall\",\"objectId\":0},\"_owner\":null,\"_store\":{}},\"position\":[2.5,2.0000000068713737,-0.5],\"rotation\":[0,1.5707963267948966,0],\"type\":\"wall_1\",\"category\":\"wall\",\"objectId\":0}]}'
+              order:1,
+              content:'{\"ground\":10,\"object\":[{\"canvasObject\":{\"key\":\"wall_10\",\"ref\":null,\"props\":{\"onClick\":{\"key\":null,\"ref\":null,\"props\":{},\"_owner\":null,\"_store\":{}},\"position\":[2.5,2.0000000068713737,-0.5],\"rotation\":[0,1.5707963267948966,0],\"type\":\"wall_1\",\"category\":\"wall\",\"objectId\":0},\"_owner\":null,\"_store\":{}},\"position\":[2.5,2.0000000068713737,-0.5],\"rotation\":[0,1.5707963267948966,0],\"type\":\"wall_1\",\"category\":\"wall\",\"objectId\":0}]}'
           }
       ]).into('levels')
 }

@@ -20,6 +20,7 @@ const TopPanel = () => {
     const [mouseRight] = disable();
     
     const storeBuild = build(state => state);
+    const mapSettings = build(state => state.mapSettings);
 
     const handleExit = () => {
         navigate('/menu');
@@ -28,35 +29,35 @@ const TopPanel = () => {
     const handleSave = () => {
 
         console.log({
-            'id': storeBuild.isBuild.mapSettings.id,
-            'ground': storeBuild.isBuild.mapSettings.groundSize,
-            'content': storeBuild.isBuild.mapSettings.content,
-            'level': storeBuild.isBuild.mapSettings.order,
-            'title': storeBuild.isBuild.mapSettings.title
+            'id': mapSettings.id,
+            'ground': mapSettings.groundSize,
+            'content': mapSettings.content,
+            'level': mapSettings.order,
+            'title': mapSettings.title
         })
 
-        if (storeBuild.isBuild.mapSettings.id === null) {
-            
-            Create('createLevel', {
-                level: storeBuild.isBuild.mapSettings.order,
-                title: storeBuild.isBuild.mapSettings.title,
+        if (mapSettings.id === null || mapSettings.id === undefined) {
+            console.log('create')
+            /* Create('createLevel', {
+                level: mapSettings.order,
+                title: mapSettings.title,
                 content: JSON.stringify({
-                    'ground': storeBuild.isBuild.mapSettings.groundSize,
-                    'content': storeBuild.isBuild.mapSettings.content
+                    'ground': mapSettings.groundSize,
+                    'content': mapSettings.content
                 })
-            });
+            }); */
 
         }else{
-            
-            Update('updateLevel', {
-                id: storeBuild.isBuild.mapSettings.id,
-                level: storeBuild.isBuild.mapSettings.order,
-                title: storeBuild.isBuild.mapSettings.title,
+            console.log('update')
+           /*  Update('updateLevel', {
+                id: mapSettings.id,
+                level: mapSettings.order,
+                title: mapSettings.title,
                 content: JSON.stringify({
-                    'ground': storeBuild.isBuild.mapSettings.groundSize,
-                    'content': storeBuild.isBuild.mapSettings.content
+                    'ground': mapSettings.groundSize,
+                    'content': mapSettings.content
                 })
-            })
+            }) */
         }
         
     }
@@ -69,7 +70,7 @@ const TopPanel = () => {
     }
 
     const handleRotate = () => {
-        console.log('selected: ', storeBuild.isBuild.mapSettings.content)
+        console.log('selected: ', mapSettings.content)
         storeBuild.updateRotationObject(storeBuild.selected, -155)
     }
 

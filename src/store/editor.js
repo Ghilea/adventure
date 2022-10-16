@@ -17,20 +17,20 @@ export const build = create(set => ({
         y: 0,
         z: 0
     },
-    mapSettings: {
-        id: null,
-        level: 'New level',
-        title: '',
-        order: 0,
-        content: [],
-        groundSize: 10
-    },
+    mapSettings: [],
     level: null,
     active: [],
     object: [],
     solid: [],
     selected: null,
     remove: null,
+    setGroundSize: (size) => set(state => ({
+        ...state,
+        mapSettings: {
+            ...state.mapSettings,
+            groundSize: size
+        }
+    })),
     setMousePosition: (x, y, z) => set(state => ({
         ...state,
         mousePosition: {
@@ -46,19 +46,30 @@ export const build = create(set => ({
             groundSize: size
         }
     })),
-    setMapSettings: ({title, order, level, id, content}) => set(state => ({
+    setField: (title, order) => set(state => ({
         ...state,
-        isBuild: {
-            ...state.isBuild,
-            mapSettings: {
-                ...state.isBuild.mapSettings,
-                id: id,
-                level: level || build.isBuild.mapSettings.level,
-                title: title, 
-                order: order,
-                content: content,
-            }
+        mapSettings: {
+            ...state.mapSettings,
+            title: title,
+            order: order
         }
+    })),
+    setMapSettings: (
+        id,
+        title, 
+        order,
+        content,
+        groundSize,
+    ) => set(state => ({
+        ...state,
+        mapSettings: [{
+            ...state.isBuild.mapSettings,
+            id: id,
+            title: title, 
+            order: order,
+            content: content,
+            groundSize: groundSize
+        }]
     })),
     setLevel: (level) => set(state => ({
         ...state,

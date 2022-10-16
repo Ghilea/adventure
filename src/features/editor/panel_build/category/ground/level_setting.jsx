@@ -4,12 +4,11 @@ import { build } from "@store/editor";
 
 const LevelSetting = () => {
     
-    const storeBuild = build(state => state);
+    const store = build(state => state);
 
     const [selectList, setSelectList] = useState([]);
-    const [list, setList] = useState([]);
     const nameRef = useRef();
-    const levelRef = useRef();
+    const orderRef = useRef();
 
     useEffect(() => {
     
@@ -18,12 +17,11 @@ const LevelSetting = () => {
                 
                 response.data.map((item, index) => {
                     
-                    setSelectList((state) => ([
-                        ...state,
+                    setSelectList([
                         <option key={item.id}>
                             [{item.id}] {item.title} 
                         </option>
-                    ]))
+                    ])
                 });
 
             })
@@ -31,12 +29,10 @@ const LevelSetting = () => {
     }, [])
 
     const handleChange = (e) => {
-
-        console.log(e)
-
+        console.log(e.target)
         if(e.target.value === 'New level') {
 
-            setList([])
+            store.setMapSettings([])
 
         }else{
 
@@ -46,15 +42,12 @@ const LevelSetting = () => {
                 .then(response => {
                     console.log(response)
                     response.data.map((item, index) => {
-                        console.log(item)
-                        setList((state) => [
-                            ...state,
-                            {
-                                id: item.id,
-                                title: item.title,
-                                level: item.level,
-                                content: JSON.parse(item.content)
-                            }
+                        store.setMapSettings([
+                            item.id,
+                            item.title,
+                            item.level,
+                            JSON.parse(item.content),
+                            JSON.parse(item.content).ground
                         ])
                     });
 
@@ -66,19 +59,8 @@ const LevelSetting = () => {
     }
 
     const handleInputChange = () => {
-        storeBuild.setMapSettings({
-            order: levelRef.current.value, 
-            title: nameRef.current.value
-        })
+        store.setField(nameRef.current.value, orderRef.current.value)
     }
-
-    useEffect(() => {
-        if(list.length > 0){
-            storeBuild.setMapSettings({
-                id: list[0].id
-            })
-        }
-    }, [list])  
 
     return (
  
@@ -86,9 +68,7 @@ const LevelSetting = () => {
                 <div className="settingsName">
                 <label htmlFor='name'>Import level</label>
                     <select onChange={handleChange}>
-                        <option 
-                            defaultValue={true}>New level
-                        </option>
+                        <option>New level</option>
                         {selectList}
                     </select>
                 </div>
@@ -99,18 +79,18 @@ const LevelSetting = () => {
                         ref={nameRef}
                         id='name' 
                         type='text' 
-                        defaultValue={(list.length > 0) ? list[0].title : ''}
+                        value={store.mapSettings.title || ''}
                         onChange={handleInputChange} />
                 </div>
 
                 <div className="settingsName">
-                    <label htmlFor='level'>Level order</label>
+                    <label htmlFor='order'>Level order</label>
                     <input 
-                        ref={levelRef} 
-                        id='level' 
+                        ref={orderRef} 
+                        id='order' 
                         type='number' 
-                        min='1' 
-                        defaultValue={(list.length > 0) ? list[0].level : ''}
+                        min={0} 
+                        value={store.mapSettings.order || ''}
                         onChange={handleInputChange} />
                 </div>
             </div>

@@ -38,7 +38,7 @@ export const CreateTable = async (knex) => {
     await knex.schema.createTable('levels', (table) => {
       table.increments('id').primary();
       table.string('title',100).nullable();
-      table.integer('level').notNullable();
+      table.integer('order').notNullable();
       table.json('content').notNullable();
     }).then(async ()=>{ 
         await LevelsData(knex);
