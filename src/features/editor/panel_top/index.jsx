@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '@comp/button/buttons';
 import disable from '@hooks/disable-click';
 import { build } from '@store/editor'
-import { Create } from '@comp/crud';
+import { Create, Update } from '@comp/crud';
 import './index.scss';
 
 //images
@@ -28,18 +28,37 @@ const TopPanel = ({ map }) => {
     const handleSave = () => {
 
         console.log({
+            'id': map.id,
             'ground': map.groundSize,
-            'object': storeBuild.object
+            'content': map.content,
+            'level': map.level,
+            'title': map.title
         })
 
-        Create('createLevel', {
-            content: JSON.stringify({
-                'ground': map.groundSize,
-                'object': storeBuild.object
-            }),
-            level: map.level,
-            title: map.title
-        });
+        if(map.id === null) {
+            
+            Create('createLevel', {
+                level: map.level,
+                title: map.title,
+                content: JSON.stringify({
+                    'ground': map.groundSize,
+                    'content': map.content
+                })
+            });
+
+        }else{
+            
+            Update('updateLevel', {
+                id: map.id,
+                level: map.level,
+                title: map.title,
+                content: JSON.stringify({
+                    'ground': map.groundSize,
+                    'content': map.content
+                })
+            })
+        }
+        
     }
 
     const handleRemove = () => {
@@ -50,7 +69,7 @@ const TopPanel = ({ map }) => {
     }
 
     const handleRotate = () => {
-        console.log('selected: ', storeBuild.object)
+        console.log('selected: ', map.content)
         storeBuild.updateRotationObject(storeBuild.selected, -155)
     }
 

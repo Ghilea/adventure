@@ -18,8 +18,8 @@ const CategoryGround = ({ setMap }) => {
         <div className='buildPanel'>
             <div className='container'>
                 <h2>Level</h2>
-                <LevelSetting />
-                
+                <LevelSetting setMap={setMap}/>
+
                 <div className='ground'>
                     <label htmlFor='gSize'>Ground size [{size}]</label>
                     <input id='gSize' type='range' min={10} max={250} step={2} value={size} onChange={handleGroundSlider} />

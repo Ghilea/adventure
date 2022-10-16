@@ -16,9 +16,11 @@ const Index = () => {
     const [canAddObjects, setCanAddObjects] = useState(false);
     const [addedObjects, setAddedObjects] = useState();
     const [map, setMap] = useState({
+        id: null,
         groundSize: [10, 10],
         title: '',
-        level: 0
+        level: 0,
+        content: ''
     });
     const [index, setIndex] = useState(0);
 
