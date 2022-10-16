@@ -11,12 +11,12 @@ import { Player } from '@models/creatures/player/player';
 import { SwampMonster } from '@models/creatures/swamp_monster/SwampMonster';
 import Loader from '@comp/loading/Loader';
 import menuMusic from '@assets/music/menu.mp3';
-import useAudio from '@hooks/useAudio';
+import useSound from 'use-sound';
 import './index.scss';
 
 const Index = () => {
 
-    const [play, { stop }] = useAudio(menuMusic, {
+    const [play] = useSound(menuMusic, {
         volume: 0.3,
         loop: true
     });

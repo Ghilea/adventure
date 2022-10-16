@@ -20,7 +20,7 @@ export const Ground = () => {
     return (
         <>
         <mesh ref={ref} onPointerMove={pointerMove}>
-                <planeGeometry attach='geometry' args={[groundSize]} />
+                <planeGeometry attach='geometry' args={[groundSize, groundSize]} />
                 <meshStandardMaterial attach='material' opacity={0} transparent={true} />
         </mesh>
             <GroundCheck />

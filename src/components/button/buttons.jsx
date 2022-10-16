@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo} from 'react';
 import { useNavigate } from 'react-router-dom';
-import useAudio from '@hooks/useAudio';
+import useSound from 'use-sound';
 import buttonHover from '@assets/sounds/button.mp3';
 import { Create } from '@comp/crud';
 
@@ -14,7 +14,7 @@ const Button = ({
     onClick
 }) => {
 
-    const [play] = useAudio(buttonHover)
+    const [play] = useSound(buttonHover);
 
     return (
         <button 

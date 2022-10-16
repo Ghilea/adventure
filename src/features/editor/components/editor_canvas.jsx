@@ -13,6 +13,7 @@ import { SelectObject, AddObject } from '@editor/helperObject';
 
 const EditorCanvas = ({ onClick }) => {
 
+    const store = build(state => state);
     const level = build(state => state.level);
     const groundSize = build(state => state.mapSettings.groundSize);
     const isBuild = build(state => state.isBuild);
@@ -53,7 +54,7 @@ const EditorCanvas = ({ onClick }) => {
 
         if (event.type === 'click' && isBuild.active) {
 
-            storeBuild.addObject(
+            store.addObject(
                 <AddObject
                     onClick={<SelectObject />}
                     key={isBuild.type + index}
@@ -74,7 +75,7 @@ const EditorCanvas = ({ onClick }) => {
                     }
                 />, //canvasObject
                 [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5], //position
-                (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0], //rotation
+                (store.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0], //rotation
                 isBuild.type, //type
                 isBuild.category, //category
                 index //objectId
@@ -101,7 +102,7 @@ const EditorCanvas = ({ onClick }) => {
             <Physics gravity = {[0, -30, 0]} >
 
                 <gridHelper 
-                    args={[groundSize]}/>
+                    args={[groundSize, groundSize]}/>
 
                 <Ground />
 
