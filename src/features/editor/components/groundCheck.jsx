@@ -3,7 +3,7 @@ import { usePlane } from '@react-three/cannon';
 import { useFrame } from '@react-three/fiber';
 import { build } from '@store/editor';
 
-const GroundCheck = ({ setCanAddObjects }) => {
+const GroundCheck = () => {
     
     const storeBuild = build(state => state);
     const mousePosition = build(state => state.mousePosition);
@@ -28,10 +28,8 @@ const GroundCheck = ({ setCanAddObjects }) => {
             
             if (check.length > 0) {
                 setGroundColor('red');
-                setCanAddObjects(false)
             }else{
                 setGroundColor('green');
-                setCanAddObjects(true)
             }
             
         }

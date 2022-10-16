@@ -13,7 +13,7 @@ export const Ground = ({ args, setCanAddObjects }) => {
     }))
        
     const pointerMove = (e) => {
-        //store.setMousePosition(e.point.x, e.point.y, e.point.z)
+        store.setMousePosition(e.point.x, e.point.y, e.point.z)
     }
 
     return (

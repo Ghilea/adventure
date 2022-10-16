@@ -34,7 +34,6 @@ export const build = create(set => ({
     setMousePosition: (x, y, z) => set(state => ({
         ...state,
         mousePosition: {
-            ...state.mousePosition,
             x: x,
             y: y,
             z: z
