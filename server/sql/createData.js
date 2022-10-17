@@ -46,7 +46,7 @@ export const LevelsData = async (knex) => {
           {
               title:'test',
               order:1,
-              content: null
+              content: {"ground":[],"objects":[]}
           }
       ]).into('levels')
 }
