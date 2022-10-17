@@ -45,41 +45,59 @@ const LevelSetting = () => {
             Read(`getLevel?id=${targetId}`)
                 .then(response => {
                     console.log(response)
-                    response.data.map((item, index) => {
+                    response.data.map((item) => {
+                        
+                        const content = JSON.parse(item.content);
+                        console.log('cont', content.objects)
                         store.setMapSettings({
                             id: item.id,
                             title: item.title,
                             order: item.order,
-                            objects: JSON.parse(item.content).objects,
-                            groundSize: JSON.parse(item.content).ground
+                            objects: content.objects,
+                            groundSize: content.ground
                         })
 
-                        store.addObject(
-                            <AddObject
-                                onClick={<SelectObject />}
-                                key={isBuild.type + index}
-                                position={
-                                    [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5]
-                                }
-                                rotation={
-                                    (isBuild.objectSize.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
-                                }
-                                type={
-                                    isBuild.type
-                                }
-                                category={
-                                    isBuild.category
-                                }
-                                objectId={
-                                    index
-                                }
-                            />, //canvasObject
-                            [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5], //position
-                            (isBuild.objectSize.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0], //rotation
-                            isBuild.type, //type
-                            isBuild.category, //category
-                            index //objectId
-                        );
+                        if(content.objects.length > 0){
+                        
+                            store.setObjectIndex(item.objectIndex)
+
+                            content.objects.map((item) => {
+                                
+                                store.addObject(
+                                    <AddObject
+                                        onClick={<SelectObject />}
+                                        key={item.category + item.objectIndex}
+                                        position={[
+                                            item.position[0],
+                                            item.position[1],
+                                            item.position[2]
+                                        ]}
+                                        rotation={[
+                                            item.rotation[0],
+                                            item.rotation[1],
+                                            item.rotation[2]
+                                        ]}
+                                        type={item.type}
+                                        category={item.category}
+                                        objectId={item.objectId}
+                                    />, //canvasObject
+                                    [
+                                        item.position[0],
+                                        item.position[1],
+                                        item.position[2]
+                                    ], //position
+                                    [
+                                        item.rotation[0],
+                                        item.rotation[1],
+                                        item.rotation[2]
+                                    ], //rotation
+                                    item.type, //type
+                                    item.category, //category
+                                    item.objectId //objectId
+                                );
+                            })
+                            
+                        }
 
                     });
 

@@ -22,7 +22,7 @@ const CategoryGround = () => {
 
                 <div className='ground'>
                     <label htmlFor='gSize'>Ground size [{groundSize || 10}]</label>
-                    <input ref={groundSizeRef} id='gSize' type='range' min={10} max={100} step={5} value={groundSize || 10} onChange={handleGroundSlider} />
+                    <input ref={groundSizeRef} id='gSize' type='range' min={10} max={100} step={2} value={groundSize || 10} onChange={handleGroundSlider} />
                 </div>
             </div>
             

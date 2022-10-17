@@ -12,6 +12,7 @@ export const build = create(set => ({
             rotate: 0
         }
     },
+    objectIndex: 0,
     mousePosition: {
         x: 0,
         y: 0,
@@ -27,6 +28,10 @@ export const build = create(set => ({
     solid: [],
     selected: null,
     remove: null,
+    setObjectIndex: (index) => set(state => ({
+        ...state,
+        objectIndex: index
+    })),
     setGroundSize: (size) => set(state => ({
         ...state,
         mapSettings: {
@@ -157,6 +162,12 @@ export const build = create(set => ({
             objects: state.objects.filter((item) => {
                 return item.objectId !== data
             }),
+            mapSettings: {
+                ...state.mapSettings,
+                objects: state.objects.filter((item) => {
+                    return item.objectId !== data
+                })
+            },
             solid: state.solid.filter((item) => {
                 return item.objectId !== data
             }),

@@ -14,8 +14,6 @@ export const AddObject = ({position, rotation, type, category, objectId}) => {
 
     useEffect(() => {  
         
-        console.log(type, category)
-
         switch (type) {
             case 'wall_1':
                 setObject(<Wall_1 position = {position} rotation = {rotation}/>)

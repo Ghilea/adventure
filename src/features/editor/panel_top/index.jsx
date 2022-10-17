@@ -39,7 +39,7 @@ const TopPanel = () => {
         if (mapSettings.id === undefined) {
 
             if(mapSettings.title === undefined) return console.log('error title')
-            if(mapSettings.objects.length >= 0) return console.log('error objects')
+            if(mapSettings.objects === undefined) return console.log('error objects')
             
             console.log('create')
             /* Create('createLevel', {
@@ -64,15 +64,16 @@ const TopPanel = () => {
 
         }else{
             console.log('update')
-           /*  Update('updateLevel', {
+            Update('updateLevel', {
                 id: mapSettings.id,
                 level: mapSettings.order || 0,
                 title: mapSettings.title,
                 content: JSON.stringify({
+                    'objectIndex': storeBuild.objectIndex,
                     'ground': mapSettings.groundSize,
                     'objects': mapSettings.objects
                 })
-            })  */
+            })
         }
         
     }
@@ -83,6 +84,11 @@ const TopPanel = () => {
         storeBuild.removeObject(storeBuild.selected)
         storeBuild.selectedObject(null)
     }
+
+    useEffect(() => {
+        console.log('objects', storeBuild.objects)
+        console.log('mapObjects', storeBuild.mapSettings.objects)
+    }, [storeBuild.objects])
 
     const handleRotate = () => {
         console.log('selected: ', mapSettings.content)
