@@ -77,7 +77,7 @@ export const AddObject = ({position, rotation, type, category, objectId}) => {
 //select added object
 export const SelectObject = (eventObject, type, store) => {
 
-    const check = store.object.filter((item) => {
+    const check = store.objects.filter((item) => {
         return item.position[0] === eventObject.x && item.position[1] === eventObject.y && item.position[2] === eventObject.z && item.category === type
     })
 

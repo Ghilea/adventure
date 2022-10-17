@@ -18,12 +18,12 @@ export const build = create(set => ({
         z: 0
     },
     mapSettings: {
-        content: [],
+        objects: [],
         groundSize: 10
     },
     level: null,
     active: [],
-    object: [],
+    objects: [],
     solid: [],
     selected: null,
     remove: null,
@@ -57,20 +57,35 @@ export const build = create(set => ({
             order: order
         }
     })),
+    setMapObject: ({type, category, position, rotation}) => set(state => ({
+        ...state,
+        mapSettings: {
+            ...state.mapSettings,
+            objects:[
+                ...state.mapSettings.objects,
+                {
+                    type: type, 
+                    category: category, 
+                    position: position, 
+                    rotation: rotation
+                }
+            ]
+        }
+    })),
     setMapSettings: ({
         id,
         title, 
         order,
-        content,
+        objects,
         groundSize,
     }) => set(state => ({
         ...state,
         mapSettings: {
-            ...state.isBuild.mapSettings,
+            ...state.mapSettings,
             id: id,
             title: title, 
             order: order,
-            content: content,
+            objects: objects,
             groundSize: groundSize
         }
     })),
@@ -116,8 +131,8 @@ export const build = create(set => ({
         ]
     })),
     addObject: (canvasObject, position, rotation, type, category, objectId) => set(state => ({
-        object: [
-            ...state.object,
+        objects: [
+            ...state.objects,
             {
                 canvasObject: canvasObject,
                 position: position, 
@@ -131,7 +146,7 @@ export const build = create(set => ({
     updateRotationObject: (objectId, newData) => 
         set(state => ({
             ...state,
-            object: [{
+            objects: [{
                 ...state.object,
                 rotation: [0, newData, 0]
             }]
@@ -139,7 +154,7 @@ export const build = create(set => ({
     ),
     removeObject: (data) => 
         set((state) => ({
-            object: state.object.filter((item) => {
+            objects: state.objects.filter((item) => {
                 return item.objectId !== data
             }),
             solid: state.solid.filter((item) => {

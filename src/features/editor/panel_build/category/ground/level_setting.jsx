@@ -33,7 +33,7 @@ const LevelSetting = () => {
         if(e.target.value === 'New level') {
 
             store.setMapSettings({
-                content: [],
+                objects: [],
                 groundSize: 10
             })
 
@@ -49,7 +49,7 @@ const LevelSetting = () => {
                             id: item.id,
                             title: item.title,
                             order: item.order,
-                            content: JSON.parse(item.content),
+                            objects: JSON.parse(item.content).objects,
                             groundSize: JSON.parse(item.content).ground
                         })
                     });

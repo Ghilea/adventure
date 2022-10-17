@@ -31,7 +31,7 @@ const TopPanel = () => {
         console.log({
             'id': mapSettings.id,
             'ground': mapSettings.groundSize,
-            'content': mapSettings.content,
+            'objects': mapSettings.objects,
             'order': mapSettings.order,
             'title': mapSettings.title
         })
@@ -39,7 +39,7 @@ const TopPanel = () => {
         if (mapSettings.id === undefined) {
 
             if(mapSettings.title === undefined) return console.log('error title')
-            if(mapSettings.content.length >= 0) return console.log('error content')
+            if(mapSettings.objects.length >= 0) return console.log('error objects')
             
             console.log('create')
             /* Create('createLevel', {
@@ -47,27 +47,38 @@ const TopPanel = () => {
                 title: mapSettings.title,
                 content: JSON.stringify({
                     'ground': mapSettings.groundSize,
-                    'content': mapSettings.content
+                    'objects': mapSettings.objects
                 })
             }); */
 
+            /*
+            
+            key: {
+                isBuild.type
+            }
+            position: {
+
+            }
+            
+            */
+
         }else{
             console.log('update')
-             Update('updateLevel', {
+           /*  Update('updateLevel', {
                 id: mapSettings.id,
                 level: mapSettings.order || 0,
                 title: mapSettings.title,
                 content: JSON.stringify({
                     'ground': mapSettings.groundSize,
-                    'objects': mapSettings.content
+                    'objects': mapSettings.objects
                 })
-            }) 
+            })  */
         }
         
     }
 
     const handleRemove = () => {
-        storeBuild.isRemove(true);
+        //storeBuild.isRemove(true);
         console.log('selected: ', storeBuild.selected)
         storeBuild.removeObject(storeBuild.selected)
         storeBuild.selectedObject(null)

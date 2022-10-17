@@ -18,8 +18,8 @@ const Index = () => {
 
     
     useEffect(() => {
-        console.log('object', storeBuild.object)
-    }, [storeBuild.object])
+        console.log('object', storeBuild.objects)
+    }, [storeBuild.mapSettings.objects])
 
     /*useEffect(()=> {
 
