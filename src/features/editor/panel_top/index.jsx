@@ -33,7 +33,8 @@ const TopPanel = () => {
             'ground': mapSettings.groundSize,
             'objects': mapSettings.objects,
             'order': mapSettings.order,
-            'title': mapSettings.title
+            'title': mapSettings.title,
+            'objectIndex': mapSettings.objectIndex
         })
 
         if (mapSettings.id === undefined) {
@@ -69,11 +70,11 @@ const TopPanel = () => {
                 level: mapSettings.order || 0,
                 title: mapSettings.title,
                 content: JSON.stringify({
-                    'objectIndex': storeBuild.objectIndex,
+                    'objectIndex': mapSettings.objectIndex,
                     'ground': mapSettings.groundSize,
                     'objects': mapSettings.objects
                 })
-            })
+            }) 
         }
         
     }
@@ -96,7 +97,6 @@ const TopPanel = () => {
     }
 
     useEffect(() => {
-        console.log(storeBuild.selected)
         if (storeBuild.selected !== null) {
             setShowButtons(
                 <>

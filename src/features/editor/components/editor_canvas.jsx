@@ -8,7 +8,7 @@ import disable from '@hooks/disable-click';
 import { build } from '@store/editor';
 import { Wall_1 } from '@models/objects/walls/walls';
 import Player from '@comp/player/player';
-import Hotkeys from '@editor/hotkeys';
+import { useKey } from 'rooks';
 import { SelectObject, AddObject } from '@editor/helperObject';
 
 const EditorCanvas = () => {
@@ -18,40 +18,31 @@ const EditorCanvas = () => {
     const groundSize = build(state => state.mapSettings.groundSize);
     const isBuild = build(state => state.isBuild);
     const mousePosition = build(state => state.mousePosition);
-
+    const [rotate, setRotate] = useState(0);
     const [mouseRight] = disable();
-    
-    const [content, setContent] = useState([]);
 
-    <Hotkeys />
+    const [objectIndex, setObjectIndex] = useState(0);
 
-    useEffect(() => {
-        console.log('store', store.objectIndex)
-    }, [store.objectIndex])
-
-    /* useEffect(() => {
-
-        if (level !== null) {
-
-            level.walls.map((use, index) => {
-
-                setContent((state) => ([
-                    ...state,
-                    <Wall_1 key={'wall' + index}
-                        position={use.pos}
-                        rotation={use.rotate}
-                        type={use.type}
-                    />
-                ]))
-            })  
-
-            setCreateplayer(() => (
-                <Player position={level.player} />
-            )) 
-        }
+    const keyHandler = () => {
         
 
-    }, [level]) */
+        if(rotate >= 360){
+            setRotate(0)
+        }else{
+            setRotate(rotate + 90)
+        }   
+    
+        console.log(rotate, store.isBuild.objectSize.rotate)
+        store.setRotate((Math.PI * (rotate/360)))
+    }
+
+    useKey(['Control'], keyHandler);
+
+    useEffect(() => {
+        console.log(store.mapSettings.objectIndex)
+        console.log(objectIndex)
+        setObjectIndex(store.mapSettings.objectIndex)
+    }, [store.mapSettings.objectIndex])
 
     const handleClick = (event) => {
 
@@ -61,15 +52,14 @@ const EditorCanvas = () => {
                 type: isBuild.type,
                 category: isBuild.category,
                 position: [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5],
-                rotation: (isBuild.objectSize.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
-                
-
+                rotation: (isBuild.objectSize.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0],
+                objectId: objectIndex
             })
 
             store.addObject(
                 <AddObject
                     onClick={<SelectObject />}
-                    key={isBuild.category + store.objectIndex}
+                    key={isBuild.category + objectIndex}
                     position={
                         [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5]
                     }
@@ -83,17 +73,18 @@ const EditorCanvas = () => {
                         isBuild.category
                     }
                     objectId={
-                        store.objectIndex
+                        objectIndex
                     }
                 />, //canvasObject
                 [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5], //position
                 (isBuild.objectSize.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0], //rotation
                 isBuild.type, //type
                 isBuild.category, //category
-                store.objectIndex //objectId
+                objectIndex //objectId
             );
 
-            store.setObjectIndex(store.objectIndex + 1)
+            setObjectIndex(objectIndex + 1)
+            store.setObjectIndex(objectIndex + 1)
 
         }
     }
@@ -113,8 +104,7 @@ const EditorCanvas = () => {
             
             <Physics gravity = {[0, -30, 0]} >
 
-                <gridHelper 
-                    args={[groundSize, groundSize]}/>
+                <gridHelper args={[groundSize, groundSize]}/>
 
                 <Ground />
 

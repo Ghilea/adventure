@@ -30,7 +30,7 @@ const LevelSetting = () => {
     }, [])
 
     const handleChange = (e) => {
-        console.log(e.target)
+        console.log(e.target.value)
         if(e.target.value === 'New level') {
 
             store.setMapSettings({
@@ -44,29 +44,30 @@ const LevelSetting = () => {
 
             Read(`getLevel?id=${targetId}`)
                 .then(response => {
-                    console.log(response)
+
                     response.data.map((item) => {
                         
                         const content = JSON.parse(item.content);
-                        console.log('cont', content.objects)
+    
                         store.setMapSettings({
                             id: item.id,
                             title: item.title,
                             order: item.order,
                             objects: content.objects,
-                            groundSize: content.ground
+                            groundSize: content.ground,
+                            objectIndex: content.objectIndex
                         })
+                        
+                        store.setObjectIndex(content.objectIndex)
 
                         if(content.objects.length > 0){
                         
-                            store.setObjectIndex(item.objectIndex)
-
                             content.objects.map((item) => {
                                 
                                 store.addObject(
                                     <AddObject
                                         onClick={<SelectObject />}
-                                        key={item.category + item.objectIndex}
+                                        key={item.category + item.objectId}
                                         position={[
                                             item.position[0],
                                             item.position[1],

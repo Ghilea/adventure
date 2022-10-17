@@ -12,13 +12,14 @@ export const build = create(set => ({
             rotate: 0
         }
     },
-    objectIndex: 0,
+    
     mousePosition: {
         x: 0,
         y: 0,
         z: 0
     },
     mapSettings: {
+        objectIndex: 0,
         objects: [],
         groundSize: 10
     },
@@ -28,9 +29,22 @@ export const build = create(set => ({
     solid: [],
     selected: null,
     remove: null,
+    setRotate: (deg) => set(state => ({
+        ...state,
+        isBuild: {
+            ...state.isBuild,
+            objectSize: {
+                ...state.isBuild.objectSize,
+                rotate: deg
+            } 
+        }
+    })),
     setObjectIndex: (index) => set(state => ({
         ...state,
-        objectIndex: index
+        mapSettings: {
+            ...state.mapSettings,
+            objectIndex: index
+        }
     })),
     setGroundSize: (size) => set(state => ({
         ...state,
@@ -62,7 +76,7 @@ export const build = create(set => ({
             order: order
         }
     })),
-    setMapObject: ({type, category, position, rotation}) => set(state => ({
+    setMapObject: ({type, category, position, rotation, objectId}) => set(state => ({
         ...state,
         mapSettings: {
             ...state.mapSettings,
@@ -72,7 +86,8 @@ export const build = create(set => ({
                     type: type, 
                     category: category, 
                     position: position, 
-                    rotation: rotation
+                    rotation: rotation,
+                    objectId: objectId
                 }
             ]
         }
