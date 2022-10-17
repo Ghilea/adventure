@@ -26,14 +26,18 @@ const EditorCanvas = () => {
     const keyHandler = () => {
         
 
-        if(rotate >= 360){
-            setRotate(0)
+        if (store.isBuild.objectSize.rotate === 360){
+            store.setRotate(0)
         }else{
-            setRotate(rotate + 90)
+            if (store.isBuild.objectSize.rotate + 90 === 360) {
+                return store.setRotate(0)
+            }
+            
+            store.setRotate(store.isBuild.objectSize.rotate + 90)
         }   
     
         console.log(rotate, store.isBuild.objectSize.rotate)
-        store.setRotate((Math.PI * (rotate/360)))
+        setRotate((Math.PI * (store.isBuild.objectSize.rotate/360)))
     }
 
     useKey(['Control'], keyHandler);
@@ -64,7 +68,7 @@ const EditorCanvas = () => {
                         [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5]
                     }
                     rotation={
-                        (isBuild.objectSize.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
+                        (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? [0, Math.PI * (180 / 360), 0] : [0, Math.PI * (360 / 360), 0]
                     }
                     type={
                         isBuild.type
@@ -77,7 +81,7 @@ const EditorCanvas = () => {
                     }
                 />, //canvasObject
                 [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5], //position
-                (isBuild.objectSize.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0], //rotation
+                (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? [0, Math.PI * (180 / 360), 0] : [0, Math.PI * (360 / 360), 0], //rotation
                 isBuild.type, //type
                 isBuild.category, //category
                 objectIndex //objectId

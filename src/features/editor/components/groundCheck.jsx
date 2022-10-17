@@ -50,15 +50,18 @@ const GroundCheck = () => {
     useFrame(() => {
         setHighLight.position.set(Math.floor(mousePosition.x) + 0.5, mousePosition.y + 0.01, Math.floor(mousePosition.z) + 0.5);
     })
+
+    useEffect(() => {
+        console.log(isBuild.objectSize.rotate)
+    })
  
     return (
         <mesh ref = {highLight}>
             <planeGeometry 
                 attach='geometry' 
-                args={[
-                    isBuild.objectSize.x, 
-                    isBuild.objectSize.z
-                ]}/>
+                args={
+                    (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? [isBuild.objectSize.x, isBuild.objectSize.z] : [isBuild.objectSize.z, isBuild.objectSize.x]
+                }/>
 
             <meshStandardMaterial 
                 attach='material' 
