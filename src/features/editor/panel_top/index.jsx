@@ -32,14 +32,18 @@ const TopPanel = () => {
             'id': mapSettings.id,
             'ground': mapSettings.groundSize,
             'content': mapSettings.content,
-            'level': mapSettings.order,
+            'order': mapSettings.order,
             'title': mapSettings.title
         })
 
-        if (mapSettings.id === null || mapSettings.id === undefined) {
+        if (mapSettings.id === undefined) {
+
+            if(mapSettings.title === undefined) return console.log('error title')
+            if(mapSettings.content.length >= 0) return console.log('error content')
+            
             console.log('create')
             /* Create('createLevel', {
-                level: mapSettings.order,
+                level: mapSettings.order || 0,
                 title: mapSettings.title,
                 content: JSON.stringify({
                     'ground': mapSettings.groundSize,
@@ -49,21 +53,21 @@ const TopPanel = () => {
 
         }else{
             console.log('update')
-           /*  Update('updateLevel', {
+             Update('updateLevel', {
                 id: mapSettings.id,
-                level: mapSettings.order,
+                level: mapSettings.order || 0,
                 title: mapSettings.title,
                 content: JSON.stringify({
                     'ground': mapSettings.groundSize,
-                    'content': mapSettings.content
+                    'objects': mapSettings.content
                 })
-            }) */
+            }) 
         }
         
     }
 
     const handleRemove = () => {
-        //store.isRemove(true);
+        storeBuild.isRemove(true);
         console.log('selected: ', storeBuild.selected)
         storeBuild.removeObject(storeBuild.selected)
         storeBuild.selectedObject(null)

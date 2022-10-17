@@ -17,7 +17,10 @@ export const build = create(set => ({
         y: 0,
         z: 0
     },
-    mapSettings: [],
+    mapSettings: {
+        content: [],
+        groundSize: 10
+    },
     level: null,
     active: [],
     object: [],
@@ -54,22 +57,22 @@ export const build = create(set => ({
             order: order
         }
     })),
-    setMapSettings: (
+    setMapSettings: ({
         id,
         title, 
         order,
         content,
         groundSize,
-    ) => set(state => ({
+    }) => set(state => ({
         ...state,
-        mapSettings: [{
+        mapSettings: {
             ...state.isBuild.mapSettings,
             id: id,
             title: title, 
             order: order,
             content: content,
             groundSize: groundSize
-        }]
+        }
     })),
     setLevel: (level) => set(state => ({
         ...state,

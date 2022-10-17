@@ -32,7 +32,10 @@ const LevelSetting = () => {
         console.log(e.target)
         if(e.target.value === 'New level') {
 
-            store.setMapSettings([])
+            store.setMapSettings({
+                content: [],
+                groundSize: 10
+            })
 
         }else{
 
@@ -42,13 +45,13 @@ const LevelSetting = () => {
                 .then(response => {
                     console.log(response)
                     response.data.map((item, index) => {
-                        store.setMapSettings([
-                            item.id,
-                            item.title,
-                            item.level,
-                            JSON.parse(item.content),
-                            JSON.parse(item.content).ground
-                        ])
+                        store.setMapSettings({
+                            id: item.id,
+                            title: item.title,
+                            order: item.order,
+                            content: JSON.parse(item.content),
+                            groundSize: JSON.parse(item.content).ground
+                        })
                     });
 
                 })

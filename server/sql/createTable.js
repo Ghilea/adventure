@@ -39,7 +39,7 @@ export const CreateTable = async (knex) => {
       table.increments('id').primary();
       table.string('title',100).nullable();
       table.integer('order').notNullable();
-      table.json('content').notNullable();
+      table.json('content').nullable();
     }).then(async ()=>{ 
         await LevelsData(knex);
         console.log('Levels added')
