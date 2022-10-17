@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Read, Update } from '@comp/crud';
 import { build } from "@store/editor";
+import { SelectObject, AddObject } from '@editor/helperObject';
 
 const LevelSetting = () => {
     
     const store = build(state => state);
-
+    const isBuild = build(state => state.isBuild);
     const [selectList, setSelectList] = useState([]);
     const nameRef = useRef();
     const orderRef = useRef();
@@ -52,6 +53,34 @@ const LevelSetting = () => {
                             objects: JSON.parse(item.content).objects,
                             groundSize: JSON.parse(item.content).ground
                         })
+
+                        store.addObject(
+                            <AddObject
+                                onClick={<SelectObject />}
+                                key={isBuild.type + index}
+                                position={
+                                    [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5]
+                                }
+                                rotation={
+                                    (isBuild.objectSize.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
+                                }
+                                type={
+                                    isBuild.type
+                                }
+                                category={
+                                    isBuild.category
+                                }
+                                objectId={
+                                    index
+                                }
+                            />, //canvasObject
+                            [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5], //position
+                            (isBuild.objectSize.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0], //rotation
+                            isBuild.type, //type
+                            isBuild.category, //category
+                            index //objectId
+                        );
+
                     });
 
                 })

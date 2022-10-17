@@ -23,7 +23,7 @@ const EditorCanvas = ({ onClick }) => {
     
     const [content, setContent] = useState([]);
 
-    const [index, setIndex] = useState(0);
+    const [objectIndex, setObjectIndex] = useState(0);
 
     <Hotkeys />
     /* useEffect(() => {
@@ -66,7 +66,7 @@ const EditorCanvas = ({ onClick }) => {
             store.addObject(
                 <AddObject
                     onClick={<SelectObject />}
-                    key={isBuild.type + index}
+                    key={isBuild.type + objectIndex}
                     position={
                         [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5]
                     }
@@ -80,17 +80,17 @@ const EditorCanvas = ({ onClick }) => {
                         isBuild.category
                     }
                     objectId={
-                        index
+                        objectIndex
                     }
                 />, //canvasObject
                 [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5], //position
                 (isBuild.objectSize.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0], //rotation
                 isBuild.type, //type
                 isBuild.category, //category
-                index //objectId
+                objectIndex //objectId
             );
 
-            setIndex(index + 1)
+            setObjectIndex(objectIndex + 1)
 
         }
     }
