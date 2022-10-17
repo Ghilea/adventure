@@ -9,13 +9,13 @@ const CategoryCreatures = () => {
             <div className='container'>
                 <h2>Player</h2>
                 <div className='buildPanelButton'>
-                    <BuildButton type='player' />
+                    <BuildButton type='player' size={[1, 1, 0]} rotate={0} />
                 </div>
             </div>
             <div className='container'>
                 <h2>Monster</h2>
                 <div className='buildPanelButton'>
-                    <BuildButton type='swamp_monster' />
+                    <BuildButton type='swamp_monster' size={[1, 1, 0]} rotate={0} />
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import { useBox } from '@react-three/cannon';
 import { build } from '@store/editor';
 import { Select } from '@react-three/postprocessing';
-import { SelectObject } from '@editor/helperObject'
+import { SelectObject } from '@editor/helperObject';
 import RockAsset from './rock.gltf';
 
 export const Rock_1 = (props) => {
@@ -20,7 +20,7 @@ export const Rock_1 = (props) => {
     }
 
     return (
-        <group {...props} dispose={null} rotation={[-Math.PI / 0.75, -Math.PI / 1, -Math.PI / 1]}
+        <group {...props} dispose={null}
         onClick = { handleClick } >
 
             <Select enabled={(select === store.selected && store.selected !== null && select !== null) ? true : false}>

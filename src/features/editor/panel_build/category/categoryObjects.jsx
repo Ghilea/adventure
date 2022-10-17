@@ -8,14 +8,14 @@ const CategoryObjects = () => {
             <div className='container'>
                 <h2>Boulders</h2>
                 <div className= 'buildPanelButton' >
-                    <BuildButton type='rock_1' />
+                    <BuildButton type='rock_1' size={[1, 1, 0]} rotate={0} />
                 </div>
             </div>
 
             <div className='container'>
                 <h2>Misc</h2>
                 <div className= 'buildPanelButton' >
-                    <BuildButton type='torch' />
+                    <BuildButton type='torch' size={[1, 1, 0]} rotate={0} />
                 </div>
             </div>
         </div>
