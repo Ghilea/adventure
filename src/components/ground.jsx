@@ -10,11 +10,12 @@ const Ground = ({position, size, ...props}) => {
         ...props
     }))
 
+    console.log(size)
     return (
         <>
         <mesh ref={ref} receiveShadow>
-            <planeGeometry args = {size} />
-            <meshStandardMaterial />
+            <planeGeometry attach='geometry' args = {size} />
+            <meshStandardMaterial attach='material' opacity={0} transparent={true} />
         </mesh>
         </>
     )

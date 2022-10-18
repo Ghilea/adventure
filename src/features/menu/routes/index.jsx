@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState, useRef } from 'react';
+import { Suspense, useEffect, useState, useRef, useMemo } from 'react';
 import { useProgress } from "@react-three/drei";
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
@@ -9,10 +9,13 @@ import { Rock_1 } from '@models/objects/rocks/rocks';
 import { Wall_1 } from '@models/objects/walls/walls';
 import { Player } from '@models/creatures/player/player';
 import SwampMonster from '@models/creatures/swamp_monster/swamp_monster';
+import Floor_1 from '@models/grounds/floor_1/floor_1';
 import Loader from '@comp/loading/Loader';
 import menuMusic from '@assets/music/menu.mp3'; 
 import useSound from 'use-sound';
 import { Howl, Howler } from 'howler';
+import { Read } from '@comp/crud';
+import { map } from '@store/store';
 import './index.scss';
 
 const Index = () => {
@@ -24,11 +27,72 @@ const Index = () => {
         volume: 0.4,
         loop: true
     })); 
-     
+    const storeMap = map(state => state);
+
     const { progress } = useProgress();
     const [menu, setMenu] = useState();
-    const [groundSize] = useState([10, 10]);
+    const [groundSize, setGroundSize] = useState([10, 10]);
+
+    const [build, setBuild] = useState([]);
     
+    useMemo(() => {
+
+        Read(`getLevel?id=${1}`)
+            .then(response => {
+
+                console.log(JSON.parse(response.data[0].content))
+                const parsed = JSON.parse(response.data[0].content)
+               
+                parsed.objects.map((use, index) => {
+
+                    switch (use.type) {
+                        case 'wall_1':
+                            setBuild((state) => ([
+                            ...state,
+                                <Wall_1 key={use.type+index} position={use.position} rotation={use.rotation} type={use.type} />
+                            ]))
+                            break;
+                        case 'player':
+                            setBuild((state) => ([
+                                ...state,
+                                <Player key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
+                            ]))
+                            break;
+                        case 'rock_1':
+                            setBuild((state) => ([
+                                ...state,
+                                <Rock_1 key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
+                            ]))
+                            break;
+                        case 'torch':
+                            setBuild((state) => ([
+                                ...state,
+                                <Torch key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
+                            ]))
+                            break;
+                        case 'floor_1':
+                            setBuild((state) => ([
+                                ...state,
+                                <Floor_1 
+                                    key={use.type + index} 
+                                    position={use.position} 
+                                    rotation={use.rotation} 
+                                    type={use.type} />
+                            ]))
+                            break;
+                        case 'swamp_monster':
+                            setBuild((state) => ([
+                                ...state,
+                                <SwampMonster key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
+                            ]))
+                            break;
+                    }
+                })
+
+                setGroundSize(parsed.ground)
+            })
+    }, [])
+
     const wall = 2.4
 
     useEffect(() => {
@@ -49,31 +113,12 @@ const Index = () => {
                 fov: 60,
                 position: [-3.5, 1, -5.8]
             }}>
-
+                
                 <Physics gravity={[0, -30, 0]}>
                    
                     <Suspense fallback={<Loader />}>
-                        <Ground position = {[0, 0, 0]} size={groundSize}/>
-                        <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[3.2, wall, 1]}/>
-                        <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[1.2, wall, 1]}/>
-                        <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[-1.8, wall, 1]}/>
-                        <Wall_1 rotation={[0, Math.PI * (180/360), 0]}  position={[-3.8, wall, 1]}/>
-
-                        <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[-4.2, wall, -0.2]}/>
-                        <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[-4.2, wall, -2.2]}/>
-
-                        <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[2.2, wall, -1.2]}/>
-                        <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[2.2, wall, -3.2]}/>
-
-                        <Wall_1 rotation={[0, Math.PI * (360/360), 0]}  position={[-1.2, wall, 0.2]}/>
-
-                        <SwampMonster rotation={[0, Math.PI * (360/360), 0]}  position={[-2.2, 0.1, -0.2]}/>
-
-                        <Torch position={[-3.35, 2, -2]} scale={[1.03, 1.03, 1.03]} rotation={[0, Math.PI * (180/360), 0]}/>
-
-                        <Rock_1 position={[-4.5, -0.3, 0.5]} scale={[0.3, 0.3, 1]} />
-                
-                        <Player position={[-2.7, 0.5, -3.5]} />
+                        <Ground position={[0, 0, 0]} size={[groundSize, groundSize]}/>
+                        {build}
                     </Suspense>
 
                 </Physics>
