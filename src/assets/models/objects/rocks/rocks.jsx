@@ -14,7 +14,7 @@ export const Rock_1 = (props) => {
 
     const handleClick = (e) => {
         e.stopPropagation();
-        const val = SelectObject(e.eventObject.position, 'object', store);
+        const val = SelectObject(e.eventObject.position, 'rock', store);
 
         setSelect(val)
     }

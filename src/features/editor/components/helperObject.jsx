@@ -5,6 +5,7 @@ import { Player } from '@models/creatures/player/player';
 import { Rock_1 } from '@models/objects/rocks/rocks';
 import { Torch } from '@models/objects/torch/torch';
 import Floor_1 from '@models/grounds/floor_1/floor_1';
+import SwampMonster from '@models/creatures/swamp_monster/swamp_monster';
 
 //add object
 export const AddObject = ({position, rotation, type, category, objectId}) => {
@@ -29,6 +30,9 @@ export const AddObject = ({position, rotation, type, category, objectId}) => {
                 break;
             case 'floor_1':
                 setObject(<Floor_1 position={position} rotation={rotation} />)
+                break;
+            case 'swamp_monster':
+                setObject(<SwampMonster position={position} rotation={rotation} />)
                 break;
         }
     }, [])
@@ -76,9 +80,11 @@ export const AddObject = ({position, rotation, type, category, objectId}) => {
 export const SelectObject = (eventObject, type, store) => {
 
     const check = store.objects.filter((item) => {
+        console.log(item)
         return item.position[0] === eventObject.x && item.position[1] === eventObject.y && item.position[2] === eventObject.z && item.category === type
     })
 
+    console.log(check)
 
     if (check.length > 0) {
 

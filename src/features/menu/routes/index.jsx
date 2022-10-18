@@ -8,7 +8,7 @@ import { Torch } from '@models/objects/torch/torch';
 import { Rock_1 } from '@models/objects/rocks/rocks';
 import { Wall_1 } from '@models/objects/walls/walls';
 import { Player } from '@models/creatures/player/player';
-import { SwampMonster } from '@models/creatures/swamp_monster/SwampMonster';
+import SwampMonster from '@models/creatures/swamp_monster/swamp_monster';
 import Loader from '@comp/loading/Loader';
 import menuMusic from '@assets/music/menu.mp3'; 
 import useSound from 'use-sound';
@@ -17,7 +17,7 @@ import './index.scss';
 
 const Index = () => {
 
-    const [play] = useSound(menuMusic); 
+    //const [play] = useSound(menuMusic); 
 
     const musicRef = useRef(new Howl({
         src: [menuMusic],

@@ -50,10 +50,6 @@ const GroundCheck = () => {
     useFrame(() => {
         setHighLight.position.set(Math.floor(mousePosition.x) + 0.5, mousePosition.y + 0.01, Math.floor(mousePosition.z) + 0.5);
     })
-
-    useEffect(() => {
-        console.log(isBuild.objectSize.rotate)
-    })
  
     return (
         <mesh ref = {highLight}>

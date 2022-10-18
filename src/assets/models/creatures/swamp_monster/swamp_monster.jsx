@@ -6,7 +6,7 @@ import { Select } from '@react-three/postprocessing';
 import { SelectObject } from '@editor/helperObject'
 import asset from './swamp_monster.glb';
 
-export const SwampMonster = (props) => {
+const SwampMonster = (props) => {
   const { nodes, materials  } = useGLTF(asset);
 
   const [solid] = useBox(() => ({
@@ -20,7 +20,7 @@ export const SwampMonster = (props) => {
 
   const handleClick = (e) => {
     e.stopPropagation();
-    const val = SelectObject(e.eventObject.position, 'wall', store);
+    const val = SelectObject(e.eventObject.position, 'swamp_monster', store);
     
     setSelect(val)
   }
@@ -33,7 +33,7 @@ export const SwampMonster = (props) => {
     >
       <Select enabled={(select === store.selected && store.selected !== null && select !== null) ? true : false}>
       <mesh 
-        position = {[0.5, 1, 1]}
+        position={[0.1, -0.9, 0.2]}
         castShadow
         receiveShadow
         geometry={nodes.Group32385_FOREST_MONSTER_V1_mat_0.geometry}
@@ -46,3 +46,5 @@ export const SwampMonster = (props) => {
     </group>
   );
 }
+
+export default SwampMonster

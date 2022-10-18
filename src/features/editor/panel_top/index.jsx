@@ -18,6 +18,7 @@ const TopPanel = () => {
 
     const [showButtons, setShowButtons] = useState();
     const [mouseRight] = disable();
+    const [rotate, setRotate] = useState(0);
     
     const storeBuild = build(state => state);
     const mapSettings = build(state => state.mapSettings);
@@ -80,8 +81,6 @@ const TopPanel = () => {
     }
 
     const handleRemove = () => {
-        //storeBuild.isRemove(true);
-        console.log('selected: ', storeBuild.selected)
         storeBuild.removeObject(storeBuild.selected)
         storeBuild.selectedObject(null)
     }
@@ -91,9 +90,34 @@ const TopPanel = () => {
         console.log('mapObjects', storeBuild.mapSettings.objects)
     }, [storeBuild.objects])
 
-    const handleRotate = () => {
-        console.log('selected: ', mapSettings.content)
-        storeBuild.updateRotationObject(storeBuild.selected, -155)
+    const handleRotateLeft = () => {
+       /*  if (storeBuild.isBuild.objectSize.rotate === 360) {
+            storeBuild.setRotate(0)
+        } else {
+            if (storeBuild.isBuild.objectSize.rotate + 90 === 360) {
+                return storeBuild.setRotate(0)
+            }
+
+            storeBuild.setRotate(storeBuild.isBuild.objectSize.rotate + 90)
+        }
+
+        console.log(rotate, storeBuild.isBuild.objectSize.rotate)
+        setRotate((Math.PI * (storeBuild.isBuild.objectSize.rotate / 360))) */
+    }
+
+    const handleRotateRight = () => {
+        /* if (storeBuild.isBuild.objectSize.rotate === 360) {
+            storeBuild.setRotate(0)
+        } else {
+            if (storeBuild.isBuild.objectSize.rotate + 90 === 360) {
+                return storeBuild.setRotate(0)
+            }
+
+            storeBuild.setRotate(storeBuild.isBuild.objectSize.rotate + 90)
+        }
+
+        console.log(rotate, storeBuild.isBuild.objectSize.rotate)
+        setRotate((Math.PI * (storeBuild.isBuild.objectSize.rotate / 360))) */
     }
 
     useEffect(() => {
@@ -111,13 +135,13 @@ const TopPanel = () => {
                         img={img_rotate}
                         className='topBtn'
                         imgClassName='rotateLeftBtn' 
-                        onClick={handleRotate}/>
+                        onClick={handleRotateLeft}/>
 
                     <Button
                         alt='rotate right'
                         img={img_rotate}
                         className='topBtn'
-                        onClick={handleRotate} />
+                        onClick={handleRotateRight} />
                 </>
             )
         }else{

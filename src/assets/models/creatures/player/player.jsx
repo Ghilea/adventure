@@ -5,7 +5,7 @@ import { Select } from '@react-three/postprocessing';
 import { SelectObject } from '@editor/helperObject'
 import PlayerAsset from './player.gltf';
 
-export const Player = ({ position }, props) => {
+export const Player = (props) => {
   const { nodes, materials } = useGLTF(PlayerAsset);
 
   const store = build(state => state);
@@ -19,13 +19,17 @@ export const Player = ({ position }, props) => {
   }
 
   return (
-    <group {...props} dispose={null} scale={0.03} rotation={[Math.PI / 2, -0.25, 0]} position={[position[0], 0.55, position[2]]}
+    <group {...props} dispose={null}
     onClick = {
       handleClick
     } >
 
-      <Select enabled={(select === store.selected && store.selected !== null && select !== null) ? true : false}>
-
+      <group position={[0, -1.43, 0]} scale={0.03} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
+     
+        <group rotation={[Math.PI / 2, 0, 0]}>
+            <group position={[1.61, -0.08, -1.64]} rotation={[1.71, -0.21, 0.63]}> 
+            
+            <Select enabled={(select === store.selected && store.selected !== null && select !== null) ? true : false}>
         <mesh
           castShadow
           receiveShadow
@@ -64,7 +68,10 @@ export const Player = ({ position }, props) => {
         />
 
       </Select>
+      </group>
     </group>
+      </group >
+    </group >
 
   );
 }
