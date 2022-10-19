@@ -1,6 +1,7 @@
 import create from 'zustand';
 
 export const build = create(set => ({
+    isEditor: false,
     isBuild: {
         active: false,
         type: '',
@@ -12,7 +13,6 @@ export const build = create(set => ({
             rotate: 0
         }
     },
-    
     mousePosition: {
         x: 0,
         y: 0,

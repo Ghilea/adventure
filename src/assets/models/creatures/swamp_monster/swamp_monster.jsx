@@ -19,10 +19,12 @@ const SwampMonster = (props) => {
   const [select, setSelect] = useState(null);
 
   const handleClick = (e) => {
-    e.stopPropagation();
-    const val = SelectObject(e.eventObject.position, 'swamp_monster', store);
-    
-    setSelect(val)
+    if (store.isEditor) {
+      e.stopPropagation();
+      const val = SelectObject(e.eventObject.position, 'swamp_monster', store);
+      
+      setSelect(val)
+    }
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo} from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import useSound from 'use-sound';
 import buttonHover from '@assets/sounds/button.mp3';

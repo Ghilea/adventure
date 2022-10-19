@@ -19,14 +19,16 @@ export const Wall_1 = (props) => {
   const [select, setSelect] = useState(null);
 
   const handleClick = (e) => {
-    e.stopPropagation();
-    const val = SelectObject(e.eventObject.position, 'wall', store);
-    
-    setSelect(val)
+    if(store.isEditor){
+      e.stopPropagation();
+      const val = SelectObject(e.eventObject.position, 'wall', store);
+
+      setSelect(val)
+    }
   }
 
   return (
-    <group dispose = {null}
+    <group dispose = {null} 
     onClick = {handleClick}
     {...props} 
     scale = {[1.25, 1.5, 1.6]}

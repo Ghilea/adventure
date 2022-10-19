@@ -12,10 +12,12 @@ export const Player = (props) => {
   const [select, setSelect] = useState(null);
 
   const handleClick = (e) => {
-    e.stopPropagation();
-    const val = SelectObject(e.eventObject.position, 'player', store);
+    if (store.isEditor) {
+      e.stopPropagation();
+      const val = SelectObject(e.eventObject.position, 'player', store);
 
-    setSelect(val)
+      setSelect(val)
+    }
   }
 
   return (

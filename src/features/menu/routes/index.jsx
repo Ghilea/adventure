@@ -15,25 +15,23 @@ import menuMusic from '@assets/music/menu.mp3';
 import useSound from 'use-sound';
 import { Howl, Howler } from 'howler';
 import { Read } from '@comp/crud';
-import { map } from '@store/store';
 import './index.scss';
 
 const Index = () => {
 
-    //const [play] = useSound(menuMusic); 
-
-    const musicRef = useRef(new Howl({
-        src: [menuMusic],
-        volume: 0.4,
-        loop: true
-    })); 
-    const storeMap = map(state => state);
-
     const { progress } = useProgress();
     const [menu, setMenu] = useState();
     const [groundSize, setGroundSize] = useState([10, 10]);
-
     const [build, setBuild] = useState([]);
+    const [music, setMusic] = useState();
+
+    useMemo(() => {
+        setMusic(new Howl({
+            src: [menuMusic],
+            volume: 0.4,
+            loop: true
+        }))
+    }, [])
     
     useMemo(() => {
 
@@ -93,14 +91,11 @@ const Index = () => {
             })
     }, [])
 
-    const wall = 2.4
-
-    useEffect(() => {
-        if (progress <= 0) {
-
-            musicRef.current.play();
+    useEffect(() => {       
+        if(progress <= 0) {
+            music.play();
         }
-        
+
         if (progress >= 100) {
             setMenu(<Menu />)
         }
@@ -117,7 +112,7 @@ const Index = () => {
                 <Physics gravity={[0, -30, 0]}>
                    
                     <Suspense fallback={<Loader />}>
-                        <Ground position={[0, 0, 0]} size={[groundSize, groundSize]}/>
+                        <Ground position={[0, 0, 0]} size={groundSize}/>
                         {build}
                     </Suspense>
 
