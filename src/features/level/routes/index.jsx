@@ -19,7 +19,6 @@ const Index = () => {
     const storeMap = map(state => state);
 
     const [build, setBuild] = useState([]);
-    const [createPlayer, setCreateplayer] = useState();
     const [groundSize, setGroundSize] = useState([10, 10]);
 
     useEffect(() => {
@@ -74,16 +73,12 @@ const Index = () => {
                             break;
                     }
                 })
-                setCreateplayer(() => (
-                    <Player position={parsed.player} />
-                ))
-
+     
                 setGroundSize(parsed.ground)
                 storeMap.setPlayerPosition(parsed.player);
             })
     }, [])
 
-    console.log('player', createPlayer)
     return (
         <>
             <Canvas shadows >
@@ -94,7 +89,6 @@ const Index = () => {
                     <Suspense fallback={<Loader />}>
                         <Ground position={[0, 0, 0]} size={groundSize} />
                         {build}
-                        {createPlayer}
                     </Suspense>
 
                 </Physics>

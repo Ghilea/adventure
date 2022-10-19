@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useGLTF } from "@react-three/drei";
+//import { OBJLoader2, MtlObjBridge } from 'wwobjloader2';
 import { useBox } from '@react-three/cannon';
 import { build } from '@store/editor';
 import { Select } from '@react-three/postprocessing';
@@ -7,7 +8,12 @@ import { SelectObject } from '@editor/helperObject'
 import WallAsset from './wall.glb';
 
 export const Wall_1 = (props) => {
+  // instantiate the loader
+  //const objLoader2 = new OBJLoader2();
   const { nodes, materials  } = useGLTF(WallAsset);
+
+  // load a resource from provided URL synchronously
+  //objLoader2.load(WallAsset);
 
   const [solid] = useBox(() => ({
     args: [5, 3.5, 1],

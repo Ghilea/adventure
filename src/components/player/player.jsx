@@ -22,8 +22,8 @@ const Index = ({position}) => {
 
     const { camera } = useThree();
     const [ref, api] = useSphere(() => ({
-        mass: 1,
-        position,
+        mass: 5,
+        position: position,
         type: 'Dynamic'
     }))
 
@@ -79,7 +79,7 @@ const Index = ({position}) => {
             <mesh ref={ref} >
                 <pointLight
                 intensity={2}
-                distance={5.5}
+                distance={3}
                 color={'#d4c4af'}
                 position={[0, 0.5, 0]}
                 />
