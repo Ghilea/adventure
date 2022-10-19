@@ -4,6 +4,7 @@ import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeyboardControls } from '@hooks/useKeyboardControls';
 import CameraMovement from '@comp/player/cameraMovement';
+import { Sword } from '@models/equipement/sword';
 import { player, map } from '@store/store';
 import './index.scss';
 
@@ -25,6 +26,12 @@ const Index = ({position}) => {
         mass: 5,
         position: position,
         type: 'Dynamic'
+    }))
+
+    const [rightHandRef] = useSphere(() => ({
+        mass: 0,
+        position: position,
+        type: 'static'
     }))
 
     const velocity = useRef([0, 0, 0]);
@@ -76,14 +83,27 @@ const Index = ({position}) => {
     return (
         <>
             <CameraMovement />
-            <mesh ref={ref} >
-                <pointLight
-                intensity={2}
-                distance={3}
-                color={'#d4c4af'}
-                position={[0, 0.5, 0]}
-                />
-            </mesh>
+            <group>
+                <mesh ref={rightHandRef} >
+                    <pointLight
+                        intensity={2}
+                        distance={3}
+                        color={'#d4c4af'}
+                        position={[0, 0.5, 0]}
+                    />
+                    <Sword />
+                </mesh>
+
+                <mesh ref={ref} >
+                    <pointLight
+                        intensity={2}
+                        distance={3}
+                        color={'#d4c4af'}
+                        position={[0, 0.5, 0]}
+                    />
+                </mesh>
+            </group>
+            
         </>
     )
 

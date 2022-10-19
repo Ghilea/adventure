@@ -82,7 +82,7 @@ const Index = () => {
     return (
         <>
             <Canvas shadows >
-                {/* <ambientLight intensity={1} /> */}
+                <ambientLight intensity={1} /> 
                 
                 <Physics gravity={[0, -30, 0]}>
 
@@ -90,7 +90,7 @@ const Index = () => {
                         <Ground position={[0, 0, 0]} size={groundSize} />
                         {build}
                     </Suspense>
-
+                    
                 </Physics>
             </Canvas>
             <Interface />

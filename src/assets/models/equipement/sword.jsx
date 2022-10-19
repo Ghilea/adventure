@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { build } from '@store/editor';
 import { Select } from '@react-three/postprocessing';
@@ -8,16 +8,14 @@ import swordAsset from './sword.glb';
 export const Sword = (props) => {
   
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF(swordAsset);
-  const { actions } = useAnimations(animations, group);
+  const { nodes, materials } = useGLTF(swordAsset);
   
-
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">
         <group
           name="Sketchfab_model"
-          position={[-0.01, 0, -0.02]}
+          position={[1, 0, 1]}
           rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
         >
           <group name="root">
@@ -382,15 +380,6 @@ export const Sword = (props) => {
                   material={materials.Moonbrand_Mat}
                 />
               </group>
-              <group name="Scale_Bar001_16" position={[0, -0.01, -0.05]}>
-                <mesh
-                  name="Object_36"
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.Object_36.geometry}
-                  material={materials["Scale_Bar_Mat.001"]}
-                />
-              </group>
               <group name="OL_25" position={[0.01, 0.17, 0]} scale={0.01}>
                 <mesh
                   name="mesh_25"
@@ -417,38 +406,7 @@ export const Sword = (props) => {
                   morphTargetInfluences={nodes.mesh_26.morphTargetInfluences}
                 />
               </group>
-              <group
-                name="Original_Wood001_29"
-                position={[0, -0.06, 0.33]}
-                rotation={[-Math.PI, 0, -Math.PI]}
-                scale={0.01}
-              >
-                <mesh
-                  name="mesh_29"
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.mesh_29.geometry}
-                  material={materials.Annotations}
-                  morphTargetDictionary={nodes.mesh_29.morphTargetDictionary}
-                  morphTargetInfluences={nodes.mesh_29.morphTargetInfluences}
-                />
-              </group>
-              <group
-                name="OL001_30"
-                position={[0.01, 0.17, 0]}
-                rotation={[-Math.PI, 0, -Math.PI]}
-                scale={0.01}
-              >
-                <mesh
-                  name="mesh_30"
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.mesh_30.geometry}
-                  material={materials.Annotations}
-                  morphTargetDictionary={nodes.mesh_30.morphTargetDictionary}
-                  morphTargetInfluences={nodes.mesh_30.morphTargetInfluences}
-                />
-              </group>
+                    
             </group>
           </group>
         </group>
