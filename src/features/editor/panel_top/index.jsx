@@ -24,6 +24,7 @@ const TopPanel = () => {
     const mapSettings = build(state => state.mapSettings);
 
     const handleExit = () => {
+        storeBuild.setIsEditor(false)
         navigate('/menu');
     }
 

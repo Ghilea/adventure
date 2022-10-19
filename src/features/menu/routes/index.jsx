@@ -33,12 +33,11 @@ const Index = () => {
         }))
     }, [])
     
-    useMemo(() => {
+    useEffect(() => {
 
         Read(`getLevel?id=${1}`)
             .then(response => {
 
-                console.log(JSON.parse(response.data[0].content))
                 const parsed = JSON.parse(response.data[0].content)
                
                 parsed.objects.map((use, index) => {

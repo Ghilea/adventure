@@ -25,7 +25,7 @@ export const Torch = (props) => {
 
     return (
         <group ref={group} onClick={handleClick} {...props} dispose={null}>
-            <group position={[0, -1.5, -0.3]} scale={[0.03, 0.03, 0.03]} >
+            <group position={[0, -1.5, -0.525]} scale={[0.03, 0.03, 0.03]} >
                 <Select
                     enabled={(select === store.selected && store.selected !== null && select !== null) ? true : false}>
                 <group position={[-291.22, 0, 0]}>

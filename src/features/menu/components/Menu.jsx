@@ -26,6 +26,7 @@ const Menu = () => {
                 appWindow.close()
                 break;
             case 'editor':
+                
                 navigate('/editor');
                 break;
         }

@@ -29,6 +29,10 @@ export const build = create(set => ({
     solid: [],
     selected: null,
     remove: null,
+    setIsEditor: (value) => set(state => ({
+        ...state,
+        isEditor: value
+    })),
     setRotate: (deg) => set(state => ({
         ...state,
         isBuild: {

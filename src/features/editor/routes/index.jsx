@@ -8,7 +8,11 @@ const Index = () => {
     
     //stores
     const storeBuild = build(state => state);
-        
+    
+    useEffect(() => {
+        storeBuild.setIsEditor(true)
+    }, [])
+
     useEffect(() => {
         if (storeBuild.active.length > 0 && storeBuild.selected !== null) {
             storeBuild.selectedObject(null)
