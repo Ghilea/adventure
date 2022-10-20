@@ -42,6 +42,7 @@ const Index = () => {
                                 ...state,
                                 <Player key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
                             ]))
+                            storeMap.setPlayerPosition(use.position);
                             break;
                         case 'rock_1':
                             setBuild((state) => ([
@@ -75,14 +76,13 @@ const Index = () => {
                 })
      
                 setGroundSize(parsed.ground)
-                storeMap.setPlayerPosition(parsed.player);
             })
     }, [])
 
     return (
         <>
             <Canvas shadows >
-                <ambientLight intensity={1} /> 
+                <ambientLight intensity={1} />
                 
                 <Physics gravity={[0, -30, 0]}>
 
@@ -91,7 +91,7 @@ const Index = () => {
                         {build}
                     </Suspense>
                     
-                </Physics>
+                </Physics>                
             </Canvas>
             <Interface />
         </>

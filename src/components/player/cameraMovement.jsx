@@ -67,6 +67,11 @@ const CameraMovement = () => {
 
     }
 
+    useEffect(() => {
+        console.log(camera)
+    }, [])
+    
+
     return (
             <>
                 {

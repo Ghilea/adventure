@@ -16,7 +16,7 @@ import useSound from 'use-sound';
 import { Howl, Howler } from 'howler';
 import { Read } from '@comp/crud';
 import './index.scss';
-
+import { Sword } from '@models/equipement/sword';
 const Index = () => {
 
     const { progress } = useProgress();
@@ -107,7 +107,7 @@ const Index = () => {
                 fov: 60,
                 position: [-3.5, 1, -5.8]
             }}>
-                
+                <ambientLight intensity={1} />
                 <Physics gravity={[0, -30, 0]}>
                    
                     <Suspense fallback={<Loader />}>
@@ -116,6 +116,8 @@ const Index = () => {
                     </Suspense>
 
                 </Physics>
+
+                <Sword />
             </Canvas>
 
             {menu}          

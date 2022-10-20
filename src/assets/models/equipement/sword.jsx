@@ -5,18 +5,18 @@ import { Select } from '@react-three/postprocessing';
 import { SelectObject } from '@editor/helperObject'
 import swordAsset from './sword.glb';
 
-export const Sword = (props) => {
+export const Sword = ({position, props}) => {
   
   const group = useRef();
   const { nodes, materials } = useGLTF(swordAsset);
   
   return (
-    <group ref={group} {...props} dispose={null}>
-      <group name="Sketchfab_Scene">
+    <group ref={group} position={position} props dispose={null}>
+
         <group
           name="Sketchfab_model"
-          position={[1, 0, 1]}
-          rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+          position={[-0.21, 0, 0.4]}
+          rotation={[-Math.PI /2,0, -Math.PI /2]} //3e. move around player
         >
           <group name="root">
             <group name="GLTF_SceneRootNode" rotation={[Math.PI / 2, 0, 0]}>
@@ -379,38 +379,11 @@ export const Sword = (props) => {
                   geometry={nodes.Object_4.geometry}
                   material={materials.Moonbrand_Mat}
                 />
-              </group>
-              <group name="OL_25" position={[0.01, 0.17, 0]} scale={0.01}>
-                <mesh
-                  name="mesh_25"
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.mesh_25.geometry}
-                  material={materials.Annotations}
-                  morphTargetDictionary={nodes.mesh_25.morphTargetDictionary}
-                  morphTargetInfluences={nodes.mesh_25.morphTargetInfluences}
-                />
-              </group>
-              <group
-                name="Original_Wood_26"
-                position={[0.01, -0.06, 0.33]}
-                scale={0.01}
-              >
-                <mesh
-                  name="mesh_26"
-                  castShadow
-                  receiveShadow
-                  geometry={nodes.mesh_26.geometry}
-                  material={materials.Annotations}
-                  morphTargetDictionary={nodes.mesh_26.morphTargetDictionary}
-                  morphTargetInfluences={nodes.mesh_26.morphTargetInfluences}
-                />
-              </group>
-                    
+              </group>                    
             </group>
           </group>
         </group>
-      </group>
+
     </group>
   );
 }

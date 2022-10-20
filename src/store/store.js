@@ -1,16 +1,5 @@
 import create from 'zustand';
 
-export const cache = create(set => ({
-    cache: ['9'],
-    setCache: (newCache) => set(state => ({
-        cache: [...state.cache, newCache]
-    })),
-    emptyCache: () => set(state => ({
-        ...state,
-        cache: []
-    })),
-}))
-
 export const player = create(set => ({
     id: 1,
     gender: null,
@@ -159,7 +148,7 @@ export const player = create(set => ({
 
 export const map = create(set => ({
     level: 1,
-    playerPosition: null,
+    playerPosition: [0,0,0],
     camera: false,
     showCharacterSheet: false,
     chatWindow: true,

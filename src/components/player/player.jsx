@@ -4,7 +4,7 @@ import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeyboardControls } from '@hooks/useKeyboardControls';
 import CameraMovement from '@comp/player/cameraMovement';
-import { Sword } from '@models/equipement/sword';
+import Equipement from './equipement';
 import { player, map } from '@store/store';
 import './index.scss';
 
@@ -23,15 +23,9 @@ const Index = ({position}) => {
 
     const { camera } = useThree();
     const [ref, api] = useSphere(() => ({
-        mass: 5,
+        mass: 1,
         position: position,
         type: 'Dynamic'
-    }))
-
-    const [rightHandRef] = useSphere(() => ({
-        mass: 0,
-        position: position,
-        type: 'static'
     }))
 
     const velocity = useRef([0, 0, 0]);
@@ -70,8 +64,10 @@ const Index = ({position}) => {
         
         api.velocity.set(direction.x, velocity.current[1], direction.z);
 
-        //update players "body"
+        //update players "body" position
         ref.current.getWorldPosition(ref.current.position)
+
+        storeMap.setPlayerPosition([ref.current.position.x, ref.current.position.y, ref.current.position.z])
         
         //jump
         if (jump && !storeMap.chatInput && Math.abs(velocity.current[1].toFixed(2)) <= 0.00) {
@@ -83,27 +79,16 @@ const Index = ({position}) => {
     return (
         <>
             <CameraMovement />
-            <group>
-                <mesh ref={rightHandRef} >
-                    <pointLight
-                        intensity={2}
-                        distance={3}
-                        color={'#d4c4af'}
-                        position={[0, 0.5, 0]}
-                    />
-                    <Sword />
-                </mesh>
-
-                <mesh ref={ref} >
-                    <pointLight
-                        intensity={2}
-                        distance={3}
-                        color={'#d4c4af'}
-                        position={[0, 0.5, 0]}
-                    />
-                </mesh>
-            </group>
+            <Equipement />
             
+            <mesh ref={ref}>
+                <pointLight
+                    intensity={2}
+                    distance={3}
+                    color={'#d4c4af'}
+                    position={[0, 0.5, 0]}
+                />
+            </mesh>
         </>
     )
 
