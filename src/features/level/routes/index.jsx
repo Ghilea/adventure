@@ -4,7 +4,7 @@ import { Physics } from '@react-three/cannon';
 import Ground from '@comp/ground';
 import { Read } from '@comp/crud';
 import { map } from '@store/store';
-import Player from '@comp/player/player';
+import Player from '@features/player';
 import Loader from '@comp/loading/Loader';
 import { Wall_1 } from '@models/objects/walls/walls';
 import Interface from '@features/interface'

@@ -3,8 +3,8 @@ import { useSphere } from '@react-three/cannon';
 import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeyboardControls } from '@hooks/useKeyboardControls';
-import CameraMovement from '@comp/player/cameraMovement';
-import Equipement from './equipement';
+import CameraMovement from './components/cameraMovement';
+import Equipement from './components/equipement';
 import { player, map } from '@store/store';
 import './index.scss';
 

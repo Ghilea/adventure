@@ -7,7 +7,7 @@ import SelectObj from '@editor/select_canvas_object';
 import disable from '@hooks/disable-click';
 import { build } from '@store/editor';
 import { Wall_1 } from '@models/objects/walls/walls';
-import Player from '@comp/player/player';
+import Player from '@features/player';
 import { useKey } from 'rooks';
 import { SelectObject, AddObject } from '@editor/helperObject';
 
