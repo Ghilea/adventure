@@ -35,7 +35,7 @@ const Index = () => {
     
     useEffect(() => {
 
-        Read(`getLevel?id=${1}`)
+        Read(`getLevel?id=${'Menu'}`)
             .then(response => {
 
                 const parsed = JSON.parse(response.data[0].content)

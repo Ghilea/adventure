@@ -1,7 +1,7 @@
-export const getLevel = async (knex, res, id) => {
+export const getLevel = async (knex, res, value) => {
     try {
         await knex.select('id', 'title', 'order', 'content')
-        .where('id', id)
+        .where(Number(value) ? 'id' : 'title', value)
         .from('levels').then((query) => {
             return res.code(200).send(query);
         })
