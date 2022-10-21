@@ -44,8 +44,8 @@ const Index = () => {
     }, [])
 
     return (    
-        <div className='boxMenuContainer'>
-            <div className='grid'>
+        <div className='grid gradient template-col-5 template-row-2'>
+            <div className=''>
                 {data}
                 <Button
                     className='button'

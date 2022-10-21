@@ -10,8 +10,9 @@
 
 @import './styles/animation.scss';
 
+@import './styles/utilities.scss';
 
-
+@import './styles/grid_flex.scss';
 
 .boxMenuContainer {
     overflow-y: auto;

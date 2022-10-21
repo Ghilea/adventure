@@ -1,0 +1,297 @@
+@use "sass:math";
+
+//text
+.text-center {
+    text-align: center;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text-overflow-ellipsis {
+    text-overflow: ellipsis;
+}
+
+@for $index from 1 through 16 {
+
+    //margin
+    .m-#{$index} {
+        margin: #{$index * 4px};
+    }
+
+    .ml-#{$index} {
+        margin-left: #{$index * 4px};
+    }
+
+    .mr-#{$index} {
+        margin-right: #{$index * 4px};
+    }
+
+    .mt-#{$index} {
+        margin-top: #{$index * 4px};
+    }
+
+    .mb-#{$index} {
+        margin-bottom: #{$index * 4px};
+    }
+
+    .mx-#{$index} {
+        margin-inline: #{$index * 4px};
+    }
+
+    .my-#{$index} {
+        margin-block: #{$index * 4px};
+    }
+
+    //padding
+    .p-#{$index} {
+        padding: #{$index * 4px};
+    }
+
+    .pl-#{$index} {
+        padding-left: #{$index * 4px};
+    }
+
+    .pr-#{$index} {
+        padding-right: #{$index * 4px};
+    }
+
+    .pt-#{$index} {
+        padding-top: #{$index * 4px};
+    }
+
+    .pb-#{$index} {
+        padding-bottom: #{$index * 4px};
+    }
+
+    .px-#{$index} {
+        padding-inline: #{$index * 4px};
+    }
+
+    .py-#{$index} {
+        padding-block: #{$index * 4px};
+    }
+
+    //width & height
+    .h-#{$index} {
+        height: #{$index * 4px};
+    }
+
+    .w-#{$index} {
+        width: #{$index * 4px};
+    }
+
+    //size
+    .size-#{$index} {
+        font-size: #{$index * 0.2rem};
+    }
+}
+
+.rounded-md {
+    border-radius: 8px;
+}
+
+.rounded-lg {
+    border-radius: 16px;
+}
+
+$colors: (
+    "white": white,
+    "black": black,
+    "primary": #4d243d,
+    "green": #32ba78,
+    "red": #fd6d6d,
+);
+
+@each $color,
+$value in $colors {
+    .text-#{$color} {
+        color: $value;
+    }
+
+    .bg-#{$color} {
+        background-color: $value;
+    }
+}
+
+$leading-sizes: "none", "tight", "snug", "normal", "relaxed", "loose";
+
+@each $size in $leading-sizes {
+    $index: index($leading-sizes, $size);
+
+    .leading-#{$size} {
+        line-height: #{1 * (math.div($index - 1, 5)) + 1};
+    }
+}
+
+.no-underline {
+    text-decoration-line: none;
+}
+
+.font-display {
+    font-family: "Cousine", monospace;
+}
+
+$tracking-sizes: (
+    "tighter": -0.075em,
+    "normal": 0em,
+);
+
+@each $name,
+$size in $tracking-sizes {
+    .tracking-#{$name} {
+        letter-spacing: $size;
+    }
+}
+
+@for $number from 0 through 10 {
+    .opacity-#{$number} {
+        opacity: #{$number * 0.1};
+    }
+}
+
+$fractions: (
+    "1\\/2": 50%,
+    "1\\/3": #{math.percentage(math.div(1, 3))},
+    "2\\/3": #{math.percentage(math.div(2, 3))},
+    "1\\/4": 25%,
+    "1\\/5": 20%,
+    "3\\/4": 75%,
+);
+
+@each $name,
+$val in $fractions {
+    .w-#{$name} {
+        width: $val;
+    }
+
+    .h-#{$name} {
+        height: $val;
+    }
+}
+
+.w-full {
+    width: 100%;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.shadow {
+    box-shadow: 0px 0px 0px 1px hsla(0, 0%, 0%, 0.25), 1px 1px 2px 1px hsla(0, 0%, 0%, 0.75);
+}
+
+.gradient {
+    background: linear-gradient(180deg, hsla(0, 0%, 0%, 0.1) 10%, hsla(0, 0%, 0%, 0.05) 50%, hsla(0, 0%, 0%, 0.1) 90%);
+}
+
+.blur {
+    backdrop-filter: blur(10.5px);
+    -webkit-backdrop-filter: blur(10.5px);
+}
+
+/* auto */
+.h-auto {
+    height: auto;
+}
+
+.m-auto {
+    margin: auto;
+}
+
+.mx-auto {
+    margin-inline: auto;
+}
+
+.my-auto {
+    margin-block: auto;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.rounded-pill {
+    border-radius: 100vw;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.w-max {
+    width: max-content;
+}
+
+.h-max {
+    height: max-content;
+}
+
+.max-h-max {
+    max-height: max-content;
+}
+
+.max-w-screen-sm {
+    max-width: 640px;
+}
+
+.max-w-screen-lg {
+    width: 100%;
+    max-width: 1024px;
+}
+
+.max-w-screen-xl {
+    width: 100%;
+    max-width: 1280px;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+.gradient-bg {
+    background: linear-gradient(180deg, rgba(80, 35, 60, 0.25) 0%, rgba(80, 35, 60, 0.8) 100%);
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.mr-auto {
+    margin-right: auto;
+}
+
+.mb-auto {
+    margin-bottom: auto;
+}
+
+.inset-0 {
+    inset: 0;
+}
+
+.z-1 {
+    z-index: 1;
+}
+
+.white-space-nowrap {
+    white-space: nowrap;
+}
+
+.overflow-auto {
+    overflow: auto;
+}
+
+//positions
+.relative {
+    position: relative;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.absolute {
+    position: absolute;
+}
