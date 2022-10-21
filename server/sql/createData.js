@@ -54,22 +54,10 @@ export const LevelsData = async (knex) => {
 export const ProtagonistData = async (knex) => {
     return await knex.insert([
           {
-              name:'DennisK', 
-              img:1, 
+              name:'TestCharacterName', 
+              img: 1, 
               gender:'Female', 
-              stats_id:1
-          },
-          {
-              name:'test', 
-              img:1, 
-              gender:'Male', 
-              stats_id:6
-          },
-          {
-              name:'MacGyver', 
-              img:1, 
-              gender:'Male', 
-              stats_id:7
+              stats_id: 1
           },
       ]).into('protagonist')
 }

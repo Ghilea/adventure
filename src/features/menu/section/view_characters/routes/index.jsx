@@ -18,7 +18,6 @@ const Index = () => {
     
     const handleLogin = (id) => {
         storeMenu.activateContent('login')
-        //storeMenu.isLoadingDone(false);
         storePlayer.setPlayerId(id);
         navigate('/level');
     }
@@ -46,10 +45,13 @@ const Index = () => {
 
     return (    
         <div className='boxMenuContainer'>
-            {data}
-            <Button 
-                className='button'
-                onClick={() => handleExit()}>Exit</Button>
+            <div className='grid'>
+                {data}
+                <Button
+                    className='button'
+                    onClick={() => handleExit()}>Exit</Button>
+            </div>
+            
         </div>    
     )
 }
