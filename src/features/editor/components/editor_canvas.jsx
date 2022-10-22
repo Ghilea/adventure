@@ -95,6 +95,7 @@ const EditorCanvas = () => {
 
     return (
         <Canvas 
+            className='bg-black'
             onClick={handleClick}
             onContextMenu = {mouseRight}
             camera = {

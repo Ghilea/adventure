@@ -102,10 +102,12 @@ const Index = () => {
     return (
         <>
 
-            <Canvas shadows camera={{
+            <Canvas shadows 
+                camera={{
                 fov: 60,
                 position: [-3.5, 1, -5.8]
-            }}>
+            }}
+            className='bg-black'>
                 <Physics gravity={[0, -30, 0]}>
                    
                     <Suspense fallback={<Loader />}>

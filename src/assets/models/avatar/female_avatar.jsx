@@ -5,7 +5,7 @@ import asset from './female_avatar.glb';
 const Female_avatar = (props) => {
     const { nodes, materials } = useGLTF(asset);
     return (
-        <group {...props} dispose={null}>
+        <group {...props} position={[0, -0.9, 1]} dispose={null}>
             <group rotation={[-Math.PI / 2, 0, 0]}>
                 <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
                     <primitive object={nodes._rootJoint} />

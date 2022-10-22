@@ -16,9 +16,6 @@ const Menu = () => {
             case 'view':
                 navigate('/view-character');
                 break;
-            case 'create':
-                navigate('/create-character');
-                break;
             case 'options':
                 navigate('/view-options');
                 break;
@@ -43,35 +40,24 @@ const Menu = () => {
             
             <div className='buttonList'>
                 <Button
-                    className='button'
                     type='view'
                     onClick={handleClick}>
                     Start Game
                 </Button>
 
                 <Button
-                    className='button'
-                    type='create'
-                    onClick={handleClick}>
-                    Create Protagonist
-                </Button>
-
-                <Button
-                    className='button'
                     type='options'
                     onClick={handleClick}>
                     Options
                 </Button>
 
                 <Button
-                    className='button'
                     type='editor'
                     onClick={handleClick}>
                     Map Editor
                 </Button>
 
                 <Button
-                    className='button'
                     type='exit'
                     onClick={handleClick}>
                         Exit Game

@@ -45,7 +45,7 @@ const Index = () => {
     }
 
     const handleExit = () => {
-        navigate('/menu');
+        navigate('/view-character');
     }
 
     const handleCreate = (e) => {
