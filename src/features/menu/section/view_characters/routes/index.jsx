@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Read } from '@comp/crud';
 import { menu, player } from '@store/store';
@@ -14,8 +14,9 @@ const Index = () => {
     const storeMenu = menu(state => state);
     const storePlayer = player(state => state);
 
-    const [data, setData] = useState([]);
-    
+    const [characterList, setCharacterList] = useState([]);
+    const [viewCharacter, setViewCharacter] = useState([]);
+
     const handleLogin = (id) => {
         storeMenu.activateContent('login')
         storePlayer.setPlayerId(id);
@@ -26,32 +27,44 @@ const Index = () => {
         navigate('/menu');
     }
 
-    useEffect(() => {
-        Read('getAllProtagonist').then(response => setData(
+    useMemo(() => {
+        Read('getAllProtagonist').then(response => (
       
             response.data.map((item, index) => {
                 return (
-                    <div className='character' onClick={() => handleLogin(item.id)} key={item.name + index}>
-                        <img src = {(item.gender === 'Male') ? maleImg : femaleImg} />
-                        <h2>{item.name} (<span className='levelTitle'>level {item.level}</span>)</h2>
-                        <p>Hp: {item.health} / {item.maxHealth}</p>
-                        <p>Str: {item.strength} Int: {item.intellect} Dex: {item.dexterity}</p>
+                    setCharacterList((state) => ([
+                        ...state,
+                        <div key={item.name + index} className = 'flex-col gradient place-row-1-4 p-5 my-4' >
+                            <div className='flex-row justify-between'>
+                                <h2>{item.name}</h2>
+                                <p>Level: {item.level}</p>
+                            </div>
+                        </div>
+                    ])),
+
+                    setViewCharacter(
+                    <div className='flex-col gradient place-row-1-4 p-5'>
+                        <img src={(item.gender === 'Male') ? maleImg : femaleImg} />
                     </div>
-                );
+                    )
+
+                )
             })
             
         ));
     }, [])
 
     return (    
-        <div className='grid gradient template-col-5 template-row-2'>
-            <div className=''>
-                {data}
-                <Button
-                    className='button'
-                    onClick={() => handleExit()}>Exit</Button>
+        <div className='view-character grid template-col-3 template-row-4 justify-items-center items-center'>
+            <div className='flex-col bg-primary place-row-1-4 place-col-3-3 h-full w-full'>
+                {characterList}
             </div>
-            
+            <div className='flex-col gradient place-row-1-4 place-col-1-2 h-full w-full'>
+                {viewCharacter}
+            </div>
+            <Button
+                className='button place-row-4-4 place-col-3-3'
+                onClick={() => handleExit()}>Exit</Button>
         </div>    
     )
 }

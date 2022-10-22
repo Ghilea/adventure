@@ -65,6 +65,22 @@
     justify-content: end;
 }
 
+.justify-items-center {
+    justify-items: center;
+}
+
+.justify-items-start {
+    justify-items: start
+}
+
+.justify-items-stretch {
+    justify-items: stretch;
+}
+
+.justify-items-end {
+    justify-items: end;
+}
+
 //place
 .place-self-stretch {
     place-self: stretch;
@@ -96,5 +112,16 @@
 
     .template-row-#{$index} {
         grid-template-rows: repeat($index, 1fr);
+    }
+
+    //placement
+    @for $index2 from 1 through 16 {
+        .place-row-#{$index}-#{$index2} {
+            grid-row: $index / span $index2;
+        }
+
+        .place-col-#{$index}-#{$index2} {
+            grid-column: $index / span $index2;
+        }
     }
 }

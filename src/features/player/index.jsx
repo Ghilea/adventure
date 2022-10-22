@@ -4,7 +4,6 @@ import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeyboardControls } from '@hooks/useKeyboardControls';
 import CameraMovement from './components/cameraMovement';
-import Equipement from './components/equipement';
 import { player, map } from '@store/store';
 import './index.scss';
 
@@ -79,8 +78,7 @@ const Index = ({position}) => {
     return (
         <>
             <CameraMovement />
-            <Equipement />
-            
+
             <mesh ref={ref}>
                 <pointLight
                     intensity={2}
