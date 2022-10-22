@@ -24,7 +24,7 @@ const Index = () => {
     useEffect(() => {
 
         if(build.length <= 0) {
-            Read(`getLevel?id=${storeMap.level}`)
+            Read(`getLevel?id=TestMap`)
                 .then(response => {
 
                     const parsed = JSON.parse(response.data[0].content)
