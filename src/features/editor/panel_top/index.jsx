@@ -45,14 +45,14 @@ const TopPanel = () => {
             if(mapSettings.objects === undefined) return console.log('error objects')
             
             console.log('create')
-            /* Create('createLevel', {
+             Create('createLevel', {
                 level: mapSettings.order || 0,
                 title: mapSettings.title,
                 content: JSON.stringify({
                     'ground': mapSettings.groundSize,
                     'objects': mapSettings.objects
                 })
-            }); */
+            }); 
 
             /*
             
@@ -62,8 +62,8 @@ const TopPanel = () => {
             position: {
 
             }
-            
             */
+            
 
         }else{
             console.log('update')

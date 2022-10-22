@@ -1,15 +1,20 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { player, map } from '@store/store'
 import { useKey } from 'rooks';
 import './index.scss';
+import Button from '@comp/button/buttons';
 
 const Index = () => {
+
+    const navigate = useNavigate();
 
     const storePlayer = player(state => state);
     const storeMap = map(state => state);
 
-    const handleKeyCharacterSheet = (event) => {
-        if (event.key === 'c' && !storeMap.chatInput) {
+    const handleKeyCharacterSheet = (e) => {
+        console.log(e)
+        if (e.key === 'Escape' && !storeMap.chatInput) {
             if (storeMap.showCharacterSheet) {
                 storeMap.characterSheet(false)
                 storeMap.disableCamera(false)
@@ -20,7 +25,11 @@ const Index = () => {
         }
     }
 
-    useKey(['c'], handleKeyCharacterSheet);
+    const handleExit = () => {
+        navigate('/view-character');
+    }
+
+    useKey(['Escape'], handleKeyCharacterSheet);
 
     return (
         <>
@@ -34,7 +43,10 @@ const Index = () => {
                    
                     </div>
                     <div className='dps'>Dps: {storePlayer.dps}</div>
-                    
+                    <Button
+                        onClick={handleExit}>
+                        Exit to menu
+                    </Button>
                 </div>
                 : <></>
             }

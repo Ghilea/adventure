@@ -23,60 +23,63 @@ const Index = () => {
 
     useEffect(() => {
 
-        Read(`getLevel?id=${storeMap.level}`)
-            .then(response => {
+        if(build.length <= 0) {
+            Read(`getLevel?id=${storeMap.level}`)
+                .then(response => {
 
-                const parsed = JSON.parse(response.data[0].content)
+                    const parsed = JSON.parse(response.data[0].content)
 
-                parsed.objects.map((use, index) => {
+                    parsed.objects.map((use, index) => {
 
-                    switch (use.type) {
-                        case 'wall_1':
-                            setBuild((state) => ([
-                                ...state,
-                                <Wall_1 key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
-                            ]))
-                            break;
-                        case 'player':
-                            setBuild((state) => ([
-                                ...state,
-                                <Player key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
-                            ]))
-                            storeMap.setPlayerPosition(use.position);
-                            break;
-                        case 'rock_1':
-                            setBuild((state) => ([
-                                ...state,
-                                <Rock_1 key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
-                            ]))
-                            break;
-                        case 'torch':
-                            setBuild((state) => ([
-                                ...state,
-                                <Torch key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
-                            ]))
-                            break;
-                        case 'floor_1':
-                            setBuild((state) => ([
-                                ...state,
-                                <Floor_1
-                                    key={use.type + index}
-                                    position={use.position}
-                                    rotation={use.rotation}
-                                    type={use.type} />
-                            ]))
-                            break;
-                        case 'swamp_monster':
-                            setBuild((state) => ([
-                                ...state,
-                                <SwampMonster key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
-                            ]))
-                            break;
-                    }
+                        switch (use.type) {
+                            case 'wall_1':
+                                setBuild((state) => ([
+                                    ...state,
+                                    <Wall_1 key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
+                                ]))
+                                break;
+                            case 'player':
+                                setBuild((state) => ([
+                                    ...state,
+                                    <Player key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
+                                ]))
+                                storeMap.setPlayerPosition(use.position);
+                                break;
+                            case 'rock_1':
+                                setBuild((state) => ([
+                                    ...state,
+                                    <Rock_1 key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
+                                ]))
+                                break;
+                            case 'torch':
+                                setBuild((state) => ([
+                                    ...state,
+                                    <Torch key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
+                                ]))
+                                break;
+                            case 'floor_1':
+                                setBuild((state) => ([
+                                    ...state,
+                                    <Floor_1
+                                        key={use.type + index}
+                                        position={use.position}
+                                        rotation={use.rotation}
+                                        type={use.type} />
+                                ]))
+                                break;
+                            case 'swamp_monster':
+                                setBuild((state) => ([
+                                    ...state,
+                                    <SwampMonster key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
+                                ]))
+                                break;
+                        }
+                    })
+
+                    setGroundSize(parsed.ground)
                 })
-     
-                setGroundSize(parsed.ground)
-            })
+        }
+        
     }, [])
 
     return (
