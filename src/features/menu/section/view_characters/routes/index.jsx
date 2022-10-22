@@ -17,9 +17,9 @@ const Index = () => {
     const [characterList, setCharacterList] = useState([]);
     const [viewCharacter, setViewCharacter] = useState([]);
 
-    const handleCharacterLogin = (id) => {
+    const handleCharacterLogin = () => {
         storeMenu.activateContent('login')
-        storePlayer.setPlayerId(id);
+        storePlayer.setPlayerId(storePlayer.id);
         navigate('/level');
     }
 
