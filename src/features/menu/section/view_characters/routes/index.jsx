@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Read } from '@comp/crud';
 import { menu, player } from '@store/store';
 import Button from '@comp/button/buttons';
-import maleImg from '@assets/images/characters/FantasyCharacters_h_warrior_male.png';
-import femaleImg from '@assets/images/characters/FantasyCharacters_h_warrior_female.png'
+import { Canvas } from '@react-three/fiber';
+import FemaleAvatar from '@models/avatar/female_avatar';
 import './index.scss';
 
 const Index = () => {
@@ -43,8 +43,15 @@ const Index = () => {
                     ])),
 
                     setViewCharacter(
-                    <div className='flex-col gradient place-row-1-4 p-5'>
-                        <img src={(item.gender === 'Male') ? maleImg : femaleImg} />
+                    <div className='flex-col gradient place-row-1-4'>
+                        <Canvas shadows 
+                            camera={{
+                                fov: 40,
+                                position: [0, 0, 1]
+                            }}>
+                            <ambientLight intensity={1} />
+                            <FemaleAvatar />
+                        </Canvas>
                     </div>
                     )
 
