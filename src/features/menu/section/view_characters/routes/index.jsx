@@ -75,23 +75,26 @@ const Index = () => {
     }, [])
 
     return (    
-        <div className='view-character grid template-col-3 template-row-4 justify-items-center items-center'>
+        <div className='grid template-col-3 template-row-4 justify-items-center items-center'>
             <div className='flex-col bg-black texture-bg shadow place-row-1-4 place-col-3-3 h-full w-full'>
                 {characterList}
             </div>
             <div className='flex-col place-row-1-4 place-col-1-2 h-full w-full'>
                 {viewCharacter}
             </div>
-            <Button
-                className='place-row-3-3 place-col-3-3 bg-black texture-bg button'
-                onClick={handleCreate}>
-                Create Protagonist
-            </Button>
-            <Button
-                className='place-row-4-4 place-col-3-3 bg-black texture-bg button'
-                onClick={() => handleExit()}>
-                Exit
-            </Button>
+            <div className='flex flex-row place-row-4-1 place-col-3-1 gap-5 h-full w-full items-end mb-8 px-5'>
+                <Button
+                    className='bg-black texture-bg text-size-4 button'
+                    onClick={handleCreate}>
+                    Create Protagonist
+                </Button>
+                <Button
+                    className='bg-black texture-bg text-size-4 button'
+                    onClick={() => handleExit()}>
+                    Exit
+                </Button>
+            </div>
+            
         </div>    
     )
 }

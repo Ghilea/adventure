@@ -44,12 +44,12 @@ const Menu = () => {
                     Start Game
                 </Button>
 
-                <Button
+                {/* <Button
                     className='text-white text-size-7 hover'
                     type='options'
                     onClick={handleClick}>
                     Options
-                </Button>
+                </Button> */}
 
                 <Button
                     className='text-white text-size-7 hover'
