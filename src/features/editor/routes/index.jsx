@@ -1,216 +1,168 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import { Canvas } from '@react-three/fiber';
-import { Ground } from '@editor/ground';
+import Ground from '@comp/ground';
 import { Physics } from '@react-three/cannon';
 import { OrbitControls } from '@react-three/drei'
-import { RightPanel, TopPanel, CategorySidePanel } from '@editor/panel/Panel';
-import { build, ground, mousePosition} from '@store/editor';
+import SelectObj from '@editor/select_canvas_object';
+import disable from '@hooks/disable-click';
 import { useKey } from 'rooks';
-import { SelectObject, AddObject } from '@helper/helperObject';
-import { Selection, EffectComposer, Outline } from '@react-three/postprocessing';
+import { SelectObject, AddObject } from '@editor/helperObject';
+import TopPanel from '../panel_top';
+import RightPanel from '../panel_right';
+import { build } from '@store/editor';
+import GroundCheck from '@editor/groundCheck';
 
 const Index = () => {
     
     //stores
-    const storeBuild = build(state => state);
-    const storeGround = ground(state => state);
-    const position = mousePosition(state => state);
+    const store = build(state => state);
+    const level = build(state => state.level);
+    const groundSize = build(state => state.mapSettings.groundSize);
+    const isBuild = build(state => state.isBuild);
+    const mousePosition = build(state => state.mousePosition);
+    const [rotate, setRotate] = useState(0);
+    const [mouseRight] = disable();
 
-    //states
-    const [index, setIndex] = useState(0);
+    const [objectIndex, setObjectIndex] = useState(0);
     
     useEffect(() => {
-        if (storeBuild.active.length > 0 && storeBuild.selected !== null) {
-            storeBuild.selectedObject(null)
-            console.log('reset')
-        }
-    }, [storeBuild.active])
+        store.setIsEditor(true)
+    }, [])
 
     useEffect(() => {
-        console.log('store',storeBuild.object)
-        console.log('active',storeBuild.activateBuild)
-
-        /*setObj(obj.filter((item) => {
-            return item.props.objectId === storeBuild.object.objectId
-        }))*/
-    }, [storeBuild.activateBuild])
-
-    const clickInsideCanvas = (event) => {
-
-        console.log('click inside canvas', event.type, storeGround.color, storeBuild.activateBuild)
-        
-        if (event.type === 'click' && storeGround.color === 'green' && storeBuild.activateBuild) {
-
-            storeBuild.addObject(
-                <AddObject
-                    onClick = {<SelectObject />}
-                    key={storeBuild.active[1]+index}
-                    position = {
-                        [Math.floor(position.x) + 0.5, position.y + (4/2), Math.floor(position.z) + 0.5]
-                    }
-                    rotation = {
-                        (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
-                    }
-                    type = {
-                        storeBuild.active[0]
-                    }
-                    texture = {
-                        storeBuild.active[1]
-                    }
-                    objectId = {
-                        index
-                    }
-                />, //canvasObject
-                [Math.floor(position.x) + 0.5, position.y + (4 / 2), Math.floor(position.z) + 0.5], //position
-                (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0], //rotation
-                storeBuild.active[0], //type
-                storeBuild.active[1], //texture
-                index //objectId
-            );
-
-            setIndex(index + 1)
-            /*switch (storeBuild.active[0]) {
-                case 'wall':
-                    setObj((state) => ([
-                        ...state, 
-                        <AddObject 
-                        onClick = {
-                            <SelectObject />
-                        }
-                        key = {'wall'+index}
-                        position = {
-                            [Math.floor(position.x) + 0.5, position.y + (4/2), Math.floor(position.z) + 0.5]
-                        }
-                        rotation = {
-                            (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
-                        }
-                        type = {
-                            'wall'
-                        }
-                        texture = {
-                            storeBuild.active[1]
-                        }
-                        objectId={index}
-                        />
-                    ]))
-                    break;
-                case 'player':
-                    setObj((state) => ([
-                        ...state,
-                        <AddObject 
-                        onClick = {
-                            <SelectObject/>
-                        }
-                        key = {
-                            'player' + index
-                        }
-                        position = {
-                            [Math.floor(position.x) + 0.5, position.y + 0.55, Math.floor(position.z) + 0.5]
-                        }
-                        rotation = {
-                            (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
-                        }
-                        type = {
-                            'player'
-                        }
-                        texture = {
-                            'player'
-                        }
-                        objectId = {
-                            index
-                        }/>
-                    ]))
-                    break;
-                case 'object':
-                    setObj((state) => ([
-                        ...state,
-                        <AddObject 
-                        onClick = {
-                            <SelectObject/>
-                        }
-                        key = {
-                            'object' + index
-                        }
-                        position = {
-                            [Math.floor(position.x) + 0.5, position.y + 0.55, Math.floor(position.z) + 0.5]
-                        }
-                        rotation = {
-                            (storeBuild.rotate) ? [0, Math.PI * (360 / 360), 0] : [0, Math.PI * (180 / 360), 0]
-                        }
-                        type = {
-                            'object'
-                        }
-                        texture = {
-                            storeBuild.active[1]
-                        }
-                        objectId = {
-                            index
-                        }/>
-                    ]))
-                    break;
-            }*/
-
-            
-        } else if (event.type === 'contextmenu') {
-            event.preventDefault();
+        if (store.active.length > 0 && store.selected !== null) {
+            store.selectedObject(null)
+            console.log('reset')
         }
-    }
+    }, [store.active])
+
+    
+    useEffect(() => {
+        console.log('object', store.objects)
+    }, [store.mapSettings.objects])
 
     /*useEffect(()=> {
 
-        if(storeBuild.remove !== null){
+        if(store.remove !== null){
             setObj(obj.filter((item) => {
-                return item.props.objectId !== storeBuild.remove
+                return item.props.objectId !== store.remove
             }))
         }
 
-    }, [storeBuild.remove])*/
+    }, [store.remove])*/
 
     const keyHandler = () => {
-        if (storeBuild.rotate) {
-            storeBuild.changeRaySize(storeBuild.sizeY, storeBuild.sizeX, false) 
-        }else{
-            storeBuild.changeRaySize(storeBuild.sizeY, storeBuild.sizeX, true)
+
+        switch (isBuild.objectSize.rotate) {
+            case 0:
+                console.log('rotate 0')
+                store.setRotate(90)
+                break;
+            case 90:
+                console.log('rotate 90')
+                store.setRotate(180)
+                break;
+            case 180:
+                console.log('rotate 180')
+                store.setRotate(270)
+                break;
+            case 270:
+                console.log('rotate 270')
+                store.setRotate(0)
+                break;
         }
+
+        store.switchObjectSize(isBuild.objectSize.z, isBuild.objectSize.x)
+
+        console.log(rotate, isBuild.objectSize.rotate)
+        setRotate((Math.PI * (isBuild.objectSize.rotate / 360)))
     }
 
     useKey(['Control'], keyHandler);
 
+    useEffect(() => {
+        console.log(store.mapSettings.objectIndex)
+        console.log(objectIndex)
+        setObjectIndex(store.mapSettings.objectIndex)
+    }, [store.mapSettings.objectIndex])
+
+    const handleClick = (event) => {
+
+        if (event.type === 'click' && isBuild.active && isBuild.canBuild) {
+
+            store.setMapObject({
+                type: isBuild.type,
+                category: isBuild.category,
+                position: [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5],
+                rotation: (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? [0, Math.PI * (180 / 360), 0] : [0, Math.PI * (360 / 360), 0],
+                objectId: objectIndex
+            })
+
+            store.addObject(
+                <AddObject
+                    onClick={<SelectObject />}
+                    key={isBuild.category + objectIndex}
+                    position={
+                        [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5]
+                    }
+                    rotation={
+                        (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? [0, Math.PI * (180 / 360), 0] : [0, Math.PI * (360 / 360), 0]
+                    }
+                    type={
+                        isBuild.type
+                    }
+                    category={
+                        isBuild.category
+                    }
+                    objectId={
+                        objectIndex
+                    }
+                />, //canvasObject
+                [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5], //position
+                (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? [0, Math.PI * (180 / 360), 0] : [0, Math.PI * (360 / 360), 0], //rotation
+                isBuild.type, //type
+                isBuild.category, //category
+                objectIndex //objectId
+            );
+
+            setObjectIndex(objectIndex + 1)
+            store.setObjectIndex(objectIndex + 1)
+
+        }
+    }
+
+    const pointerMove = (e) => {
+        store.setMousePosition(e.point.x, e.point.y, e.point.z)
+    }
+
     return (
         <>
             <TopPanel />
-            <CategorySidePanel />
             <RightPanel />
-            <Canvas 
-            onClick = {
-                clickInsideCanvas
-            }
-            camera = {
-                {
-                    fov: 45,
-                    position: [0, 2, -10]
-                }
-            } >
+            <Canvas
+                className='bg-black'
+                onClick={handleClick}
+                onContextMenu={mouseRight}
+                camera={
+                    {
+                        fov: 45,
+                        position: [0, 2, -10]
+                    }
+                } >
                 <OrbitControls />
                 <ambientLight intensity={1} />
-                <Physics gravity = {
-                    [0, -30, 0]
-                } >
-                    <gridHelper args={[storeGround.x, storeGround.y]}/>
-                    <Ground position = {
-                        [0, 0, 0]
-                    }
-                    />
-                    <Selection>
-                        <EffectComposer multisampling={8} autoClear={false}>
-                            <Outline blur visibleEdgeColor="white" edgeStrength={100} width={1000} />
-                        </EffectComposer>
-                        {storeBuild.object.map((item) => {
-                            return item.canvasObject
-                        })}
-                    </Selection>  
+
+                <Physics gravity={[0, -30, 0]} >
+
+                    <gridHelper args={[groundSize, groundSize]} />
+
+                    <Ground onPointerMove={pointerMove} size={groundSize}/>
+
+                    <GroundCheck />
+
+                    <SelectObj />
                 </Physics>
-                
+
             </Canvas>
         </>    
     )

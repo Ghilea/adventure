@@ -1,109 +1,67 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
-import Ground from '../components/ground';
+import { useProgress } from "@react-three/drei";
+import LoadModel from '@models/components/models';
+import Ground from '@comp/ground';
 import { Read } from '@comp/crud';
-import { map } from '@store/store';
-import Player from '@comp/player/player';
+import Player from '@features/player';
 import Loader from '@comp/loading/Loader';
-import { Wall_1 } from '@models/objects/walls';
 import Interface from '@features/interface'
-import { Torch } from '@models/objects/torch';
+
 import './index.scss';
 
 const Index = () => {
 
-    const storeMap = map(state => state);
-
+    const { progress } = useProgress();
     const [build, setBuild] = useState([]);
-    const [createPlayer, setCreateplayer] = useState();
-    const [ground, setGround] = useState({
-        texture: 'stone',
-        size: [10, 10]
-    });
+    const [groundSize, setGroundSize] = useState([10]);
 
     useEffect(() => {
-    
-        Read(`getLevel?id=${storeMap.level}`)
-            .then(response => {
-                
-                const parsed = JSON.parse(response.data[0].content)
 
-                //storeMap.setPlayerPosition(parsed.player);
+        if(build.length <= 0) {
+            Read(`getLevel?id=TestMap`)
+                .then(response => {
 
-                parsed.walls.map((use, index) => {
+                    const parsed = JSON.parse(response.data[0].content)
 
-                    setBuild((state) => ([
-                        ...state,
-                        <Wall_1 key={'wall' + index}
-                            position={use.pos}
-                            rotation={use.rotate}
-                            type={use.type}
-                        />
-                    ]))
+                    parsed.objects.map((use, index) => {
+
+                        if(use.type === 'player'){
+                            setBuild((state) => ([
+                                ...state,
+                                <Player key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
+                            ]))
+                        }else{
+                            setBuild((state) => ([
+                                ...state,
+                                <LoadModel key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
+                            ]))
+                        }
+
+                    setGroundSize(parsed.ground)
                 })
 
-                setCreateplayer(() => (
-                    <Player position={parsed.player} />
-                ))
-
-                setGround((state) => ({
-                    ...state,
-                    texture: parsed.ground[2],
-                    size: [parsed.ground[0], parsed.ground[1]]
-                }))
-
-                storeMap.setPlayerPosition(parsed.player);
-
-                //storeMap.setPlayerPosition(response.level[0].content.player);
-
-                    /*const parsed = JSON.parse(response.level[0].content)
-
-                    parsed.walls.map((use, index) => {
-
-                        setBuild((state) => ([
-                            ...state,
-                            <Wall_1 key={'wall'+index} 
-                            position = {use.pos}
-                            rotation = { use.rotate }
-                            type = { use.type }
-                            />
-                        ]))
-                    })
-
-                    setCreateplayer(() => (
-                        <Player position = {parsed.player} />
-                    ))
-
-                    setGround((state) => ({
-                        ...state,
-                        texture: parsed.ground[2],
-                        size: [parsed.ground[0], parsed.ground[1]]
-                    }))
-
-                    storeMap.setPlayerPosition(parsed.player);*/
-                
             })
+        }
+        
     }, [])
 
-    console.log('player', createPlayer)
     return (
         <>
-            <Canvas shadows >
-                <ambientLight intensity={1} />
-                
+            <Canvas shadows className='bg-black'>
+               
                 <Physics gravity={[0, -30, 0]}>
 
                     <Suspense fallback={<Loader />}>
-                        <Ground position={[0, 0, 0]} groundTexture={ground.texture} size={ground.size} />
+                        <Ground position={[0, 0, 0]} size={groundSize} />
                         {build}
-                        {createPlayer}
-                        <Torch position={[-3.9, 0.3, -2]} scale={[1.03, 1.03, 1.03]} rotation={[0, Math.PI * (180 / 360), 0]} />
                     </Suspense>
-
-                </Physics>
+                    
+                </Physics>                
             </Canvas>
-            <Interface />
+            
+            {progress < 100 || <Interface />}
         </>
         
     )

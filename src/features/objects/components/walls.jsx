@@ -1,6 +1,6 @@
 import React from 'react';
 import { useBox } from '@react-three/cannon';
-import * as texture from '@comp/textures';
+//import * as texture from '@comp/textures';
 
 export const Walls = ({position, rotation, type, ...props}) => {
 
@@ -13,11 +13,7 @@ export const Walls = ({position, rotation, type, ...props}) => {
 
     return (
         <mesh ref = {ref} castShadow receiveShadow>
-            <meshStandardMaterial
-                map = {
-                    (type == 'stone') ? texture.stone(): (type == 'stone2') ? texture.stone2() : (type == 'stoneWindow') ? texture.stoneWindow() : ''
-                }
-                />
+            <meshStandardMaterial />
             
             <boxGeometry args = {[5, 2, 1]} />
         </mesh>

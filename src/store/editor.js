@@ -1,47 +1,141 @@
 import create from 'zustand';
 
-export const mousePosition = create(set => ({
-    x: 0,
-    y: 0,
-    z: 0,
-    editPosition: (x, y, z) => set(state => ({
-        ...state,
-        x: x,
-        y: y,
-        z: z
-    }))
-}))
-
-export const interfaceButtons = create(set => ({
-    active: false,
-    button: null,
-    categoryBtn: null,
-    remove: false,
-    changeCategoryBtn: (value) => set(state => ({
-        ...state,
-        categoryBtn: value
-    })),
-    isRemove: (value) => set(state => ({
-        ...state,
-        remove: value
-    })),
-    btn: (active, button) => set(state => ({
-        ...state,
-        active: active,
-        button: button
-    }))
-}))
-
 export const build = create(set => ({
-    activateBuild: false,
+    isEditor: false,
+    isBuild: {
+        canBuild: false,
+        active: false,
+        type: '',
+        category: '', 
+        objectSize: {
+            x: 1,
+            z: 1,
+            y: 0,
+            rotate: 0
+        }
+    },
+    mousePosition: {
+        x: 0,
+        y: 0,
+        z: 0
+    },
+    mapSettings: {
+        objectIndex: 0,
+        objects: [],
+        groundSize: 10
+    },
+    level: null,
     active: [],
-    object: [],
+    objects: [],
     solid: [],
-    sizeX: 1,
-    sizeY: 1,
-    rotate: false,
     selected: null,
     remove: null,
+    setCanBuild: (value) => set(state => ({
+        ...state,
+        isBuild: {
+            ...state.isBuild,
+            canBuild: value
+        }
+    })),
+    setIsEditor: (value) => set(state => ({
+        ...state,
+        isEditor: value
+    })),
+    setRotate: (deg) => set(state => ({
+        ...state,
+        isBuild: {
+            ...state.isBuild,
+            objectSize: {
+                ...state.isBuild.objectSize,
+                rotate: deg
+            } 
+        }
+    })),
+    switchObjectSize: (x, z) => set(state => ({
+        ...state,
+        isBuild: {
+            ...state.isBuild,
+            objectSize: {
+                ...state.isBuild.objectSize,
+                x: x,
+                z: z
+            } 
+        }
+    })),
+    setObjectIndex: (index) => set(state => ({
+        ...state,
+        mapSettings: {
+            ...state.mapSettings,
+            objectIndex: index
+        }
+    })),
+    setGroundSize: (size) => set(state => ({
+        ...state,
+        mapSettings: {
+            ...state.mapSettings,
+            groundSize: size
+        }
+    })),
+    setMousePosition: (x, y, z) => set(state => ({
+        ...state,
+        mousePosition: {
+            x: x,
+            y: y,
+            z: z
+        }
+    })),
+    setGroundSize: (size) => set(state => ({
+        ...state,
+        mapSettings: {
+            ...state.mapSettings,
+            groundSize: size
+        }
+    })),
+    setField: (title, order) => set(state => ({
+        ...state,
+        mapSettings: {
+            ...state.mapSettings,
+            title: title,
+            order: order
+        }
+    })),
+    setMapObject: ({type, category, position, rotation, objectId}) => set(state => ({
+        ...state,
+        mapSettings: {
+            ...state.mapSettings,
+            objects:[
+                ...state.mapSettings.objects,
+                {
+                    type: type, 
+                    category: category, 
+                    position: position, 
+                    rotation: rotation,
+                    objectId: objectId
+                }
+            ]
+        }
+    })),
+    setMapSettings: ({
+        id,
+        title, 
+        order,
+        objects,
+        groundSize,
+    }) => set(state => ({
+        ...state,
+        mapSettings: {
+            ...state.mapSettings,
+            id: id,
+            title: title, 
+            order: order,
+            objects: objects,
+            groundSize: groundSize
+        }
+    })),
+    setLevel: (level) => set(state => ({
+        ...state,
+        object: level
+    })),
     resetActiveBuild: () => set(state => ({
         ...state,
         active: []
@@ -53,15 +147,21 @@ export const build = create(set => ({
             texture
         ]
     })),
-    changeActivateBuild: (value) => set(state => ({
+    buildState: (value, type = '', category = '', objectSize = [0,0,0,0]) => set(state => ({
         ...state,
-        activateBuild: value
-    })),
-    changeRaySize: (x, y, rotate) => set(state => ({
-        ...state,
-        sizeX: x,
-        sizeY: y,
-        rotate: rotate
+        isBuild: {
+            ...state.isBuild,
+            active: value, 
+            type: type,
+            category: category,
+            objectSize: {
+                ...state.isBuild.objectSize,
+                x: objectSize[0],
+                z: objectSize[1],
+                y: objectSize[2],
+                rotate: objectSize[3]
+            }
+        }
     })),
     addSolid: (x, z, objectId) => set(state => ({
         solid: [
@@ -73,15 +173,15 @@ export const build = create(set => ({
             }
         ]
     })),
-    addObject: (canvasObject, position, rotation, type, texture, objectId) => set(state => ({
-        object: [
-            ...state.object,
+    addObject: (canvasObject, position, rotation, type, category, objectId) => set(state => ({
+        objects: [
+            ...state.objects,
             {
                 canvasObject: canvasObject,
                 position: position, 
                 rotation: rotation,
                 type: type,
-                texture: texture,
+                category: category,
                 objectId: objectId
             }
         ]          
@@ -89,7 +189,7 @@ export const build = create(set => ({
     updateRotationObject: (objectId, newData) => 
         set(state => ({
             ...state,
-            object: [{
+            objects: [{
                 ...state.object,
                 rotation: [0, newData, 0]
             }]
@@ -97,9 +197,15 @@ export const build = create(set => ({
     ),
     removeObject: (data) => 
         set((state) => ({
-            object: state.object.filter((item) => {
+            objects: state.objects.filter((item) => {
                 return item.objectId !== data
             }),
+            mapSettings: {
+                ...state.mapSettings,
+                objects: state.objects.filter((item) => {
+                    return item.objectId !== data
+                })
+            },
             solid: state.solid.filter((item) => {
                 return item.objectId !== data
             }),
@@ -118,9 +224,6 @@ export const build = create(set => ({
 export const ground = create(set => ({
     x: 10,
     y: 10,
-    texture: 'stone',
-    textureSizeX: 1,
-    textureSizeY: 1,
     color: 'green',
     square: [],
     addSquare: (x, z, type, id) => set(state => ({
@@ -142,14 +245,5 @@ export const ground = create(set => ({
         ...state,
         x: x,
         y: y
-    })),
-    changeTextureSize: (x, y) => set(state => ({
-        ...state,
-        textureSizeX: x,
-        textureSizeY: y
-    })),
-    groundTexture: (texture) => set(state => ({
-        ...state,
-        texture: texture
     })),
 }))

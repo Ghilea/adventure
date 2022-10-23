@@ -1,0 +1,43 @@
+body {
+    user-select: none;
+    color: white;
+    background-color: #fff;
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+}
+
+#root {
+    height: 100vh;
+    position: relative;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    margin: 3em 0 0 0;
+    letter-spacing: 0.1rem;
+
+    img {
+        z-index: -1;
+        margin: 0 auto;
+    }
+
+    p {
+        transform: translate(0, -3.7em);
+    }
+}
+
+.img {
+    max-width: 10em;
+    width: 100%;
+
+    img {
+        width: 100%;
+    }
+}
+
+canvas {
+    height: 100vh;
+}

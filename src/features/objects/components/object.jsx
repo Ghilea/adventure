@@ -1,6 +1,6 @@
 import React from 'react';
 import { useBox } from '@react-three/cannon';
-import * as texture from '@comp/objectTextures';
+//import * as texture from '@comp/objectTextures';
 
 export const Object = ({position, size, objectTexture, light, mass, rotation, distance, ...props}) => {
   
@@ -26,9 +26,7 @@ export const Object = ({position, size, objectTexture, light, mass, rotation, di
           <></>
       }
       <boxGeometry args={size}/>
-      <meshLambertMaterial map={
-        (objectTexture === 'wood') ? texture.wood() : 
-        (objectTexture === 'wood2') ? texture.wood2() : ''} />
+      <meshLambertMaterial />
     </mesh>
   )
 }

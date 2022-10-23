@@ -2,6 +2,7 @@ import React, { useState, useEffect, createElement } from 'react';
 import { player, enemy, combat } from '@store/store';
 import { Read, Update } from '@comp/crud';
 import { Health, Mana, Exp } from './components/bar/Bar';
+import disable from '@hooks/disable-click';
 import CharacterSheet from './components/characterSheet';
 import Chat from './components/chat';
 import sword from '@assets/images/gui/sword.png';
@@ -10,12 +11,14 @@ import femaleImg from '@assets/images/characters/FantasyCharacters_h_warrior_fem
 import maleImg from '@assets/images/characters/FantasyCharacters_h_warrior_male.png';
 import './index.scss';
 
+
 const Index = () => {
 
     const storePlayer = player(state => state);
     const storeEnemy = enemy(state => state);
     const storeCombat = combat(state => state);
-    
+    const [mouseRight] = disable();
+
     const [set, setState] = useState({
         name: '',
         img: null
@@ -139,7 +142,7 @@ const Index = () => {
             onClick = {
                 handleMouseClick
             }
-            onContextMenu = {handleMouseClick}
+                onContextMenu={mouseRight}
             onMouseDown = {
                 handleMouseClick
             } >

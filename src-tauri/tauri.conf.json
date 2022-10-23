@@ -12,7 +12,9 @@
   },
   "tauri": {
     "allowlist": {
-      "all": true
+      "window":{
+        "close": true
+      }
     },
     "bundle": {
       "active": true,
@@ -55,10 +57,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 800,
         "resizable": false,
         "title": "Adventure",
-        "width": 800
+        "width": 1024
       }
     ]
   }

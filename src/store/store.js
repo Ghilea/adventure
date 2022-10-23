@@ -148,7 +148,7 @@ export const player = create(set => ({
 
 export const map = create(set => ({
     level: 1,
-    playerPosition: null,
+    playerPosition: [0,0,0],
     camera: false,
     showCharacterSheet: false,
     chatWindow: true,

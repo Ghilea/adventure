@@ -1,0 +1,127 @@
+.grid {
+    display: grid;
+}
+
+.flex {
+    display: flex;
+}
+
+//flex
+.flex-1 {
+    flex: 1 1 0%;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.grow {
+    flex-grow: 1;
+}
+
+//align
+.items-center {
+    align-items: center;
+}
+
+.items-start {
+    align-items: flex-start;
+}
+
+.items-end {
+    align-items: flex-end;
+}
+
+.items-stretch {
+    align-items: stretch;
+}
+
+.align-between {
+    align-content: space-between;
+}
+
+//justify
+.justify-center {
+    justify-content: center;
+}
+
+.justify-evenly {
+    justify-content: space-evenly;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-end {
+    justify-content: end;
+}
+
+.justify-items-center {
+    justify-items: center;
+}
+
+.justify-items-start {
+    justify-items: start
+}
+
+.justify-items-stretch {
+    justify-items: stretch;
+}
+
+.justify-items-end {
+    justify-items: end;
+}
+
+//place
+.place-self-stretch {
+    place-self: stretch;
+}
+
+.place-self-center {
+    place-self: center;
+}
+
+@for $index from 1 through 16 {
+    
+    //gap
+    .gap-#{$index} {
+        gap: #{$index * 4px};
+    }
+
+    .row-gap-#{$index} {
+        row-gap: #{$index * 4px};
+    }
+
+    .column-gap-#{$index} {
+        column-gap: #{$index * 4px};
+    }
+
+    //template
+    .template-col-#{$index} {
+        grid-template-columns: repeat($index, 1fr);
+    }
+
+    .template-row-#{$index} {
+        grid-template-rows: repeat($index, 1fr);
+    }
+
+    //placement
+    @for $index2 from 1 through 16 {
+        .place-row-#{$index}-#{$index2} {
+            grid-row: $index / span $index2;
+        }
+
+        .place-col-#{$index}-#{$index2} {
+            grid-column: $index / span $index2;
+        }
+    }
+}
