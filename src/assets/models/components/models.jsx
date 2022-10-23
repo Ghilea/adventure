@@ -8,7 +8,7 @@ import FemaleAvatar from '@models/avatar/female_avatar';
 
 const Models = ({position, rotation, type}) => {
 
-    let model = ''
+    let model = []
     
     switch (type) {
         case 'wall_1':

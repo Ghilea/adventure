@@ -25,7 +25,6 @@ const GroundCheck = () => {
 
             //check the ground if it is allwed to place object there
             const check = solidCheck.filter(obj => {
-                console.log(isBuild.objectSize)
                 return (
                     obj.x == centerX) && (obj.z == centerZ) || (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? 
 
@@ -38,8 +37,6 @@ const GroundCheck = () => {
                     obj.z >= (centerZ - (isBuild.objectSize.z / 2))) && 
                     (obj.x == centerX && 
                     obj.z <= (Math.floor(mousePosition.z) + (isBuild.objectSize.z / 2)))
-
-                
             })
             
             if (check.length > 0) {
@@ -52,7 +49,6 @@ const GroundCheck = () => {
             
         }
 
-        console.log('mouse', centerX, centerZ, 'solid', solidCheck)
     }, [mousePosition])
 
     useEffect(() => {

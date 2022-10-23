@@ -16,7 +16,6 @@ const Index = () => {
     
     //stores
     const store = build(state => state);
-    const level = build(state => state.level);
     const groundSize = build(state => state.mapSettings.groundSize);
     const isBuild = build(state => state.isBuild);
     const mousePosition = build(state => state.mousePosition);
@@ -35,21 +34,6 @@ const Index = () => {
             console.log('reset')
         }
     }, [store.active])
-
-    
-    useEffect(() => {
-        console.log('object', store.objects)
-    }, [store.mapSettings.objects])
-
-    /*useEffect(()=> {
-
-        if(store.remove !== null){
-            setObj(obj.filter((item) => {
-                return item.props.objectId !== store.remove
-            }))
-        }
-
-    }, [store.remove])*/
 
     const keyHandler = () => {
 
@@ -81,8 +65,6 @@ const Index = () => {
     useKey(['Control'], keyHandler);
 
     useEffect(() => {
-        console.log(store.mapSettings.objectIndex)
-        console.log(objectIndex)
         setObjectIndex(store.mapSettings.objectIndex)
     }, [store.mapSettings.objectIndex])
 
@@ -161,6 +143,7 @@ const Index = () => {
                     <GroundCheck />
 
                     <SelectObj />
+
                 </Physics>
 
             </Canvas>
