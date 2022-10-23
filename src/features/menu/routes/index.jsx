@@ -15,7 +15,7 @@ import './index.scss';
 const Index = () => {
 
     const { progress } = useProgress();
-    const [groundSize, setGroundSize] = useState([10, 10]);
+    const [groundSize, setGroundSize] = useState([10]);
     const [build, setBuild] = useState([]);
     const [music, setMusic] = useState();
 
