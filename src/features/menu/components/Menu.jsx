@@ -40,24 +40,28 @@ const Menu = () => {
             
             <div className='buttonList'>
                 <Button
+                    className='bg-black texture-bg button'
                     type='view'
                     onClick={handleClick}>
                     Start Game
                 </Button>
 
                 <Button
+                    className='bg-black texture-bg button'
                     type='options'
                     onClick={handleClick}>
                     Options
                 </Button>
 
                 <Button
+                    className='bg-black texture-bg button'
                     type='editor'
                     onClick={handleClick}>
                     Map Editor
                 </Button>
 
                 <Button
+                    className='bg-black texture-bg button'
                     type='exit'
                     onClick={handleClick}>
                         Exit Game

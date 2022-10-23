@@ -83,12 +83,12 @@ const Index = () => {
                 {viewCharacter}
             </div>
             <Button
-                className='place-row-3-3 place-col-3-3'
+                className='place-row-3-3 place-col-3-3 bg-black texture-bg button'
                 onClick={handleCreate}>
                 Create Protagonist
             </Button>
             <Button
-                className='place-row-4-4 place-col-3-3'
+                className='place-row-4-4 place-col-3-3 bg-black texture-bg button'
                 onClick={() => handleExit()}>
                 Exit
             </Button>

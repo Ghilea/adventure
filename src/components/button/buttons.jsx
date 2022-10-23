@@ -19,7 +19,7 @@ const Button = ({
     return (
         <button 
             type='button' 
-            className={`bg-black texture-bg button ${className}`} 
+            className={className} 
             onClick={onClick} 
             data-tooltip={type}
             onMouseEnter={() => play()}

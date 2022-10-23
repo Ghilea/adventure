@@ -129,7 +129,7 @@ const Index = () => {
                     <button type='button' onClick={(e) => handleCreate(e)}>Create</button>
 
                     <Button
-                        className='button'
+                        className='bg-black texture-bg button'
                         onClick={() => handleExit()}>Exit</Button>
                 </div>
 
