@@ -43,6 +43,7 @@ const Index = () => {
                     </div>
                     <div className='dps'>Dps: {storePlayer.dps}</div>
                     <Button
+                        className='bg-black texture-bg button'
                         onClick={handleExit}>
                         Exit to menu
                     </Button>
