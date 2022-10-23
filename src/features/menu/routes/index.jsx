@@ -17,7 +17,8 @@ const Index = () => {
     const { progress } = useProgress();
     const [groundSize, setGroundSize] = useState([10]);
     const [build, setBuild] = useState([]);
-    const [music, setMusic] = useState();
+    const [music, setMusic] = useState([]);
+    const [menu, setMenu] = useState([])
 
     useMemo(() => {
         setMusic(new Howl({
@@ -55,6 +56,10 @@ const Index = () => {
             music.play();
         }
 
+        if(progress >= 100) {
+            setMenu(<Menu />)
+        }
+
     }, [progress])
 
     return (
@@ -76,7 +81,9 @@ const Index = () => {
                 </Physics>
             </Canvas>
 
-            {progress < 100 || <Menu />}       
+            
+            {menu}
+
         </>
     )
 }
