@@ -6,6 +6,7 @@ import { build } from '@store/editor';
 const GroundCheck = () => {
     
     const solidCheck = build(state => state.solid);
+    const store = build(state => state);
     const mousePosition = build(state => state.mousePosition);
     const isBuild = build(state => state.isBuild);
     const [groundColor, setGroundColor] = useState('');
@@ -24,28 +25,43 @@ const GroundCheck = () => {
 
             //check the ground if it is allwed to place object there
             const check = solidCheck.filter(obj => {
-                console.log('check', 'x', obj.x == centerX, 'z', obj.z == centerZ)
+                console.log(isBuild.objectSize)
                 return (
-                    obj.x == centerX) && (obj.z == centerZ) || (!isBuild.objectSize.rotate === 0 || !isBuild.objectSize.rotate === 180 || !isBuild.objectSize.rotate === 360 ) ? 
-                    (obj.x >= (centerX - (isBuild.objectSize.x / 2))) && obj.z == centerZ && (obj.x <= (Math.floor(mousePosition.x) + (isBuild.objectSize.x / 2))) && obj.z == centerZ : 
-                    (obj.x == centerX && obj.z >= (centerZ - (isBuild.objectSize.z / 2))) && (obj.x == centerX && obj.z <= (Math.floor(mousePosition.z) + (isBuild.objectSize.z / 2)))
+                    obj.x == centerX) && (obj.z == centerZ) || (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? 
+
+                    (obj.x >= (centerX - (isBuild.objectSize.x / 2))) && 
+                    obj.z == centerZ && 
+                    (obj.x <= (Math.floor(mousePosition.x) + (isBuild.objectSize.x / 2))) && 
+                    obj.z == centerZ : 
+
+                    (obj.x == centerX && 
+                    obj.z >= (centerZ - (isBuild.objectSize.z / 2))) && 
+                    (obj.x == centerX && 
+                    obj.z <= (Math.floor(mousePosition.z) + (isBuild.objectSize.z / 2)))
+
+                
             })
             
             if (check.length > 0) {
                 setGroundColor('red');
+                store.setCanBuild(false)
             }else{
                 setGroundColor('green');
+                store.setCanBuild(true)
             }
             
         }
 
+        console.log('mouse', centerX, centerZ, 'solid', solidCheck)
     }, [mousePosition])
 
     useEffect(() => {
         if (isBuild.active){
             setGroundColor('green')
+            store.setCanBuild(true)
         }else{
             setGroundColor('')
+            store.setCanBuild(false)
         }
         
     }, [isBuild.active])
@@ -59,7 +75,7 @@ const GroundCheck = () => {
             <planeGeometry 
                 attach='geometry' 
                 args={
-                    (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? [isBuild.objectSize.x, isBuild.objectSize.z] : [isBuild.objectSize.z, isBuild.objectSize.x]
+                    [isBuild.objectSize.x, isBuild.objectSize.z]
                 }/>
 
             <meshStandardMaterial 

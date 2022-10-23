@@ -2,7 +2,7 @@ import React, { useEffect, useState, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import { useProgress } from "@react-three/drei";
-import LoadModel from '@models/models';
+import LoadModel from '@models/components/models';
 import Ground from '@comp/ground';
 import { Read } from '@comp/crud';
 import Player from '@features/player';

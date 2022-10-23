@@ -3,6 +3,7 @@ import create from 'zustand';
 export const build = create(set => ({
     isEditor: false,
     isBuild: {
+        canBuild: false,
         active: false,
         type: '',
         category: '', 
@@ -29,6 +30,13 @@ export const build = create(set => ({
     solid: [],
     selected: null,
     remove: null,
+    setCanBuild: (value) => set(state => ({
+        ...state,
+        isBuild: {
+            ...state.isBuild,
+            canBuild: value
+        }
+    })),
     setIsEditor: (value) => set(state => ({
         ...state,
         isEditor: value
@@ -40,6 +48,17 @@ export const build = create(set => ({
             objectSize: {
                 ...state.isBuild.objectSize,
                 rotate: deg
+            } 
+        }
+    })),
+    switchObjectSize: (x, z) => set(state => ({
+        ...state,
+        isBuild: {
+            ...state.isBuild,
+            objectSize: {
+                ...state.isBuild.objectSize,
+                x: x,
+                z: z
             } 
         }
     })),

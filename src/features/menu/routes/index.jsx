@@ -2,7 +2,7 @@ import { Suspense, useEffect, useState, useRef, useMemo } from 'react';
 import { useProgress } from "@react-three/drei";
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
-import LoadModel from '@models/models';
+import LoadModel from '@models/components/models';
 import Menu from '../components/Menu';
 import Ground from '@comp/ground';
 import Loader from '@comp/loading/Loader';

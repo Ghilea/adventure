@@ -53,19 +53,29 @@ const Index = () => {
 
     const keyHandler = () => {
 
-
-        if (store.isBuild.objectSize.rotate === 360) {
-            store.setRotate(0)
-        } else {
-            if (store.isBuild.objectSize.rotate + 90 === 360) {
-                return store.setRotate(0)
-            }
-
-            store.setRotate(store.isBuild.objectSize.rotate + 90)
+        switch (isBuild.objectSize.rotate) {
+            case 0:
+                console.log('rotate 0')
+                store.setRotate(90)
+                break;
+            case 90:
+                console.log('rotate 90')
+                store.setRotate(180)
+                break;
+            case 180:
+                console.log('rotate 180')
+                store.setRotate(270)
+                break;
+            case 270:
+                console.log('rotate 270')
+                store.setRotate(0)
+                break;
         }
 
-        console.log(rotate, store.isBuild.objectSize.rotate)
-        setRotate((Math.PI * (store.isBuild.objectSize.rotate / 360)))
+        store.switchObjectSize(isBuild.objectSize.z, isBuild.objectSize.x)
+
+        console.log(rotate, isBuild.objectSize.rotate)
+        setRotate((Math.PI * (isBuild.objectSize.rotate / 360)))
     }
 
     useKey(['Control'], keyHandler);
@@ -78,7 +88,7 @@ const Index = () => {
 
     const handleClick = (event) => {
 
-        if (event.type === 'click' && isBuild.active) {
+        if (event.type === 'click' && isBuild.active && isBuild.canBuild) {
 
             store.setMapObject({
                 type: isBuild.type,

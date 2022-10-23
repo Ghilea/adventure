@@ -4,6 +4,7 @@ import { Rock_1 } from '@models/objects/rocks/rocks';
 import { Player } from '@models/creatures/player/player';
 import SwampMonster from '@models/creatures/swamp_monster/swamp_monster';
 import Floor_1 from '@models/grounds/floor_1/floor_1';
+import FemaleAvatar from '@models/avatar/female_avatar';
 
 const Models = ({position, rotation, type}) => {
 
@@ -28,6 +29,8 @@ const Models = ({position, rotation, type}) => {
         case 'swamp_monster':
             model = <SwampMonster position={position} rotation={rotation} type={type} />
             break;
+        case 'femaleAvatar':
+            model = <FemaleAvatar />
     }
 
     return model

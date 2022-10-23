@@ -1,61 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { build, ground } from '@store/editor';
-import { Wall_1 } from '@models/objects/walls/walls';
-import { Player } from '@models/creatures/player/player';
-import { Rock_1 } from '@models/objects/rocks/rocks';
-import { Torch } from '@models/objects/torch/torch';
-import Floor_1 from '@models/grounds/floor_1/floor_1';
-import SwampMonster from '@models/creatures/swamp_monster/swamp_monster';
+import LoadModel from "@models/components/models";
 
 //add object
 export const AddObject = ({position, rotation, type, category, objectId}) => {
-    const storeBuild = build(state => state);
+    const store = build(state => state);
     const storeGround = ground(state => state);
     const [object, setObject] = useState(null);
 
-    useEffect(() => {  
+    useEffect(() => {
+
+        setObject(<LoadModel position={position} rotation={rotation} />)
         
-        switch (type) {
-            case 'wall_1':
-                setObject(<Wall_1 position = {position} rotation = {rotation}/>)
-                break;
-            case 'player':
-                setObject(<Player position = {position} rotation = {rotation}/>)
-                break;
-            case 'rock_1':
-                setObject( <Rock_1 position = {position} rotation = {rotation} />)
-                break;
-             case 'torch':
-                setObject(<Torch position = {position} rotation = {rotation}/>)
-                break;
-            case 'floor_1':
-                setObject(<Floor_1 position={position} rotation={rotation} />)
-                break;
-            case 'swamp_monster':
-                setObject(<SwampMonster position={position} rotation={rotation} />)
-                break;
-        }
     }, [])
 
     useEffect(() => {
         if(object !== null){
-            
             //add ground (red)
-            switch (type) {
+            switch (category) {
                 case 'wall':
                     for (let i = 0; i < 5; i++) {
-                        if (!storeBuild.rotate) {
-                            storeBuild.addSolid((position[0] - 2) + i, position[2], objectId)
+                        if (!store.rotate) {
+                            store.addSolid((position[0] - 2) + i, position[2], objectId)
                         } else {
-                            storeBuild.addSolid(position[0], (position[2] - 2) + i, objectId)
+                            store.addSolid(position[0], (position[2] - 2) + i, objectId)
                         }
                     }
                     break;
-                case 'floor_1':
+                case 'floor':
                     
                     break;
                 default:
-                    storeBuild.addSolid(position[0], position[2], objectId)
+                    store.addSolid(position[0], position[2], objectId)
                     break;
             }
 
@@ -79,31 +55,35 @@ export const AddObject = ({position, rotation, type, category, objectId}) => {
 //select added object
 export const SelectObject = (eventObject, type, store) => {
 
-    const check = store.objects.filter((item) => {
-        console.log(item)
-        return item.position[0] === eventObject.x && item.position[1] === eventObject.y && item.position[2] === eventObject.z && item.category === type
-    })
+    const active = build(state => state.isBuild.active);
 
-    console.log(check)
+    if (active) {
+        const check = store.objects.filter((item) => {
+            console.log(item)
+            return item.position[0] === eventObject.x && item.position[1] === eventObject.y && item.position[2] === eventObject.z && item.category === type
+        })
 
-    if (check.length > 0) {
+        console.log(check)
 
-        //select new
-        if (store.selected === null) {
-            store.selectedObject(check[0].objectId)
+        if (check.length > 0) {
+
+            //select new
+            if (store.selected === null) {
+                store.selectedObject(check[0].objectId)
+            }
+
+            //select same
+            if (store.selected !== null && check[0].objectId === store.selected) {
+                store.selectedObject(null)
+            }
+
+            //select another while the old still is selected
+            if (store.selected !== null && check[0].objectId !== store.selected) {
+                store.selectedObject(check[0].objectId)
+            }
         }
 
-        //select same
-        if (store.selected !== null && check[0].objectId === store.selected) {
-            store.selectedObject(null)
-        }
+        return check[0].objectId
 
-        //select another while the old still is selected
-        if (store.selected !== null && check[0].objectId !== store.selected) {
-            store.selectedObject(check[0].objectId)
-        }
     }
-
-    return check[0].objectId
-
 }

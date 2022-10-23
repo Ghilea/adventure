@@ -4,7 +4,7 @@ import { Read } from '@comp/crud';
 import { menu, player } from '@store/store';
 import Button from '@comp/button/buttons';
 import { Canvas } from '@react-three/fiber';
-import FemaleAvatar from '@models/avatar/female_avatar';
+import LoadModel from '@models/components/models';
 import './index.scss';
 
 const Index = () => {
@@ -60,8 +60,8 @@ const Index = () => {
                                     }}
                                     className='gradient-bg'>
                                    
-                                    <ambientLight intensity={1} />
-                                        <FemaleAvatar />
+                                    <ambientLight intensity={0.7} />
+                                        <LoadModel type={'femaleAvatar'} />
                                 </Canvas>
                             </div>
                         )
