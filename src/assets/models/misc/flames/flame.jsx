@@ -56,7 +56,7 @@ export const Flame = (props) => {
 
       <pointLight
         intensity={lightAnimation}
-        distance={5}
+        distance={6}
         color={'#d4c4af'}
         position={[0, 0.5, 0]}
         scale={[5,5,5]}
