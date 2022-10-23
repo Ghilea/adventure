@@ -30,7 +30,6 @@ const Index = () => {
                     const parsed = JSON.parse(response.data[0].content)
 
                     parsed.objects.map((use, index) => {
-
                         switch (use.type) {
                             case 'wall_1':
                                 setBuild((state) => ([
@@ -95,6 +94,7 @@ const Index = () => {
                     
                 </Physics>                
             </Canvas>
+            
             <Interface />
         </>
         

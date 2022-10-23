@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '@comp/button/buttons';
 import disable from '@hooks/disable-click';
 import { build } from '@store/editor'
+import { useKey } from 'rooks';
 import { Create, Update } from '@comp/crud';
 import './index.scss';
 
@@ -52,18 +53,7 @@ const TopPanel = () => {
                     'ground': mapSettings.groundSize,
                     'objects': mapSettings.objects
                 })
-            }); 
-
-            /*
-            
-            key: {
-                isBuild.type
-            }
-            position: {
-
-            }
-            */
-            
+            });             
 
         }else{
             console.log('update')
@@ -85,6 +75,8 @@ const TopPanel = () => {
         storeBuild.removeObject(storeBuild.selected)
         storeBuild.selectedObject(null)
     }
+
+    useKey(['Delete'], handleRemove);
 
     useEffect(() => {
         console.log('objects', storeBuild.objects)

@@ -67,18 +67,12 @@ const CameraMovement = () => {
 
     }
 
-    useEffect(() => {
-        console.log(camera)
-    }, [])
-    
-
     return (
             <>
-                {
-                    (storeMap.camera && unlocked) ? 
-                    <></>
-                    : <PointerLockControlsImpl ref={controls} args={[camera, gl.domElement]} />
-                }
+                {(storeMap.camera && unlocked) || 
+                <PointerLockControlsImpl 
+                    ref={controls} 
+                    args={[camera, gl.domElement]} />}
             </>
         )
 }

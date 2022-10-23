@@ -13,7 +13,6 @@ const Index = () => {
     const storeMap = map(state => state);
 
     const handleKeyCharacterSheet = (e) => {
-        console.log(e)
         if (e.key === 'Escape' && !storeMap.chatInput) {
             if (storeMap.showCharacterSheet) {
                 storeMap.characterSheet(false)
