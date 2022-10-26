@@ -23,7 +23,7 @@ const Index = ({children = 'Adventures', timer = 1500}) => {
   useEffect(() => {
     if(!fade) {
       setTimeout(() => {
-        navigate('/menu');
+        navigate('/login');
       }, timer)
     }
   }, [fade])

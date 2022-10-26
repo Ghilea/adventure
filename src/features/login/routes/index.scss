@@ -1,0 +1,20 @@
+.game-logo {
+    width: 4em;
+}
+
+.hover {
+    
+    transition: all 100ms ease-out;
+
+    &:hover {
+        opacity: 0.8;
+        font-size: 1.8rem;
+    }
+}
+
+.bg-login {
+    background-image: url('@assets/images/backgrounds/menu3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

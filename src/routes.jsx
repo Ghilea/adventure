@@ -6,6 +6,7 @@ import Layout from '@comp/layout'
 import Editor from '@features/editor/routes/';
 import CompanyIntro from '@features/company_intro/routes/';
 import Menu from '@features/menu/routes/';
+import Login from '@features/login/routes/';
 import MenuCreate from '@features/menu/section/create_characters/routes/';
 import MenuView from '@features/menu/section/view_characters/routes/';
 import MenuOptions from '@features/menu/section/options/routes/';
@@ -20,6 +21,7 @@ const routes = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<CompanyIntro />}></Route>
+          <Route path="/login" element={<Login />}></Route>
           <Route path="/level" element={<Level />}></Route>
           <Route path="/menu" element={<Menu />}></Route>
           <Route path="/create-character" element={<MenuCreate />}></Route>
