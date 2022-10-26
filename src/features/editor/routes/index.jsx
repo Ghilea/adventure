@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Canvas } from '@react-three/fiber';
 import Ground from '@comp/ground';
 import { Physics } from '@react-three/cannon';
@@ -11,6 +11,7 @@ import TopPanel from '../panel_top';
 import RightPanel from '../panel_right';
 import { build } from '@store/editor';
 import GroundCheck from '@editor/groundCheck';
+import Loader from '@comp/loading/loader';
 
 const Index = () => {
     
@@ -118,7 +119,7 @@ const Index = () => {
     }
 
     return (
-        <>
+        <Suspense fallback={<Loader />}>
             <TopPanel />
             <RightPanel />
             <Canvas
@@ -147,7 +148,7 @@ const Index = () => {
                 </Physics>
 
             </Canvas>
-        </>    
+        </Suspense>
     )
 }
 

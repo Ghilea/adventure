@@ -4,7 +4,7 @@ import { Physics } from '@react-three/cannon';
 import LoadModel from '@models/components/models';
 import Menu from '../components/Menu';
 import Ground from '@comp/ground';
-import menuMusic from '@assets/music/menu.mp3'; 
+import menuMusic from '@assets/music/borgar.mp3'; 
 import useSound from 'use-sound';
 import { Read } from '@comp/crud';
 import { loading } from '@store/store';
