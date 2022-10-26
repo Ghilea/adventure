@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Html, useProgress } from "@react-three/drei";
 import { Read } from '@comp/crud';
+import { loading } from '@store/store';
 import './index.scss';
 
 const Loader = () => {
 
+    const store = loading(state => state);
     const {progress} = useProgress();
     const [data, setData] = useState(null);
 
@@ -13,9 +15,10 @@ const Loader = () => {
     }, [])
 
     useEffect(()=>{
-        if(progress >= 100){
-           //menuFunc(true);
+        if(progress === 100){
+            store.setIsLoading(false)
         }
+        console.log(progress)
     }, [progress])
 
     return (
