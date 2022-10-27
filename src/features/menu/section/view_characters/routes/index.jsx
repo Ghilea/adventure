@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { OrbitControls } from '@react-three/drei'
 import { Read } from '@comp/crud';
 import { menu, player } from '@store/store';
+import Ground from '@comp/ground';
+import { Physics } from '@react-three/cannon';
 import Button from '@comp/button/buttons';
 import { Canvas } from '@react-three/fiber';
 import LoadModel from '@models/components/models';
@@ -52,16 +55,36 @@ const Index = () => {
                         ])),
 
                         setViewCharacter(
-                            <div className='flex-col gradient place-row-1-4'>
+                            <div className='flex-col bg-black place-row-1-4'>
                                 <Canvas shadows
                                     camera={{
-                                        fov: 70,
+                                        fov: 64,
                                         position: [0, 0.5, 2]
                                     }}
                                     className='gradient-bg'>
                                    
-                                    <ambientLight intensity={0.7} />
-                                        <LoadModel type={'femaleAvatar'} />
+                                    
+                                    <OrbitControls />
+                                    <Physics gravity={[0, -30, 0]} >
+                                        <LoadModel type={'knight'} />
+                                        <Ground size={[8]} transparent={true} opacity={0} color='blue' position={[0,-1,0]}/>
+                                        <LoadModel type={'floor_1'} position={[0,1,0]}/>
+                                        <LoadModel type={'floor_1'} position={[1, 1, 0]} />
+                                        <LoadModel type={'floor_1'} position={[-1, 1, 0]} />
+                                        <LoadModel type={'floor_1'} position={[0, 1, -1]} />
+                                        <LoadModel type={'floor_1'} position={[1, 1, -1]} />
+                                        <LoadModel type={'floor_1'} position={[-1, 1, -1]} />
+                                        <LoadModel type={'floor_1'} position={[-1, 1, -2]} />
+                                        <LoadModel type={'floor_1'} position={[1, 1, -2]} />
+                                        <LoadModel type={'floor_1'} position={[1, 1, -3]} />
+                                        <LoadModel type={'floor_1'} position={[-1, 1, -3]} />
+                                        <LoadModel type={'floor_1'} position={[-2, 1, -1]} />
+                                        <LoadModel type={'floor_1'} position={[2, 1, -1]} />
+                                        <LoadModel type={'wall_1'} position={[2, 1, -1]} />
+                                        <LoadModel type={'wall_1'} position={[-2, 1, -1]} />
+                                        <LoadModel type={'torch'} position={[-1, 1, -1]} rotation={[0,Math.PI * (180/360),0]}/>
+                                    </Physics>
+                                    
                                 </Canvas>
                             </div>
                         )
