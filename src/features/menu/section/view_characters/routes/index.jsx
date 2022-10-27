@@ -60,14 +60,13 @@ const Index = () => {
                                     camera={{
                                         fov: 64,
                                         position: [0, 0.5, 2]
-                                    }}
-                                    className='gradient-bg'>
+                                    }}>
                                    
                                     
                                     <OrbitControls />
                                     <Physics gravity={[0, -30, 0]} >
                                         <LoadModel type={'knight'} />
-                                        <Ground size={[8]} transparent={true} opacity={0} color='blue' position={[0,-1,0]}/>
+                                        <Ground size={[8]} transparent={true} opacity={0} position={[0,-1,0]}/>
                                         <LoadModel type={'floor_1'} position={[0,1,0]}/>
                                         <LoadModel type={'floor_1'} position={[1, 1, 0]} />
                                         <LoadModel type={'floor_1'} position={[-1, 1, 0]} />
@@ -98,14 +97,14 @@ const Index = () => {
     }, [])
 
     return (    
-        <div className='grid template-col-3 template-row-4 justify-items-center items-center'>
-            <div className='flex-col bg-black texture-bg shadow place-row-1-4 place-col-3-3 h-full w-full'>
+        <div className='grid template-col-5 template-row-4 justify-items-center items-center'>
+            <div className='flex-col bg-black texture-bg shadow place-row-1-4 place-col-5-1 h-full w-full'>
                 {characterList}
             </div>
-            <div className='flex-col place-row-1-4 place-col-1-2 h-full w-full'>
+            <div className='flex-col place-row-1-4 place-col-1-4 h-full w-full'>
                 {viewCharacter}
             </div>
-            <div className='flex flex-row place-row-4-1 place-col-3-1 gap-5 h-full w-full items-end mb-8 px-5'>
+            <div className='flex flex-row place-row-4-1 place-col-5-1 gap-5 h-full w-full items-end mb-8 px-5'>
                 <Button
                     className='bg-black texture-bg text-size-4 button'
                     onClick={handleCreate}>
