@@ -1,6 +1,6 @@
 import React from 'react';
 import useSound from 'use-sound';
-import buttonHover from '@assets/sounds/button.mp3';
+import buttonHover from '@assets/sounds/button/button.mp3';
 
 const Button = ({
     children, 
