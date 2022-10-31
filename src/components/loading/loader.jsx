@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import { Html, useProgress } from "@react-three/drei";
 import { Read } from '@comp/crud';
+import { loading } from '@store/store';
 import './index.scss';
 
 const Loader = () => {
 
+    const store = loading(state => state);
     const {progress} = useProgress();
     const [data, setData] = useState(null);
 
-    useEffect(() => {
-        Read('loadingTip').then(response => setData(response.data[0].sentence))
-    }, [])
-
     useEffect(()=>{
-        if(progress >= 100){
-           //menuFunc(true);
+        if (progress <= 0 && data === null) {
+            Read('loadingTip').then(response => setData(response.data[0].sentence))
+        }
+
+        if(progress === 100){
+            store.setIsLoading(false)
         }
     }, [progress])
 

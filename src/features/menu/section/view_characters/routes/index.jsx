@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { OrbitControls } from '@react-three/drei'
 import { Read } from '@comp/crud';
 import { menu, player } from '@store/store';
+import Ground from '@comp/ground';
+import { Physics } from '@react-three/cannon';
 import Button from '@comp/button/buttons';
 import { Canvas } from '@react-three/fiber';
 import LoadModel from '@models/components/models';
@@ -52,16 +55,35 @@ const Index = () => {
                         ])),
 
                         setViewCharacter(
-                            <div className='flex-col gradient place-row-1-4'>
+                            <div className='flex-col bg-black place-row-1-4'>
                                 <Canvas shadows
                                     camera={{
-                                        fov: 70,
+                                        fov: 64,
                                         position: [0, 0.5, 2]
-                                    }}
-                                    className='gradient-bg'>
+                                    }}>
                                    
-                                    <ambientLight intensity={0.7} />
-                                        <LoadModel type={'femaleAvatar'} />
+                                    
+                                    <OrbitControls />
+                                    <Physics gravity={[0, -30, 0]} >
+                                        <LoadModel type={'knight'} />
+                                        <Ground size={[8]} transparent={true} opacity={0} position={[0,-1,0]}/>
+                                        <LoadModel type={'floor_1'} position={[0,1,0]}/>
+                                        <LoadModel type={'floor_1'} position={[1, 1, 0]} />
+                                        <LoadModel type={'floor_1'} position={[-1, 1, 0]} />
+                                        <LoadModel type={'floor_1'} position={[0, 1, -1]} />
+                                        <LoadModel type={'floor_1'} position={[1, 1, -1]} />
+                                        <LoadModel type={'floor_1'} position={[-1, 1, -1]} />
+                                        <LoadModel type={'floor_1'} position={[-1, 1, -2]} />
+                                        <LoadModel type={'floor_1'} position={[1, 1, -2]} />
+                                        <LoadModel type={'floor_1'} position={[1, 1, -3]} />
+                                        <LoadModel type={'floor_1'} position={[-1, 1, -3]} />
+                                        <LoadModel type={'floor_1'} position={[-2, 1, -1]} />
+                                        <LoadModel type={'floor_1'} position={[2, 1, -1]} />
+                                        <LoadModel type={'wall_1'} position={[2, 1, -1]} />
+                                        <LoadModel type={'wall_1'} position={[-2, 1, -1]} />
+                                        <LoadModel type={'torch'} position={[-1, 1, -1]} rotation={[0,Math.PI * (180/360),0]}/>
+                                    </Physics>
+                                    
                                 </Canvas>
                             </div>
                         )
@@ -75,23 +97,26 @@ const Index = () => {
     }, [])
 
     return (    
-        <div className='view-character grid template-col-3 template-row-4 justify-items-center items-center'>
-            <div className='flex-col bg-black texture-bg shadow place-row-1-4 place-col-3-3 h-full w-full'>
+        <div className='grid template-col-5 template-row-4 justify-items-center items-center'>
+            <div className='flex-col bg-black texture-bg shadow place-row-1-4 place-col-5-1 h-full w-full'>
                 {characterList}
             </div>
-            <div className='flex-col place-row-1-4 place-col-1-2 h-full w-full'>
+            <div className='flex-col place-row-1-4 place-col-1-4 h-full w-full'>
                 {viewCharacter}
             </div>
-            <Button
-                className='place-row-3-3 place-col-3-3 bg-black texture-bg button'
-                onClick={handleCreate}>
-                Create Protagonist
-            </Button>
-            <Button
-                className='place-row-4-4 place-col-3-3 bg-black texture-bg button'
-                onClick={() => handleExit()}>
-                Exit
-            </Button>
+            <div className='flex flex-row place-row-4-1 place-col-5-1 gap-5 h-full w-full items-end mb-8 px-5'>
+                <Button
+                    className='bg-black texture-bg text-size-4 button'
+                    onClick={handleCreate}>
+                    Create Protagonist
+                </Button>
+                <Button
+                    className='bg-black texture-bg text-size-4 button'
+                    onClick={() => handleExit()}>
+                    Exit
+                </Button>
+            </div>
+            
         </div>    
     )
 }

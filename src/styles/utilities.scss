@@ -138,7 +138,7 @@
 $colors: (
     "white": white,
     "black": black,
-    "primary": #4d243d,
+    "primary": #472e2e,
     "green": #32ba78,
     "red": #fd6d6d,
 );
@@ -167,6 +167,14 @@ $value in $colors {
 
 .absolute {
     position: absolute;
+}
+
+.pos-left {
+    left: 0;
+}
+
+.pos-top {
+    top: 0;
 }
 
 .shadow {

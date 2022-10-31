@@ -1,5 +1,13 @@
 import create from 'zustand';
 
+export const loading = create(set => ({
+    isLoading: false,
+    setIsLoading: (value) => set(state => ({
+        ...state,
+        isLoading: value
+    })), 
+}))
+
 export const player = create(set => ({
     id: 1,
     gender: null,

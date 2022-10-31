@@ -1,26 +1,15 @@
-import React, { useRef, useState } from "react";
+import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import { build } from '@store/editor';
 import { Select } from '@react-three/postprocessing';
-import { SelectObject } from '@editor/helperObject';
-import FloorAsset from './floor_1.glb';
+import { useSelectObject } from '@editor/helperObject';
+import asset from './floor_1.glb';
 
 const Floor_1 = (props) => {
   const group = useRef();
 
-  const { nodes, materials } = useGLTF(FloorAsset);
+  const { nodes, materials } = useGLTF(asset);
   
-  const store = build(state => state);
-  const [select, setSelect] = useState(null);
-
-  const handleClick = (e) => {
-    if (store.isEditor) {
-      e.stopPropagation();
-      const val = SelectObject(e.eventObject.position, 'floor_1', store);
-
-      setSelect(val)
-    }
-  }
+  const [isSelected, handleClick] = useSelectObject();
 
   return (
     <group 
@@ -35,7 +24,7 @@ const Floor_1 = (props) => {
         rotation={[-Math.PI / 2, 0, Math.PI * (0/360)]}>
 
         <Select 
-          enabled={(select === store.selected && store.selected !== null && select !== null) ? true : false}>
+          enabled={isSelected}>
         
           <mesh
             castShadow
@@ -56,5 +45,7 @@ const Floor_1 = (props) => {
     </group>
   );
 }
+
+useGLTF.preload(asset)
 
 export default Floor_1

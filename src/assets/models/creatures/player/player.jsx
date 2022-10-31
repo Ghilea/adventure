@@ -1,24 +1,13 @@
-import { useState } from "react";
+import React from "react";
 import { useGLTF } from "@react-three/drei";
-import { build } from '@store/editor';
 import { Select } from '@react-three/postprocessing';
-import { SelectObject } from '@editor/helperObject'
-import PlayerAsset from './player.gltf';
+import { useSelectObject } from '@editor/helperObject'
+import asset from './player.gltf';
 
 export const Player = (props) => {
-  const { nodes, materials } = useGLTF(PlayerAsset);
+  const { nodes, materials } = useGLTF(asset);
 
-  const store = build(state => state);
-  const [select, setSelect] = useState(null);
-
-  const handleClick = (e) => {
-    if (store.isEditor) {
-      e.stopPropagation();
-      const val = SelectObject(e.eventObject.position, 'player', store);
-
-      setSelect(val)
-    }
-  }
+  const [isSelected, handleClick] = useSelectObject();
 
   return (
     <group {...props} dispose={null}
@@ -31,7 +20,7 @@ export const Player = (props) => {
         <group rotation={[Math.PI / 2, 0, 0]}>
             <group position={[1.61, -0.08, -1.64]} rotation={[1.71, -0.21, 0.63]}> 
             
-            <Select enabled={(select === store.selected && store.selected !== null && select !== null) ? true : false}>
+            <Select enabled={isSelected}>
         <mesh
           castShadow
           receiveShadow
@@ -77,3 +66,5 @@ export const Player = (props) => {
 
   );
 }
+
+useGLTF.preload(asset)

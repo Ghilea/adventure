@@ -23,48 +23,46 @@ const Menu = () => {
                 appWindow.close()
                 break;
             case 'editor':
-                
                 navigate('/editor');
                 break;
         }
     }
 
     return (
-        <div className='menuContainer'>
+        <div className='fixed pos-left pos-top grid template-row-3 template-col-5 h-full w-full'>
             
-            <header>
-                <img className='logo' src={logoImg} alt='logo'/>
+            <div className='flex flex-col items-start justify-end place-row-3-1 place-col-1-2 ml-10 mb-10 gap-1'>
+                <img className='game-logo pl-5' src={logoImg} alt='Game logo'/>
+                <h1 className='text-size-6 flex justify-center items-start'>Adventure</h1> 
+            </div>
 
-                <h1>Adventure</h1> 
-            </header>
-            
-            <div className='buttonList'>
+            <div className='flex flex-col justify-end items-end gap-6 place-row-3-1 place-col-4-2 mr-10 mb-10'>
                 <Button
-                    className='bg-black texture-bg button'
+                    className='text-white text-size-7 hover'
                     type='view'
                     onClick={handleClick}>
                     Start Game
                 </Button>
 
-                <Button
-                    className='bg-black texture-bg button'
+                {/* <Button
+                    className='text-white text-size-7 hover'
                     type='options'
                     onClick={handleClick}>
                     Options
-                </Button>
+                </Button> */}
 
                 <Button
-                    className='bg-black texture-bg button'
+                    className='text-white text-size-7 hover'
                     type='editor'
                     onClick={handleClick}>
                     Map Editor
                 </Button>
 
                 <Button
-                    className='bg-black texture-bg button'
+                    className='text-white text-size-7 hover'
                     type='exit'
                     onClick={handleClick}>
-                        Exit Game
+                    Exit Game
                 </Button>
             </div>
             

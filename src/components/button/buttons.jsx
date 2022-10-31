@@ -1,8 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import useSound from 'use-sound';
-import buttonHover from '@assets/sounds/button.mp3';
-import { Create } from '@comp/crud';
+import buttonHover from '@assets/sounds/buttons/button.mp3';
 
 const Button = ({
     children, 

@@ -4,8 +4,9 @@ import Layout from '@comp/layout'
 
 // Routes
 import Editor from '@features/editor/routes/';
-import System from '@features/system/routes/';
+import CompanyIntro from '@features/company_intro/routes/';
 import Menu from '@features/menu/routes/';
+import Login from '@features/login/routes/';
 import MenuCreate from '@features/menu/section/create_characters/routes/';
 import MenuView from '@features/menu/section/view_characters/routes/';
 import MenuOptions from '@features/menu/section/options/routes/';
@@ -19,7 +20,8 @@ const routes = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<System />}></Route>
+          <Route index element={<CompanyIntro />}></Route>
+          <Route path="/login" element={<Login />}></Route>
           <Route path="/level" element={<Level />}></Route>
           <Route path="/menu" element={<Menu />}></Route>
           <Route path="/create-character" element={<MenuCreate />}></Route>
