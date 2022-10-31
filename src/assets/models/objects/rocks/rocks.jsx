@@ -3,10 +3,10 @@ import { useGLTF } from "@react-three/drei";
 import { useBox } from '@react-three/cannon';
 import { Select } from '@react-three/postprocessing';
 import { useSelectObject } from '@editor/helperObject';
-import RockAsset from './rock.gltf';
+import asset from './rock.gltf';
 
 export const Rock_1 = (props) => {
-    const { nodes, materials } = useGLTF(RockAsset);
+    const { nodes, materials } = useGLTF(asset);
 
     const [isSelected, handleClick] = useSelectObject();
 
@@ -29,3 +29,5 @@ export const Rock_1 = (props) => {
         </group>
     );
 }
+
+useGLTF.preload(asset)

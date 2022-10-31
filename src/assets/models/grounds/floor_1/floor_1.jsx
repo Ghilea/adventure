@@ -2,12 +2,12 @@ import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { Select } from '@react-three/postprocessing';
 import { useSelectObject } from '@editor/helperObject';
-import FloorAsset from './floor_1.glb';
+import asset from './floor_1.glb';
 
 const Floor_1 = (props) => {
   const group = useRef();
 
-  const { nodes, materials } = useGLTF(FloorAsset);
+  const { nodes, materials } = useGLTF(asset);
   
   const [isSelected, handleClick] = useSelectObject();
 
@@ -45,5 +45,7 @@ const Floor_1 = (props) => {
     </group>
   );
 }
+
+useGLTF.preload(asset)
 
 export default Floor_1

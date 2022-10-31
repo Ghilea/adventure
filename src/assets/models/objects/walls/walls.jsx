@@ -3,10 +3,10 @@ import { useGLTF } from "@react-three/drei";
 import { useBox } from '@react-three/cannon';
 import { Select } from '@react-three/postprocessing';
 import { useSelectObject } from '@editor/helperObject'
-import WallAsset from './wall.glb';
+import asset from './wall.glb';
 
 export const Wall_1 = (props) => {
-  const { nodes, materials  } = useGLTF(WallAsset);
+  const { nodes, materials  } = useGLTF(asset);
 
   const [isSelected, handleClick] = useSelectObject();
 
@@ -37,3 +37,5 @@ export const Wall_1 = (props) => {
     </group>
   );
 }
+
+useGLTF.preload(asset)

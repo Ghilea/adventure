@@ -2,10 +2,10 @@ import React from "react";
 import { useGLTF } from "@react-three/drei";
 import { Select } from '@react-three/postprocessing';
 import { useSelectObject } from '@editor/helperObject'
-import PlayerAsset from './player.gltf';
+import asset from './player.gltf';
 
 export const Player = (props) => {
-  const { nodes, materials } = useGLTF(PlayerAsset);
+  const { nodes, materials } = useGLTF(asset);
 
   const [isSelected, handleClick] = useSelectObject();
 
@@ -66,3 +66,5 @@ export const Player = (props) => {
 
   );
 }
+
+useGLTF.preload(asset)

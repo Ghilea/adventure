@@ -131,6 +131,7 @@ const Index = () => {
                         position: [0, 2, -10]
                     }
                 } >
+                    
                 <OrbitControls />
                 <ambientLight intensity={1} />
 

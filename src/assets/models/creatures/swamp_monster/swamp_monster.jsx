@@ -29,4 +29,6 @@ const SwampMonster = (props) => {
   );
 }
 
+useGLTF.preload(asset)
+
 export default SwampMonster

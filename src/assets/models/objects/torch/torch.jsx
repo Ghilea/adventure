@@ -3,12 +3,12 @@ import { useGLTF } from "@react-three/drei";
 import { Flame } from '@models/misc/flames/flame';
 import { Select } from '@react-three/postprocessing';
 import { useSelectObject } from '@editor/helperObject';
-import TorchAsset from './torch.gltf';
+import asset from './torch.gltf';
 
 export const Torch = (props) => {
     
     const group = useRef();
-    const {nodes, materials} = useGLTF(TorchAsset);
+    const {nodes, materials} = useGLTF(asset);
 
     const [isSelected, handleClick] = useSelectObject();
 
@@ -55,3 +55,5 @@ export const Torch = (props) => {
         </group>  
     );
 }
+
+useGLTF.preload(asset)
