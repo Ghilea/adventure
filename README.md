@@ -1,4 +1,4 @@
-# Adventure - Dungeon Crawler with DND rules
+# Adventure - Dungeon Crawler with DND rules and a map editor
 The project started as an assignment in the backend course, where the assignment was to use NodeJS to retrieve data from an Api. I branched out and started making a simple "DungeonCrawler" game. The very first version of the game were built in 3D with use of only CSS (requires a huge amount of resources from the computer). 
 
 ![alt text](https://github.com/Ghilea/adventure/blob/main/src/shared/assets/images/readme/menu.png?raw=true)
@@ -26,12 +26,13 @@ The project started as an assignment in the backend course, where the assignment
 
 # How to
 
-*    1. Connect to sql server with sql server client
-*    2. run script - npm run createDB which will create the needed database with tables and example data
-*    3. new terminal, run script - npm run server
-*    4. new terminal, run script - npm run dev
+*    1. Install Sql & Rust dependencies
+*    2. Connect to sql server with "sql server client" extansion in VSCode
+*    3. run script - "npm run createDB" which will create the needed database with tables and example data
+*    4. in terminal, run script - "npm start" to get both server and game running in browser
+*    5. When using Tauri, run script - "npm run server" to get the server running alone
 
 # Tauri
 
-*    1. run script - npm run tauri dev (for testing)
-*    2. run script - npm run tauri build (build a exe file)
+*    1. run script - "npm run tauri dev" (for testing)
+*    2. run script - "npm run tauri build" (build a exe file)

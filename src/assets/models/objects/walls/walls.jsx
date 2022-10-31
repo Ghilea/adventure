@@ -1,19 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { useGLTF } from "@react-three/drei";
-//import { OBJLoader2, MtlObjBridge } from 'wwobjloader2';
 import { useBox } from '@react-three/cannon';
-import { build } from '@store/editor';
 import { Select } from '@react-three/postprocessing';
-import { SelectObject } from '@editor/helperObject'
-import WallAsset from './wall.glb';
+import { useSelectObject } from '@editor/helperObject'
+import asset from './wall.glb';
 
 export const Wall_1 = (props) => {
-  // instantiate the loader
-  //const objLoader2 = new OBJLoader2();
-  const { nodes, materials  } = useGLTF(WallAsset);
+  const { nodes, materials  } = useGLTF(asset);
 
-  // load a resource from provided URL synchronously
-  //objLoader2.load(WallAsset);
+  const [isSelected, handleClick] = useSelectObject();
 
   const [solid] = useBox(() => ({
     args: [5, 3.5, 1],
@@ -21,25 +16,13 @@ export const Wall_1 = (props) => {
     rotation: (props.rotation !== undefined) ? (props.rotation[1] === Math.PI * (360/360)) ? [0, Math.PI * (180/360), 0] : [0, Math.PI * (360/360), 0] : [0, 0, 0]
   }));
   
-  const store = build(state => state);
-  const [select, setSelect] = useState(null);
-
-  const handleClick = (e) => {
-    if(store.isEditor){
-      e.stopPropagation();
-      const val = SelectObject(e.eventObject.position, 'wall', store);
-
-      setSelect(val)
-    }
-  }
-
   return (
     <group dispose = {null} 
-    onClick = {handleClick}
+      onClick={handleClick}
     {...props} 
     scale = {[1.25, 1.5, 1.6]}
     >
-      <Select enabled={(select === store.selected && store.selected !== null && select !== null) ? true : false}>
+      <Select enabled={isSelected}>
       <mesh 
         position = {[0, -1.3, 0]}
         castShadow
@@ -54,3 +37,5 @@ export const Wall_1 = (props) => {
     </group>
   );
 }
+
+useGLTF.preload(asset)

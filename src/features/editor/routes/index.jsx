@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Canvas } from '@react-three/fiber';
 import Ground from '@comp/ground';
 import { Physics } from '@react-three/cannon';
@@ -6,17 +6,17 @@ import { OrbitControls } from '@react-three/drei'
 import SelectObj from '@editor/select_canvas_object';
 import disable from '@hooks/disable-click';
 import { useKey } from 'rooks';
-import { SelectObject, AddObject } from '@editor/helperObject';
+import { AddObject } from '@editor/helperObject';
 import TopPanel from '../panel_top';
 import RightPanel from '../panel_right';
 import { build } from '@store/editor';
 import GroundCheck from '@editor/groundCheck';
+import Loader from '@comp/loading/loader';
 
 const Index = () => {
     
     //stores
     const store = build(state => state);
-    const level = build(state => state.level);
     const groundSize = build(state => state.mapSettings.groundSize);
     const isBuild = build(state => state.isBuild);
     const mousePosition = build(state => state.mousePosition);
@@ -35,21 +35,6 @@ const Index = () => {
             console.log('reset')
         }
     }, [store.active])
-
-    
-    useEffect(() => {
-        console.log('object', store.objects)
-    }, [store.mapSettings.objects])
-
-    /*useEffect(()=> {
-
-        if(store.remove !== null){
-            setObj(obj.filter((item) => {
-                return item.props.objectId !== store.remove
-            }))
-        }
-
-    }, [store.remove])*/
 
     const keyHandler = () => {
 
@@ -81,8 +66,6 @@ const Index = () => {
     useKey(['Control'], keyHandler);
 
     useEffect(() => {
-        console.log(store.mapSettings.objectIndex)
-        console.log(objectIndex)
         setObjectIndex(store.mapSettings.objectIndex)
     }, [store.mapSettings.objectIndex])
 
@@ -100,7 +83,6 @@ const Index = () => {
 
             store.addObject(
                 <AddObject
-                    onClick={<SelectObject />}
                     key={isBuild.category + objectIndex}
                     position={
                         [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5]
@@ -149,6 +131,7 @@ const Index = () => {
                         position: [0, 2, -10]
                     }
                 } >
+                    
                 <OrbitControls />
                 <ambientLight intensity={1} />
 
@@ -161,10 +144,11 @@ const Index = () => {
                     <GroundCheck />
 
                     <SelectObj />
+
                 </Physics>
 
             </Canvas>
-        </>    
+       </>
     )
 }
 

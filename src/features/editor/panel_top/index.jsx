@@ -78,11 +78,6 @@ const TopPanel = () => {
 
     useKey(['Delete'], handleRemove);
 
-    useEffect(() => {
-        console.log('objects', storeBuild.objects)
-        console.log('mapObjects', storeBuild.mapSettings.objects)
-    }, [storeBuild.objects])
-
     const handleRotateLeft = () => {
        /*  if (storeBuild.isBuild.objectSize.rotate === 360) {
             storeBuild.setRotate(0)

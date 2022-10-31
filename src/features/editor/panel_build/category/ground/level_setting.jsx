@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Read, Update } from '@comp/crud';
 import { build } from "@store/editor";
-import { SelectObject, AddObject } from '@editor/helperObject';
+import { AddObject } from '@editor/helperObject';
 
 const LevelSetting = () => {
     
@@ -66,7 +66,6 @@ const LevelSetting = () => {
                                 
                                 store.addObject(
                                     <AddObject
-                                        onClick={<SelectObject />}
                                         key={item.category + item.objectId}
                                         position={[
                                             item.position[0],

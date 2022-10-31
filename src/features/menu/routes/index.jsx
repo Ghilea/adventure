@@ -1,32 +1,21 @@
 import { Suspense, useEffect, useState, useRef, useMemo } from 'react';
-import { useProgress } from "@react-three/drei";
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import LoadModel from '@models/components/models';
 import Menu from '../components/Menu';
 import Ground from '@comp/ground';
-import Loader from '@comp/loading/Loader';
-import menuMusic from '@assets/music/menu.mp3'; 
-import useSound from 'use-sound';
-import { Howl, Howler } from 'howler';
 import { Read } from '@comp/crud';
+import { loading } from '@store/store';
+import Loader from '@comp/loading/loader';
 import './index.scss';
 
 const Index = () => {
 
-    const { progress } = useProgress();
+    const store = loading(state => state);
     const [groundSize, setGroundSize] = useState([10]);
     const [build, setBuild] = useState([]);
-    const [music, setMusic] = useState();
-
-    useMemo(() => {
-        setMusic(new Howl({
-            src: [menuMusic],
-            volume: 0.2,
-            loop: true
-        }))
-    }, [])
-    
+    const [menu, setMenu] = useState([])
+        
     useEffect(() => {
 
         if(build.length <= 0){
@@ -50,16 +39,17 @@ const Index = () => {
         
     }, [])
 
-    useEffect(() => {       
-        if(progress === 0) {
-            music.play();
+    useEffect(() => {               
+        
+        if(!store.isLoading && menu.length <= 0){
+            setMenu(<Menu />)
         }
-
-    }, [progress])
+        
+    }, [store.isLoading])
 
     return (
         <>
-
+           
             <Canvas shadows 
                 camera={{
                 fov: 60,
@@ -67,16 +57,17 @@ const Index = () => {
             }}
             className='bg-black'>
                 <Physics gravity={[0, -30, 0]}>
-                   
-                    <Suspense fallback={<Loader />}>
+                
+                    <Suspense fallback={<Loader />} >
                         <Ground position={[0, 0, 0]} size={groundSize}/>
                         {build}
                     </Suspense>
 
                 </Physics>
             </Canvas>
+            
+            {menu}
 
-            {progress < 100 || <Menu />}       
         </>
     )
 }

@@ -1,11 +1,7 @@
-.view-character {
-    height: 100vh;
+.select-character {
+    background-color: rgba(151, 151, 151, 0.37);
 
-    .select-character {
-        background-color: rgba(151, 151, 151, 0.37);
-
-        &:hover {
-            background-color: rgb(99, 99, 99);
-        }
+    &:hover {
+        background-color: rgb(99, 99, 99);
     }
 }
