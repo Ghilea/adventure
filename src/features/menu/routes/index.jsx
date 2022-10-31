@@ -4,8 +4,6 @@ import { Physics } from '@react-three/cannon';
 import LoadModel from '@models/components/models';
 import Menu from '../components/Menu';
 import Ground from '@comp/ground';
-import menuMusic from '@assets/music/menu/menu3.mp3'; 
-import useSound from 'use-sound';
 import { Read } from '@comp/crud';
 import { loading } from '@store/store';
 import Loader from '@comp/loading/loader';
@@ -17,12 +15,7 @@ const Index = () => {
     const [groundSize, setGroundSize] = useState([10]);
     const [build, setBuild] = useState([]);
     const [menu, setMenu] = useState([])
-
-    const [play] = useSound(menuMusic, {
-        volume:0.4,
-        loop: true
-    });
-    
+        
     useEffect(() => {
 
         if(build.length <= 0){
@@ -50,7 +43,6 @@ const Index = () => {
         
         if(!store.isLoading && menu.length <= 0){
             setMenu(<Menu />)
-            play();
         }
         
     }, [store.isLoading])

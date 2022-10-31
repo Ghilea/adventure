@@ -10,15 +10,14 @@ const Loader = () => {
     const {progress} = useProgress();
     const [data, setData] = useState(null);
 
-    useEffect(() => {
-        Read('loadingTip').then(response => setData(response.data[0].sentence))
-    }, [])
-
     useEffect(()=>{
+        if (progress <= 0 && data === null) {
+            Read('loadingTip').then(response => setData(response.data[0].sentence))
+        }
+
         if(progress === 100){
             store.setIsLoading(false)
         }
-        console.log(progress)
     }, [progress])
 
     return (

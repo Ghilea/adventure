@@ -4,9 +4,16 @@ import Button from '@comp/button/buttons';
 import Input from '@comp/input/input-field';
 import { appWindow } from "@tauri-apps/api/window";
 import logoImg from '@assets/images/svg/celtic.svg';
+import menuMusic from '@assets/music/menu/menu3.mp3';
+import useSound from 'use-sound';
 import './index.scss';
 
 const Menu = () => {
+
+    const [play] = useSound(menuMusic, {
+        volume: 0.4,
+        loop: true
+    });
 
     const navigate = useNavigate();
 
@@ -16,6 +23,7 @@ const Menu = () => {
 
         switch (target) {
             case 'login':
+                play();
                 navigate('/menu');
                 break;
             case 'options':
