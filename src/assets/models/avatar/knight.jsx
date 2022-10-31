@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import asset from './knight.glb'
 
@@ -6,6 +6,16 @@ const Knight = (props) => {
     const group = useRef();
     const { nodes, materials, animations } = useGLTF(asset);
     const { actions } = useAnimations(animations, group);
+
+    useEffect(() => {
+        if(!actions.idle1.isRunning())
+        {
+            //animations[0].timeScale = 1/10000;
+            console.log(animations[0])
+            actions.idle1.play()
+        }
+        
+    }, [])
 
     return (
         <group ref={group} {...props} dispose={null} position={[0.05,-1,-0.1]} scale={[0.009,0.009,0.009]}>
@@ -128,6 +138,7 @@ const Knight = (props) => {
     );
 }
 
+useGLTF.preload(asset);
+
 export default Knight;
 
-useGLTF.preload(asset);
