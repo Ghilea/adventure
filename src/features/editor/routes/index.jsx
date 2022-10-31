@@ -6,7 +6,7 @@ import { OrbitControls } from '@react-three/drei'
 import SelectObj from '@editor/select_canvas_object';
 import disable from '@hooks/disable-click';
 import { useKey } from 'rooks';
-import { SelectObject, AddObject } from '@editor/helperObject';
+import { AddObject } from '@editor/helperObject';
 import TopPanel from '../panel_top';
 import RightPanel from '../panel_right';
 import { build } from '@store/editor';
@@ -83,7 +83,6 @@ const Index = () => {
 
             store.addObject(
                 <AddObject
-                    onClick={<SelectObject />}
                     key={isBuild.category + objectIndex}
                     position={
                         [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5]
@@ -119,7 +118,7 @@ const Index = () => {
     }
 
     return (
-        <Suspense fallback={<Loader />}>
+        <>
             <TopPanel />
             <RightPanel />
             <Canvas
@@ -148,7 +147,7 @@ const Index = () => {
                 </Physics>
 
             </Canvas>
-        </Suspense>
+       </>
     )
 }
 

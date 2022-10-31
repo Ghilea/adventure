@@ -6,35 +6,34 @@
     "description": "adventure",
     "author": "Ghilea",
     "dependencies": {
-        "three": "^0.146.0",
         "@react-three/cannon": "^6.4.0",
         "@react-three/drei": "^9.37.1",
         "@react-three/fiber": "^8.8.10",
         "@react-three/postprocessing": "^2.7.0",
+        "@tauri-apps/api": "^1.1.0",
+        "axios": "^1.1.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-router-dom": "^6.4.2",
         "rooks": "^7.4.1",
-        "zustand": "^4.1.3",
-        "axios": "^1.1.3",
-        "@tauri-apps/api": "^1.1.0",
-        "use-sound": "^4.0.1"
+        "three": "^0.146.0",
+        "use-sound": "^4.0.1",
+        "zustand": "^4.1.3"
     },
     "devDependencies": {
-        "chai": "^4.3.6",
-        "mocha": "^10.1.0",
-        "dotenv": "^16.0.3",
-        "fastify": "^4.9.2",
         "@fastify/cors": "^8.1.1",
         "@fastify/websocket": "^7.1.0",
-        "mysql": "^2.18.1",
-        "knex": "^2.3.0",
-        "pkg": "^5.8.0",
-        "sass": "^1.55.0",
-        "vite": "^3.2.0",
-        "@vitejs/plugin-react": "^2.2.0",
         "@tauri-apps/cli": "^1.1.1",
-        "concurrently": "^7.5.0"
+        "@vitejs/plugin-react": "^2.2.0",
+        "chai": "^4.3.6",
+        "concurrently": "^7.5.0",
+        "dotenv": "^16.0.3",
+        "fastify": "^4.9.2",
+        "knex": "^2.3.0",
+        "mocha": "^10.1.0",
+        "mysql": "^2.18.1",
+        "sass": "^1.55.0",
+        "vite": "^3.2.0"
     },
     "scripts": {
         "dev": "vite",
@@ -45,13 +44,5 @@
         "test": "mocha",
         "tauri": "tauri",
         "start": "concurrently \"npm run server\" \"npm run dev\""
-    },
-    "pkg": {
-        "scripts": "server/**/*.js",
-        "assets": "src/assets/**/*",
-        "targets": [
-            "node14-linux-arm64"
-        ],
-        "outputPath": "dist"
     }
 }

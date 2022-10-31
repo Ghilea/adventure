@@ -1,31 +1,20 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { useGLTF } from "@react-three/drei";
 import { useBox } from '@react-three/cannon';
-import { build } from '@store/editor';
 import { Select } from '@react-three/postprocessing';
-import { SelectObject } from '@editor/helperObject';
+import { useSelectObject } from '@editor/helperObject';
 import RockAsset from './rock.gltf';
 
 export const Rock_1 = (props) => {
     const { nodes, materials } = useGLTF(RockAsset);
 
-    const store = build(state => state);
-    const [select, setSelect] = useState(null);
-
-    const handleClick = (e) => {
-        if (store.isEditor) {
-            e.stopPropagation();
-            const val = SelectObject(e.eventObject.position, 'rock', store);
-
-            setSelect(val)
-        }
-    }
+    const [isSelected, handleClick] = useSelectObject();
 
     return (
         <group {...props} dispose={null}
         onClick = { handleClick } >
 
-            <Select enabled={(select === store.selected && store.selected !== null && select !== null) ? true : false}>
+            <Select enabled={isSelected}>
 
                 <mesh
                     position={[-1.45, -2, -2]}
