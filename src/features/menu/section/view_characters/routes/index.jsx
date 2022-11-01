@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { OrbitControls } from '@react-three/drei'
 import { Read } from '@comp/crud';
@@ -65,23 +65,36 @@ const Index = () => {
                                     
                                     <OrbitControls />
                                     <Physics gravity={[0, -30, 0]} >
-                                        <LoadModel type={'knight'} />
-                                        <Ground size={[8]} transparent={true} opacity={0} position={[0,-1,0]}/>
-                                        <LoadModel type={'floor_1'} position={[0,1,0]}/>
-                                        <LoadModel type={'floor_1'} position={[1, 1, 0]} />
-                                        <LoadModel type={'floor_1'} position={[-1, 1, 0]} />
-                                        <LoadModel type={'floor_1'} position={[0, 1, -1]} />
-                                        <LoadModel type={'floor_1'} position={[1, 1, -1]} />
-                                        <LoadModel type={'floor_1'} position={[-1, 1, -1]} />
-                                        <LoadModel type={'floor_1'} position={[-1, 1, -2]} />
-                                        <LoadModel type={'floor_1'} position={[1, 1, -2]} />
-                                        <LoadModel type={'floor_1'} position={[1, 1, -3]} />
-                                        <LoadModel type={'floor_1'} position={[-1, 1, -3]} />
-                                        <LoadModel type={'floor_1'} position={[-2, 1, -1]} />
-                                        <LoadModel type={'floor_1'} position={[2, 1, -1]} />
-                                        <LoadModel type={'wall_1'} position={[2, 1, -1]} />
-                                        <LoadModel type={'wall_1'} position={[-2, 1, -1]} />
-                                        <LoadModel type={'torch'} position={[-1, 1, -1]} rotation={[0,Math.PI * (180/360),0]}/>
+                                        <Suspense fallback={null} >
+                                            <LoadModel type={'knight'} />
+                                            <Ground size={[8]} transparent={true} opacity={0} position={[0,-1,0]}/>
+                                            <LoadModel type={'floor_1'} position={[0, 1, 0]}/>
+                                            <LoadModel type={'floor_1'} position={[1, 1, 0]} />
+                                            <LoadModel type={'floor_1'} position={[-1, 1, 0]} />
+
+                                            <LoadModel type={'floor_1'} position={[0, 1, -1]} />
+                                            <LoadModel type={'floor_1'} position={[1, 1, -1]} />
+                                            <LoadModel type={'floor_1'} position={[-1, 1, -1]} />
+
+                                            <LoadModel type={'floor_1'} position={[-1, 1, -2]} />
+                                            <LoadModel type={'floor_1'} position={[1, 1, -2]} />
+                                            <LoadModel type={'floor_1'} position={[0, 1, -2]} />
+
+                                            <LoadModel type={'floor_1'} position={[1, 1, -3]} />
+                                            <LoadModel type={'floor_1'} position={[-1, 1, -3]} />
+                                            <LoadModel type={'floor_1'} position={[0, 1, -3]} />
+
+                                            <LoadModel type={'floor_1'} position={[-2, 1, -1]} />
+                                            <LoadModel type={'floor_1'} position={[2, 1, -1]} />
+
+                                            <LoadModel type={'wall_1'} position={[2, 1, -1]} />
+                                            <LoadModel type={'wall_1'} position={[-2, 1, -1]} />
+
+                                            <LoadModel type={'torch'} position={[1, 1, 1]} rotation={[0, Math.PI * (-180 / 360), 0]} />
+                                            <LoadModel type={'torch'} position={[-1, 1, 1]} rotation={[0,Math.PI * (180/360), 0]}/>
+
+                                            <LoadModel type={'torch'} position={[-1, 1, -3]} rotation={[0, Math.PI * (180 / 360), 0]} />
+                                        </Suspense >
                                     </Physics>
                                     
                                 </Canvas>

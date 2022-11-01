@@ -1,11 +1,12 @@
 import React, { useRef, useEffect, useState} from "react";
-import { useGLTF } from "@react-three/drei";
-import FlameAsset from './flame.gltf';
+import { useGLTF, PositionalAudio } from "@react-three/drei";
+import asset from './flame.gltf';
+import audio from '@sounds/torch-ambience.mp3';
 
 export const Flame = (props) => {
   
   const group = useRef();
-  const { nodes, materials } = useGLTF(FlameAsset);
+  const { nodes, materials } = useGLTF(asset);
 
   const [lightAnimation, setLightAnimation] = useState(2);
   const [flameAnimation, setFlameAnimation] = useState(1.5);
@@ -54,14 +55,29 @@ export const Flame = (props) => {
         material-color={'yellow'}
       />
 
-      <pointLight receiveShadow
+      <pointLight 
+        castShadow
+        shadow-mapSize-width={2048} 
+        shadow-mapSize-height={2048}
+        shadow-radius={10}
+        shadow-bias={-0.0001}
         intensity={lightAnimation}
-        distance={5}
+        distance={2.4}
         color={'#d4c4af'}
         position={[0, 0.5, 0]}
         scale={[5,5,5]}
       />
 
+      <PositionalAudio
+        autoplay
+        url={audio}
+        distance={1}
+        loop
+        {...props} // All THREE.PositionalAudio props are valid
+      />
+
     </group>
   );
 }
+
+useGLTF.preload(asset)

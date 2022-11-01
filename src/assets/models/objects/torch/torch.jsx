@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import { Flame } from '@models/misc/flames/flame';
+import { Flame } from './components/flame';
 import { Select } from '@react-three/postprocessing';
 import { useSelectObject } from '@editor/helperObject';
 import asset from './torch.gltf';
@@ -13,7 +13,7 @@ export const Torch = (props) => {
     const [isSelected, handleClick] = useSelectObject();
 
     return (
-        <group ref={group} onClick={handleClick} {...props} dispose={null}>
+        <group receiveShadow castShadow ref={group} onClick={handleClick} {...props} dispose={null}  >
             <group position={[0, -1.5, -0.525]} scale={[0.03, 0.03, 0.03]} >
                 <Select
                     enabled={isSelected}>
@@ -50,6 +50,7 @@ export const Torch = (props) => {
                 />
                 
                 <Flame position={[0, 30, 2]}/> 
+    
                 </Select>
             </group>
         </group>  
