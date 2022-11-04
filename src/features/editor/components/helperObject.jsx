@@ -3,7 +3,7 @@ import { build, ground } from '@store/editor';
 import LoadModel from "@models/components/models";
 
 //add object
-export const AddObject = ({position, rotation, type, category, objectId}) => {
+export const AddObject = ({position, rotation, type, category, objectId, solid=true}) => {
     const store = build(state => state);
     const storeGround = ground(state => state);
     const [object, setObject] = useState(null);
@@ -15,7 +15,7 @@ export const AddObject = ({position, rotation, type, category, objectId}) => {
     }, [])
 
     useEffect(() => {
-        if(object !== null){
+        if(object !== null && solid){
             //add ground (red)
             switch (category) {
                 case 'wall':
@@ -25,17 +25,15 @@ export const AddObject = ({position, rotation, type, category, objectId}) => {
                         } else {
                             store.addSolid(position[0], (position[2] - 2) + i, objectId)
                         }
+                        storeGround.groundColor('red');
                     }
-                    break;
-                case 'floor':
-                    
                     break;
                 default:
                     store.addSolid(position[0], position[2], objectId)
+                    storeGround.groundColor('red');
                     break;
             }
             
-            storeGround.groundColor('red');
         }
     }, [object])
 

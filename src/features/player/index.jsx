@@ -1,13 +1,19 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSphere } from '@react-three/cannon';
 import { useThree, useFrame } from '@react-three/fiber';
-import { Vector3 } from 'three';
+import { Vector3, MathUtils } from 'three';
 import { useKeyboardControls } from '@hooks/useKeyboardControls';
-import CameraMovement from './components/cameraMovement';
+import CameraControll from './components/cameraControll';
 import { player, map } from '@store/store';
+import Sword from '@models/equipement/sword';
 import './index.scss';
 
-const Index = ({position}) => {
+const frontVector = new Vector3(0, 0, 0);
+const sideVector = new Vector3(0, 0, 0);
+const direction = new Vector3(0, 0, 0);
+const rotation = new Vector3(0, 0, 0);
+
+const Index = ({ position, lerp = MathUtils.lerp }) => {
 
     const storePlayer = player(state => state);
     const storeMap = map(state => state);
@@ -28,6 +34,7 @@ const Index = ({position}) => {
     }))
 
     const velocity = useRef([0, 0, 0]);
+    const rightHand = useRef()
 
     useEffect(() => {
         api.velocity.subscribe((v) => {
@@ -35,32 +42,28 @@ const Index = ({position}) => {
         })
     }, [api.velocity])
 
-    useFrame(() => {
-        camera.position.copy(ref.current.position);
-      
-        let frontVector = new Vector3(0, 0, 0);
-        let sideVector = new Vector3(0, 0, 0);
-        let direction = new Vector3(0, 0, 0);
-    
-        //chat closed
-        if (!storeMap.chatInput){
-            frontVector.set(0, 0,
-                ((moveBackward) ? 1 : 0) -
-                ((moveForward) ? 1 : 0)
-            );
+    useFrame((state) => {
 
-            sideVector.set(
-                ((moveLeft) ? 1 : 0) -
-                ((moveRight) ? 1 : 0),
-                0, 0);
+        //update camera
+        camera.position.copy(ref.current.position);
+
+        //update righthand
+        rightHand.current.rotation.x = lerp(rightHand.current, Math.sin((velocity.current.length > 1) * state.clock.elapsedTime * 10) / 6, 0.1);
+        rightHand.current.rotation.copy(camera.rotation)
+        rightHand.current.position.copy(camera.rotation).add(camera.getWorldDirection(rotation).multiplyScalar(1)) 
+    
+        //chat closed - movement
+        if (!storeMap.chatInput){
+            frontVector.set(0, 0, moveBackward - moveForward);
+            sideVector.set(moveLeft - moveRight, 0, 0);
+            
+            direction
+            .subVectors(frontVector, sideVector)
+            .normalize()
+            .multiplyScalar(storePlayer.secondaryStats.movementSpeed)
+            .applyEuler(camera.rotation);
         }
-        
-        direction
-        .subVectors(frontVector, sideVector)
-        .normalize()
-        .multiplyScalar(storePlayer.secondaryStats.movementSpeed)
-        .applyEuler(camera.rotation);
-        
+
         api.velocity.set(direction.x, velocity.current[1], direction.z);
 
         //update players "body" position
@@ -77,8 +80,12 @@ const Index = ({position}) => {
 
     return (
         <>
-            <CameraMovement />
-
+            <CameraControll />
+            
+            <group ref={rightHand} onPointerMissed={(e) => (rightHand.current.children[0].rotation.x = -0.5)}>
+                <Sword position={[0.3, -0.65, 5]} />
+            </group>
+            
             <mesh ref={ref}>
                 <pointLight
                     intensity={2}

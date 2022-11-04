@@ -5,7 +5,7 @@ import { map, player, enemy, combat } from '@store/store';
 
 extend({ PointerLockControlsImpl });
 
-const CameraMovement = () => {
+const CameraControll = () => {
 
     const storePlayer = player(state => state);
     const storeEnemy = enemy(state => state);
@@ -77,4 +77,4 @@ const CameraMovement = () => {
         )
 }
 
-export default CameraMovement
+export default CameraControll

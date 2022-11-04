@@ -160,13 +160,13 @@ const Index = () => {
                 <Mana />
                 <CharacterSheet />
     
-                <div key={'playerShield'} className={`playerShield ${(storePlayer.block) ? 'block' : ''}`}>
+               {/*  <div key={'playerShield'} className={`playerShield ${(storePlayer.block) ? 'block' : ''}`}>
                     <img src={shield}/>
-                </div>
+                </div> */}
 
-                <div key={'playerWeapon'} className={`playerWeapon ${(storePlayer.attack) ? 'swing' : ''}`}>
+                {/* <div key={'playerWeapon'} className={`playerWeapon ${(storePlayer.attack) ? 'swing' : ''}`}>
                     <img src={sword}/>
-                </div>
+                </div> */}
                 
                 <Chat name={set.name}/> 
             </div>

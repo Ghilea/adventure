@@ -40,7 +40,7 @@ const Index = () => {
     }, [])
 
     useEffect(() => {               
-        
+        console.log(store.isLoading, menu)
         if(!store.isLoading && menu.length <= 0){
             setMenu(<Menu />)
         }

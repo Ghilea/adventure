@@ -6,31 +6,36 @@ import { AddObject } from '@editor/helperObject';
 const LevelSetting = () => {
     
     const store = build(state => state);
-    const isBuild = build(state => state.isBuild);
     const [selectList, setSelectList] = useState([]);
     const nameRef = useRef();
     const orderRef = useRef();
 
     useEffect(() => {
     
-        Read('getAllLevels')
-            .then(response => {
-                
-                response.data.map((item, index) => {
-                    
-                    setSelectList([
-                        <option key={item.id}>
-                            [{item.id}] {item.title} 
-                        </option>
-                    ])
-                });
+        if(selectList.length <= 0) {
+            Read('getAllLevels')
+                .then(response => {
 
-            })
+                    response.data.map((item, index) => {
+                        setSelectList((state) => [
+                            ...state,
+                            <option key={item.id}>
+                                [{item.id}] {item.title}
+                            </option>
+                        ])
+                    });
+
+                })
+        }
+       
             
     }, [])
 
     const handleChange = (e) => {
         console.log(e.target.value)
+        
+        store.emptyObjects();
+
         if(e.target.value === 'New level') {
 
             store.setMapSettings({
@@ -93,7 +98,8 @@ const LevelSetting = () => {
                                     ], //rotation
                                     item.type, //type
                                     item.category, //category
-                                    item.objectId //objectId
+                                    item.objectId, //objectId
+                                    item.isSolid
                                 );
                             })
                             

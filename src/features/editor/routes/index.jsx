@@ -104,7 +104,8 @@ const Index = () => {
                 (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? [0, Math.PI * (180 / 360), 0] : [0, Math.PI * (360 / 360), 0], //rotation
                 isBuild.type, //type
                 isBuild.category, //category
-                objectIndex //objectId
+                objectIndex, //objectId
+                isBuild.isSolid
             );
 
             setObjectIndex(objectIndex + 1)

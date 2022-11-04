@@ -218,7 +218,18 @@ export const build = create(set => ({
             ...state,
             selected: value
         })
-    )    
+    ),
+    emptyObjects: () =>
+        set((state) => ({
+            ...state,
+            objects: [],
+            solid: [],
+             mapSettings: {
+                ...state.mapSettings,
+                objects: []
+             }
+        })
+    ),
 }))
 
 export const ground = create(set => ({

@@ -8,7 +8,6 @@ import { Read } from '@comp/crud';
 import Player from '@features/player';
 import Loader from '@comp/loading/Loader';
 import Interface from '@features/interface'
-
 import './index.scss';
 
 const Index = () => {
@@ -49,8 +48,8 @@ const Index = () => {
 
     return (
         <>
-            <Canvas shadows className='bg-black'>
-               
+            <Canvas shadows className='bg-white'>
+                <ambientLight intensity={1} />
                 <Physics gravity={[0, -30, 0]}>
 
                     <Suspense fallback={<Loader />}>

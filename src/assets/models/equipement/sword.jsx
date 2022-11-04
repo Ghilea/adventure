@@ -1,22 +1,18 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import { build } from '@store/editor';
-import { Select } from '@react-three/postprocessing';
-import { SelectObject } from '@editor/helperObject'
-import swordAsset from './sword.glb';
+import asset from './sword.glb';
 
-export const Sword = ({position, props}) => {
-  
-  const group = useRef();
-  const { nodes, materials } = useGLTF(swordAsset);
-  
+const Sword = ({rotation, position, props}) => {
+
+  const { nodes, materials } = useGLTF(asset);
+
   return (
-    <group ref={group} position={position} props dispose={null}>
+    <group {...props} position={position} rotation={rotation} scale={[1,1,1]} dispose={null}>
 
         <group
           name="Sketchfab_model"
-          position={[-0.21, 0, 0.4]}
-          rotation={[-Math.PI /2,0, -Math.PI /2]} //3e. move around player
+          position={[-0.01, 0, -0.02]}
+          rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
         >
           <group name="root">
             <group name="GLTF_SceneRootNode" rotation={[Math.PI / 2, 0, 0]}>
@@ -387,3 +383,7 @@ export const Sword = ({position, props}) => {
     </group>
   );
 }
+
+useGLTF.preload(asset)
+
+export default Sword
