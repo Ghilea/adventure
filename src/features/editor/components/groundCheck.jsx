@@ -21,7 +21,7 @@ const GroundCheck = () => {
         const centerX = (Math.floor(mousePosition.x) + 0.5)
         const centerZ = (Math.floor(mousePosition.z) + 0.5)
 
-        if(isBuild.isSolid){
+        if(isBuild.isSolid && isBuild.active){
     
             if (solidCheck.length > 0){
 
