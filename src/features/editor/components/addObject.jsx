@@ -10,6 +10,7 @@ export const useAddObject = () => {
     const objectIndex = build(state => state.mapSettings.objectIndex)
     const isBuild = build(state => state.isBuild);
     const mousePosition = build(state => state.mousePosition);
+    const objectRotation = build(state => state.isBuild.objectSize.rotate)
 
     const handleAddObject = (e) => {
     
@@ -17,7 +18,7 @@ export const useAddObject = () => {
         const position = [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5];
 
         //rotation object
-        const rotation = (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? [0, Math.PI * (180 / 360), 0] : [0, Math.PI * (360 / 360), 0];
+        const rotation = [0, Math.PI * (objectRotation / 360), 0];
 
          if (e.type === 'click' && isBuild.active && isBuild.canBuild) {
 
