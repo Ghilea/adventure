@@ -10,10 +10,6 @@ export const useAddObject = () => {
     const objectIndex = build(state => state.mapSettings.objectIndex)
     const isBuild = build(state => state.isBuild);
     const mousePosition = build(state => state.mousePosition);
-        
-    useEffect(() => {            
-       console.log('solid', store.solid, 'store', store.objects)
-    }, [store.objects])  
 
     const handleAddObject = (e) => {
     
