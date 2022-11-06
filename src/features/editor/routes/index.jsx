@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Canvas } from '@react-three/fiber';
 import Ground from '@comp/ground';
 import { Physics } from '@react-three/cannon';
@@ -10,7 +10,8 @@ import TopPanel from '../panel_top';
 import RightPanel from '../panel_right';
 import { build } from '@store/editor';
 import GroundCheck from '@editor/components/groundCheck';
-import SelectObject from '../components/selectObject';
+import SelectObject from '@editor/components/selectObject';
+import Loader from '@comp/loading/loader';
 
 const Index = () => {
     
@@ -37,21 +38,22 @@ const Index = () => {
 
     const keyHandler = () => {
 
+        // 0 = left, 180 = down, -180 = up, 360 = right
         switch (isBuild.objectSize.rotate) {
             case 0:
-                console.log('rotate 0')
-                store.setRotate(90)
+                console.log('rotate left')
+                store.setRotate(-180)
                 break;
-            case 90:
-                console.log('rotate 90')
+            case -180:
+                console.log('rotate up')
+                store.setRotate(360)
+                break;
+            case 360:
+                console.log('rotate right')
                 store.setRotate(180)
                 break;
             case 180:
-                console.log('rotate 180')
-                store.setRotate(270)
-                break;
-            case 270:
-                console.log('rotate 270')
+                console.log('rotate down')
                 store.setRotate(0)
                 break;
         }
@@ -88,14 +90,16 @@ const Index = () => {
 
                 <Physics gravity={[0, -30, 0]} >
 
-                    <gridHelper args={[groundSize, groundSize]} />
+                    <Suspense fallback={<Loader />}>
+                        <gridHelper args={[groundSize, groundSize]} />
 
-                    <Ground onPointerMove={pointerMove} size={groundSize}/>
+                        <Ground onPointerMove={pointerMove} size={groundSize}/>
 
-                    <GroundCheck />
+                        <GroundCheck />
 
-                    <SelectObject />
-
+                        <SelectObject />
+                    </Suspense>
+                    
                 </Physics>
 
             </Canvas>

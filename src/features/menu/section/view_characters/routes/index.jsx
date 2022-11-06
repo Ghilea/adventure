@@ -8,6 +8,7 @@ import { Physics } from '@react-three/cannon';
 import Button from '@comp/button/buttons';
 import { Canvas } from '@react-three/fiber';
 import LoadModel from '@models/components/models';
+import Loader from '@comp/loading/loader';
 import './index.scss';
 
 const Index = () => {
@@ -65,7 +66,7 @@ const Index = () => {
                                     
                                     <OrbitControls />
                                     <Physics gravity={[0, -30, 0]} >
-                                        <Suspense fallback={null} >
+                                        <Suspense fallback={<Loader />}>
                                             <LoadModel type={'knight'} />
                                             <Ground size={[8]} transparent={true} opacity={0} position={[0,-1,0]}/>
                                             <LoadModel type={'floor_1'} position={[0, 1, 0]}/>

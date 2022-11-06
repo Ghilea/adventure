@@ -20,15 +20,14 @@ const GroundCheck = () => {
 
     //repeat the arrow when size gets bigger
     texture.wrapS = texture.wrapT = RepeatWrapping
-    texture.repeat.set(objectSize.x, objectSize.z)
-
-    /* rotate the arrow based on the objects rotation
-        0 = left
-        180 = down
-        -180 = up
-        360 = right
-    */
-
+    if(objectSize.rotate === 0 || objectSize.rotate === 360) {
+        texture.repeat.set(objectSize.x, objectSize.z)
+    }else{
+        texture.repeat.set(objectSize.z, objectSize.x)
+    }
+    
+    // rotate the arrow based on the objects rotation
+    // 0 = left, 180 = down, -180 = up, 360 = right
     texture.rotation = (Math.PI * (objectSize.rotate/360))
 
     const [highLight, setHighLight] = usePlane(() => ({
