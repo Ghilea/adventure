@@ -13,13 +13,16 @@ const LevelSetting = () => {
     useEffect(() => {
     
         if(selectList.length <= 0) {
+
+            setSelectList([<option key={0} value={'New Level'}>New Level</option>])
+
             Read('getAllLevels')
                 .then(response => {
 
                     response.data.map((item) => {
                         setSelectList((state) => [
                             ...state,
-                            <option key={item.id}>
+                            <option key={item.id} value={`[${item.id}] ${item.title}`}>
                                 [{item.id}] {item.title}
                             </option>
                         ])
@@ -32,11 +35,15 @@ const LevelSetting = () => {
     }, [])
 
     const handleChange = (e) => {
-        console.log(e.target.value)
-        
+
+        const target = e.target.value;
+
+        console.log(target)
+
+        store.setImportedMap(target)
         store.emptyObjects();
 
-        if(e.target.value === 'New level') {
+        if(target === 'New Level') {
 
             store.setMapSettings({
                 objects: [],
@@ -45,8 +52,8 @@ const LevelSetting = () => {
 
         }else{
 
-            const targetId = e.target.value.substring(e.target.value.lastIndexOf('[') + 1, e.target.value.lastIndexOf(']'))
-
+            const targetId = target.substring(target.lastIndexOf('[') + 1, target.lastIndexOf(']'))
+console.log('id', targetId)
             Read(`getLevel?id=${targetId}`)
                 .then(response => {
 
@@ -109,8 +116,7 @@ const LevelSetting = () => {
             <div className='settings'>
                 <div className="settingsName">
                 <label htmlFor='name'>Import level</label>
-                    <select onChange={handleChange}>
-                        <option>New level</option>
+                    <select onChange={handleChange} value={store.importedMap}>
                         {selectList}
                     </select>
                 </div>

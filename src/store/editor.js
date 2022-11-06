@@ -25,12 +25,17 @@ export const build = create(set => ({
         objects: [],
         groundSize: 10
     },
+    importedMap: 'New Level',
     level: null,
     active: [],
     objects: [],
     solid: [],
     selected: null,
     remove: null,
+    setImportedMap: (selected) => set(state => ({
+        ...state,
+        importedMap: selected
+    })),
     setCanBuild: (value) => set(state => ({
         ...state,
         isBuild: {
