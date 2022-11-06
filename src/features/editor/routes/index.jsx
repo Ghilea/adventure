@@ -1,17 +1,16 @@
-import { Suspense, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Canvas } from '@react-three/fiber';
 import Ground from '@comp/ground';
 import { Physics } from '@react-three/cannon';
 import { OrbitControls } from '@react-three/drei'
-import SelectObj from '@editor/select_canvas_object';
 import disable from '@hooks/disable-click';
 import { useKey } from 'rooks';
-import { AddObject } from '@editor/helperObject';
+import { useAddObject } from '@editor/components/addObject';
 import TopPanel from '../panel_top';
 import RightPanel from '../panel_right';
 import { build } from '@store/editor';
-import GroundCheck from '@editor/groundCheck';
-import Loader from '@comp/loading/loader';
+import GroundCheck from '@editor/components/groundCheck';
+import SelectObject from '../components/selectObject';
 
 const Index = () => {
     
@@ -19,11 +18,11 @@ const Index = () => {
     const store = build(state => state);
     const groundSize = build(state => state.mapSettings.groundSize);
     const isBuild = build(state => state.isBuild);
-    const mousePosition = build(state => state.mousePosition);
-    const [rotate, setRotate] = useState(0);
-    const [mouseRight] = disable();
 
-    const [objectIndex, setObjectIndex] = useState(0);
+    const [rotate, setRotate] = useState(0);
+
+    const [handleAddObject] = useAddObject();
+    const [mouseRight] = disable();
     
     useEffect(() => {
         store.setIsEditor(true)
@@ -65,55 +64,6 @@ const Index = () => {
 
     useKey(['Control'], keyHandler);
 
-    useEffect(() => {
-        setObjectIndex(store.mapSettings.objectIndex)
-    }, [store.mapSettings.objectIndex])
-
-    const handleClick = (event) => {
-
-        if (event.type === 'click' && isBuild.active && isBuild.canBuild) {
-
-            store.setMapObject({
-                type: isBuild.type,
-                category: isBuild.category,
-                position: [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5],
-                rotation: (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? [0, Math.PI * (180 / 360), 0] : [0, Math.PI * (360 / 360), 0],
-                objectId: objectIndex
-            })
-
-            store.addObject(
-                <AddObject
-                    key={isBuild.category + objectIndex}
-                    position={
-                        [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5]
-                    }
-                    rotation={
-                        (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? [0, Math.PI * (180 / 360), 0] : [0, Math.PI * (360 / 360), 0]
-                    }
-                    type={
-                        isBuild.type
-                    }
-                    category={
-                        isBuild.category
-                    }
-                    objectId={
-                        objectIndex
-                    }
-                />, //canvasObject
-                [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5], //position
-                (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? [0, Math.PI * (180 / 360), 0] : [0, Math.PI * (360 / 360), 0], //rotation
-                isBuild.type, //type
-                isBuild.category, //category
-                objectIndex, //objectId
-                isBuild.isSolid
-            );
-
-            setObjectIndex(objectIndex + 1)
-            store.setObjectIndex(objectIndex + 1)
-
-        }
-    }
-
     const pointerMove = (e) => {
         store.setMousePosition(e.point.x, e.point.y, e.point.z)
     }
@@ -124,7 +74,7 @@ const Index = () => {
             <RightPanel />
             <Canvas
                 className='bg-black'
-                onClick={handleClick}
+                onClick={(e) => handleAddObject(e)}
                 onContextMenu={mouseRight}
                 camera={
                     {
@@ -144,7 +94,7 @@ const Index = () => {
 
                     <GroundCheck />
 
-                    <SelectObj />
+                    <SelectObject />
 
                 </Physics>
 

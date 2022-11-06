@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { Flame } from './components/flame';
 import { Select } from '@react-three/postprocessing';
-import { useSelectObject } from '@editor/helperObject';
+import { useSelectObject } from '@editor/hooks/use-select-object';
 import asset from './torch.gltf';
 
 export const Torch = (props) => {

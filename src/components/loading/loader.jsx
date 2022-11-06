@@ -15,9 +15,11 @@ const Loader = () => {
             Read('loadingTip').then(response => setData(response.data[0].sentence))
         }
 
-        if(progress === 100){
+        if(progress >= 100){
             store.setIsLoading(false)
         }
+
+        console.log(progress)
     }, [progress])
 
     return (

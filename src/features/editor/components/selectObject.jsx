@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { Selection, EffectComposer, Outline } from '@react-three/postprocessing';
 import { build } from '@store/editor';
-import { useEffect } from 'react';
 
 const SelectObject = () => {
 
     const storeBuild = build(state => state);
+    const [showObjects, setShowObjects] = useState([]);
+
+    useMemo(() => {
+        console.log(storeBuild.objects)
+
+        
+
+    }, [storeBuild.objects])
 
     return (
         <Selection>
@@ -17,7 +24,7 @@ const SelectObject = () => {
                 return item.canvasObject
             })}
 
-        </Selection>  
+        </Selection>
     )
 }
 

@@ -12,7 +12,8 @@ export const build = create(set => ({
             z: 1,
             y: 0,
             rotate: 0
-        }
+        },
+        isSolid: false
     },
     mousePosition: {
         x: 0,
@@ -147,7 +148,7 @@ export const build = create(set => ({
             texture
         ]
     })),
-    buildState: (value, type = '', category = '', objectSize = [0,0,0,0]) => set(state => ({
+    buildState: (value, type = '', category = '', objectSize = [0,0,0,0], isSolid) => set(state => ({
         ...state,
         isBuild: {
             ...state.isBuild,
@@ -160,7 +161,8 @@ export const build = create(set => ({
                 z: objectSize[1],
                 y: objectSize[2],
                 rotate: objectSize[3]
-            }
+            },
+            isSolid: isSolid
         }
     })),
     addSolid: (x, z, objectId) => set(state => ({
@@ -173,7 +175,7 @@ export const build = create(set => ({
             }
         ]
     })),
-    addObject: (canvasObject, position, rotation, type, category, objectId) => set(state => ({
+    addObject: (canvasObject, position, rotation, type, category, objectId, solid) => set(state => ({
         objects: [
             ...state.objects,
             {
@@ -182,7 +184,8 @@ export const build = create(set => ({
                 rotation: rotation,
                 type: type,
                 category: category,
-                objectId: objectId
+                objectId: objectId,
+                isSolid: solid
             }
         ]          
     })),

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { Select } from '@react-three/postprocessing';
-import { useSelectObject } from '@editor/helperObject';
+import { useSelectObject } from '@editor/hooks/use-select-object';
 import asset from './floor_1.glb';
 
 const Floor_1 = (props) => {

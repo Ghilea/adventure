@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
-import BuildButton from '@editor/build_button';
+import { useRef } from "react";
+import BuildButton from '@editor/components/build_button';
 import LevelSetting from "./level_setting";
 import { build } from "@store/editor";
 

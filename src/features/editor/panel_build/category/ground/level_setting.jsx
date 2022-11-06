@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Read, Update } from '@comp/crud';
+import { Read } from '@comp/crud';
 import { build } from "@store/editor";
-import { AddObject } from '@editor/helperObject';
+import LoadModel from "@models/components/models";
 
 const LevelSetting = () => {
     
@@ -16,7 +16,7 @@ const LevelSetting = () => {
             Read('getAllLevels')
                 .then(response => {
 
-                    response.data.map((item, index) => {
+                    response.data.map((item) => {
                         setSelectList((state) => [
                             ...state,
                             <option key={item.id}>
@@ -68,39 +68,25 @@ const LevelSetting = () => {
                         if(content.objects.length > 0){
                         
                             content.objects.map((item) => {
-                                
-                                store.addObject(
-                                    <AddObject
-                                        key={item.category + item.objectId}
-                                        position={[
-                                            item.position[0],
-                                            item.position[1],
-                                            item.position[2]
-                                        ]}
-                                        rotation={[
-                                            item.rotation[0],
-                                            item.rotation[1],
-                                            item.rotation[2]
-                                        ]}
-                                        type={item.type}
-                                        category={item.category}
-                                        objectId={item.objectId}
-                                    />, //canvasObject
-                                    [
+  
+                                store.addObject(<LoadModel 
+                                    key={item.category + item.objectId}
+                                    position={[
                                         item.position[0],
                                         item.position[1],
                                         item.position[2]
-                                    ], //position
-                                    [
+                                    ]}
+                                    rotation={[
                                         item.rotation[0],
                                         item.rotation[1],
                                         item.rotation[2]
-                                    ], //rotation
-                                    item.type, //type
-                                    item.category, //category
-                                    item.objectId, //objectId
-                                    item.isSolid
-                                );
+                                    ]}
+                                    type={item.type}
+                                    category={item.category}
+                                    objectId={item.objectId}
+                                    isSolid = {item.isSolid || null}
+                                />, item.position, item.rotation, item.type, item.category, item.objectId, item.isSolid)
+
                             })
                             
                         }

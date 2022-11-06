@@ -1,5 +1,5 @@
 import React from "react";
-import BuildButton from '@editor/build_button';
+import BuildButton from '@editor/components/build_button';
 
 const CategoryObjects = () => {
   
@@ -8,7 +8,7 @@ const CategoryObjects = () => {
             <div className='container'>
                 <h2>Boulders</h2>
                 <div className= 'buildPanelButton' >
-                    <BuildButton type='rock_1' size={[1, 1, 0]} rotate={0} category='rock' />
+                    <BuildButton type='rock_1' size={[1, 1, 0]} rotate={0} category='rock' isSolid={true} />
                 </div>
             </div>
 

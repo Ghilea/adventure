@@ -1,48 +1,5 @@
 import { useEffect, useState } from "react";
-import { build, ground } from '@store/editor';
-import LoadModel from "@models/components/models";
-
-//add object
-export const AddObject = ({position, rotation, type, category, objectId, solid=true}) => {
-    const store = build(state => state);
-    const storeGround = ground(state => state);
-    const [object, setObject] = useState(null);
-
-    useEffect(() => {
-
-        setObject(<LoadModel type={type} position={position} rotation={rotation} />)
-        
-    }, [])
-
-    useEffect(() => {
-        if(object !== null && solid){
-            //add ground (red)
-            switch (category) {
-                case 'wall':
-                    for (let i = 0; i < 5; i++) {
-                        if (!store.rotate) {
-                            store.addSolid((position[0] - 2) + i, position[2], objectId)
-                        } else {
-                            store.addSolid(position[0], (position[2] - 2) + i, objectId)
-                        }
-                        storeGround.groundColor('red');
-                    }
-                    break;
-                default:
-                    store.addSolid(position[0], position[2], objectId)
-                    storeGround.groundColor('red');
-                    break;
-            }
-            
-        }
-    }, [object])
-
-    return (
-        <>
-            {object}
-        </>         
-    )
-}
+import { build } from '@store/editor';
 
 export const useSelectObject = () => {
 

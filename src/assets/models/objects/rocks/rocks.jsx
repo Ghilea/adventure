@@ -1,8 +1,7 @@
 import React from "react";
 import { useGLTF } from "@react-three/drei";
-import { useBox } from '@react-three/cannon';
 import { Select } from '@react-three/postprocessing';
-import { useSelectObject } from '@editor/helperObject';
+import { useSelectObject } from '@editor/hooks/use-select-object';
 import asset from './rock.gltf';
 
 export const Rock_1 = (props) => {

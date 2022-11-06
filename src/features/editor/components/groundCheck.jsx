@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { usePlane } from '@react-three/cannon';
 import { useFrame } from '@react-three/fiber';
-import { build } from '@store/editor';
+import { build, ground } from '@store/editor';
 
 const GroundCheck = () => {
     
@@ -9,7 +9,7 @@ const GroundCheck = () => {
     const store = build(state => state);
     const mousePosition = build(state => state.mousePosition);
     const isBuild = build(state => state.isBuild);
-    const [groundColor, setGroundColor] = useState('');
+    const storeGround = ground(state => state);
 
     const [highLight, setHighLight] = usePlane(() => ({
         args: [isBuild.objectSize.x, isBuild.objectSize.z],
@@ -21,42 +21,45 @@ const GroundCheck = () => {
         const centerX = (Math.floor(mousePosition.x) + 0.5)
         const centerZ = (Math.floor(mousePosition.z) + 0.5)
 
-        if (solidCheck.length > 0){
+        if(isBuild.isSolid){
+    
+            if (solidCheck.length > 0){
 
-            //check the ground if it is allwed to place object there
-            const check = solidCheck.filter(obj => {
-                return (
-                    obj.x == centerX) && (obj.z == centerZ) || (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? 
+                //check the ground if it is allwed to place object there
+                const check = solidCheck.filter(obj => {
+                    return (
+                        obj.x == centerX) && (obj.z == centerZ) || (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? 
 
-                    (obj.x >= (centerX - (isBuild.objectSize.x / 2))) && 
-                    obj.z == centerZ && 
-                    (obj.x <= (Math.floor(mousePosition.x) + (isBuild.objectSize.x / 2))) && 
-                    obj.z == centerZ : 
+                        (obj.x >= (centerX - (isBuild.objectSize.x / 2))) && 
+                        obj.z == centerZ && 
+                        (obj.x <= (Math.floor(mousePosition.x) + (isBuild.objectSize.x / 2))) && 
+                        obj.z == centerZ : 
 
-                    (obj.x == centerX && 
-                    obj.z >= (centerZ - (isBuild.objectSize.z / 2))) && 
-                    (obj.x == centerX && 
-                    obj.z <= (Math.floor(mousePosition.z) + (isBuild.objectSize.z / 2)))
-            })
-            
-            if (check.length > 0) {
-                setGroundColor('red');
-                store.setCanBuild(false)
-            }else{
-                setGroundColor('green');
-                store.setCanBuild(true)
+                        (obj.x == centerX && 
+                        obj.z >= (centerZ - (isBuild.objectSize.z / 2))) && 
+                        (obj.x == centerX && 
+                        obj.z <= (Math.floor(mousePosition.z) + (isBuild.objectSize.z / 2)))
+                })
+                
+                if (check.length > 0) {
+                    storeGround.groundColor('red');
+                    store.setCanBuild(false)
+                }else{
+                    storeGround.groundColor('green');
+                    store.setCanBuild(true)
+                }
+                
             }
-            
         }
 
     }, [mousePosition])
 
     useEffect(() => {
         if (isBuild.active){
-            setGroundColor('green')
+            storeGround.groundColor('green')
             store.setCanBuild(true)
         }else{
-            setGroundColor('')
+            storeGround.groundColor(false)
             store.setCanBuild(false)
         }
         
@@ -76,9 +79,9 @@ const GroundCheck = () => {
 
             <meshStandardMaterial 
                 attach='material' 
-                color={groundColor} 
+                color={storeGround.color} 
                 transparent={true}
-                opacity={groundColor === '' ? 0 : 1}/>
+                opacity={!storeGround.color ? 0 : 1}/>
         </mesh>
     )
 

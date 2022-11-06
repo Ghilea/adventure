@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState, useRef, useMemo } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import LoadModel from '@models/components/models';
@@ -12,7 +12,6 @@ import './index.scss';
 const Index = () => {
 
     const store = loading(state => state);
-    const [groundSize, setGroundSize] = useState([10]);
     const [build, setBuild] = useState([]);
     const [menu, setMenu] = useState([])
         
@@ -33,16 +32,25 @@ const Index = () => {
                         ]))
                     })
 
-                    setGroundSize(parsed.ground)
+                    setBuild((state) => ([
+                        ...state, 
+                        <Ground key={'groundMenu'} position={[0, 0, 0]} size={parsed.ground}/>
+                    ]))
                 })
         }
         
     }, [])
 
-    useEffect(() => {               
-        console.log(store.isLoading, menu)
-        if(!store.isLoading && menu.length <= 0){
+    useEffect(() => {
+
+        //temp fix for bug
+        console.log(store.isLoading)
+        if(!store.isLoading){
             setMenu(<Menu />)
+        }else{
+            setTimeout(() => {
+                setMenu(<Menu />)
+            }, 1000)
         }
         
     }, [store.isLoading])
@@ -50,16 +58,14 @@ const Index = () => {
     return (
         <>
            
-            <Canvas shadows 
+            <Canvas shadows className='bg-black'
                 camera={{
                 fov: 60,
                 position: [-3.5, 1, -5.8]
-            }}
-            className='bg-black'>
+            }}>
                 <Physics gravity={[0, -30, 0]}>
                 
                     <Suspense fallback={<Loader />} >
-                        <Ground position={[0, 0, 0]} size={groundSize}/>
                         {build}
                     </Suspense>
 
