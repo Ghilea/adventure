@@ -18,8 +18,6 @@ const Loader = () => {
         if(progress >= 100){
             store.setIsLoading(false)
         }
-
-        console.log(progress)
     }, [progress])
 
     return (

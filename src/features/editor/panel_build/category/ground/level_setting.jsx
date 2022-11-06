@@ -38,8 +38,6 @@ const LevelSetting = () => {
 
         const target = e.target.value;
 
-        console.log(target)
-
         store.setImportedMap(target)
         store.emptyObjects();
 
@@ -53,7 +51,7 @@ const LevelSetting = () => {
         }else{
 
             const targetId = target.substring(target.lastIndexOf('[') + 1, target.lastIndexOf(']'))
-console.log('id', targetId)
+
             Read(`getLevel?id=${targetId}`)
                 .then(response => {
 

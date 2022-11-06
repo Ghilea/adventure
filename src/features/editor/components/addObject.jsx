@@ -34,8 +34,6 @@ export const useAddObject = () => {
 
             store.setObjectIndex(objectIndex + 1)
 
-            console.log('what is it?', isBuild)
-
              if(isBuild.isSolid){
                 switch (isBuild.category) {
                     case 'wall':

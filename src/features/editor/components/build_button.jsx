@@ -18,7 +18,6 @@ const BuildButton = ({
     const storeBuild = build(state => state);
 
     const handleClick = () => {
-        console.log('checkSolid', isSolid)
         if (storeBuild.isBuild.active && storeBuild.isBuild.type === type) {
             console.log('inactive')
             //build button not active

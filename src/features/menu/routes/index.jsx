@@ -44,7 +44,6 @@ const Index = () => {
     useEffect(() => {
 
         //temp fix for bug
-        console.log(store.isLoading)
         if(!store.isLoading){
             setMenu(<Menu />)
         }else{

@@ -37,7 +37,6 @@ const Index = () => {
     }
 
     const handleName = (e) => {
-        console.log(e.target.value);
         setCharacter({
             ...character,
             name: e.target.value,

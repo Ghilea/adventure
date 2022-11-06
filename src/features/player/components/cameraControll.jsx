@@ -36,7 +36,6 @@ const CameraControll = () => {
     }, [])
 
     const handleMouseClick = (event) => {
-        console.log('click');
         event.preventDefault();
 
         if (event.type === 'click' && storeEnemy.hp > 0 && storePlayer.canAttack) {

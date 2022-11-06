@@ -37,7 +37,6 @@ const GroundCheck = () => {
     }))
    
     useEffect(() => {
-        console.log(objectSize.rotate)
         const centerX = (Math.floor(mousePosition.x) + 0.5)
         const centerZ = (Math.floor(mousePosition.z) + 0.5)
 

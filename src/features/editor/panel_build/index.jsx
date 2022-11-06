@@ -21,7 +21,6 @@ const Category = ({
     }
 
     const content = object.map((item, index) => {
-        console.log(item)
         return (
             <div
                 key={item + index}
