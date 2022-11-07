@@ -34,7 +34,7 @@ const TopPanel = () => {
         console.log({
             'id': mapSettings.id,
             'ground': mapSettings.groundSize,
-            'objects': mapSettings.objects,
+            'objects': storeBuild.objects,
             'order': mapSettings.order,
             'title': mapSettings.title,
             'objectIndex': mapSettings.objectIndex
@@ -43,7 +43,7 @@ const TopPanel = () => {
         if (mapSettings.id === undefined) {
 
             if(mapSettings.title === undefined) return console.log('error title')
-            if(mapSettings.objects === undefined) return console.log('error objects')
+            if(storeBuild.objects === undefined) return console.log('error objects')
             
             console.log('create')
              Create('createLevel', {
@@ -51,7 +51,7 @@ const TopPanel = () => {
                 title: mapSettings.title,
                 content: JSON.stringify({
                     'ground': mapSettings.groundSize,
-                    'objects': mapSettings.objects
+                    'objects': storeBuild.objects
                 })
             });             
 
@@ -64,7 +64,7 @@ const TopPanel = () => {
                 content: JSON.stringify({
                     'objectIndex': mapSettings.objectIndex,
                     'ground': mapSettings.groundSize,
-                    'objects': mapSettings.objects
+                    'objects': storeBuild.objects
                 })
             }) 
         }

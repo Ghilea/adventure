@@ -22,7 +22,6 @@ export const build = create(set => ({
     },
     mapSettings: {
         objectIndex: 0,
-        objects: [],
         groundSize: 10
     },
     importedMap: 'New Level',

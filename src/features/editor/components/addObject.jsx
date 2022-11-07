@@ -37,10 +37,11 @@ export const useAddObject = () => {
              if(isBuild.isSolid){
                 switch (isBuild.category) {
                     case 'wall':
+                        // 0 = left, 180 = down, -180 = up, 360 = right
                         for (let i = 0; i < 5; i++) {
-                            if (objectRotation === 180 || objectRotation === -180) {
+                            if (objectRotation === 0 || objectRotation === 360) {
                                 store.addSolid((position[0] - 2) + i, position[2], objectIndex)
-                            } else {
+                            } else if (objectRotation === 180 || objectRotation === -180) {
                                 store.addSolid(position[0], (position[2] - 2) + i, objectIndex)
                             }
                             storeGround.groundColor('red');
