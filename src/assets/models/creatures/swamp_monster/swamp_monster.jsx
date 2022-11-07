@@ -17,6 +17,7 @@ const SwampMonster = (props) => {
     >
       <Select enabled={isSelected}>
       <mesh 
+        rotation={[0, Math.PI * (180/360), 0]}
         position={[0.1, -0.9, 0.2]}
         castShadow
         receiveShadow

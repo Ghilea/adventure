@@ -14,7 +14,7 @@ export const Torch = (props) => {
 
     return (
         <group receiveShadow castShadow ref={group} onClick={handleClick} {...props} dispose={null}  >
-            <group position={[0, -1.5, -0.525]} scale={[0.03, 0.03, 0.03]} >
+            <group position={[0, -1.5, -0.525]} scale={[0.03, 0.03, 0.03]} rotation={[0, Math.PI * (-180/360), 0]} >
                 <Select
                     enabled={isSelected}>
                 <group position={[-291.22, 0, 0]}>

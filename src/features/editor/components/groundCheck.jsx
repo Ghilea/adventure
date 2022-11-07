@@ -3,6 +3,7 @@ import { usePlane } from '@react-three/cannon';
 import { useFrame, useLoader } from '@react-three/fiber';
 import { build, ground } from '@store/editor';
 import arrowImg from '@images/svg/arrow.svg';
+import crossImg from '@images/svg/cross.svg';
 import { RepeatWrapping, TextureLoader } from 'three';
 
 const GroundCheck = () => {
@@ -16,7 +17,7 @@ const GroundCheck = () => {
     const objectSize = build(state => state.isBuild.objectSize);
 
     //arrow img texture on the ground marker
-    const texture = useLoader(TextureLoader, arrowImg)
+    const texture = useLoader(TextureLoader, (storeGround.color === 'green') ? arrowImg : crossImg)
 
     //repeat the arrow when size gets bigger
     texture.wrapS = texture.wrapT = RepeatWrapping

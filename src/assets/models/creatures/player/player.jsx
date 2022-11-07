@@ -15,7 +15,7 @@ export const Player = (props) => {
       handleClick
     } >
 
-      <group position={[0, -1.43, 0]} scale={0.03} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
+      <group position={[0, -1.43, 0]} scale={0.03} rotation={[-Math.PI / 2, 0, -Math.PI / 2]}>
      
         <group rotation={[Math.PI / 2, 0, 0]}>
             <group position={[1.61, -0.08, -1.64]} rotation={[1.71, -0.21, 0.63]}> 
