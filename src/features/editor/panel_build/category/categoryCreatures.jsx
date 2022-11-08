@@ -8,13 +8,13 @@ const CategoryCreatures = () => {
             <div className='container'>
                 <h2>Player</h2>
                 <div className='buildPanelButton'>
-                    <BuildButton type='player' size={[1, 1, 0]} rotate={0} category={'player'} isSolid={true}/>
+                    <BuildButton type='player' size={[1, 1, 0]} category={'player'} isSolid={true}/>
                 </div>
             </div>
             <div className='container'>
                 <h2>Monster</h2>
                 <div className='buildPanelButton'>
-                    <BuildButton type='swamp_monster' size={[1, 1, 0]} rotate={0} category={'swamp_monster'} isSolid={true}/>
+                    <BuildButton type='swamp_monster' size={[1, 1, 0]} category={'swamp_monster'} isSolid={true}/>
                 </div>
             </div>
         </div>

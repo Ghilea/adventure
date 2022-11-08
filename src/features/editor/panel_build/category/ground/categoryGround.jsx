@@ -29,7 +29,7 @@ const CategoryGround = () => {
             <div className='container'>
                 <h2>Grounds</h2>
                 <div className='buildPanelButton' >
-                    <BuildButton type='floor_1' size={[1, 1, 0]} rotate={0} category='floor' />
+                    <BuildButton type='floor_1' size={[1, 1, 0]} category='floor' />
                 </div>
             </div>
 

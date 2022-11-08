@@ -27,7 +27,7 @@ export const Wall_1 = (props) => {
     >
       <Select enabled={isSelected}>
       <mesh 
-        rotation={[0, Math.PI * (-180/360), 0]}
+        rotation={[0, Math.PI * (180/360), 0]}
         position = {[0, -1.3, 0]}
         castShadow
         receiveShadow

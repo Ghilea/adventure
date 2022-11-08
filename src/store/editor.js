@@ -152,11 +152,11 @@ export const build = create(set => ({
             texture
         ]
     })),
-    buildState: (value, type = '', category = '', objectSize = [0,0,0,0], isSolid) => set(state => ({
+    buildState: ({isActive, type = '', category = '', objectSize = [0,0,0], rotate, isSolid}) => set(state => ({
         ...state,
         isBuild: {
             ...state.isBuild,
-            active: value, 
+            active: isActive, 
             type: type,
             category: category,
             objectSize: {
@@ -164,7 +164,7 @@ export const build = create(set => ({
                 x: objectSize[0],
                 z: objectSize[1],
                 y: objectSize[2],
-                rotate: objectSize[3]
+                rotate: rotate
             },
             isSolid: isSolid
         }
@@ -231,10 +231,6 @@ export const build = create(set => ({
             ...state,
             objects: [],
             solid: [],
-             mapSettings: {
-                ...state.mapSettings,
-                objects: []
-             }
         })
     ),
 }))

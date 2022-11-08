@@ -1,6 +1,5 @@
 import { Suspense, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { OrbitControls } from '@react-three/drei'
 import { Read } from '@comp/crud';
 import { menu, player } from '@store/store';
 import Ground from '@comp/ground';
@@ -19,7 +18,7 @@ const Index = () => {
     const storePlayer = player(state => state);
 
     const [characterList, setCharacterList] = useState([]);
-    const [viewCharacter, setViewCharacter] = useState([]);
+    const [build, setBuild] = useState([]);
 
     const handleCharacterLogin = () => {
         storeMenu.activateContent('login')
@@ -37,6 +36,34 @@ const Index = () => {
 
     useEffect(() => {
 
+        if(build.length <= 0){
+
+            Read(`getLevel?id=${'Menu_character'}`)
+                .then(response => {
+
+                    const parsed = JSON.parse(response.data[0].content)
+
+                    parsed.objects.map((use, index) => {
+
+                        setBuild((state) => ([
+                            ...state,
+                            <LoadModel key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
+                        ]))
+                    })
+
+                    setBuild((state) => ([
+                        ...state, 
+                        <Ground key={'groundMenuCharacter'} position={[0, 0, 0]} size={parsed.ground}
+                        />
+                    ]))
+
+                    setBuild((state) => ([
+                        ...state, 
+                        <LoadModel key={'showProtagonist'} type={'knight'} />
+                    ]))
+                })
+        }
+
         if(characterList.length <= 0){
             Read('getAllProtagonist').then(response => (
 
@@ -46,62 +73,14 @@ const Index = () => {
                             ...state,
                             <div
                                 key={item.name + index} 
-                                className='flex-col place-row-1-4 p-5 my-4 select-character' 
+                                className='flex-col place-row-1-4 p-5 my-4 rounded-md select-character' 
                                 onClick={handleCharacterLogin}>
-                                <div className='flex-row justify-between'>
+                                <div className='flex flex-col justify-evenly gap-4'>
                                     <h2>{item.name}</h2>
                                     <p>Level: {item.level}</p>
                                 </div>
                             </div>
-                        ])),
-
-                        setViewCharacter(
-                            <div className='flex-col bg-black place-row-1-4'>
-                                <Canvas shadows
-                                    camera={{
-                                        fov: 64,
-                                        position: [0, 0.5, 2]
-                                    }}>
-                                   
-                                    
-                                    <OrbitControls />
-                                    <Physics gravity={[0, -30, 0]} >
-                                        <Suspense fallback={<Loader />}>
-                                            <LoadModel type={'knight'} />
-                                            <Ground size={[8]} transparent={true} opacity={0} position={[0,-1,0]}/>
-                                            <LoadModel type={'floor_1'} position={[0, 1, 0]}/>
-                                            <LoadModel type={'floor_1'} position={[1, 1, 0]} />
-                                            <LoadModel type={'floor_1'} position={[-1, 1, 0]} />
-
-                                            <LoadModel type={'floor_1'} position={[0, 1, -1]} />
-                                            <LoadModel type={'floor_1'} position={[1, 1, -1]} />
-                                            <LoadModel type={'floor_1'} position={[-1, 1, -1]} />
-
-                                            <LoadModel type={'floor_1'} position={[-1, 1, -2]} />
-                                            <LoadModel type={'floor_1'} position={[1, 1, -2]} />
-                                            <LoadModel type={'floor_1'} position={[0, 1, -2]} />
-
-                                            <LoadModel type={'floor_1'} position={[1, 1, -3]} />
-                                            <LoadModel type={'floor_1'} position={[-1, 1, -3]} />
-                                            <LoadModel type={'floor_1'} position={[0, 1, -3]} />
-
-                                            <LoadModel type={'floor_1'} position={[-2, 1, -1]} />
-                                            <LoadModel type={'floor_1'} position={[2, 1, -1]} />
-
-                                            <LoadModel type={'wall_1'} position={[2, 1, -1]} />
-                                            <LoadModel type={'wall_1'} position={[-2, 1, -1]} />
-
-                                            <LoadModel type={'torch'} position={[1, 1, 1]} rotation={[0, Math.PI * (-180 / 360), 0]} />
-                                            <LoadModel type={'torch'} position={[-1, 1, 1]} rotation={[0,Math.PI * (180/360), 0]}/>
-
-                                            <LoadModel type={'torch'} position={[-1, 1, -3]} rotation={[0, Math.PI * (180 / 360), 0]} />
-                                        </Suspense >
-                                    </Physics>
-                                    
-                                </Canvas>
-                            </div>
-                        )
-
+                        ]))
                     )
                 })
 
@@ -110,28 +89,44 @@ const Index = () => {
        
     }, [])
 
-    return (    
-        <div className='grid template-col-5 template-row-4 justify-items-center items-center'>
-            <div className='flex-col bg-black texture-bg shadow place-row-1-4 place-col-5-1 h-full w-full'>
-                {characterList}
-            </div>
-            <div className='flex-col place-row-1-4 place-col-1-4 h-full w-full'>
-                {viewCharacter}
-            </div>
-            <div className='flex flex-row place-row-4-1 place-col-5-1 gap-5 h-full w-full items-end mb-8 px-5'>
-                <Button
-                    className='bg-black texture-bg text-size-4 button'
-                    onClick={handleCreate}>
-                    Create Protagonist
-                </Button>
-                <Button
-                    className='bg-black texture-bg text-size-4 button'
-                    onClick={() => handleExit()}>
-                    Exit
-                </Button>
+    return (
+        <>
+            <Canvas shadows className='bg-black'
+                camera={{
+                    fov: 60,
+                    position: [0, 1, -5.8]
+                }}>
+                
+                <Physics gravity={[0, -30, 0]} >
+                    <Suspense fallback={<Loader />}>
+                        {build}
+                    </Suspense >
+                </Physics>
+                
+            </Canvas>
+            <div className='fixed pos-left pos-top grid template-col-5 template-row-5 justify-items-center items-center h-full w-full pt-5 pr-5'>
+                <div className='flex-col place-row-1-4 place-col-5-1 h-full w-full'>
+                    {characterList}
+                </div>
+                <div className='flex-row place-row-5-1 place-col-3-1 gap-5 h-full w-full items-center mb-8 px-5'>
+                    <Button
+                        className='bg-black texture-bg text-size-4 button'
+                        onClick={handleCreate}>
+                        Create Protagonist
+                    </Button>
+                </div>
+                <div className='flex-row place-row-5-1 place-col-5-1 gap-5 h-full w-full items-end mb-8 px-5'>
+                    <Button
+                        className='bg-black texture-bg text-size-4 button'
+                        onClick={() => handleExit()}>
+                        Exit
+                    </Button>
+                </div>
+                
             </div>
             
-        </div>    
+        </>
+        
     )
 }
 

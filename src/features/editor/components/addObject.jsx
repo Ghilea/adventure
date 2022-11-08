@@ -41,7 +41,7 @@ export const useAddObject = () => {
                         for (let i = 0; i < 5; i++) {
                             if (objectRotation === 0 || objectRotation === 360) {
                                 store.addSolid((position[0] - 2) + i, position[2], objectIndex)
-                            } else if (objectRotation === 180 || objectRotation === -180) {
+                            } else {
                                 store.addSolid(position[0], (position[2] - 2) + i, objectIndex)
                             }
                             storeGround.groundColor('red');
