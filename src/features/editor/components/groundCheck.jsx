@@ -47,7 +47,6 @@ const GroundCheck = () => {
 
                 //check the ground if it is allwed to place object there
                 const check = solidCheck.filter(obj => {
-                    console.log(objectSize.rotate)
                     return (
                         obj.x == centerX) && (obj.z == centerZ) || (objectSize.rotate === 0 ||  objectSize.rotate === 360) ? 
 
@@ -61,7 +60,7 @@ const GroundCheck = () => {
                         (obj.x == centerX && 
                         obj.z <= (Math.floor(mousePosition.z) + (objectSize.z / 2)))
                 })
-                console.log(check)
+                
                 if (check.length > 0) {
                     storeGround.groundColor('red');
                     store.setCanBuild(false)
