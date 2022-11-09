@@ -1,24 +1,15 @@
 import React from "react";
 import { useGLTF } from "@react-three/drei";
-import { useBox } from '@react-three/cannon';
 import { Select } from '@react-three/postprocessing';
 import { useSelectObject } from '@editor/hooks/use-select-object';
-import { build } from '@store/editor';
 import asset from './wall.glb';
+import UseSolid from "../../components/use-solid";
 
 export const Wall_1 = (props) => {
   const { nodes, materials  } = useGLTF(asset);
 
   const [isSelected, handleClick] = useSelectObject();
 
-  const rotate = build(state => state.isBuild.objectSize.rotate);
-
-  console.log(props.rotation)
-  const [solid] = useBox(() => ({
-    position: [0, -0.5, 0],
-    rotation: [0, Math.PI * (0/360), 0] // 0 = left, 180 = down, -180 = up, 360 = right
-  }));
-  
   return (
     <group dispose = {null} 
       onClick={handleClick}
@@ -36,10 +27,7 @@ export const Wall_1 = (props) => {
       />
       </Select>
 
-      <mesh ref = {solid}>
-        <boxGeometry args= {[3.2, 1.5, 0.5]} />
-        <meshBasicMaterial color="red" />
-      </mesh>
+      <UseSolid position={[0, -0.5, 0]} size={[3.2, 1.5, 0.5]} />
   
     </group>
   );
