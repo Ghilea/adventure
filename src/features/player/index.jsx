@@ -5,7 +5,7 @@ import { Vector3, MathUtils } from 'three';
 import { useKeyboardControls } from '@hooks/useKeyboardControls';
 import CameraControll from './components/cameraControll';
 import { player, map } from '@store/store';
-import Sword from '@models/equipement/sword';
+//import Sword from '@models/equipement/sword';
 import './index.scss';
 
 const frontVector = new Vector3(0, 0, 0);
@@ -34,7 +34,7 @@ const Index = ({ position, lerp = MathUtils.lerp }) => {
     }))
 
     const velocity = useRef([0, 0, 0]);
-    const rightHand = useRef()
+    //const rightHand = useRef()
 
     useEffect(() => {
         api.velocity.subscribe((v) => {
@@ -48,9 +48,9 @@ const Index = ({ position, lerp = MathUtils.lerp }) => {
         camera.position.copy(ref.current.position);
 
         //update righthand
-        rightHand.current.rotation.x = lerp(rightHand.current, Math.sin((velocity.current.length > 1) * state.clock.elapsedTime * 10) / 6, 0.1);
+       /*  rightHand.current.rotation.x = lerp(rightHand.current, Math.sin((velocity.current.length > 1) * state.clock.elapsedTime * 10) / 6, 0.1);
         rightHand.current.rotation.copy(camera.rotation)
-        rightHand.current.position.copy(camera.rotation).add(camera.getWorldDirection(rotation).multiplyScalar(1)) 
+        rightHand.current.position.copy(camera.rotation).add(camera.getWorldDirection(rotation).multiplyScalar(1))  */
     
         //chat closed - movement
         if (!storeMap.chatInput){
@@ -82,9 +82,9 @@ const Index = ({ position, lerp = MathUtils.lerp }) => {
         <>
             <CameraControll />
             
-            <group ref={rightHand} onPointerMissed={(e) => (rightHand.current.children[0].rotation.x = -0.5)}>
+            {/* <group ref={rightHand} onPointerMissed={(e) => (rightHand.current.children[0].rotation.x = -0.5)}>
                 <Sword position={[0.3, -0.65, 5]} />
-            </group>
+            </group> */}
             
             <mesh ref={ref}>
                 <pointLight

@@ -10,8 +10,8 @@ const UseSolid = ({position, size}) => {
 
   return (
     <mesh ref = {solid}>
-        <boxGeometry args={size} />
-        <meshBasicMaterial color="red" opacity={0} transparent={true}/>
+        <boxGeometry args={size} /> 
+        <meshBasicMaterial color="red" opacity={1} transparent={false}/>
     </mesh>
   )
 }
