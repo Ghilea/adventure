@@ -13,10 +13,10 @@ export const Wall_1 = (props) => {
 
   const rotate = build(state => state.isBuild.objectSize.rotate);
 
+  console.log(props.rotation)
   const [solid] = useBox(() => ({
-    args: [5, 3.5, 1],
-    position: [props.position[0], props.position[1] -0.5, props.position[2]],
-    rotation: [0, Math.PI * (rotate/360), 0]
+    position: [0, -0.5, 0],
+    rotation: [0, Math.PI * (0/360), 0] // 0 = left, 180 = down, -180 = up, 360 = right
   }));
   
   return (
@@ -36,7 +36,10 @@ export const Wall_1 = (props) => {
       />
       </Select>
 
-      <mesh ref = {solid} />
+      <mesh ref = {solid}>
+        <boxGeometry args= {[3.2, 1.5, 0.5]} />
+        <meshBasicMaterial color="red" />
+      </mesh>
   
     </group>
   );
