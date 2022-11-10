@@ -57,7 +57,7 @@ const Index = () => {
     return (
         <>
            
-            <Canvas shadows className='bg-black'
+            <Canvas shadows className='bg-black h-full-vh'
                 camera={{
                 fov: 60,
                 position: [-3.5, 1, -5.8]
