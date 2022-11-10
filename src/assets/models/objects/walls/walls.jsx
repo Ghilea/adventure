@@ -7,7 +7,7 @@ import useViewportScale from "../../components/use-viewport-scale";
 import asset from './wall.glb';
 
 export const Wall_1 = (props) => {
-  const { nodes, materials  } = useGLTF(asset);
+  const { nodes, materials } = useGLTF(asset);
 
   const [isSelected, handleClick] = useSelectObject();
 
@@ -22,24 +22,24 @@ export const Wall_1 = (props) => {
   }, [])
 
   return (
-    <group dispose = {null} 
+    <group dispose={null}
       onClick={handleClick}
-    {...props} 
-    scale = {scaleIt}
+      {...props}
+      scale={scaleIt}
     >
       <Select enabled={isSelected}>
-      <mesh 
-        rotation={[0, Math.PI * (180/360), 0]}
-        position = {[0, -1.3, 0]}
-        castShadow
-        receiveShadow
-        geometry={nodes.Side.geometry}
-        material={materials.muretdroitmat}
-      />
+        <mesh
+          rotation={[0, Math.PI * (180 / 360), 0]}
+          position={[0, -1.3, 0]}
+          castShadow
+          receiveShadow
+          geometry={nodes.Side.geometry}
+          material={materials.muretdroitmat}
+        />
       </Select>
 
       <UseSolid position={[0, -0.5, 0]} size={[3.2, 1.5, 0.5]} />
-  
+
     </group>
   );
 }

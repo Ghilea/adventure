@@ -12,7 +12,7 @@ export const Rock_1 = (props) => {
 
     return (
         <group {...props} dispose={null}
-        onClick = { handleClick } >
+            onClick={handleClick} >
 
             <Select enabled={isSelected}>
 
@@ -26,7 +26,7 @@ export const Rock_1 = (props) => {
 
             </Select>
 
-            <UseSolid position={[0, -1, 0]} size={[2, 2, 2]}/>
+            <UseSolid position={[0, -1, 0]} size={[2, 2, 2]} />
         </group>
     );
 }

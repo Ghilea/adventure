@@ -36,7 +36,7 @@ const Index = () => {
 
     useEffect(() => {
 
-        if(build.length <= 0){
+        if (build.length <= 0) {
 
             Read(`getLevel?id=${'Menu_character'}`)
                 .then(response => {
@@ -52,19 +52,19 @@ const Index = () => {
                     })
 
                     setBuild((state) => ([
-                        ...state, 
+                        ...state,
                         <Ground key={'groundMenuCharacter'} position={[0, 0, 0]} size={parsed.ground}
                         />
                     ]))
 
                     setBuild((state) => ([
-                        ...state, 
+                        ...state,
                         <LoadModel key={'showProtagonist'} type={'knight'} />
                     ]))
                 })
         }
 
-        if(characterList.length <= 0){
+        if (characterList.length <= 0) {
             Read('getAllProtagonist').then(response => (
 
                 response.data.map((item, index) => {
@@ -72,8 +72,8 @@ const Index = () => {
                         setCharacterList((state) => ([
                             ...state,
                             <div
-                                key={item.name + index} 
-                                className='flex-col place-row-1-4 p-5 my-4 rounded-md select-character' 
+                                key={item.name + index}
+                                className='flex-col place-row-1-4 p-5 my-4 rounded-md select-character'
                                 onClick={handleCharacterLogin}>
                                 <div className='flex flex-col justify-evenly gap-4'>
                                     <h2>{item.name}</h2>
@@ -86,7 +86,7 @@ const Index = () => {
 
             ));
         }
-       
+
     }, [])
 
     return (
@@ -96,13 +96,13 @@ const Index = () => {
                     fov: 60,
                     position: [0, 1, -5.8]
                 }}>
-                
+
                 <Physics gravity={[0, -30, 0]} >
                     <Suspense fallback={<Loader />}>
                         {build}
                     </Suspense >
                 </Physics>
-                
+
             </Canvas>
             <div className='fixed pos-left pos-top grid template-col-5 template-row-5 justify-items-center items-center h-full w-full pt-5 pr-5'>
                 <div className='flex-col place-row-1-4 place-col-5-1 h-full w-full'>
@@ -122,11 +122,11 @@ const Index = () => {
                         Exit
                     </Button>
                 </div>
-                
+
             </div>
-            
+
         </>
-        
+
     )
 }
 

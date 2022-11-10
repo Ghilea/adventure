@@ -35,20 +35,20 @@ const Index = () => {
             {
                 (storeMap.showCharacterSheet) ?
 
-                <div className='characterSheet'>
-                    <div className='points'>Poäng: {storePlayer.points}
+                    <div className='characterSheet'>
+                        <div className='points'>Poäng: {storePlayer.points}
+                        </div>
+                        <div className='attributes'>
+
+                        </div>
+                        <div className='dps'>Dps: {storePlayer.dps}</div>
+                        <Button
+                            className='bg-black texture-bg button'
+                            onClick={handleExit}>
+                            Exit to menu
+                        </Button>
                     </div>
-                    <div className='attributes'>
-                   
-                    </div>
-                    <div className='dps'>Dps: {storePlayer.dps}</div>
-                    <Button
-                        className='bg-black texture-bg button'
-                        onClick={handleExit}>
-                        Exit to menu
-                    </Button>
-                </div>
-                : <></>
+                    : <></>
             }
         </>
     )

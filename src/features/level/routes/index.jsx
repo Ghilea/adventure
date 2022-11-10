@@ -18,7 +18,7 @@ const Index = () => {
 
     useEffect(() => {
 
-        if(build.length <= 0) {
+        if (build.length <= 0) {
             Read(`getLevel?id=TestMap`)
                 .then(response => {
 
@@ -26,24 +26,24 @@ const Index = () => {
 
                     parsed.objects.map((use, index) => {
 
-                        if(use.type === 'player'){
+                        if (use.type === 'player') {
                             setBuild((state) => ([
                                 ...state,
                                 <Player key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
                             ]))
-                        }else{
+                        } else {
                             setBuild((state) => ([
                                 ...state,
                                 <LoadModel key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
                             ]))
                         }
 
-                    setGroundSize(parsed.ground)
-                })
+                        setGroundSize(parsed.ground)
+                    })
 
-            })
+                })
         }
-        
+
     }, [])
 
     return (
@@ -55,13 +55,13 @@ const Index = () => {
                         <Ground position={[0, 0, 0]} size={groundSize} />
                         {build}
                     </Suspense>
-                    
-                </Physics>                
+
+                </Physics>
             </Canvas>
-            
+
             {progress < 100 || <Interface />}
         </>
-        
+
     )
 }
 

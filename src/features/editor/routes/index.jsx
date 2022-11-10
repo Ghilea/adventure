@@ -14,7 +14,7 @@ import SelectObject from '@editor/components/selectObject';
 import Loader from '@comp/loading/loader';
 
 const Index = () => {
-    
+
     //stores
     const store = build(state => state);
     const groundSize = build(state => state.mapSettings.groundSize);
@@ -24,7 +24,7 @@ const Index = () => {
 
     const [handleAddObject] = useAddObject();
     const [mouseRight] = disable();
-    
+
     useEffect(() => {
         store.setIsEditor(true)
     }, [])
@@ -84,7 +84,7 @@ const Index = () => {
                         position: [0, 2, -10]
                     }
                 } >
-                    
+
                 <OrbitControls />
                 <ambientLight intensity={1} />
 
@@ -93,17 +93,17 @@ const Index = () => {
                     <Suspense fallback={<Loader />}>
                         <gridHelper args={[groundSize, groundSize]} />
 
-                        <Ground onPointerMove={pointerMove} size={groundSize}/>
+                        <Ground onPointerMove={pointerMove} size={groundSize} />
 
                         <GroundCheck />
 
                         <SelectObject />
                     </Suspense>
-                    
+
                 </Physics>
 
             </Canvas>
-       </>
+        </>
     )
 }
 

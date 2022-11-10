@@ -8,10 +8,10 @@ import SwampMonster from '@models/creatures/swamp_monster/swamp_monster';
 import Floor_1 from '@models/grounds/floor_1/floor_1';
 import Knight from '@models/avatar/knight';
 
-const Models = ({position, rotation, type}) => {
+const Models = ({ position, rotation, type }) => {
 
     const [model, setModel] = useState([])
-    
+
     useMemo(() => {
 
         switch (type) {

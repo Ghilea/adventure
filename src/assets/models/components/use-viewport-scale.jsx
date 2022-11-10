@@ -4,7 +4,7 @@ import { useThree } from '@react-three/fiber'
 const useViewportScale = () => {
 
     const { viewport } = useThree()
-    
+
     const [viewportScale, setViewportScale] = useState({
         width: 1,
         height: 1,

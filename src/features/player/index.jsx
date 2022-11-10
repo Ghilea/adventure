@@ -48,20 +48,20 @@ const Index = ({ position, lerp = MathUtils.lerp }) => {
         camera.position.copy(ref.current.position);
 
         //update righthand
-       /*  rightHand.current.rotation.x = lerp(rightHand.current, Math.sin((velocity.current.length > 1) * state.clock.elapsedTime * 10) / 6, 0.1);
-        rightHand.current.rotation.copy(camera.rotation)
-        rightHand.current.position.copy(camera.rotation).add(camera.getWorldDirection(rotation).multiplyScalar(1))  */
-    
+        /*  rightHand.current.rotation.x = lerp(rightHand.current, Math.sin((velocity.current.length > 1) * state.clock.elapsedTime * 10) / 6, 0.1);
+         rightHand.current.rotation.copy(camera.rotation)
+         rightHand.current.position.copy(camera.rotation).add(camera.getWorldDirection(rotation).multiplyScalar(1))  */
+
         //chat closed - movement
-        if (!storeMap.chatInput){
+        if (!storeMap.chatInput) {
             frontVector.set(0, 0, moveBackward - moveForward);
             sideVector.set(moveLeft - moveRight, 0, 0);
-            
+
             direction
-            .subVectors(frontVector, sideVector)
-            .normalize()
-            .multiplyScalar(storePlayer.secondaryStats.movementSpeed)
-            .applyEuler(camera.rotation);
+                .subVectors(frontVector, sideVector)
+                .normalize()
+                .multiplyScalar(storePlayer.secondaryStats.movementSpeed)
+                .applyEuler(camera.rotation);
         }
 
         api.velocity.set(direction.x, velocity.current[1], direction.z);
@@ -70,10 +70,10 @@ const Index = ({ position, lerp = MathUtils.lerp }) => {
         ref.current.getWorldPosition(ref.current.position)
 
         storeMap.setPlayerPosition([ref.current.position.x, ref.current.position.y, ref.current.position.z])
-        
+
         //jump
         if (jump && !storeMap.chatInput && Math.abs(velocity.current[1].toFixed(2)) <= 0.00) {
-            api.velocity.set(velocity.current[0], 6, velocity.current[2]);  
+            api.velocity.set(velocity.current[0], 6, velocity.current[2]);
         }
 
     });
@@ -81,11 +81,11 @@ const Index = ({ position, lerp = MathUtils.lerp }) => {
     return (
         <>
             <CameraControll />
-            
+
             {/* <group ref={rightHand} onPointerMissed={(e) => (rightHand.current.children[0].rotation.x = -0.5)}>
                 <Sword position={[0.3, -0.65, 5]} />
             </group> */}
-            
+
             <mesh ref={ref}>
                 <pointLight
                     intensity={2}

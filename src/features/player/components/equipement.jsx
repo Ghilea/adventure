@@ -10,7 +10,7 @@ const Equipement = () => {
     ) */
 
     return (
-        <Sword/>
+        <Sword />
     )
 }
 

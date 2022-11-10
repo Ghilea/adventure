@@ -23,51 +23,59 @@
     .m-#{$index} {
         margin: #{$index * 4px};
     }
-        .p-#{$index} {
-            padding: #{$index * 4px};
-        }
+
+    .p-#{$index} {
+        padding: #{$index * 4px};
+    }
 
     .ml-#{$index} {
         margin-left: #{$index * 4px};
     }
-         .pl-#{$index} {
-             padding-left: #{$index * 4px};
-         }
+
+    .pl-#{$index} {
+        padding-left: #{$index * 4px};
+    }
 
     .mr-#{$index} {
         margin-right: #{$index * 4px};
     }
-        .pr-#{$index} {
-            padding-right: #{$index * 4px};
-        }
+
+    .pr-#{$index} {
+        padding-right: #{$index * 4px};
+    }
 
     .mt-#{$index} {
         margin-top: #{$index * 4px};
     }
-        .pt-#{$index} {
-            padding-top: #{$index * 4px};
-        }
+
+    .pt-#{$index} {
+        padding-top: #{$index * 4px};
+    }
 
     .mb-#{$index} {
         margin-bottom: #{$index * 4px};
     }
-        .pb-#{$index} {
-            padding-bottom: #{$index * 4px};
-        }
+
+    .pb-#{$index} {
+        padding-bottom: #{$index * 4px};
+    }
 
     .mx-#{$index} {
         margin-inline: #{$index * 4px};
     }
-        .px-#{$index} {
-            padding-inline: #{$index * 4px};
-        }
+
+    .px-#{$index} {
+        padding-inline: #{$index * 4px};
+    }
 
     .my-#{$index} {
         margin-block: #{$index * 4px};
     }
-        .py-#{$index} {
-            padding-block: #{$index * 4px};
-        }
+
+    .py-#{$index} {
+        padding-block: #{$index * 4px};
+    }
+
     .mx-auto {
         margin-inline: auto;
     }
@@ -80,6 +88,7 @@
         margin: auto;
     }
 }
+
 /****************************/
 // width & height
 /****************************/
@@ -87,27 +96,29 @@
     .h-#{$index} {
         height: #{$index * 4px};
     }
-        
+
     .w-#{$index} {
         width: #{$index * 4px};
     }
-        
+
 }
-    .h-full {
-        height: 100%;
-    }
 
-    .h-full-vh {
-        height: 100vh !important;
-    }
-    
-    .h-auto {
-        height: auto;
-    }
+.h-full {
+    height: 100%;
+}
 
-    .w-full {
-        width: 100%;
-    }
+.h-full-vh {
+    height: 100vh !important;
+}
+
+.h-auto {
+    height: auto;
+}
+
+.w-full {
+    width: 100%;
+}
+
 /****************************/
 // font
 /****************************/
