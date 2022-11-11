@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import LoadModel from '@models/components/models';
@@ -14,6 +14,7 @@ const Index = () => {
     const store = loading(state => state);
     const [build, setBuild] = useState([]);
     const [menu, setMenu] = useState([])
+
 
     useEffect(() => {
 
@@ -59,6 +60,7 @@ const Index = () => {
 
             <Canvas shadows className='bg-black h-full-vh'
                 camera={{
+                    aspect: viewPort.width,
                     fov: 60,
                     position: [-3.5, 1, -5.8]
                 }}>
