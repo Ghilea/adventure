@@ -32,7 +32,6 @@ const Index = () => {
     useEffect(() => {
         if (store.active.length > 0 && store.selected !== null) {
             store.selectedObject(null)
-            console.log('reset')
         }
     }, [store.active])
 
@@ -41,26 +40,20 @@ const Index = () => {
         // 0 = left, 180 = down, -180 = up, 360 = right
         switch (isBuild.objectSize.rotate) {
             case 0:
-                console.log('rotate left')
                 store.setRotate(-180)
                 break;
             case -180:
-                console.log('rotate up')
                 store.setRotate(360)
                 break;
             case 360:
-                console.log('rotate right')
                 store.setRotate(180)
                 break;
             case 180:
-                console.log('rotate down')
                 store.setRotate(0)
                 break;
         }
 
         store.switchObjectSize(isBuild.objectSize.z, isBuild.objectSize.x)
-
-        console.log(rotate, isBuild.objectSize.rotate)
         setRotate((Math.PI * (isBuild.objectSize.rotate / 360)))
     }
 

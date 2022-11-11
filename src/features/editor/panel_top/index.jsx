@@ -44,8 +44,7 @@ const TopPanel = () => {
 
             if(mapSettings.title === undefined) return console.log('error title')
             if(storeBuild.objects === undefined) return console.log('error objects')
-            
-            console.log('create')
+
              Create('createLevel', {
                 level: mapSettings.order || 0,
                 title: mapSettings.title,
@@ -56,7 +55,6 @@ const TopPanel = () => {
             });             
 
         }else{
-            console.log('update')
             Update('updateLevel', {
                 id: mapSettings.id,
                 level: mapSettings.order || 0,
