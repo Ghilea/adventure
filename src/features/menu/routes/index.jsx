@@ -60,7 +60,6 @@ const Index = () => {
 
             <Canvas shadows className='bg-black h-full-vh'
                 camera={{
-                    aspect: viewPort.width,
                     fov: 60,
                     position: [-3.5, 1, -5.8]
                 }}>

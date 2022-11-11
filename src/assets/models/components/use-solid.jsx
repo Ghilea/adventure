@@ -1,17 +1,18 @@
 import React from 'react'
 import { useBox } from '@react-three/cannon';
 
-const UseSolid = ({ position, size }) => {
+const UseSolid = ({position, rotation, size }) => {
 
   const [solid] = useBox(() => ({
+    args: size,
     position: position,
-    rotation: [0, Math.PI * (0 / 360), 0] // 0 = left, 180 = down, -180 = up, 360 = right
+    rotation: rotation
   }));
 
   return (
     <mesh ref={solid}>
-      <boxGeometry args={size} />
-      <meshBasicMaterial color="red" opacity={1} transparent={false} />
+      <boxGeometry attach='geometry' args={size} />
+      <meshNormalMaterial opacity={0} transparent={true}  />
     </mesh>
   )
 }
