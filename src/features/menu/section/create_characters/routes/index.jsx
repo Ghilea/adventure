@@ -14,7 +14,7 @@ const Index = () => {
     const navigate = useNavigate();
 
     const storePlayer = player(state => state);
- 
+
     const [character, setCharacter] = useState({
         name: null,
         avatar: null,
@@ -49,7 +49,7 @@ const Index = () => {
 
     const handleCreate = (e) => {
 
-        if(character.name === null || character.avatar === null){
+        if (character.name === null || character.avatar === null) {
             setModal((state) => ({
                 ...state,
                 open: true,
@@ -63,7 +63,7 @@ const Index = () => {
                     open: false
                 }))
             }, 2000);
-        }else{
+        } else {
             Create('createProtagonist', {
                 name: character.name,
                 img: character.avatar,
@@ -90,7 +90,7 @@ const Index = () => {
     return (
         <div className='boxMenuContainer'>
             <div className='createWindow'>
-                
+
                 <div className='avatarContainer'>
                     <div onClick={(e) => selectAvatar(e)} className={`${(character.avatar == 1) ? 'avatar chooseAvatar' : 'avatar'} `}>
                         <img src={femaleImg} alt='picture of hero avatar' />
@@ -100,7 +100,7 @@ const Index = () => {
                 <div className='createHeroName'>
                     <input onChange={(e) => handleName(e)} type='text' id='name' placeholder='Name of your hero' />
                 </div>
-                
+
                 <div className='createHeroState'>
                     <div className='createHeroStateHP'>50 / 50</div>
                 </div>
@@ -109,13 +109,13 @@ const Index = () => {
                     <h2 className='createTitle'>Background story</h2>
                     <textarea spellCheck={false} placeholder='It´s optimal to write your protagonist story here...'></textarea>
                 </div>
-                
+
                 <div className='abilityAvailable'>
                     <h2 className='statsTitle'>Available points</h2>
                     <div className='showPoints'>{available}</div>
                 </div>
 
-                <div className='statsContainer'>      
+                <div className='statsContainer'>
                     <PointButton available={available} availableFunc={availableData} abilityFunc={abilityData}>Strength</PointButton>
                     <PointButton available={available} availableFunc={availableData} abilityFunc={abilityData}>Intellect</PointButton>
                     <PointButton available={available} availableFunc={availableData} abilityFunc={abilityData}>Dexterity</PointButton>
@@ -136,7 +136,7 @@ const Index = () => {
 
             <Modal open={modal.open} title={modal.title}>{modal.message}</Modal>
         </div>
-       
+
     )
 }
 

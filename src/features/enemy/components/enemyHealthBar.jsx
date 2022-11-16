@@ -13,7 +13,7 @@ const EnemyHealthBar = () => {
 
     useEffect(() => {
 
-        if(storePlayer.attack) {
+        if (storePlayer.attack) {
             setHealth(health => ({
                 ...health,
                 hit: (storePlayer.dps / storeEnemy.hp) * 100 + '%'
@@ -36,28 +36,28 @@ const EnemyHealthBar = () => {
 
     }, [storePlayer.attack])
 
-    return ( 
+    return (
 
-        <div className = 'enemyHealth-bar' data-value = {storeEnemy.hp}>
-        
-            <div className = 'enemyBar'
-            style = {
-                {
-                    width: health.bar
-                }
-            }>
-                <div className='enemyHit' 
-                style = {
+        <div className='enemyHealth-bar' data-value={storeEnemy.hp}>
+
+            <div className='enemyBar'
+                style={
                     {
-                        width: health.hit
+                        width: health.bar
                     }
                 }>
+                <div className='enemyHit'
+                    style={
+                        {
+                            width: health.hit
+                        }
+                    }>
 
                 </div>
 
             </div>
 
-            <div className = 'enemyHealth'> {storeEnemy.hp} / {storeEnemy.maxHp}</div>
+            <div className='enemyHealth'> {storeEnemy.hp} / {storeEnemy.maxHp}</div>
 
         </div>
 

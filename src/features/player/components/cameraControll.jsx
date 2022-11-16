@@ -14,14 +14,14 @@ const CameraControll = () => {
 
     const [unlocked, setUnlocked] = useState(false);
 
-    const {camera, gl} = useThree();
+    const { camera, gl } = useThree();
     const controls = useRef();
 
     useEffect(() => {
         if (storeMap.camera) {
             controls.current.unlock();
             setUnlocked(true);
-        }else{
+        } else {
             setUnlocked(false);
             controls.current.lock();
         }
@@ -43,9 +43,9 @@ const CameraControll = () => {
 
             const playerText = createElement(
                 'p', {
-                    key: 'combatScrollPlayer',
-                    className: 'combatScrollPlayer combatScrollAnimation'
-                },
+                key: 'combatScrollPlayer',
+                className: 'combatScrollPlayer combatScrollAnimation'
+            },
                 storePlayer.dps
             )
 
@@ -67,13 +67,13 @@ const CameraControll = () => {
     }
 
     return (
-            <>
-                {(storeMap.camera && unlocked) || 
-                <PointerLockControlsImpl 
-                    ref={controls} 
+        <>
+            {(storeMap.camera && unlocked) ||
+                <PointerLockControlsImpl
+                    ref={controls}
                     args={[camera, gl.domElement]} />}
-            </>
-        )
+        </>
+    )
 }
 
 export default CameraControll

@@ -16,30 +16,30 @@ export const useSelectObject = () => {
 
             if (!active) {
 
-                
+
                 const filterCheck = store.objects.filter((item) => {
                     return item.position[0] === position.x && item.position[1] === position.y && item.position[2] === position.z
                 })
 
                 if (filterCheck.length > 0) {
-        
+
                     //select new
                     if (store.selected === null) {
                         store.selectedObject(filterCheck[0].objectId)
                     }
-        
+
                     //select same
                     if (store.selected !== null && filterCheck[0].objectId === store.selected) {
                         store.selectedObject(null)
                     }
-        
+
                     //select another while the old still is selected
                     if (store.selected !== null && filterCheck[0].objectId !== store.selected) {
                         store.selectedObject(filterCheck[0].objectId)
                     }
 
                     setCheck(filterCheck[0].objectId)
-                }       
+                }
             }
         }
     }
@@ -47,11 +47,11 @@ export const useSelectObject = () => {
     useEffect(() => {
         setIsSelected(
             (
-                check === store.selected && 
-                store.selected !== null && 
-                check !== null) ? 
-            true : false)
+                check === store.selected &&
+                store.selected !== null &&
+                check !== null) ?
+                true : false)
     }, [store.selected])
-    
+
     return [isSelected, handleClick]
 }

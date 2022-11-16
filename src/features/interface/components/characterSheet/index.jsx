@@ -48,7 +48,7 @@ const Index = () => {
                             Exit to menu
                         </Button>
                     </div>
-                    : <></>
+                    : null
             }
         </>
     )

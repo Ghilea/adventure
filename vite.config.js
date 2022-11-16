@@ -1,7 +1,7 @@
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from "url";
 
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -33,22 +33,21 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-    '@': fileURLToPath(new URL('./src', import.meta.url)),
-    '@assets': fileURLToPath(new URL( './src/assets', import.meta.url)),
-    '@comp': fileURLToPath(new URL( './src/components', import.meta.url)),
-    '@features': fileURLToPath(new URL( './src/features', import.meta.url)),
-    '@models': fileURLToPath(new URL( './src/assets/models', import.meta.url)),
-    '@sounds': fileURLToPath(new URL( './src/assets/sounds', import.meta.url)),
-    '@music': fileURLToPath(new URL( './src/assets/music', import.meta.url)),
-    '@images': fileURLToPath(new URL( './src/assets/images', import.meta.url)),
-    '@editor': fileURLToPath(new URL( './src/features/editor', import.meta.url)),
-    '@hooks': fileURLToPath(new URL( './src/hooks', import.meta.url)),
-    '@test': fileURLToPath(new URL( './src/test', import.meta.url)),
-    '@store': fileURLToPath(new URL( './src/store', import.meta.url))
-    }
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      "@assets": fileURLToPath(new URL("./src/assets", import.meta.url)),
+      "@comp": fileURLToPath(new URL("./src/components", import.meta.url)),
+      "@features": fileURLToPath(new URL("./src/features", import.meta.url)),
+      "@models": fileURLToPath(new URL("./src/assets/models", import.meta.url)),
+      "@sounds": fileURLToPath(new URL("./src/assets/sounds", import.meta.url)),
+      "@music": fileURLToPath(new URL("./src/assets/music", import.meta.url)),
+      "@images": fileURLToPath(new URL("./src/assets/images", import.meta.url)),
+      "@editor": fileURLToPath(
+        new URL("./src/features/editor", import.meta.url)
+      ),
+      "@hooks": fileURLToPath(new URL("./src/hooks", import.meta.url)),
+      "@test": fileURLToPath(new URL("./src/test", import.meta.url)),
+      "@store": fileURLToPath(new URL("./src/store", import.meta.url)),
+    },
   },
-  assetsInclude: [
-    "**/*.glb",
-    "**/*.gltf"
-  ]
-})
+  assetsInclude: ["**/*.glb", "**/*.gltf"],
+});

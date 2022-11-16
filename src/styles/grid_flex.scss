@@ -91,7 +91,7 @@
 }
 
 @for $index from 1 through 16 {
-    
+
     //gap
     .gap-#{$index} {
         gap: #{$index * 4px};

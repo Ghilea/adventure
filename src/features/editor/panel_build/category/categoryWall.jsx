@@ -5,7 +5,7 @@ import { build } from '@store/editor';
 const CategoryWall = () => {
 
     const rotation = build(state => state.isBuild.objectSize.rotate);
-    
+
     return (
         <div className='buildPanel'>
             <div className='container'>

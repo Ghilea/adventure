@@ -11,7 +11,7 @@ const Index = () => {
 
     return (
         <div className='boxMenuContainer'>
-            <Button 
+            <Button
                 className='bg-black texture-bg button'
                 onClick={() => handleExit()}>Exit</Button>
         </div>

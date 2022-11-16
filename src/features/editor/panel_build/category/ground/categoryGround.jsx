@@ -25,7 +25,7 @@ const CategoryGround = () => {
                     <input ref={groundSizeRef} id='gSize' type='range' min={10} max={100} step={2} value={groundSize || 10} onChange={handleGroundSlider} />
                 </div>
             </div>
-            
+
             <div className='container'>
                 <h2>Grounds</h2>
                 <div className='buildPanelButton' >
@@ -33,7 +33,7 @@ const CategoryGround = () => {
                 </div>
             </div>
 
-            
+
         </div>
     )
 }

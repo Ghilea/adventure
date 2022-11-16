@@ -23,7 +23,7 @@ const Index = () => {
 
         Read('getEnemy')
             .then(items => {
-                
+
                 if (items.enemy.length > 0) {
                     setState(set => ({
                         ...set,
@@ -47,23 +47,23 @@ const Index = () => {
 
     //update animation on enemy attacking
     useEffect(() => {
-        setTimeout(()=>{
+        setTimeout(() => {
             storeEnemy.isAttack(false)
-        }, 100)        
+        }, 100)
     }, [storePlayer.hp])
 
     //enemy attack
     const enemyAttack = () => {
         const enemyText = createElement(
             'p', {
-                key: 'combatScrollEnemy',
-                className: 'combatScrollEnemy combatScrollAnimation'
-            },
+            key: 'combatScrollEnemy',
+            className: 'combatScrollEnemy combatScrollAnimation'
+        },
             `- ${storeEnemy.dps}`
         )
 
         storeEnemy.isAttack(true)
-        
+
         storePlayer.isAttack(false, storePlayer.hp -= store.dps)
 
     }
@@ -73,22 +73,22 @@ const Index = () => {
             {
                 (!storeEnemy.dead) ?
 
-                <>
-                    <img className = {
-                        `enemyAvatar ${(storeEnemy.attack) ? 'enemyAttackAnimation' : ''}`
-                    }
-                    src = {
-                        set.img
-                    }
-                    />
+                    <>
+                        <img className={
+                            `enemyAvatar ${(storeEnemy.attack) ? 'enemyAttackAnimation' : ''}`
+                        }
+                            src={
+                                set.img
+                            }
+                        />
 
-                    <div className='textBox'>{storeCombat.text}</div>
-        
-                   <EnemyHealthBar />
+                        <div className='textBox'>{storeCombat.text}</div>
 
-                    <p className='enemyName'>{set.name}</p>
-                </>
-                : <></>
+                        <EnemyHealthBar />
+
+                        <p className='enemyName'>{set.name}</p>
+                    </>
+                    : null
 
             }
         </>
