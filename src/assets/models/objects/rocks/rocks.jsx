@@ -5,16 +5,17 @@ import { useSelectObject } from '@editor/hooks/use-select-object';
 import UseSolid from "../../components/use-solid";
 import asset from './rock.gltf';
 
-export const Rock_1 = ({position, rotation, ...props}) => {
+export const Rock_1 = ({ position, rotation, ...props }) => {
     const { nodes, materials } = useGLTF(asset);
 
     const [isSelected, handleClick] = useSelectObject();
 
     return (
         <>
-            <group {...props} 
-            dispose={null}
-                onClick={handleClick} 
+            <group
+                {...props}
+                dispose={null}
+                onClick={handleClick}
                 position={position}
                 rotation={rotation}>
 

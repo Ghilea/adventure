@@ -12,7 +12,8 @@ export const Wall_1 = ({ position, rotation, ...props }) => {
 
   return (
     <>
-      <group dispose={null}
+      <group
+        dispose={null}
         onClick={handleClick}
         position={position}
         rotation={rotation}

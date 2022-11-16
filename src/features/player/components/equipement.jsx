@@ -1,8 +1,8 @@
 import React from 'react'
-import { Sword } from '@models/equipement/sword';
+import Sword from '@models/equipement/sword';
 import { map } from '@store/store';
 
-const Equipement = () => {
+const Equipement = ({ position, rotation }) => {
 
     const store = map(state => state);
     /* console.log(
@@ -10,7 +10,10 @@ const Equipement = () => {
     ) */
 
     return (
-        <Sword />
+        <group>
+            <Sword position={position} rotation={rotation} />
+        </group>
+
     )
 }
 

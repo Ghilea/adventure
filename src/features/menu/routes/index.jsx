@@ -1,63 +1,61 @@
-import { Suspense, useEffect, useState, useRef, useLayoutEffect } from 'react';
+import { Suspense, useState, useLayoutEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
 import LoadModel from '@models/components/models';
 import Menu from '../components/Menu';
 import Ground from '@comp/ground';
 import { Read } from '@comp/crud';
-import { loading } from '@store/store';
 import Loader from '@comp/loading/loader';
+import { loading } from '@store/store';
 import './index.scss';
 
 const Index = () => {
 
-    const store = loading(state => state);
+    const isLoading = loading(state => state.isLoading)
     const [build, setBuild] = useState([]);
-    const [menu, setMenu] = useState([])
 
+    useLayoutEffect(() => {
+        let ignore = false;
 
-    useEffect(() => {
+        const startFetching = async () => {
+            const json = await Read(`getLevel?id=${'Menu'}`)
 
-        if (build.length <= 0) {
+            if (!ignore) {
 
-            Read(`getLevel?id=${'Menu'}`)
-                .then(response => {
+                //reset
+                setBuild([])
 
-                    const parsed = JSON.parse(response.data[0].content)
+                //get data
+                const parsed = JSON.parse(json.data[0].content)
 
-                    parsed.objects.map((use, index) => {
-
-                        setBuild((state) => ([
-                            ...state,
-                            <LoadModel key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
-                        ]))
-                    })
+                //loop and set data
+                parsed.objects.map((use, index) => {
 
                     setBuild((state) => ([
                         ...state,
-                        <Ground key={'groundMenu'} position={[0, 0, 0]} size={parsed.ground} />
+                        <LoadModel key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
                     ]))
                 })
+
+                setBuild((state) => ([
+                    ...state,
+                    <Ground key={'groundMenu'} position={[0, 0, 0]} size={parsed.ground} />
+                ]))
+
+            }
+        }
+
+        startFetching();
+
+        return () => {
+            ignore = true;
         }
 
     }, [])
 
-    useEffect(() => {
-
-        //temp fix for bug
-        if (!store.isLoading) {
-            setMenu(<Menu />)
-        } else {
-            setTimeout(() => {
-                setMenu(<Menu />)
-            }, 1000)
-        }
-
-    }, [store.isLoading])
-
     return (
         <>
-
+            
             <Canvas shadows className='bg-black h-full-vh'
                 camera={{
                     fov: 60,
@@ -72,7 +70,7 @@ const Index = () => {
                 </Physics>
             </Canvas>
 
-            {menu}
+            {!isLoading ? <Menu /> : null}
 
         </>
     )

@@ -11,13 +11,35 @@ const Loader = () => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        if (progress <= 0 && data === null) {
-            Read('loadingTip').then(response => setData(response.data[0].sentence))
+        let ignore = true;
+
+        const startFetching = async () => {
+
+            const json = await Read('loadingTip')
+        
+            if (!ignore) {
+
+                //reset
+                store.setIsLoading(true)
+
+                //get data
+                setData(json.data[0].sentence)
+            }
         }
 
-        if (progress >= 100) {
+        startFetching();
+
+        return () => {
+            ignore = true;
+        }
+
+    }, [])
+
+    useEffect(() => {
+        if (progress >= 50) {
             store.setIsLoading(false)
         }
+
     }, [progress])
 
     return (

@@ -1,7 +1,7 @@
 import create from "zustand";
 
 export const loading = create((set) => ({
-  isLoading: false,
+  isLoading: true,
   setIsLoading: (value) =>
     set((state) => ({
       ...state,

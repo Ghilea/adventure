@@ -1,47 +1,62 @@
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useLayoutEffect, useState, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/cannon';
-import { useProgress } from "@react-three/drei";
 import LoadModel from '@models/components/models';
 import Ground from '@comp/ground';
 import { Read } from '@comp/crud';
 import Player from '@features/player';
 import Loader from '@comp/loading/Loader';
-import Interface from '@features/interface'
+import Interface from '@features/interface';
+import { loading } from '@store/store';
 import './index.scss';
+import { AmbientLight } from 'three';
 
 const Index = () => {
 
-    const { progress } = useProgress();
+    const isLoading = loading(state => state.isLoading)
     const [build, setBuild] = useState([]);
     const [groundSize, setGroundSize] = useState([10]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
+        let ignore = false;
 
-        if (build.length <= 0) {
-            Read(`getLevel?id=TestMap`)
-                .then(response => {
+        console.log(ignore)
 
-                    const parsed = JSON.parse(response.data[0].content)
+        const startFetching = async () => {
 
-                    parsed.objects.map((use, index) => {
+            const json = await Read(`getLevel?id=TestMap`)
 
-                        if (use.type === 'player') {
-                            setBuild((state) => ([
-                                ...state,
-                                <Player key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
-                            ]))
-                        } else {
-                            setBuild((state) => ([
-                                ...state,
-                                <LoadModel key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
-                            ]))
-                        }
+            if (!ignore) {
 
-                        setGroundSize(parsed.ground)
-                    })
+                //reset
+                setBuild([])
 
+                //get data
+                const parsed = JSON.parse(json.data[0].content)
+                
+                //loop and set data
+                parsed.objects.map((use, index) => {
+                    if (use.type === 'player') {
+                        setBuild((state) => ([
+                            ...state,
+                            <Player key={use.type + index} position={use.position} rotation={use.rotation} />
+                        ]))
+                    } else {
+                        setBuild((state) => ([
+                            ...state,
+                            <LoadModel key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
+                        ]))
+                    }
                 })
+
+                setGroundSize(parsed.ground)
+            }
+        }
+
+        startFetching();
+
+        return () => {
+            ignore = true;
         }
 
     }, [])
@@ -49,6 +64,7 @@ const Index = () => {
     return (
         <>
             <Canvas shadows className='bg-black'>
+                <ambientLight intensity={1}/>
                 <Physics gravity={[0, -30, 0]}>
 
                     <Suspense fallback={<Loader />}>
@@ -59,7 +75,7 @@ const Index = () => {
                 </Physics>
             </Canvas>
 
-            {progress < 100 || <Interface />}
+            {!isLoading ? <Interface /> : null}
         </>
 
     )

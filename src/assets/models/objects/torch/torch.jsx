@@ -6,50 +6,60 @@ import { useSelectObject } from '@editor/hooks/use-select-object';
 import asset from './torch.gltf';
 
 export const Torch = (props) => {
-    
+
     const group = useRef();
-    const {nodes, materials} = useGLTF(asset);
+    const { nodes, materials } = useGLTF(asset);
 
     const [isSelected, handleClick] = useSelectObject();
 
     return (
-        <group receiveShadow castShadow ref={group} onClick={handleClick} {...props} dispose={null}  >
-            <group position={[0.45, -1.5, 0]} scale={[0.03, 0.03, 0.03]} rotation={[0, Math.PI * (-180/360), 0]} >
+        <group
+            receiveShadow
+            castShadow ref={group}
+            onClick={handleClick}
+            {...props}
+            dispose={null}>
+
+            <group
+                position={[0.45, -1.5, 0]}
+                scale={[0.03, 0.03, 0.03]}
+                rotation={[0, Math.PI * (-180 / 360), 0]} >
+
                 <Select
                     enabled={isSelected}>
-                <group position={[-291.22, 0, 0]}>
+                    <group position={[-291.22, 0, 0]}>
+
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={
+                                nodes.coffin___gravesTorch_low_coffin___gravesStingrayPBS1_0
+                                    .geometry
+                            }
+                            material={
+                                nodes.coffin___gravesTorch_low_coffin___gravesStingrayPBS1_0
+                                    .material
+                            } />
+
+                    </group>
 
                     <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={
-                        nodes.coffin___gravesTorch_low_coffin___gravesStingrayPBS1_0
-                        .geometry
-                    }
-                    material={
-                        nodes.coffin___gravesTorch_low_coffin___gravesStingrayPBS1_0
-                        .material
-                    }/>
+                        castShadow
+                        receiveShadow
+                        geometry={
+                            nodes.coffin___gravesTorch_base_low_coffin___gravesStingrayPBS1_0
+                                .geometry
+                        }
+                        material={
+                            nodes.coffin___gravesTorch_base_low_coffin___gravesStingrayPBS1_0
+                                .material
+                        } />
 
-                </group>
-                
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={
-                    nodes.coffin___gravesTorch_base_low_coffin___gravesStingrayPBS1_0
-                        .geometry
-                    }
-                    material={
-                    nodes.coffin___gravesTorch_base_low_coffin___gravesStingrayPBS1_0
-                        .material
-                    }/>
-                
-                <Flame position={[0, 30, 2]}/> 
-    
+                    <Flame position={[0, 30, 2]} />
+
                 </Select>
             </group>
-        </group>  
+        </group>
     );
 }
 
