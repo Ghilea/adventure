@@ -62,7 +62,7 @@ const Index = () => {
 
     return (
         <>
-            <Canvas shadows className='bg-black'>
+            <Canvas shadows className='bg-white'>
                 <ambientLight intensity={1}/>
                 <Physics gravity={[0, -30, 0]}>
 

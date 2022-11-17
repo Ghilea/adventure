@@ -8,6 +8,9 @@ import SwampMonster from '@models/creatures/swamp_monster/swamp_monster';
 import Floor_1 from '@models/grounds/floor_1/floor_1';
 import Knight from '@models/avatar/knight';
 
+import Sword from '@models/equipement/sword/sword';
+import VikingShield from '@models/equipement/shield/viking_Shield';
+
 const Models = ({ position, rotation, type }) => {
 
     const [model, setModel] = useState([])
@@ -35,6 +38,12 @@ const Models = ({ position, rotation, type }) => {
                 break;
             case 'knight':
                 setModel(<Knight />)
+                break;
+            case 'sword':
+                setModel(<Sword position={position} rotation={rotation} type={type} />)
+                break;
+            case 'vikingShield':
+                setModel(<VikingShield position={position} rotation={rotation} type={type} />)
                 break;
         }
 

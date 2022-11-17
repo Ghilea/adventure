@@ -26,8 +26,7 @@ export const Wall_1 = ({ position, rotation, ...props }) => {
             castShadow
             receiveShadow
             geometry={nodes.Side.geometry}
-            material={materials.muretdroitmat}
-          />
+            material={materials.muretdroitmat} />
         </Select>
       </group>
 
