@@ -9,7 +9,6 @@ import Loader from '@comp/loading/Loader';
 import Interface from '@features/interface';
 import { loading } from '@store/store';
 import './index.scss';
-import { AmbientLight } from 'three';
 
 const Index = () => {
 

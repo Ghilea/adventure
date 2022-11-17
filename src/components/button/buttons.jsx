@@ -1,6 +1,6 @@
 import React from 'react';
 import useSound from 'use-sound';
-import buttonHover from '@assets/sounds/buttons/button.mp3';
+import buttonHover from '@assets/sounds/buttons/button2.mp3';
 
 const Button = ({
     children,
@@ -12,7 +12,9 @@ const Button = ({
     onClick
 }) => {
 
-    const [play] = useSound(buttonHover);
+    const [play] = useSound(buttonHover, {
+        volume: 0.5
+    });
 
     return (
         <button

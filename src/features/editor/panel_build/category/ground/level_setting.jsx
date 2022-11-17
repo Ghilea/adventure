@@ -11,26 +11,37 @@ const LevelSetting = () => {
     const orderRef = useRef();
 
     useEffect(() => {
+        let ignore = false;
 
-        if (selectList.length <= 0) {
+        const startFetching = async () => {
+            const json = await Read(`getAllLevels`)
 
-            setSelectList([<option key={0} value={'New Level'}>New Level</option>])
+            if (!ignore) {
 
-            Read('getAllLevels')
-                .then(response => {
+                //reset
+                setSelectList([])
 
-                    response.data.map((item) => {
-                        setSelectList((state) => [
-                            ...state,
-                            <option key={item.id} value={`[${item.id}] ${item.title}`}>
-                                [{item.id}] {item.title}
-                            </option>
-                        ])
-                    });
+                //set new level
+                setSelectList([<option key={'newLevel' + 0} value={'New Level'}>New Level</option>])
 
+                //loop and set data
+                json.data.map((item, index) => {
+
+                    setSelectList((state) => [
+                        ...state,
+                        <option key={item.id + index} value={`[${item.id}] ${item.title}`}>
+                            [{item.id}] {item.title}
+                        </option>
+                    ])
                 })
+            }
         }
 
+        startFetching();
+
+        return () => {
+            ignore = true;
+        }
 
     }, [])
 
