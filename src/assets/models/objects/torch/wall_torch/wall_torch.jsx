@@ -1,11 +1,11 @@
 import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import { Flame } from './components/flame';
+import { Flame } from '../components/flame';
 import { Select } from '@react-three/postprocessing';
 import { useSelectObject } from '@editor/hooks/use-select-object';
-import asset from './torch.gltf';
+import asset from './wall_torch.gltf';
 
-export const Torch = (props) => {
+const WallTorch = (props) => {
 
     const group = useRef();
     const { nodes, materials } = useGLTF(asset);
@@ -64,3 +64,5 @@ export const Torch = (props) => {
 }
 
 useGLTF.preload(asset)
+
+export default WallTorch

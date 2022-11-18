@@ -1,7 +1,8 @@
 import { useState, useMemo } from 'react';
 
 import { Wall_1 } from '@models/objects/walls/walls';
-import { Torch } from '@models/objects/torch/torch';
+import WallTorch from '@models/objects/torch/wall_torch/wall_torch';
+import PlayerTorch from '@models/objects/torch/player_torch/player_torch'
 import { Rock_1 } from '@models/objects/rocks/rocks';
 import { Player } from '@models/creatures/player/player';
 import SwampMonster from '@models/creatures/swamp_monster/swamp_monster';
@@ -27,8 +28,11 @@ const Models = ({ position, rotation, type }) => {
             case 'rock_1':
                 setModel(<Rock_1 position={position} rotation={rotation} />)
                 break;
-            case 'torch':
-                setModel(<Torch position={position} rotation={rotation} />)
+            case 'wallTorch':
+                setModel(<WallTorch position={position} rotation={rotation} />)
+                break;
+            case 'playerTorch':
+                setModel(<PlayerTorch position={position} rotation={rotation} />)
                 break;
             case 'floor_1':
                 setModel(<Floor_1 position={position} rotation={rotation} />)

@@ -15,7 +15,7 @@ const CategoryObjects = () => {
             <div className='container'>
                 <h2>Misc</h2>
                 <div className='buildPanelButton' >
-                    <BuildButton type='torch' size={[1, 1, 0]} category='torch' />
+                    <BuildButton type='wallTorch' size={[1, 1, 0]} category='torch' />
                 </div>
             </div>
         </div>
