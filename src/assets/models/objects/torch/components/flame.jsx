@@ -11,7 +11,7 @@ export const Flame = (props) => {
   const [lightAnimation, setLightAnimation] = useState(2);
   const [flameAnimation, setFlameAnimation] = useState(1.5);
 
-  useEffect(() => {
+  /* useEffect(() => {
     setTimeout(() => {
       if (lightAnimation === 2) {
         setLightAnimation(1.8);
@@ -32,7 +32,7 @@ export const Flame = (props) => {
 
     }, Math.floor(Math.random() * (200 - 100 + 1) + 100))
   }, [flameAnimation])
-
+ */
   return (
     <group ref = {
       group
