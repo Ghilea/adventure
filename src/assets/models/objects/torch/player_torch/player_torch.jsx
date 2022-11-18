@@ -21,13 +21,13 @@ const WallTorch = (props) => {
             dispose={null}>
 
             <group
-                position={[0.45, -1.5, 0]}
+                position={[-0.2, -0.2, 0.9]}
                 scale={[0.03, 0.03, 0.03]}
-                rotation={[0, Math.PI * (-180 / 360), 0]} >
+                rotation={[Math.PI * (-30 / 360), Math.PI * (160 / 360), 0]} >
 
                 <Select
                     enabled={isSelected}>
-                    <group position={[-291.22, 0, 0]}>
+                    <group scale={10} position={[0, 0, 0]} rotation={[Math.PI * (-250 / 360), Math.PI * (60 / 360), Math.PI * (0 / 360)]}>
 
                     <mesh
                         castShadow
@@ -37,7 +37,7 @@ const WallTorch = (props) => {
 
                     </group>
 
-                    <Flame position={[0, 30, 2]} />
+                    <Flame position={[6, 7, -5.8]} />
 
                 </Select>
             </group>

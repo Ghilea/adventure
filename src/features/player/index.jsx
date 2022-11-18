@@ -36,6 +36,7 @@ const Index = ({ position, rotation, lerp = MathUtils.lerp }) => {
     const velocity = useRef([0, 0, 0]);
 
     //player hands
+    const leftHand = useRef();
     const rightHand = useRef();
 
     useEffect(() => {
@@ -51,15 +52,29 @@ const Index = ({ position, rotation, lerp = MathUtils.lerp }) => {
 
         //update hands
         //set right hand idle animation
+        leftHand.current.children[0].rotation.x = lerp(
+            rightHand.current.children[0].rotation.y,
+            Math.sin((velocity.current.length > 1) * state.clock.elapsedTime + (camera.position.x + camera.position.z) * 0.01) / 20, 0.1)
+
         rightHand.current.children[0].rotation.x = lerp(
             rightHand.current.children[0].rotation.y,
             Math.sin((velocity.current.length > 1) * state.clock.elapsedTime + (camera.position.x + camera.position.z) * 0.01) / 6, 0.1)
 
         //follow camera rotation
+        leftHand.current.rotation
+            .copy(camera.rotation)
+
         rightHand.current.rotation
             .copy(camera.rotation)
-        
+
         //follow camera position
+        leftHand.current.position
+            .copy(camera.position)
+            .add(camera
+                .getWorldDirection(rotations)
+                .multiplyScalar(1)
+            )
+
         rightHand.current.position
             .copy(camera.position)
             .add(camera
@@ -97,9 +112,14 @@ const Index = ({ position, rotation, lerp = MathUtils.lerp }) => {
         <>
             <CameraControll />
 
+            <group ref={leftHand}>
+                <LoadModel type={'playerTorch'} />
+            </group>
+
             <group ref={rightHand}>
                 <LoadModel type={'sword'} />
             </group>
+
             <mesh ref={ref}>
                 {/* <pointLight
                     intensity={2}
