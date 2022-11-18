@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { PointerLockControls as PointerLockControlsImpl } from '@react-three/drei';
 import { extend, useThree } from '@react-three/fiber';
+import { useKey } from "rooks";
 import { map, player, enemy, combat } from '@store/store';
 
 extend({ PointerLockControlsImpl });
 
 const CameraControll = () => {
 
-    const storePlayer = player(state => state);
+ /*    const storePlayer = player(state => state);
     const storeEnemy = enemy(state => state);
-    const storeCombat = combat(state => state);
+    const storeCombat = combat(state => state); */
     const storeMap = map(state => state);
 
     const [unlocked, setUnlocked] = useState(false);
@@ -27,15 +28,17 @@ const CameraControll = () => {
         }
     }, [storeMap.camera])
 
-    useEffect(() => {
+    /* useEffect(() => {
         if (!storeMap.camera && !unlocked) {
+
+            console.log('click')
             document.addEventListener('click', (event) => {
                 handleMouseClick(event)
             })
         }
-    }, [])
+    }, []) */
 
-    const handleMouseClick = (event) => {
+   /*  const handleMouseClick = (event) => {
         event.preventDefault();
 
         if (event.type === 'click' && storeEnemy.hp > 0 && storePlayer.canAttack) {
@@ -64,7 +67,7 @@ const CameraControll = () => {
             storePlayer.isBlock(false);
         }
 
-    }
+    } */
 
     return (
         <>

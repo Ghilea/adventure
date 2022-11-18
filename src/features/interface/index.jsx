@@ -1,5 +1,7 @@
 import React, { useState, useEffect, createElement } from 'react';
 import { player, enemy, combat } from '@store/store';
+import { build } from '@store/editor';
+
 import { Read, Update } from '@comp/crud';
 import { Health, Mana, Exp } from './components/bar/Bar';
 import disable from '@hooks/disable-click';
@@ -17,12 +19,18 @@ const Index = () => {
     const storePlayer = player(state => state);
     const storeEnemy = enemy(state => state);
     const storeCombat = combat(state => state);
+    const mousePosition = build(state => state.mousePosition);
+
     const [mouseRight] = disable();
 
     const [set, setState] = useState({
         name: '',
         img: null
     });
+
+    useEffect(() => {
+        console.log(mousePosition.x, mousePosition.y)
+    }, [mousePosition])
 
     useEffect(() => {
 

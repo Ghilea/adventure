@@ -13,7 +13,7 @@ import './index.scss';
 const Menu = () => {
 
     const [play] = useSound(menuMusic, {
-        volume: 0.4,
+        volume: 0.2,
         loop: true
     });
 
