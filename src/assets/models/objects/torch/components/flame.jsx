@@ -57,12 +57,12 @@ export const Flame = (props) => {
 
       <pointLight 
         castShadow
-        shadow-mapSize-width={2048} 
-        shadow-mapSize-height={2048}
-        shadow-radius={10}
+        shadow-mapSize-width={2048} //performance issue
+        shadow-mapSize-height={2048} //performance issue
+         shadow-radius={10} 
         shadow-bias={-0.0001}
         intensity={lightAnimation}
-        distance={3.4}
+        distance={2.4}
         color={'#d4c4af'}
         position={[0, 0.5, 0]}
         scale={[5,5,5]}
