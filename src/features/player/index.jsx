@@ -8,6 +8,7 @@ import { player, map } from '@store/store';
 import LoadModel from '@models/components/models';
 import './index.scss';
 
+
 const frontVector = new Vector3(0, 0, 0);
 const sideVector = new Vector3(0, 0, 0);
 const direction = new Vector3(0, 0, 0);
@@ -17,6 +18,8 @@ const Index = ({ position, rotation, lerp = MathUtils.lerp }) => {
 
     const storePlayer = player(state => state);
     const storeMap = map(state => state);
+
+    
 
     const {
         moveForward,
