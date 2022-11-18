@@ -37,7 +37,7 @@ const Models = ({ position, rotation, type }) => {
                 setModel(<SwampMonster position={position} rotation={rotation} type={type} />)
                 break;
             case 'knight':
-                setModel(<Knight />)
+                setModel(<Knight position={position} rotation={rotation} type={type} />)
                 break;
             case 'sword':
                 setModel(<Sword position={position} rotation={rotation} type={type} />)
