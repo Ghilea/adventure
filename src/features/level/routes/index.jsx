@@ -19,8 +19,6 @@ const Index = () => {
     useLayoutEffect(() => {
         let ignore = false;
 
-        console.log(ignore)
-
         const startFetching = async () => {
 
             const json = await Read(`getLevel?id=TestMap`)
@@ -62,8 +60,7 @@ const Index = () => {
 
     return (
         <>
-            <Canvas shadows className='bg-white'>
-                <ambientLight intensity={1}/>
+            <Canvas shadows className='bg-black'>
                 <Physics gravity={[0, -30, 0]}>
 
                     <Suspense fallback={<Loader />}>

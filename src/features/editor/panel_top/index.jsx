@@ -25,7 +25,19 @@ const TopPanel = () => {
     const mapSettings = build(state => state.mapSettings);
 
     const handleExit = () => {
+
+        //reset all when exiting editor mode
+        storeBuild.setImportedMap('New Level')
+        storeBuild.emptyObjects();
+        storeBuild.setMapSettings({
+            objects: [],
+            groundSize: 10
+        })
+
+        //change editor mode to false
         storeBuild.setIsEditor(false)
+
+        //take user to menu
         navigate('/menu');
     }
 
@@ -35,6 +47,7 @@ const TopPanel = () => {
             'id': mapSettings.id,
             'ground': mapSettings.groundSize,
             'objects': storeBuild.objects,
+            'solid': storeBuild.solid,
             'order': mapSettings.order,
             'title': mapSettings.title,
             'objectIndex': mapSettings.objectIndex
@@ -49,8 +62,10 @@ const TopPanel = () => {
                 level: mapSettings.order || 0,
                 title: mapSettings.title,
                 content: JSON.stringify({
+                    'objectIndex': mapSettings.objectIndex,
                     'ground': mapSettings.groundSize,
-                    'objects': storeBuild.objects
+                    'objects': storeBuild.objects,
+                    'solid': storeBuild.solid
                 })
             });
 
@@ -62,7 +77,8 @@ const TopPanel = () => {
                 content: JSON.stringify({
                     'objectIndex': mapSettings.objectIndex,
                     'ground': mapSettings.groundSize,
-                    'objects': storeBuild.objects
+                    'objects': storeBuild.objects,
+                    'solid': storeBuild.solid,
                 })
             })
         }

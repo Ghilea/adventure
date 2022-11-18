@@ -19,31 +19,31 @@ const Models = ({ position, rotation, type }) => {
 
         switch (type) {
             case 'wall_1':
-                setModel(<Wall_1 position={position} rotation={rotation} type={type} />)
+                setModel(<Wall_1 position={position} rotation={rotation} />)
                 break;
             case 'player':
-                setModel(<Player position={position} rotation={rotation} type={type} />)
+                setModel(<Player position={position} rotation={rotation} />)
                 break;
             case 'rock_1':
-                setModel(<Rock_1 position={position} rotation={rotation} type={type} />)
+                setModel(<Rock_1 position={position} rotation={rotation} />)
                 break;
             case 'torch':
-                setModel(<Torch position={position} rotation={rotation} type={type} />)
+                setModel(<Torch position={position} rotation={rotation} />)
                 break;
             case 'floor_1':
-                setModel(<Floor_1 position={position} rotation={rotation} type={type} />)
+                setModel(<Floor_1 position={position} rotation={rotation} />)
                 break;
             case 'swamp_monster':
-                setModel(<SwampMonster position={position} rotation={rotation} type={type} />)
+                setModel(<SwampMonster position={position} rotation={rotation} />)
                 break;
             case 'knight':
-                setModel(<Knight position={position} rotation={rotation} type={type} />)
+                setModel(<Knight position={position} rotation={rotation} />)
                 break;
             case 'sword':
-                setModel(<Sword position={position} rotation={rotation} type={type} />)
+                setModel(<Sword position={position} rotation={rotation} />)
                 break;
             case 'vikingShield':
-                setModel(<VikingShield position={position} rotation={rotation} type={type} />)
+                setModel(<VikingShield position={position} rotation={rotation} />)
                 break;
         }
 

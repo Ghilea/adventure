@@ -62,7 +62,7 @@ export const Flame = (props) => {
         shadow-radius={10}
         shadow-bias={-0.0001}
         intensity={lightAnimation}
-        distance={2.4}
+        distance={3.4}
         color={'#d4c4af'}
         position={[0, 0.5, 0]}
         scale={[5,5,5]}

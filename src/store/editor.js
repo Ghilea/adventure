@@ -1,7 +1,7 @@
 import create from "zustand";
 
 export const build = create((set) => ({
-  isEditor: false,
+  isEditor: false, //check if user is in editor or not
   isBuild: {
     canBuild: false,
     active: false,
@@ -254,6 +254,11 @@ export const build = create((set) => ({
       ...state,
       objects: [],
       solid: [],
+    })),
+  setSolid: (solid) =>
+    set((state) => ({
+      ...state,
+      solid: solid,
     })),
 }));
 

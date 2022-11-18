@@ -21,7 +21,7 @@ export const useAddObject = () => {
         const rotation = [0, Math.PI * (objectRotation / 360), 0];
 
         if (e.type === 'click' && isBuild.active && isBuild.canBuild) {
-
+            console.log(objectIndex)
             store.addObject(<LoadModel
                 key={isBuild.type + objectIndex}
                 position={position}

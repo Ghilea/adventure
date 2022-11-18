@@ -47,10 +47,10 @@ const LevelSetting = () => {
 
     const handleChange = (e) => {
 
-        const target = e.target.value;
-
-        store.setImportedMap(target)
         store.emptyObjects();
+
+        const target = e.target.value;
+        store.setImportedMap(target)
 
         if (target === 'New Level') {
 
@@ -78,6 +78,8 @@ const LevelSetting = () => {
                             groundSize: content.ground,
                             objectIndex: content.objectIndex
                         })
+
+                        store.setSolid(content.solid)
 
                         store.setObjectIndex(content.objectIndex)
 

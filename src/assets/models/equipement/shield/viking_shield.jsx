@@ -14,9 +14,6 @@ const VikingShield = ({ rotation, position }, props) => {
       dispose={null}>
 
       <mesh
-        scale={0.012}
-        position={[0.25, 0.5, 0.4]}
-        rotation={[Math.PI * (0 / 360), Math.PI * (-70 / 360), Math.PI * (-330 / 360)]}
         castShadow
         receiveShadow
         geometry={nodes.shield_lambert1_0.geometry}

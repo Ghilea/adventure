@@ -43,6 +43,7 @@ const GroundCheck = () => {
 
         if (isBuild.isSolid && isBuild.active) {
 
+            console.log(store.solid, store.objects)
             if (solidCheck.length > 0) {
 
                 //check the ground if it is allwed to place object there
