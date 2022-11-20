@@ -30,10 +30,10 @@ const Menu = () => {
 
     return (
         <div className='fixed pos-left pos-top grid template-row-3 template-col-5 h-full w-full'>
-            
+
             <div className='flex flex-col items-start justify-end place-row-3-1 place-col-1-2 ml-10 mb-10 gap-1'>
-                <img className='game-logo pl-5' src={logoImg} alt='Game logo'/>
-                <h1 className='text-size-6 flex justify-center items-start'>Adventure</h1> 
+                <img className='game-logo pl-5' src={logoImg} alt='Game logo' />
+                <h1 className='text-size-6 flex justify-center items-start'>Adventure</h1>
             </div>
 
             <div className='flex flex-col justify-end items-end gap-6 place-row-3-1 place-col-4-2 mr-10 mb-10'>
@@ -65,7 +65,7 @@ const Menu = () => {
                     Exit Game
                 </Button>
             </div>
-            
+
         </div>
     )
 }

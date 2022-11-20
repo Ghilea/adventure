@@ -6,7 +6,7 @@ const CategorySettings = () => {
         <div className='buildPanel'>
             <div className='container'>
                 <h2>Settings</h2>
-                
+
             </div>
         </div>
     )

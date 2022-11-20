@@ -4,14 +4,14 @@ import { loading } from '@store/store';
 
 import './index.scss';
 
-const Index = ({children = 'Adventures', timer = 1500}) => {
+const Index = ({ children = 'Adventures', timer = 1500 }) => {
 
   const store = loading(state => state);
-  
+
   const navigate = useNavigate();
 
   const [fade, setFade] = useState(true);
-  
+
   useEffect(() => {
     store.setIsLoading(true)
 
@@ -21,7 +21,7 @@ const Index = ({children = 'Adventures', timer = 1500}) => {
   }, [])
 
   useEffect(() => {
-    if(!fade) {
+    if (!fade) {
       setTimeout(() => {
         navigate('/login');
       }, timer)

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@comp/button/buttons';
 import disable from '@hooks/disable-click';
 import CategoryGround from '../panel_build/category/ground/categoryGround';
@@ -25,7 +25,7 @@ const RightPanel = () => {
     const [mouseRight] = disable();
 
     const handleClick = (e) => {
-      
+
         const target = e.target.attributes.category.value;
 
         if (target === openBuildPanel.type) {
@@ -40,7 +40,7 @@ const RightPanel = () => {
             case 'ground':
                 setOpenBuildPanel({
                     type: 'ground',
-                    content: <CategoryGround/>
+                    content: <CategoryGround />
                 })
                 break;
             case 'object':
@@ -73,44 +73,44 @@ const RightPanel = () => {
     return (
         <>
             <div className='menuSidePanel' onContextMenu={mouseRight} >
-                <Button 
-                    type='ground' 
-                    img={img_ground} 
-                    className='categoryBtn' 
+                <Button
+                    type='ground'
+                    img={img_ground}
+                    className='categoryBtn'
                     onClick={handleClick} />
 
-                <Button 
-                    type='creature' 
-                    img={img_character} 
-                    className='categoryBtn'
-                    onClick={handleClick}
-                     />
-                
-                <Button 
-                    type='wall' 
-                    img={img_wall} 
-                    className='categoryBtn'
-                    onClick={handleClick}
-                     />
-                
-                <Button 
-                    type='object'
-                    img={img_object} 
-                    className='categoryBtn'
-                    onClick={handleClick}
-                    />
-                
                 <Button
-                    type='setting' 
-                    img={img_setting} 
+                    type='creature'
+                    img={img_character}
+                    className='categoryBtn'
+                    onClick={handleClick}
+                />
+
+                <Button
+                    type='wall'
+                    img={img_wall}
+                    className='categoryBtn'
+                    onClick={handleClick}
+                />
+
+                <Button
+                    type='object'
+                    img={img_object}
+                    className='categoryBtn'
+                    onClick={handleClick}
+                />
+
+                <Button
+                    type='setting'
+                    img={img_setting}
                     className='categoryBtn settingsPanelBtn'
                     onClick={handleClick}
-                     />
+                />
             </div>
-            
+
             {openBuildPanel.type === null || openBuildPanel.content}
         </>
-        
+
     )
 }
 

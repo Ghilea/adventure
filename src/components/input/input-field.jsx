@@ -1,8 +1,8 @@
 import React from 'react';
 import './index.scss';
 
-const Input = ({ 
-    type = 'text', 
+const Input = ({
+    type = 'text',
     className,
     onChange,
     placeholder
@@ -10,8 +10,8 @@ const Input = ({
 
     return (
         <input
-            type={type} 
-            className={`p-2 rounded-lg bg-black text-white ${className}`} 
+            type={type}
+            className={`p-2 rounded-lg bg-black text-white ${className}`}
             onChange={onChange}
             placeholder={placeholder}
         />

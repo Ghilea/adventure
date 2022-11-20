@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 
 const disable = () => {
-  
-    const mouseRight = (event) => {
-        if (event.type === 'contextmenu') {
-            //event.preventDefault();
-        }
+  const mouseRight = (event) => {
+    if (event.type === "contextmenu") {
+      //event.preventDefault();
     }
+  };
 
-    return [mouseRight]
-}
+  return [mouseRight];
+};
 
-export default disable
+export default disable;

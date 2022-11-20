@@ -6,7 +6,6 @@ const Hotkeys = () => {
     const storeBuild = build(state => state);
 
     const keyHandler = () => {
-        console.log('rotate')
         if (storeBuild.rotate) {
             storeBuild.changeRaySize(storeBuild.sizeY, storeBuild.sizeX, false)
         } else {

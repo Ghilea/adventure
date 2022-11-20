@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 const Category = ({
-    title, 
-    className, 
-    object=[], 
+    title,
+    className,
+    object = [],
     blockSize
 }) => {
 
@@ -21,17 +21,16 @@ const Category = ({
     }
 
     const content = object.map((item, index) => {
-        console.log(item)
         return (
             <div
                 key={item + index}
                 className={`${item} ${(active) ? 'activeBtn' : 'objectsBtn'}`}
                 onClick={handleClick}>
-                <img src=''/>
+                <img src='' />
             </div>
         )
     })
- 
+
     return (
         <div className='container'>
             <h2>{title}</h2>

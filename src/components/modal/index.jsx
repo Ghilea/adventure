@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 
-const Index = ({children, open, title}) => {
+const Index = ({ children, open, title }) => {
 
     return (
         <dialog open={open}>

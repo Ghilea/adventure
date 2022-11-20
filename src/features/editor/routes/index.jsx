@@ -3,28 +3,28 @@ import { Canvas } from '@react-three/fiber';
 import Ground from '@comp/ground';
 import { Physics } from '@react-three/cannon';
 import { OrbitControls } from '@react-three/drei'
-import SelectObj from '@editor/select_canvas_object';
 import disable from '@hooks/disable-click';
 import { useKey } from 'rooks';
-import { AddObject } from '@editor/helperObject';
+import { useAddObject } from '@editor/components/addObject';
 import TopPanel from '../panel_top';
 import RightPanel from '../panel_right';
 import { build } from '@store/editor';
-import GroundCheck from '@editor/groundCheck';
+import GroundCheck from '@editor/components/groundCheck';
+import SelectObject from '@editor/components/selectObject';
 import Loader from '@comp/loading/loader';
 
 const Index = () => {
-    
+
     //stores
     const store = build(state => state);
     const groundSize = build(state => state.mapSettings.groundSize);
     const isBuild = build(state => state.isBuild);
-    const mousePosition = build(state => state.mousePosition);
+
     const [rotate, setRotate] = useState(0);
+
+    const [handleAddObject] = useAddObject();
     const [mouseRight] = disable();
 
-    const [objectIndex, setObjectIndex] = useState(0);
-    
     useEffect(() => {
         store.setIsEditor(true)
     }, [])
@@ -32,86 +32,32 @@ const Index = () => {
     useEffect(() => {
         if (store.active.length > 0 && store.selected !== null) {
             store.selectedObject(null)
-            console.log('reset')
         }
     }, [store.active])
 
     const keyHandler = () => {
 
+        // 0 = left, 180 = down, -180 = up, 360 = right
         switch (isBuild.objectSize.rotate) {
             case 0:
-                console.log('rotate 0')
-                store.setRotate(90)
+                store.setRotate(-180)
                 break;
-            case 90:
-                console.log('rotate 90')
+            case -180:
+                store.setRotate(360)
+                break;
+            case 360:
                 store.setRotate(180)
                 break;
             case 180:
-                console.log('rotate 180')
-                store.setRotate(270)
-                break;
-            case 270:
-                console.log('rotate 270')
                 store.setRotate(0)
                 break;
         }
 
         store.switchObjectSize(isBuild.objectSize.z, isBuild.objectSize.x)
-
-        console.log(rotate, isBuild.objectSize.rotate)
         setRotate((Math.PI * (isBuild.objectSize.rotate / 360)))
     }
 
     useKey(['Control'], keyHandler);
-
-    useEffect(() => {
-        setObjectIndex(store.mapSettings.objectIndex)
-    }, [store.mapSettings.objectIndex])
-
-    const handleClick = (event) => {
-
-        if (event.type === 'click' && isBuild.active && isBuild.canBuild) {
-
-            store.setMapObject({
-                type: isBuild.type,
-                category: isBuild.category,
-                position: [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5],
-                rotation: (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? [0, Math.PI * (180 / 360), 0] : [0, Math.PI * (360 / 360), 0],
-                objectId: objectIndex
-            })
-
-            store.addObject(
-                <AddObject
-                    key={isBuild.category + objectIndex}
-                    position={
-                        [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5]
-                    }
-                    rotation={
-                        (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? [0, Math.PI * (180 / 360), 0] : [0, Math.PI * (360 / 360), 0]
-                    }
-                    type={
-                        isBuild.type
-                    }
-                    category={
-                        isBuild.category
-                    }
-                    objectId={
-                        objectIndex
-                    }
-                />, //canvasObject
-                [Math.floor(mousePosition.x) + 0.5, mousePosition.y + (4 / 2), Math.floor(mousePosition.z) + 0.5], //position
-                (isBuild.objectSize.rotate === 0 || isBuild.objectSize.rotate === 180 || isBuild.objectSize.rotate === 360) ? [0, Math.PI * (180 / 360), 0] : [0, Math.PI * (360 / 360), 0], //rotation
-                isBuild.type, //type
-                isBuild.category, //category
-                objectIndex //objectId
-            );
-
-            setObjectIndex(objectIndex + 1)
-            store.setObjectIndex(objectIndex + 1)
-
-        }
-    }
 
     const pointerMove = (e) => {
         store.setMousePosition(e.point.x, e.point.y, e.point.z)
@@ -123,7 +69,7 @@ const Index = () => {
             <RightPanel />
             <Canvas
                 className='bg-black'
-                onClick={handleClick}
+                onClick={(e) => handleAddObject(e)}
                 onContextMenu={mouseRight}
                 camera={
                     {
@@ -131,24 +77,26 @@ const Index = () => {
                         position: [0, 2, -10]
                     }
                 } >
-                    
+
                 <OrbitControls />
                 <ambientLight intensity={1} />
 
                 <Physics gravity={[0, -30, 0]} >
 
-                    <gridHelper args={[groundSize, groundSize]} />
+                    <Suspense fallback={<Loader />}>
+                        <gridHelper args={[groundSize, groundSize]} />
 
-                    <Ground onPointerMove={pointerMove} size={groundSize}/>
+                        <Ground onPointerMove={pointerMove} size={groundSize} />
 
-                    <GroundCheck />
+                        <GroundCheck />
 
-                    <SelectObj />
+                        <SelectObject />
+                    </Suspense>
 
                 </Physics>
 
             </Canvas>
-       </>
+        </>
     )
 }
 

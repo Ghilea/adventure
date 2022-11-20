@@ -1,24 +1,25 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useLayoutEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { OrbitControls } from '@react-three/drei'
 import { Read } from '@comp/crud';
-import { menu, player } from '@store/store';
+import { menu, player, loading } from '@store/store';
 import Ground from '@comp/ground';
 import { Physics } from '@react-three/cannon';
 import Button from '@comp/button/buttons';
 import { Canvas } from '@react-three/fiber';
 import LoadModel from '@models/components/models';
+import Loader from '@comp/loading/loader';
 import './index.scss';
 
 const Index = () => {
 
     const navigate = useNavigate();
 
+    const isLoading = loading(state => state.isLoading)
     const storeMenu = menu(state => state);
     const storePlayer = player(state => state);
 
     const [characterList, setCharacterList] = useState([]);
-    const [viewCharacter, setViewCharacter] = useState([]);
+    const [build, setBuild] = useState([]);
 
     const handleCharacterLogin = () => {
         storeMenu.activateContent('login')
@@ -34,90 +35,128 @@ const Index = () => {
         navigate('/menu');
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
+        let ignore = false;
 
-        if(characterList.length <= 0){
-            Read('getAllProtagonist').then(response => (
+        const startFetching = async () => {
 
-                response.data.map((item, index) => {
-                    return (
-                        setCharacterList((state) => ([
-                            ...state,
-                            <div
-                                key={item.name + index} 
-                                className='flex-col place-row-1-4 p-5 my-4 select-character' 
-                                onClick={handleCharacterLogin}>
-                                <div className='flex-row justify-between'>
-                                    <h2>{item.name}</h2>
-                                    <p>Level: {item.level}</p>
-                                </div>
-                            </div>
-                        ])),
+            const json = await Read(`getLevel?id=${'Menu_character'}`)
 
-                        setViewCharacter(
-                            <div className='flex-col bg-black place-row-1-4'>
-                                <Canvas shadows
-                                    camera={{
-                                        fov: 64,
-                                        position: [0, 0.5, 2]
-                                    }}>
-                                   
-                                    
-                                    <OrbitControls />
-                                    <Physics gravity={[0, -30, 0]} >
-                                        <LoadModel type={'knight'} />
-                                        <Ground size={[8]} transparent={true} opacity={0} position={[0,-1,0]}/>
-                                        <LoadModel type={'floor_1'} position={[0,1,0]}/>
-                                        <LoadModel type={'floor_1'} position={[1, 1, 0]} />
-                                        <LoadModel type={'floor_1'} position={[-1, 1, 0]} />
-                                        <LoadModel type={'floor_1'} position={[0, 1, -1]} />
-                                        <LoadModel type={'floor_1'} position={[1, 1, -1]} />
-                                        <LoadModel type={'floor_1'} position={[-1, 1, -1]} />
-                                        <LoadModel type={'floor_1'} position={[-1, 1, -2]} />
-                                        <LoadModel type={'floor_1'} position={[1, 1, -2]} />
-                                        <LoadModel type={'floor_1'} position={[1, 1, -3]} />
-                                        <LoadModel type={'floor_1'} position={[-1, 1, -3]} />
-                                        <LoadModel type={'floor_1'} position={[-2, 1, -1]} />
-                                        <LoadModel type={'floor_1'} position={[2, 1, -1]} />
-                                        <LoadModel type={'wall_1'} position={[2, 1, -1]} />
-                                        <LoadModel type={'wall_1'} position={[-2, 1, -1]} />
-                                        <LoadModel type={'torch'} position={[-1, 1, -1]} rotation={[0,Math.PI * (180/360),0]}/>
-                                    </Physics>
-                                    
-                                </Canvas>
-                            </div>
-                        )
+            if (!ignore) {
 
-                    )
+                //reset
+                setBuild([])
+
+                //get data
+                const parsed = JSON.parse(json.data[0].content)
+
+                //loop and set data
+                parsed.objects.map((use, index) => {
+
+                    setBuild((state) => ([
+                        ...state,
+                        <LoadModel key={use.type + index} position={use.position} rotation={use.rotation} type={use.type} />
+                    ]))
                 })
 
-            ));
+                setBuild((state) => ([
+                    ...state,
+                    <Ground key={'groundMenuCharacter'} position={[0, 0, 0]} size={parsed.ground}
+                    />
+                ]))
+
+                setBuild((state) => ([
+                    ...state,
+                    <LoadModel key={'showProtagonist'} type={'knight'} />
+                ]))
+            }
         }
-       
+
+        startFetching();
+
+        return () => {
+            ignore = true;
+        }
+
     }, [])
 
-    return (    
-        <div className='grid template-col-5 template-row-4 justify-items-center items-center'>
-            <div className='flex-col bg-black texture-bg shadow place-row-1-4 place-col-5-1 h-full w-full'>
-                {characterList}
-            </div>
-            <div className='flex-col place-row-1-4 place-col-1-4 h-full w-full'>
-                {viewCharacter}
-            </div>
-            <div className='flex flex-row place-row-4-1 place-col-5-1 gap-5 h-full w-full items-end mb-8 px-5'>
-                <Button
-                    className='bg-black texture-bg text-size-4 button'
-                    onClick={handleCreate}>
-                    Create Protagonist
-                </Button>
-                <Button
-                    className='bg-black texture-bg text-size-4 button'
-                    onClick={() => handleExit()}>
-                    Exit
-                </Button>
-            </div>
+    useEffect(() => {
+        let ignore = false;
+
+        const startFetching = async () => {
+
+            const json = await Read(`getAllProtagonist`)
             
-        </div>    
+            if (!ignore) {
+
+                //reset
+                setCharacterList([])
+
+                //loop and set data
+                json.data.map((item, index) => {
+
+                    setCharacterList((state) => ([
+                        ...state,
+                        <div
+                            key={item.name + index}
+                            className='flex-col place-row-1-4 p-5 my-4 rounded-md select-character'
+                            onClick={handleCharacterLogin}>
+                            <div className='flex flex-col justify-evenly gap-4'>
+                                <h2>{item.name}</h2>
+                                <p>Level: {item.level}</p>
+                            </div>
+                        </div>
+                    ]))
+                })
+            }
+        }
+
+        startFetching();
+
+        return () => {
+            ignore = true;
+        }
+
+    }, [])
+
+    return (
+        <>
+            <Canvas shadows className='bg-black'
+                camera={{
+                    fov: 60,
+                    position: [0, 1, -5.8]
+                }}>
+
+                <Physics gravity={[0, -30, 0]} >
+                    <Suspense fallback={<Loader />}>
+                        {build}
+                    </Suspense >
+                </Physics>
+
+            </Canvas>
+            {!isLoading ? <div className='fixed pos-left pos-top grid template-col-5 template-row-5 justify-items-center items-center h-full w-full pt-5 pr-5'>
+                <div className='flex-col place-row-1-4 place-col-5-1 h-full w-full'>
+                    {characterList}
+                </div>
+                <div className='flex-row place-row-5-1 place-col-3-1 gap-5 h-full w-full items-center mb-8 px-5'>
+                    <Button
+                        className='bg-black texture-bg text-size-4 button'
+                        onClick={handleCreate}>
+                        Create Protagonist
+                    </Button>
+                </div>
+                <div className='flex-row place-row-5-1 place-col-5-1 gap-5 h-full w-full items-end mb-8 px-5'>
+                    <Button
+                        className='bg-black texture-bg text-size-4 button'
+                        onClick={() => handleExit()}>
+                        Exit
+                    </Button>
+                </div>
+
+            </div> : null}
+
+        </>
+
     )
 }
 
