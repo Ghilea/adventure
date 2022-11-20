@@ -243,3 +243,9 @@ $value in $colors {
         border: 0.4em double #acbac3;
     }
 }
+
+@for $index from 0 through 10 {
+    .opacity-#{$index} {
+        opacity: #{$index * 0.1};
+    }
+}

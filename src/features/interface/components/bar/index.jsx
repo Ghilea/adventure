@@ -45,9 +45,9 @@ const Bar = ({ currentValue, maxValue, className, color }) => {
 
     return (
 
-        <div className={`w-full rounded-lg relative p-1 bg-black ${className}`} data-value={currentValue} >
+        <div className={`gradient-bg w-full rounded-lg relative p-1 mb-1 ${className}`} data-value={currentValue} >
 
-            <div className={`top rounded-lg relative w-full h-4 ${color}`}
+            <div className={`top rounded-lg relative w-full h-4 bg opacity-5 ${color}`}
                 style={
                     {
                         width: barValue.bar
@@ -63,7 +63,7 @@ const Bar = ({ currentValue, maxValue, className, color }) => {
                 </div>
             </div>
 
-            <div className='value text-black text-shadow absolute transition'>{currentValue }{(maxValue) ? ` / ${maxValue}` : null}</div >
+            <div className='value text-white text-shadow absolute transition'>{currentValue }{(maxValue) ? ` / ${maxValue}` : null}</div >
         </div>
 
     )

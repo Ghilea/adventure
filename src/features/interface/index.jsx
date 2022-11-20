@@ -29,7 +29,7 @@ const Index = () => {
 
                 //loop and set data
                 json.data.map((item) => {
-                    
+
                     storePlayer.setPlayer({
                         level: item.level,
                         health: item.health,
@@ -45,7 +45,7 @@ const Index = () => {
                         name: item.name,
                         img: (item.img) ? femaleImg : maleImg
                     });
-                    
+
                 })
             }
         }
@@ -113,58 +113,52 @@ const Index = () => {
         storePlayer.gainLevel(points, lvl);
     }
 
-/*     const handleMouseClick = (event) => {
-        console.log('click');
-        event.preventDefault();
-
-        if (event.type === 'click' && storeEnemy.hp > 0 && storePlayer.canAttack) {
-            console.log('left');
-
-            const playerText = createElement(
-                'p', {
-                key: 'combatScrollPlayer',
-                className: 'combatScrollPlayer combatScrollAnimation'
-            },
-                storePlayer.dps
-            )
-
-            storePlayer.allowAttack(false, true);
-            storeEnemy.gettingHit(false, (storeEnemy.hp -= storePlayer.dps));
-            storeCombat.changeText(playerText);
-
-            setTimeout(() => {
-                storePlayer.allowAttack(true, false);
-                storeCombat.changeText(null);
-            }, 1500)
-
-        } else if (event.type === 'mousedown' && event.button === 2) {
-            storePlayer.isBlock(true);
-        } else if (event.type === 'contextmenu') {
-            storePlayer.isBlock(false);
-        }
-
-    } */
+    /*     const handleMouseClick = (event) => {
+            console.log('click');
+            event.preventDefault();
+    
+            if (event.type === 'click' && storeEnemy.hp > 0 && storePlayer.canAttack) {
+                console.log('left');
+    
+                const playerText = createElement(
+                    'p', {
+                    key: 'combatScrollPlayer',
+                    className: 'combatScrollPlayer combatScrollAnimation'
+                },
+                    storePlayer.dps
+                )
+    
+                storePlayer.allowAttack(false, true);
+                storeEnemy.gettingHit(false, (storeEnemy.hp -= storePlayer.dps));
+                storeCombat.changeText(playerText);
+    
+                setTimeout(() => {
+                    storePlayer.allowAttack(true, false);
+                    storeCombat.changeText(null);
+                }, 1500)
+    
+            } else if (event.type === 'mousedown' && event.button === 2) {
+                storePlayer.isBlock(true);
+            } else if (event.type === 'contextmenu') {
+                storePlayer.isBlock(false);
+            }
+    
+        } */
 
     return (
         <div className='fixed pos-l-0 pos-t-0 grid template-col-5 template-row-5 w-full h-full justify-items-center items-center'
             onContextMenu={mouseRight} >
-            
-            <div className='avatar rounded-lg place-row-1-1 place-col-1-1'>
-                <img src={storePlayer.img} />
-            </div>
-           
-            <div className='level'>
-                {
-                    experience.level
-                }
+
+            <div className='level pos-t-1 pos-l-1 absolute flex items-center justify-center text-size-7 rounded-pill opacity-5 w-10 px-5'>
+                {experience.level}
             </div>
 
             <Bar name='health' currentValue={state.health} maxValue={state.maxHealth} className='place-row-5-1 place-col-1-1 place-self-end' color='bg-red' />
-            
+
             <Bar name='mana' currentValue={state.mana} maxValue={state.maxMana} className='place-row-5-1 place-col-5-1 place-self-end' color='bg-blue' />
 
-            <Bar name='exp' currentValue={experience.points} className='place-row-5-1 place-col-3-1 place-self-end' color='bg-white'/>
-            
+            <Bar name='exp' currentValue={experience.points} className='place-row-5-1 place-col-3-1 place-self-end' color='bg-white' />
+
             <CharacterSheet />
 
             <Chat name={storePlayer.name} />
