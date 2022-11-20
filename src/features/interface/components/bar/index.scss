@@ -1,0 +1,9 @@
+.value {
+    top: 0.2em;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.transition {
+    transition: width .5s linear;
+}

@@ -90,6 +90,10 @@
     place-self: center;
 }
 
+.place-self-end {
+    place-self: end;
+}
+
 @for $index from 1 through 16 {
 
     //gap

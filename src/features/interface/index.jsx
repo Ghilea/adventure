@@ -1,60 +1,61 @@
-import React, { useState, useEffect, createElement } from 'react';
-import { player, enemy, combat } from '@store/store';
-import { build } from '@store/editor';
-
+import { useEffect, createElement } from 'react';
+import { player } from '@store/store';
 import { Read, Update } from '@comp/crud';
-import { Health, Mana, Exp } from './components/bar/Bar';
+import Bar from './components/bar';
 import disable from '@hooks/disable-click';
 import CharacterSheet from './components/characterSheet';
 import Chat from './components/chat';
-import sword from '@assets/images/gui/sword.png';
-import shield from '@assets/images/gui/shield.png';
+
 import femaleImg from '@assets/images/characters/FantasyCharacters_h_warrior_female.png';
 import maleImg from '@assets/images/characters/FantasyCharacters_h_warrior_male.png';
 import './index.scss';
 
-
 const Index = () => {
 
     const storePlayer = player(state => state);
-    const storeEnemy = enemy(state => state);
-    const storeCombat = combat(state => state);
-    const mousePosition = build(state => state.mousePosition);
+    const experience = player(state => state.experience);
+    const state = player(state => state.state);
+    const ability = player(state => state.ability);
 
     const [mouseRight] = disable();
 
-    const [set, setState] = useState({
-        name: '',
-        img: null
-    });
-
     useEffect(() => {
-        console.log(mousePosition.x, mousePosition.y)
-    }, [mousePosition])
+        let ignore = false;
 
-    useEffect(() => {
+        const startFetching = async () => {
+            const json = await Read(`getProtagonist?id=${storePlayer.id}`)
 
-        Read(`getProtagonist?id=${storePlayer.id}`)
-            .then(response => {
-                setState(set => ({
-                    ...set,
-                    name: response.data[0].name,
-                    img: (response.data[0].img) ? femaleImg : maleImg
-                }));
+            if (!ignore) {
 
-                storePlayer.setPlayer(
-                    response.data[0].level,
-                    response.data[0].health,
-                    response.data[0].maxHealth,
-                    (response.data[0].strength + response.data[0].intellect + response.data[0].dexterity) / 2,
-                    response.data[0].experience,
-                    response.data[0].intellect,
-                    response.data[0].dexterity,
-                    response.data[0].strength,
-                    response.data[0].points
-                );
+                //loop and set data
+                json.data.map((item) => {
+                    
+                    storePlayer.setPlayer({
+                        level: item.level,
+                        health: item.health,
+                        maxHp: item.maxHealth,
+                        exp: item.experience,
+                        int: item.intellect,
+                        dex: item.dexterity,
+                        str: item.strength,
+                        con: item.constitution,
+                        wis: item.wisdom,
+                        cha: item.charisma,
+                        points: item.points,
+                        name: item.name,
+                        img: (item.img) ? femaleImg : maleImg
+                    });
+                    
+                })
+            }
+        }
 
-            })
+        startFetching();
+
+        return () => {
+            ignore = true;
+        }
+
     }, [])
 
     useEffect(() => {
@@ -62,23 +63,23 @@ const Index = () => {
         const data = {
             id: storePlayer.id,
             attribute: {
-                strength: storePlayer.ability.strength.points,
-                intellect: storePlayer.ability.intellect.points,
-                dexterity: storePlayer.ability.dexterity.points,
-                constitution: storePlayer.ability.constitution.points,
-                wisdom: storePlayer.ability.wisdom.points,
-                charisma: storePlayer.ability.charisma.points,
-                available: storePlayer.ability.available
+                strength: ability.strength.points,
+                intellect: ability.intellect.points,
+                dexterity: ability.dexterity.points,
+                constitution: ability.constitution.points,
+                wisdom: ability.wisdom.points,
+                charisma: ability.charisma.points,
+                available: ability.available
             },
             experience: {
-                level: storePlayer.level,
-                points: storePlayer.points
+                level: experience.level,
+                points: experience.points
             },
             state: {
-                health: storePlayer.health,
-                maxHealth: storePlayer.maxHealth,
-                mana: storePlayer.mana,
-                maxMana: storePlayer.maxMana
+                health: state.health,
+                maxHealth: state.maxHealth,
+                mana: state.mana,
+                maxMana: state.maxMana
             }
         }
 
@@ -93,7 +94,7 @@ const Index = () => {
             updateLevel();
         }
 
-    }, [storePlayer.exp]);
+    }, [experience.points]);
 
     const updateLevel = () => {
 
@@ -112,7 +113,7 @@ const Index = () => {
         storePlayer.gainLevel(points, lvl);
     }
 
-    const handleMouseClick = (event) => {
+/*     const handleMouseClick = (event) => {
         console.log('click');
         event.preventDefault();
 
@@ -142,43 +143,32 @@ const Index = () => {
             storePlayer.isBlock(false);
         }
 
-    }
+    } */
 
     return (
-        <>
-            <div className='interface'
-                onClick={
-                    handleMouseClick
-                }
-                onContextMenu={mouseRight}
-                onMouseDown={
-                    handleMouseClick
-                } >
-                <div className='avatar'>
-                    <img src={set.img} />
-                </div>
-                <div className='heroName'>{set.name}</div>
-                <div className='level'>
-                    {
-                        storePlayer.level
-                    }
-                </div>
-                <Health />
-                <Exp />
-                <Mana />
-                <CharacterSheet />
-
-                {/*  <div key={'playerShield'} className={`playerShield ${(storePlayer.block) ? 'block' : ''}`}>
-                    <img src={shield}/>
-                </div> */}
-
-                {/* <div key={'playerWeapon'} className={`playerWeapon ${(storePlayer.attack) ? 'swing' : ''}`}>
-                    <img src={sword}/>
-                </div> */}
-
-                <Chat name={set.name} />
+        <div className='fixed pos-l-0 pos-t-0 grid template-col-5 template-row-5 w-full h-full justify-items-center items-center'
+            onContextMenu={mouseRight} >
+            
+            <div className='avatar rounded-lg place-row-1-1 place-col-1-1'>
+                <img src={storePlayer.img} />
             </div>
-        </>
+           
+            <div className='level'>
+                {
+                    experience.level
+                }
+            </div>
+
+            <Bar name='health' currentValue={state.health} maxValue={state.maxHealth} className='place-row-5-1 place-col-1-1 place-self-end' color='bg-red' />
+            
+            <Bar name='mana' currentValue={state.mana} maxValue={state.maxMana} className='place-row-5-1 place-col-5-1 place-self-end' color='bg-blue' />
+
+            <Bar name='exp' currentValue={experience.points} className='place-row-5-1 place-col-3-1 place-self-end' color='bg-white'/>
+            
+            <CharacterSheet />
+
+            <Chat name={storePlayer.name} />
+        </div>
     )
 }
 

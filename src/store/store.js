@@ -11,6 +11,8 @@ export const loading = create((set) => ({
 
 export const player = create((set) => ({
   id: 1,
+  name: "",
+  img: "",
   gender: null,
   experience: {
     level: null,
@@ -84,6 +86,66 @@ export const player = create((set) => ({
     stealth: 0, //dex
     survival: 0, //wis
   },
+  setPlayer: ({
+    level,
+    health,
+    maxHp,
+    exp,
+    int,
+    dex,
+    str,
+    points,
+    name,
+    img,
+    con,
+    wis,
+    cha,
+  }) =>
+    set((state) => ({
+      ...state,
+      name: name,
+      img: img,
+      experience: {
+        ...state.experience,
+        level: level,
+        points: exp,
+      },
+      state: {
+        ...state.state,
+        maxHealth: maxHp,
+        health: health,
+        maxMana: null,
+        mana: null,
+      },
+      ability: {
+        ...state.ability,
+        available: points,
+        strength: {
+          points: str,
+          modifier: -5,
+        },
+        intellect: {
+          points: int,
+          modifier: -5,
+        },
+        dexterity: {
+          points: dex,
+          modifier: -5,
+        },
+        constitution: {
+          points: con,
+          modifier: -5,
+        },
+        wisdom: {
+          points: wis,
+          modifier: -5,
+        },
+        charisma: {
+          points: cha,
+          modifier: -5,
+        },
+      },
+    })),
   setMovementSpeed: (speed) =>
     set((state) => ({
       ...state,
@@ -93,19 +155,6 @@ export const player = create((set) => ({
     set((state) => ({
       ...state,
       id: id,
-    })),
-  setPlayer: (level, hp, maxHp, dps, exp, int, dex, str, points) =>
-    set((state) => ({
-      ...state,
-      level: level,
-      hp: hp,
-      maxHp: maxHp,
-      dps: dps,
-      exp: exp,
-      int: int,
-      dex: dex,
-      str: str,
-      points: points,
     })),
   isAttack: (attack, hp) =>
     set((state) => ({

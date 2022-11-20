@@ -38,7 +38,7 @@ const Menu = () => {
     }
 
     return (
-        <div className='bg-login fixed pos-left pos-top grid template-row-3 template-col-1 h-full w-full'>
+        <div className='bg-login fixed pos-l-0 pos-t-0 grid template-row-3 template-col-1 h-full w-full'>
 
             <div className='flex flex-col items-center justify-center place-row-2-1 place-col-1-1 gap-1'>
                 <img className='game-logo' src={logoImg} alt='Game logo' />

@@ -134,7 +134,7 @@ const Index = () => {
                 </Physics>
 
             </Canvas>
-            {!isLoading ? <div className='fixed pos-left pos-top grid template-col-5 template-row-5 justify-items-center items-center h-full w-full pt-5 pr-5'>
+            {!isLoading ? <div className='fixed pos-l-0 pos-t-0 grid template-col-5 template-row-5 justify-items-center items-center h-full w-full pt-5 pr-5'>
                 <div className='flex-col place-row-1-4 place-col-5-1 h-full w-full'>
                     {characterList}
                 </div>
