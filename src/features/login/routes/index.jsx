@@ -6,12 +6,14 @@ import { appWindow } from "@tauri-apps/api/window";
 import logoImg from '@assets/images/svg/celtic.svg';
 import menuMusic from '@assets/music/menu/menu3.mp3';
 import useSound from 'use-sound';
+import Auth from '../components/auth';
+
 import './index.scss';
 
 const Menu = () => {
 
     const [play] = useSound(menuMusic, {
-        volume: 0.4,
+        volume: 0.2,
         loop: true
     });
 
@@ -37,14 +39,14 @@ const Menu = () => {
 
     return (
         <div className='bg-login fixed pos-left pos-top grid template-row-3 template-col-1 h-full w-full'>
-            
+
             <div className='flex flex-col items-center justify-center place-row-2-1 place-col-1-1 gap-1'>
-                <img className='game-logo' src={logoImg} alt='Game logo'/>
-                <h1 className='text-size-6 flex justify-center items-center'>Adventure</h1> 
-            
-                <div className='flex flex-col justify-end items-end gap-6 place-row-1-1 place-col-1-1 mt-5'>
-                    <Input placeholder='email@email.com'/>
-                    <Input type='password' placeholder='******'/>
+                <img className='game-logo' src={logoImg} alt='Game logo' />
+                <h1 className='text-size-6 flex justify-center items-center'>Adventure</h1>
+
+                <form className='flex flex-col justify-end items-end gap-6 place-row-1-1 place-col-1-1 mt-5'>
+                    <Input placeholder='email@email.com' />
+                    <Input type='password' placeholder='******' />
 
                     <div className='flex flex-row justify-evenly w-full'>
                         <Button
@@ -61,8 +63,8 @@ const Menu = () => {
                             Signup
                         </Button>
                     </div>
-                    
-                </div>
+                </form>
+
             </div>
 
             <Button

@@ -10,17 +10,18 @@ const Knight = (props) => {
     useEffect(() => {
         if(!actions.idle1.isRunning())
         {
-            //animations[0].timeScale = 1/10000;
-            console.log(animations[0])
             actions.idle1.play()
         }
-        
     }, [])
 
     return (
-        <group ref={group} {...props} dispose={null} position={[0.05,-1,-0.1]} scale={[0.009,0.009,0.009]}>
+        <group ref={group} {...props} dispose={null} 
+        position={[0, 0, -4.3]} 
+        rotation={[0, Math.PI * (360/360), 0]} 
+        scale={[0.006,0.006,0.007]}>
 
             <group name="Sketchfab_Scene">
+             
                 <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
                     <group
                         name="c7679cdd5a96477ba7e8c979c5fb4a97fbx"

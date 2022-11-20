@@ -1,40 +1,53 @@
 import { useState, useMemo } from 'react';
 
 import { Wall_1 } from '@models/objects/walls/walls';
-import { Torch } from '@models/objects/torch/torch';
+import WallTorch from '@models/objects/torch/wall_torch/wall_torch';
+import PlayerTorch from '@models/objects/torch/player_torch/player_torch'
 import { Rock_1 } from '@models/objects/rocks/rocks';
 import { Player } from '@models/creatures/player/player';
 import SwampMonster from '@models/creatures/swamp_monster/swamp_monster';
 import Floor_1 from '@models/grounds/floor_1/floor_1';
 import Knight from '@models/avatar/knight';
 
-const Models = ({position, rotation, type}) => {
+import Sword from '@models/equipement/sword/sword';
+import VikingShield from '@models/equipement/shield/viking_Shield';
+
+const Models = ({ position, rotation, type }) => {
 
     const [model, setModel] = useState([])
-    
+
     useMemo(() => {
 
         switch (type) {
             case 'wall_1':
-                setModel(<Wall_1 position={position} rotation={rotation} type={type} />)
+                setModel(<Wall_1 position={position} rotation={rotation} />)
                 break;
             case 'player':
-                setModel(<Player position={position} rotation={rotation} type={type} />)
+                setModel(<Player position={position} rotation={rotation} />)
                 break;
             case 'rock_1':
-                setModel(<Rock_1 position={position} rotation={rotation} type={type} />)
+                setModel(<Rock_1 position={position} rotation={rotation} />)
                 break;
-            case 'torch':
-                setModel(<Torch position={position} rotation={rotation} type={type} />)
+            case 'wallTorch':
+                setModel(<WallTorch position={position} rotation={rotation} />)
+                break;
+            case 'playerTorch':
+                setModel(<PlayerTorch position={position} rotation={rotation} />)
                 break;
             case 'floor_1':
-                setModel(<Floor_1 position={position} rotation={rotation} type={type} />)
+                setModel(<Floor_1 position={position} rotation={rotation} />)
                 break;
             case 'swamp_monster':
-                setModel(<SwampMonster position={position} rotation={rotation} type={type} />)
+                setModel(<SwampMonster position={position} rotation={rotation} />)
                 break;
             case 'knight':
-                setModel(<Knight />)
+                setModel(<Knight position={position} rotation={rotation} />)
+                break;
+            case 'sword':
+                setModel(<Sword position={position} rotation={rotation} />)
+                break;
+            case 'vikingShield':
+                setModel(<VikingShield position={position} rotation={rotation} />)
                 break;
         }
 

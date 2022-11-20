@@ -45,7 +45,7 @@ const Index = () => {
 
             {
               <div className='main_text' >{quest.describe}</div>
-            }   </div> : <></ >
+            }   </div> : null
       }
     </>
   )

@@ -1,5 +1,7 @@
 import React, { useState, useEffect, createElement } from 'react';
 import { player, enemy, combat } from '@store/store';
+import { build } from '@store/editor';
+
 import { Read, Update } from '@comp/crud';
 import { Health, Mana, Exp } from './components/bar/Bar';
 import disable from '@hooks/disable-click';
@@ -17,13 +19,19 @@ const Index = () => {
     const storePlayer = player(state => state);
     const storeEnemy = enemy(state => state);
     const storeCombat = combat(state => state);
+    const mousePosition = build(state => state.mousePosition);
+
     const [mouseRight] = disable();
 
     const [set, setState] = useState({
         name: '',
         img: null
     });
-        
+
+    useEffect(() => {
+        console.log(mousePosition.x, mousePosition.y)
+    }, [mousePosition])
+
     useEffect(() => {
 
         Read(`getProtagonist?id=${storePlayer.id}`)
@@ -31,7 +39,7 @@ const Index = () => {
                 setState(set => ({
                     ...set,
                     name: response.data[0].name,
-                    img: (response.data[0].img) ? femaleImg : maleImg                   
+                    img: (response.data[0].img) ? femaleImg : maleImg
                 }));
 
                 storePlayer.setPlayer(
@@ -45,7 +53,7 @@ const Index = () => {
                     response.data[0].strength,
                     response.data[0].points
                 );
-                
+
             })
     }, [])
 
@@ -65,7 +73,7 @@ const Index = () => {
             experience: {
                 level: storePlayer.level,
                 points: storePlayer.points
-            }, 
+            },
             state: {
                 health: storePlayer.health,
                 maxHealth: storePlayer.maxHealth,
@@ -77,18 +85,18 @@ const Index = () => {
         if (storePlayer.level > 0) {
             Update('updateStats', data);
         }
-            
+
     }, [storePlayer]);
 
     useEffect(() => {
-        if(storePlayer.exp > 0){
+        if (storePlayer.exp > 0) {
             updateLevel();
         }
-        
+
     }, [storePlayer.exp]);
 
     const updateLevel = () => {
-     
+
         let points = storePlayer.points;
         let lvl = storePlayer.level;
         let nextLevel = lvl + 1;
@@ -100,7 +108,7 @@ const Index = () => {
             points++;
             formulaLevel = (50 * nextLevel ** 3 / 3 - 100 * nextLevel ** 2 + 850 * nextLevel / 3 - 200);
         }
-        
+
         storePlayer.gainLevel(points, lvl);
     }
 
@@ -110,12 +118,12 @@ const Index = () => {
 
         if (event.type === 'click' && storeEnemy.hp > 0 && storePlayer.canAttack) {
             console.log('left');
-            
+
             const playerText = createElement(
                 'p', {
-                    key: 'combatScrollPlayer',
-                    className: 'combatScrollPlayer combatScrollAnimation'
-                },
+                key: 'combatScrollPlayer',
+                className: 'combatScrollPlayer combatScrollAnimation'
+            },
                 storePlayer.dps
             )
 
@@ -128,9 +136,9 @@ const Index = () => {
                 storeCombat.changeText(null);
             }, 1500)
 
-        }else if (event.type === 'mousedown' && event.button === 2) {
+        } else if (event.type === 'mousedown' && event.button === 2) {
             storePlayer.isBlock(true);
-        }else if (event.type === 'contextmenu') {
+        } else if (event.type === 'contextmenu') {
             storePlayer.isBlock(false);
         }
 
@@ -138,16 +146,16 @@ const Index = () => {
 
     return (
         <>
-            <div className = 'interface'
-            onClick = {
-                handleMouseClick
-            }
+            <div className='interface'
+                onClick={
+                    handleMouseClick
+                }
                 onContextMenu={mouseRight}
-            onMouseDown = {
-                handleMouseClick
-            } >
-                <div className='avatar'> 
-                    <img src={set.img} /> 
+                onMouseDown={
+                    handleMouseClick
+                } >
+                <div className='avatar'>
+                    <img src={set.img} />
                 </div>
                 <div className='heroName'>{set.name}</div>
                 <div className='level'>
@@ -159,16 +167,16 @@ const Index = () => {
                 <Exp />
                 <Mana />
                 <CharacterSheet />
-    
-                <div key={'playerShield'} className={`playerShield ${(storePlayer.block) ? 'block' : ''}`}>
-                    <img src={shield}/>
-                </div>
 
-                <div key={'playerWeapon'} className={`playerWeapon ${(storePlayer.attack) ? 'swing' : ''}`}>
+                {/*  <div key={'playerShield'} className={`playerShield ${(storePlayer.block) ? 'block' : ''}`}>
+                    <img src={shield}/>
+                </div> */}
+
+                {/* <div key={'playerWeapon'} className={`playerWeapon ${(storePlayer.attack) ? 'swing' : ''}`}>
                     <img src={sword}/>
-                </div>
-                
-                <Chat name={set.name}/> 
+                </div> */}
+
+                <Chat name={set.name} />
             </div>
         </>
     )

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@comp/button/buttons';
 import disable from '@hooks/disable-click';
@@ -20,12 +20,24 @@ const TopPanel = () => {
     const [showButtons, setShowButtons] = useState();
     const [mouseRight] = disable();
     const [rotate, setRotate] = useState(0);
-    
+
     const storeBuild = build(state => state);
     const mapSettings = build(state => state.mapSettings);
 
     const handleExit = () => {
+
+        //reset all when exiting editor mode
+        storeBuild.setImportedMap('New Level')
+        storeBuild.emptyObjects();
+        storeBuild.setMapSettings({
+            objects: [],
+            groundSize: 10
+        })
+
+        //change editor mode to false
         storeBuild.setIsEditor(false)
+
+        //take user to menu
         navigate('/menu');
     }
 
@@ -34,7 +46,8 @@ const TopPanel = () => {
         console.log({
             'id': mapSettings.id,
             'ground': mapSettings.groundSize,
-            'objects': mapSettings.objects,
+            'objects': storeBuild.objects,
+            'solid': storeBuild.solid,
             'order': mapSettings.order,
             'title': mapSettings.title,
             'objectIndex': mapSettings.objectIndex
@@ -42,21 +55,21 @@ const TopPanel = () => {
 
         if (mapSettings.id === undefined) {
 
-            if(mapSettings.title === undefined) return console.log('error title')
-            if(mapSettings.objects === undefined) return console.log('error objects')
-            
-            console.log('create')
-             Create('createLevel', {
+            if (mapSettings.title === undefined) return console.log('error title')
+            if (storeBuild.objects === undefined) return console.log('error objects')
+
+            Create('createLevel', {
                 level: mapSettings.order || 0,
                 title: mapSettings.title,
                 content: JSON.stringify({
+                    'objectIndex': mapSettings.objectIndex,
                     'ground': mapSettings.groundSize,
-                    'objects': mapSettings.objects
+                    'objects': storeBuild.objects,
+                    'solid': storeBuild.solid
                 })
-            });             
+            });
 
-        }else{
-            console.log('update')
+        } else {
             Update('updateLevel', {
                 id: mapSettings.id,
                 level: mapSettings.order || 0,
@@ -64,11 +77,12 @@ const TopPanel = () => {
                 content: JSON.stringify({
                     'objectIndex': mapSettings.objectIndex,
                     'ground': mapSettings.groundSize,
-                    'objects': mapSettings.objects
+                    'objects': storeBuild.objects,
+                    'solid': storeBuild.solid,
                 })
-            }) 
+            })
         }
-        
+
     }
 
     const handleRemove = () => {
@@ -79,18 +93,18 @@ const TopPanel = () => {
     useKey(['Delete'], handleRemove);
 
     const handleRotateLeft = () => {
-       /*  if (storeBuild.isBuild.objectSize.rotate === 360) {
-            storeBuild.setRotate(0)
-        } else {
-            if (storeBuild.isBuild.objectSize.rotate + 90 === 360) {
-                return storeBuild.setRotate(0)
-            }
-
-            storeBuild.setRotate(storeBuild.isBuild.objectSize.rotate + 90)
-        }
-
-        console.log(rotate, storeBuild.isBuild.objectSize.rotate)
-        setRotate((Math.PI * (storeBuild.isBuild.objectSize.rotate / 360))) */
+        /*  if (storeBuild.isBuild.objectSize.rotate === 360) {
+             storeBuild.setRotate(0)
+         } else {
+             if (storeBuild.isBuild.objectSize.rotate + 90 === 360) {
+                 return storeBuild.setRotate(0)
+             }
+ 
+             storeBuild.setRotate(storeBuild.isBuild.objectSize.rotate + 90)
+         }
+ 
+         console.log(rotate, storeBuild.isBuild.objectSize.rotate)
+         setRotate((Math.PI * (storeBuild.isBuild.objectSize.rotate / 360))) */
     }
 
     const handleRotateRight = () => {
@@ -112,18 +126,18 @@ const TopPanel = () => {
         if (storeBuild.selected !== null) {
             setShowButtons(
                 <>
-                    <Button 
+                    <Button
                         alt='remove'
-                        img={img_remove} 
-                        className='topBtn' 
-                        onClick={handleRemove}/>
+                        img={img_remove}
+                        className='topBtn'
+                        onClick={handleRemove} />
 
-                    <Button 
+                    <Button
                         alt='rotate left'
                         img={img_rotate}
                         className='topBtn'
-                        imgClassName='rotateLeftBtn' 
-                        onClick={handleRotateLeft}/>
+                        imgClassName='rotateLeftBtn'
+                        onClick={handleRotateLeft} />
 
                     <Button
                         alt='rotate right'
@@ -132,30 +146,30 @@ const TopPanel = () => {
                         onClick={handleRotateRight} />
                 </>
             )
-        }else{
+        } else {
             setShowButtons()
         }
     }, [storeBuild.selected])
 
     return (
-        <div 
-            className="topPanel" 
+        <div
+            className="topPanel"
             onContextMenu={mouseRight}>
-            
-            <Button 
+
+            <Button
                 alt='save'
-                img={img_save} 
-                className='topBtn' 
-                onClick={handleSave}/>
+                img={img_save}
+                className='topBtn'
+                onClick={handleSave} />
 
             {showButtons}
-            
-            <Button 
+
+            <Button
                 alt='exit'
-                img={img_exit} 
+                img={img_exit}
                 className='topBtn'
                 onClick={handleExit} />
-            
+
         </div>
     )
 }

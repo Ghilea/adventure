@@ -2,7 +2,7 @@ import React from 'react';
 import { useBox } from '@react-three/cannon';
 //import * as texture from '@comp/textures';
 
-export const Walls = ({position, rotation, type, ...props}) => {
+export const Walls = ({ position, rotation, type, ...props }) => {
 
     const [ref] = useBox(() => ({
         args: [5, 2, 1],
@@ -12,10 +12,10 @@ export const Walls = ({position, rotation, type, ...props}) => {
     }))
 
     return (
-        <mesh ref = {ref} castShadow receiveShadow>
+        <mesh ref={ref} castShadow receiveShadow>
             <meshStandardMaterial />
-            
-            <boxGeometry args = {[5, 2, 1]} />
+
+            <boxGeometry args={[5, 2, 1]} />
         </mesh>
     )
 

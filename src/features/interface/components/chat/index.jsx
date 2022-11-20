@@ -3,49 +3,49 @@ import { map } from '@store/store';
 import { useKey } from 'rooks';
 import './index.scss';
 
-const Index = ({name}) => {
+const Index = ({ name }) => {
 
     const storeMap = map(state => state);
 
     const ws = useRef(null);
     const inputRef = useRef(null);
 
-    useEffect(()=>{
+    useEffect(() => {
         ws.current = new WebSocket(`ws://${import.meta.env.VITE_DB_HOST}:${import.meta.env.VITE_PORT}/websockets`);
     }, [])
-    
-    const [chatMessage, setChatMessage]= useState([])
+
+    const [chatMessage, setChatMessage] = useState([])
 
     const [textInput, SetTextInput] = useState('');
 
-    useEffect(()=>{
+    useEffect(() => {
         let messageId = 0;
 
         ws.current.onmessage = (message) => {
             const output = JSON.parse(message.data);
-            
+
             setChatMessage(chatMessage => ([
                 ...chatMessage,
-                <p key={output.message.name+messageId}><span>{output.message.name}: </span>{output.message.message}</p>
+                <p key={output.message.name + messageId}><span>{output.message.name}: </span>{output.message.message}</p>
             ]))
             messageId++;
         };
     }, [ws.current])
-        
+
     const openChatInput = (event) => {
         event.preventDefault();
 
-        if(storeMap.chatInput){
+        if (storeMap.chatInput) {
             storeMap.disableCamera(false)
             if (textInput.length > 0) {
-                ws.current.send(JSON.stringify({"name":name,"message": textInput}));
+                ws.current.send(JSON.stringify({ "name": name, "message": textInput }));
             }
             SetTextInput('');
             inputRef.current.value = '';
             storeMap.openChat(false);
             inputRef.current.blur();
             storeMap.closeChatWindow(true);
-        }else{
+        } else {
             storeMap.disableCamera(true)
             storeMap.openChat(true);
             storeMap.closeChatWindow(false);
@@ -54,29 +54,29 @@ const Index = ({name}) => {
                 inputRef.current.focus();
             }, 300)
         }
-        
+
     }
 
     useKey(['Enter'], openChatInput);
 
     return (
-        <>               
-            <div className = {
+        <>
+            <div className={
                 `chat ${(storeMap.chatWindow) ? 'fadeOut' : ''}`
             } >
                 {
-                    chatMessage                
+                    chatMessage
                 }
             </div>
 
-            <input id = 'chatInput' className = {`chatInput ${(!storeMap.chatInput) ? 'hide' : ''}`} type = 'text'
-                ref = {
+            <input id='chatInput' className={`chatInput ${(!storeMap.chatInput) ? 'hide' : ''}`} type='text'
+                ref={
                     inputRef
                 }
-                onChange = {
+                onChange={
                     (e) => SetTextInput(e.target.value)
-            } />
- 
+                } />
+
         </>
     )
 }

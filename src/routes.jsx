@@ -1,20 +1,20 @@
-import React, {useEffect} from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from '@comp/layout'
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "@comp/layout";
 
 // Routes
-import Editor from '@features/editor/routes/';
-import CompanyIntro from '@features/company_intro/routes/';
-import Menu from '@features/menu/routes/';
-import Login from '@features/login/routes/';
-import MenuCreate from '@features/menu/section/create_characters/routes/';
-import MenuView from '@features/menu/section/view_characters/routes/';
-import MenuOptions from '@features/menu/section/options/routes/';
-import Level from '@features/level/routes/';
+import Editor from "@features/editor/routes/";
+import CompanyIntro from "@features/company_intro/routes/";
+import Menu from "@features/menu/routes/";
+import Login from "@features/login/routes/";
+import MenuCreate from "@features/menu/section/create_characters/routes/";
+import MenuView from "@features/menu/section/view_characters/routes/";
+import MenuOptions from "@features/menu/section/options/routes/";
+import Level from "@features/level/routes/";
 
 const routes = () => {
   useEffect(() => {
-    window.open('', "_self", "");
+    window.open("", "_self", "");
   }, []);
   return (
     <BrowserRouter>

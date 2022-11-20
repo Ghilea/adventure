@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { enemy, player } from '@store/store'
 import { Read } from '@comp/crud';
 import './expBar.scss';
@@ -11,12 +11,12 @@ export const Health = () => {
     const storePlayer = player(state => state);
 
     const [health, setHealth] = useState(
-        { 
+        {
             hit: 0 + '%',
             bar: 100 + '%'
         }
     );
-    
+
     useEffect(() => {
         Read(`getProtagonist?id=${storePlayer.id}`).then(response => setHealth(set => ({
             ...set,
@@ -32,7 +32,7 @@ export const Health = () => {
             }))
         }
 
-        if(storePlayer.hp <= 0){
+        if (storePlayer.hp <= 0) {
             console.log('Du dog');
         }
 
@@ -44,11 +44,11 @@ export const Health = () => {
             }))
         }, 500);
     }, [storeEnemy.attack])
-    
+
 
     useEffect(() => {
-        if(storePlayer.maxHp > 0){
-            
+        if (storePlayer.maxHp > 0) {
+
             setHealth(health => ({
                 ...health,
                 bar: (storePlayer.hp / storePlayer.maxHp) * 100 + '%'
@@ -57,28 +57,28 @@ export const Health = () => {
     }, [storePlayer.maxHp])
 
     return (
-    
-        <div className = 'health-bar' data-value = {storePlayer.hp}>
-            
-            <div className = 'bar'
-            style = {
-                {
-                    width: health.bar
-                }
-            }>
-                <div className='hit' 
-                style = {
+
+        <div className='health-bar' data-value={storePlayer.hp}>
+
+            <div className='bar'
+                style={
                     {
-                        width: health.hit
+                        width: health.bar
                     }
                 }>
+                <div className='hit'
+                    style={
+                        {
+                            width: health.hit
+                        }
+                    }>
 
                 </div>
             </div>
 
-            <div className = 'health'> {storePlayer.hp} / {storePlayer.maxHp}</div>
+            <div className='health'> {storePlayer.hp} / {storePlayer.maxHp}</div>
         </div>
-     
+
     )
 }
 
@@ -87,39 +87,39 @@ export const Mana = () => {
     const storePlayer = player(state => state);
 
     const [mana, setMana] = useState(
-        { 
+        {
             hit: 0 + '%',
             bar: 100 + '%'
         }
     );
-    
+
 
     return (
-    
-        <div className = 'mana-bar' data-value = {
+
+        <div className='mana-bar' data-value={
             storePlayer.mana
         } >
-            
-            <div className = 'bar'
-            style = {
-                {
-                    width: mana.bar
-                }
-            }>
-                <div className='hit' 
-                style = {
+
+            <div className='bar'
+                style={
                     {
-                        width: mana.hit
+                        width: mana.bar
                     }
                 }>
+                <div className='hit'
+                    style={
+                        {
+                            width: mana.hit
+                        }
+                    }>
 
                 </div>
             </div>
 
-            <div className = 'mana' > 40
+            <div className='mana' > 40
             </div >
         </div>
-     
+
     )
 }
 
@@ -128,39 +128,39 @@ export const Exp = () => {
     const storePlayer = player(state => state);
 
     const [exp, setExp] = useState(
-        { 
+        {
             hit: 0 + '%',
             bar: 100 + '%'
         }
     );
-    
+
     return (
-    
-        <div className = 'exp-bar' data-value = {
+
+        <div className='exp-bar' data-value={
             storePlayer.exp
         } >
-            
-            <div className = 'bar'
-            style = {
-                {
-                    width: exp.bar
-                }
-            }>
-                <div className='hit' 
-                style = {
+
+            <div className='bar'
+                style={
                     {
-                        width: exp.hit
+                        width: exp.bar
                     }
                 }>
+                <div className='hit'
+                    style={
+                        {
+                            width: exp.hit
+                        }
+                    }>
 
                 </div>
             </div>
 
-            <div className = 'exp' > {
+            <div className='exp' > {
                 storePlayer.exp
             } exp
             </div >
         </div>
-     
+
     )
 }
