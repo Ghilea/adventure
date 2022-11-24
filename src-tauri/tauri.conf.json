@@ -4,7 +4,7 @@
     "beforeBuildCommand": "npm run build",
     "beforeDevCommand": "npm run dev",
     "devPath": "http://localhost:1420",
-    "distDir": "../src/assets/"
+    "distDir": "../dist/"
   },
   "package": {
     "productName": "adventure",
@@ -18,7 +18,7 @@
     },
     "bundle": {
       "active": true,
-      "category": "DeveloperTool",
+      "category": "RolePlayingGame",
       "copyright": "",
       "deb": {
         "depends": []
@@ -56,11 +56,12 @@
     },
     "windows": [
       {
-        "fullscreen": false,
-        "height": 800,
-        "resizable": false,
         "title": "Adventure",
-        "width": 1024
+        "width": 1200,
+        "height": 720,
+        "resizable": false,
+        "fullscreen": false
+        
       }
     ]
   }
