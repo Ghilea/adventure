@@ -15,6 +15,9 @@
     text-overflow: ellipsis;
 }
 
+.text-shadow {
+    text-shadow: 0 0 2px #000;
+}
 
 /****************************/
 // margin & padding
@@ -92,7 +95,7 @@
 /****************************/
 // width & height
 /****************************/
-@for $index from 1 through 16 {
+@for $index from 0 through 16 {
     .h-#{$index} {
         height: #{$index * 4px};
     }
@@ -152,10 +155,12 @@
 /****************************/
 $colors: (
     "white": white,
+    "grey": grey,
     "black": black,
     "primary": #472e2e,
     "green": #32ba78,
     "red": #fd6d6d,
+    "blue": #425fff
 );
 
 @each $color,
@@ -184,12 +189,22 @@ $value in $colors {
     position: absolute;
 }
 
-.pos-left {
-    left: 0;
+@for $index from 0 through 16 {
+    .pos-l-#{$index} {
+        left: #{$index * 0.5rem};
+    }
 }
 
-.pos-top {
-    top: 0;
+@for $index from 0 through 16 {
+    .pos-t-#{$index} {
+        top: #{$index * 0.5rem};
+    }
+}
+
+@for $index from 0 through 16 {
+    .pos-b-#{$index} {
+        bottom: #{$index * 0.5rem};
+    }
 }
 
 .shadow {
@@ -226,5 +241,11 @@ $value in $colors {
 
     &:hover {
         border: 0.4em double #acbac3;
+    }
+}
+
+@for $index from 0 through 10 {
+    .opacity-#{$index} {
+        opacity: #{$index * 0.1};
     }
 }
